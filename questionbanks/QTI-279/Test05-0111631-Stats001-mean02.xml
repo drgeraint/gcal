@@ -1,0 +1,687 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p1"    
+    xmlns:m="http://www.w3.org/1998/Math/MathML"
+    xmlns:ma="http://mathassess.qtitools.org/xsd/mathassess"
+    xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" adaptive="true" 
+    identifier="Test05-0111631-Stats001-mean02"
+    timeDependent="false" title="Find the mean of a list of values in context" toolName="Mathqurate" toolVersion="1.0"
+    xml:lang="en"
+    xsi:schemaLocation="http://www.imsglobal.org/xsd/imsqti_v2p1 imsqti_v2p1.xsd">
+    <responseDeclaration baseType="float" cardinality="single" identifier="RESPONSE"/>
+    <responseDeclaration baseType="string" cardinality="single" identifier="sInput"/>
+    <responseDeclaration baseType="boolean" cardinality="single" identifier="HINTREQUEST"/>
+    <responseDeclaration baseType="boolean" cardinality="single" identifier="SOLREQUEST"/>
+    <outcomeDeclaration baseType="float" cardinality="single" identifier="SCORE" normalMaximum="2.0"
+        normalMinimum="0.0">
+        <defaultValue>
+            <value>0.0</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="seenSolution">
+        <defaultValue>
+            <value>false</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="seenHint">
+        <defaultValue>
+            <value>false</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="identifier" cardinality="single" identifier="ASKHINT">
+        <defaultValue>
+            <value>askhint</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="identifier" cardinality="single" identifier="ASKSOLUTION">
+        <defaultValue>
+            <value>asksolution</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="identifier" cardinality="multiple" identifier="FEEDBACK"/>
+    <outcomeDeclaration baseType="identifier" cardinality="single" identifier="EMPTY"/>
+    <templateDeclaration baseType="identifier" cardinality="multiple" identifier="tParts" mathVariable="false" paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iN"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="ordered" identifier="iSample" mathVariable="false"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="ordered" identifier="iCumulativeSum" mathVariable="false"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iSample01" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iSample02" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iSample03" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iSample04" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iSample05" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iSample06" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iSample07" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iSample08" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iSample09" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iSample10" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iSum01" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iSum02" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iSum03" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iSum04" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iSum05" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iSum06" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iSum07" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iSum08" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iSum09" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iSum10" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iSum" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iMin" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iMax" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iType" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="string" cardinality="single" identifier="sPerson" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="string" cardinality="single" identifier="sMeasure" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="string" cardinality="single" identifier="sMeasure2" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="string" cardinality="single" identifier="sUnits" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="float" cardinality="single" identifier="fMean"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="float" cardinality="single" identifier="fAns" mathVariable="true"
+        paramVariable="false"/>
+    <templateProcessing>
+        <setTemplateValue identifier="iType">
+            <randomInteger min="1" max="4"/>
+        </setTemplateValue>
+        <setTemplateValue identifier="sPerson">
+            <index n="iType">
+                <ordered>
+                    <baseValue baseType="string">a group of students</baseValue>
+                    <baseValue baseType="string">a group of students</baseValue>
+                    <baseValue baseType="string">members of staff at a primary school</baseValue>
+                    <baseValue baseType="string">a group of children</baseValue>
+                </ordered>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="sMeasure">
+            <index n="iType">
+                <ordered>
+                    <baseValue baseType="string">number of hours spent studying the night before an exam by </baseValue>
+                    <baseValue baseType="string">exam marks (as percentages) of </baseValue>
+                    <baseValue baseType="string">number of miles travelled from home to work by </baseValue>
+                    <baseValue baseType="string">heights in cm of </baseValue>
+                </ordered>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="sMeasure2">
+            <index n="iType">
+                <ordered>
+                    <baseValue baseType="string">time spent studying</baseValue>
+                    <baseValue baseType="string">mark</baseValue>
+                    <baseValue baseType="string">distance travelled</baseValue>
+                    <baseValue baseType="string">height</baseValue>
+                </ordered>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="sUnits">
+            <index n="iType">
+                <ordered>
+                    <baseValue baseType="string">hours</baseValue>
+                    <baseValue baseType="string">%</baseValue>
+                    <baseValue baseType="string">miles</baseValue>
+                    <baseValue baseType="string">cm</baseValue>
+                </ordered>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iMin">
+            <index n="iType">
+                <ordered>
+                    <baseValue baseType="integer">0</baseValue>
+                    <baseValue baseType="integer">35</baseValue>
+                    <baseValue baseType="integer">1</baseValue>
+                    <baseValue baseType="integer">85</baseValue>
+                </ordered>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iMax">
+            <index n="iType">
+                <ordered>
+                    <baseValue baseType="integer">8</baseValue>
+                    <baseValue baseType="integer">99</baseValue>
+                    <baseValue baseType="integer">25</baseValue>
+                    <baseValue baseType="integer">120</baseValue>
+                </ordered>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iSample01">
+            <randomInteger max="iMax" min="iMin"/>
+        </setTemplateValue>
+        <setTemplateValue identifier="iSample02">
+            <randomInteger max="iMax" min="iMin"/>
+        </setTemplateValue>
+        <setTemplateValue identifier="iSample03">
+            <randomInteger max="iMax" min="iMin"/>
+        </setTemplateValue>
+        <setTemplateValue identifier="iSample04">
+            <randomInteger max="iMax" min="iMin"/>
+        </setTemplateValue>
+        <setTemplateValue identifier="iSample05">
+            <randomInteger max="iMax" min="iMin"/>
+        </setTemplateValue>
+        <setTemplateValue identifier="iSample06">
+            <randomInteger max="iMax" min="iMin"/>
+        </setTemplateValue>
+        <setTemplateValue identifier="iSample07">
+            <randomInteger max="iMax" min="iMin"/>
+        </setTemplateValue>
+        <setTemplateValue identifier="iSample08">
+            <randomInteger max="iMax" min="iMin"/>
+        </setTemplateValue>
+        <setTemplateValue identifier="iSample09">
+            <randomInteger max="iMax" min="iMin"/>
+        </setTemplateValue>
+        <setTemplateValue identifier="iSample10">
+            <randomInteger max="iMax" min="iMin"/>
+        </setTemplateValue>
+        <setTemplateValue identifier="iSample">
+            <ordered>
+                <variable identifier="iSample01"/>
+                <variable identifier="iSample02"/>
+                <variable identifier="iSample03"/>
+                <variable identifier="iSample04"/>
+                <variable identifier="iSample05"/>
+                <variable identifier="iSample06"/>
+                <variable identifier="iSample07"/>
+                <variable identifier="iSample08"/>
+                <variable identifier="iSample09"/>
+                <variable identifier="iSample10"/>
+            </ordered>
+        </setTemplateValue>
+        <setTemplateValue identifier="iSum01">
+            <variable identifier="iSample01"/>
+        </setTemplateValue>
+        <setTemplateValue identifier="iSum02">
+            <sum>
+                <variable identifier="iSum01"/>
+                <variable identifier="iSample02"/>
+            </sum>
+        </setTemplateValue>
+        <setTemplateValue identifier="iSum03">
+            <sum>
+                <variable identifier="iSum02"/>
+                <variable identifier="iSample03"/>
+            </sum>
+        </setTemplateValue>
+        <setTemplateValue identifier="iSum04">
+            <sum>
+                <variable identifier="iSum03"/>
+                <variable identifier="iSample04"/>
+            </sum>
+        </setTemplateValue>
+        <setTemplateValue identifier="iSum05">
+            <sum>
+                <variable identifier="iSum04"/>
+                <variable identifier="iSample05"/>
+            </sum>
+        </setTemplateValue>
+        <setTemplateValue identifier="iSum06">
+            <sum>
+                <variable identifier="iSum05"/>
+                <variable identifier="iSample06"/>
+            </sum>
+        </setTemplateValue>
+        <setTemplateValue identifier="iSum07">
+            <sum>
+                <variable identifier="iSum06"/>
+                <variable identifier="iSample07"/>
+            </sum>
+        </setTemplateValue>
+        <setTemplateValue identifier="iSum08">
+            <sum>
+                <variable identifier="iSum07"/>
+                <variable identifier="iSample08"/>
+            </sum>
+        </setTemplateValue>
+        <setTemplateValue identifier="iSum09">
+            <sum>
+                <variable identifier="iSum08"/>
+                <variable identifier="iSample09"/>
+            </sum>
+        </setTemplateValue>
+        <setTemplateValue identifier="iSum10">
+            <sum>
+                <variable identifier="iSum09"/>
+                <variable identifier="iSample10"/>
+            </sum>
+        </setTemplateValue>
+        <setTemplateValue identifier="iCumulativeSum">
+            <ordered>
+                <variable identifier="iSum01"/>
+                <variable identifier="iSum02"/>
+                <variable identifier="iSum03"/>
+                <variable identifier="iSum04"/>
+                <variable identifier="iSum05"/>
+                <variable identifier="iSum06"/>
+                <variable identifier="iSum07"/>
+                <variable identifier="iSum08"/>
+                <variable identifier="iSum09"/>
+                <variable identifier="iSum10"/>
+            </ordered>
+        </setTemplateValue>
+        <setTemplateValue identifier="iN">
+            <randomInteger min="5" max="10"/>
+        </setTemplateValue>
+        <setTemplateValue identifier="iSum">
+            <index n="iN">
+                <variable identifier="iCumulativeSum"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="fMean">
+            <divide>
+                <variable identifier="iSum"/>
+                <variable identifier="iN"/>
+            </divide>
+        </setTemplateValue>
+        <setTemplateValue identifier="fAns">
+            <roundTo roundingMode="decimalPlaces" figures="1">
+                <variable identifier="fMean"/>
+            </roundTo>
+        </setTemplateValue>
+        <setCorrectResponse identifier="RESPONSE">
+            <variable identifier="fAns"/>
+        </setCorrectResponse>
+        <setTemplateValue identifier="tParts">
+            <multiple>
+                <baseValue baseType="identifier">First</baseValue>
+            </multiple>
+        </setTemplateValue>
+        <templateCondition>
+            <templateIf>
+                <equal toleranceMode="exact">
+                    <variable identifier="iN"/>
+                    <baseValue baseType="integer">6</baseValue>
+                </equal>
+                <setTemplateValue identifier="tParts">
+                    <multiple>
+                        <variable identifier="tParts"/>
+                        <baseValue baseType="identifier">val6</baseValue>
+                    </multiple>
+                </setTemplateValue>
+            </templateIf>
+            <templateElseIf>
+                <equal toleranceMode="exact">
+                    <variable identifier="iN"/>
+                    <baseValue baseType="integer">7</baseValue>
+                </equal>
+                <setTemplateValue identifier="tParts">
+                    <multiple>
+                        <variable identifier="tParts"/>
+                        <baseValue baseType="identifier">val6</baseValue>
+                        <baseValue baseType="identifier">val7</baseValue>
+                    </multiple>
+                </setTemplateValue>
+            </templateElseIf>
+            <templateElseIf>
+                <equal toleranceMode="exact">
+                    <variable identifier="iN"/>
+                    <baseValue baseType="integer">8</baseValue>
+                </equal>
+                <setTemplateValue identifier="tParts">
+                    <multiple>
+                        <variable identifier="tParts"/>
+                        <baseValue baseType="identifier">val6</baseValue>
+                        <baseValue baseType="identifier">val7</baseValue>
+                        <baseValue baseType="identifier">val8</baseValue>
+                    </multiple>
+                </setTemplateValue>
+            </templateElseIf>
+            <templateElseIf>
+                <equal toleranceMode="exact">
+                    <variable identifier="iN"/>
+                    <baseValue baseType="integer">9</baseValue>
+                </equal>
+                <setTemplateValue identifier="tParts">
+                    <multiple>
+                        <variable identifier="tParts"/>
+                        <baseValue baseType="identifier">val6</baseValue>
+                        <baseValue baseType="identifier">val7</baseValue>
+                        <baseValue baseType="identifier">val8</baseValue>
+                        <baseValue baseType="identifier">val9</baseValue>
+                    </multiple>
+                </setTemplateValue>
+            </templateElseIf>
+            <templateElseIf>
+                <equal toleranceMode="exact">
+                    <variable identifier="iN"/>
+                    <baseValue baseType="integer">10</baseValue>
+                </equal>
+                <setTemplateValue identifier="tParts">
+                    <multiple>
+                        <variable identifier="tParts"/>
+                        <baseValue baseType="identifier">val6</baseValue>
+                        <baseValue baseType="identifier">val7</baseValue>
+                        <baseValue baseType="identifier">val8</baseValue>
+                        <baseValue baseType="identifier">val9</baseValue>
+                        <baseValue baseType="identifier">val10</baseValue>
+                    </multiple>
+                </setTemplateValue>
+            </templateElseIf>
+        </templateCondition>
+    </templateProcessing>
+    <itemBody class="">
+        <div class="">
+            <p class="">The <printedVariable identifier="sMeasure"/>&#160;<printedVariable identifier="sPerson"/> are given below:</p>
+            <p>
+                <templateInline templateIdentifier="tParts" identifier="First" showHide="show">
+                    <printedVariable id="printedVariable0" identifier="iSample01"/>&#160;&#160; 
+                    <printedVariable id="printedVariable0" identifier="iSample02"/>&#160;&#160; 
+                    <printedVariable id="printedVariable0" identifier="iSample03"/>&#160;&#160; 
+                    <printedVariable id="printedVariable0" identifier="iSample04"/>&#160;&#160; 
+                    <printedVariable id="printedVariable0" identifier="iSample05"/>&#160;&#160;
+                </templateInline>
+                <templateInline templateIdentifier="tParts" identifier="val6" showHide="show">
+                    <printedVariable id="printedVariable0" identifier="iSample06"/>&#160;&#160;
+                </templateInline>
+                <templateInline templateIdentifier="tParts" identifier="val7" showHide="show">
+                    <printedVariable id="printedVariable0" identifier="iSample07"/>&#160;&#160; 
+                </templateInline>
+                <templateInline templateIdentifier="tParts" identifier="val8" showHide="show">
+                    <printedVariable id="printedVariable0" identifier="iSample08"/>&#160;&#160; 
+                </templateInline>
+                <templateInline templateIdentifier="tParts" identifier="val9" showHide="show">
+                    <printedVariable id="printedVariable0" identifier="iSample09"/>&#160;&#160; 
+                </templateInline>
+                <templateInline templateIdentifier="tParts" identifier="val10" showHide="show">
+                    <printedVariable id="printedVariable0" identifier="iSample10"/>&#160;&#160; <br/> 
+                </templateInline>
+            </p>
+            <p>Find the mean <printedVariable identifier="sMeasure2"/>.</p>
+            <p class="">Give your answer correct to 1 decimal place.</p>
+            <div class="">
+                <table class="">
+                    <tbody class="">
+                        <tr class="">
+                            <td>Mean <printedVariable identifier="sMeasure2"/>&#160;=&#160;</td>
+                            <td class="">
+                                <textEntryInteraction expectedLength="20" id="textEntryInteraction0"
+                                    responseIdentifier="RESPONSE"/> <printedVariable identifier="sUnits"/>
+                            </td>
+                            <td class="">
+                                <feedbackInline id="feedbackInline0" identifier="CORRECT"
+                                    outcomeIdentifier="FEEDBACK" showHide="show"> Correct </feedbackInline>
+                                <feedbackInline id="feedbackInline1" identifier="INCORRECT"
+                                    outcomeIdentifier="FEEDBACK" showHide="show"> Incorrect
+                                </feedbackInline>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <feedbackBlock id="feedbackBlock2" identifier="THREETRIES" outcomeIdentifier="FEEDBACK"
+                showHide="show">
+                <p>You have had three attempts at answering this question, so here is the
+                    solution:</p>
+            </feedbackBlock>
+            <feedbackBlock class="" id="feedbackBlock3" identifier="SOLUTION"
+                outcomeIdentifier="FEEDBACK" showHide="show">
+                <p class="">The sum of these values is <printedVariable identifier="iSum"/></p>
+                <p>To find the mean, we divide the sum of the values by the number of values:
+                    <m:math id="mathML0" display="block">
+                        <m:semantics>
+                            <m:mtable>
+                                <m:mtr>
+                                    <m:mtd columnalign="right">
+                                        <m:mrow>
+                                            <m:mtext>Mean</m:mtext>
+                                        </m:mrow>
+                                    </m:mtd>
+                                    <m:mtd columnalign="center">
+                                        <m:mo>=</m:mo>
+                                    </m:mtd>
+                                    <m:mtd columnalign="left">
+                                        <m:mrow>
+                                            <m:mfrac>
+                                                <m:mrow>
+                                                    <m:munderover>
+                                                        <m:mo>&#x3a3;</m:mo>
+                                                        <m:mrow>
+                                                            <m:mi>i</m:mi>
+                                                            <m:mo>=</m:mo>
+                                                            <m:mn>1</m:mn>
+                                                        </m:mrow>
+                                                        <m:mi>n</m:mi>
+                                                    </m:munderover>
+                                                    <m:msub>
+                                                        <m:mi>x</m:mi>
+                                                        <m:mi>n</m:mi>
+                                                    </m:msub>
+                                                </m:mrow>
+                                                <m:mi>n</m:mi>
+                                            </m:mfrac>
+                                        </m:mrow>
+                                    </m:mtd>
+                                </m:mtr>
+                                <m:mtr>
+                                    <m:mtd columnalign="right"/>
+                                    <m:mtd columnalign="center">
+                                        <m:mo>=</m:mo>
+                                    </m:mtd>
+                                    <m:mtd columnalign="left">
+                                        <m:mfrac>
+                                            <m:mi>iSum</m:mi>
+                                            <m:mi>iN</m:mi>
+                                        </m:mfrac>
+                                    </m:mtd>
+                                </m:mtr>
+                                <m:mtr>
+                                    <m:mtd columnalign="right"/>
+                                    <m:mtd columnalign="center">
+                                        <m:mo>=</m:mo>
+                                    </m:mtd>
+                                    <m:mtd columnalign="left">
+                                        <m:mi>fMean</m:mi>
+                                    </m:mtd>
+                                </m:mtr>
+                                <m:mtr>
+                                    <m:mtd columnalign="right"/>
+                                    <m:mtd columnalign="center">
+                                        <m:mo>=</m:mo>
+                                    </m:mtd>
+                                    <m:mtd columnalign="left">
+                                        <m:mi>fAns</m:mi>
+                                        <m:mrow>
+                                            <m:mtext>( to 1 d.p.)</m:mtext>
+                                        </m:mrow>
+                                    </m:mtd>
+                                </m:mtr>
+                            </m:mtable>
+                            <m:annotation encoding="SnuggleTeX"
+                                >\begin{eqnarray*}\mbox{Mean} &amp;=&amp; \frac{\Sigma_{i=1}^{n}x_n}{n}\\
+                                &amp;=&amp; \frac{\qv{iSum}} {\qv{iN}}\\ 
+                                &amp;=&amp; \qv{fMean}\\ 
+                                &amp;=&amp; \qv{fAns}\mbox{( to 1 d.p.)} \end{eqnarray*}</m:annotation>
+                        </m:semantics>
+                    </m:math>
+                </p>
+                <p>So the mean <printedVariable identifier="sMeasure2"/> is <printedVariable identifier="fAns"/> <printedVariable identifier="sUnits"/></p>
+            </feedbackBlock>
+            <feedbackBlock id="feedbackBlock6" identifier="HINT" outcomeIdentifier="FEEDBACK"
+                showHide="show">
+                <p class="">Divide the sum of the values by the number of values to get the mean.</p>
+                <!-- <p>The standard deviation is the square root of the variance, which is the mean of the squares minus the square of the mean.</p> -->
+            </feedbackBlock>
+            <feedbackBlock id="feedbackBlock7" identifier="SEEN-SOLUTION"
+                outcomeIdentifier="FEEDBACK" showHide="show">
+                <p>Since you have viewed the solution, your score for this question will be 0.</p>
+            </feedbackBlock>
+            <feedbackBlock id="feedbackBlock8" identifier="SEEN-HINT" outcomeIdentifier="FEEDBACK"
+                showHide="show">
+                <p>Since you have viewed the hint, your score for this question will be halved.</p>
+            </feedbackBlock>
+            <feedbackBlock id="feedbackBlock9" identifier="askhint" outcomeIdentifier="ASKHINT"
+                showHide="show">
+                <p>
+                    <endAttemptInteraction id="endAttemptInteraction1"
+                        responseIdentifier="HINTREQUEST" title="Show Hint"/>
+                </p>
+            </feedbackBlock>
+            <feedbackBlock id="feedbackBlock10" identifier="asksolution"
+                outcomeIdentifier="ASKSOLUTION" showHide="show">
+                <p>
+                    <endAttemptInteraction id="endAttemptInteraction2"
+                        responseIdentifier="SOLREQUEST" title="Show Solution"/>
+                </p>
+            </feedbackBlock>
+        </div>
+    </itemBody>
+    <responseProcessing>
+        <setOutcomeValue identifier="FEEDBACK">
+            <multiple>
+                <variable identifier="EMPTY"/>
+            </multiple>
+        </setOutcomeValue>
+        <responseCondition>
+            <responseIf>
+                <variable identifier="HINTREQUEST"/>
+                <setOutcomeValue identifier="FEEDBACK">
+                    <multiple>
+                        <baseValue baseType="identifier">HINT</baseValue>
+                    </multiple>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="seenHint">
+                    <baseValue baseType="boolean">true</baseValue>
+                </setOutcomeValue>
+            </responseIf>
+            <responseElseIf>
+                <variable identifier="SOLREQUEST"/>
+                <setOutcomeValue identifier="FEEDBACK">
+                    <multiple>
+                        <baseValue baseType="identifier">SOLUTION</baseValue>
+                    </multiple>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="seenSolution">
+                    <baseValue baseType="boolean">true</baseValue>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="completionStatus">
+                    <baseValue baseType="identifier">completed</baseValue>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="ASKHINT">
+                    <baseValue baseType="identifier">null</baseValue>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="ASKSOLUTION">
+                    <baseValue baseType="identifier">null</baseValue>
+                </setOutcomeValue>
+            </responseElseIf>
+            <responseElse>
+                <responseCondition>
+                    <responseIf>
+                        <isNull>
+                            <variable identifier="RESPONSE"/>
+                        </isNull>
+                        <setOutcomeValue identifier="SCORE">
+                            <baseValue baseType="float">0</baseValue>
+                        </setOutcomeValue>
+                    </responseIf>
+                    <responseElse>
+                        <responseCondition>
+                            <responseIf>
+                                <equalRounded figures="3" roundingMode="significantFigures">
+                                    <variable identifier="RESPONSE"/>
+                                    <variable identifier="fAns"/>
+                                </equalRounded>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <baseValue baseType="identifier">CORRECT</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="SCORE">
+                                    <baseValue baseType="float">2</baseValue>
+                                </setOutcomeValue>
+                                <responseCondition>
+                                    <responseIf>
+                                        <variable identifier="seenSolution"/>
+                                        <setOutcomeValue identifier="FEEDBACK">
+                                            <multiple>
+                                                <variable identifier="FEEDBACK"/>
+                                                <baseValue baseType="identifier">SEEN-SOLUTION</baseValue>
+                                            </multiple>
+                                        </setOutcomeValue>
+                                        <setOutcomeValue identifier="SCORE">
+                                            <baseValue baseType="float">0.0</baseValue>
+                                        </setOutcomeValue>
+                                    </responseIf>
+                                    <responseElseIf>
+                                        <variable identifier="seenHint"/>
+                                        <setOutcomeValue identifier="FEEDBACK">
+                                            <multiple>
+                                                <variable identifier="FEEDBACK"/>
+                                                <baseValue baseType="identifier">SEEN-HINT</baseValue>
+                                            </multiple>
+                                        </setOutcomeValue>
+                                        <setOutcomeValue identifier="SCORE">
+                                            <divide>
+                                                <variable identifier="SCORE"/>
+                                                <baseValue baseType="float">2.0</baseValue>
+                                            </divide>
+                                        </setOutcomeValue>
+                                    </responseElseIf>
+                                </responseCondition>
+                            </responseIf>
+                            <responseElse>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <baseValue baseType="identifier">INCORRECT</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="SCORE">
+                                    <baseValue baseType="float">0</baseValue>
+                                </setOutcomeValue>
+                            </responseElse>
+                        </responseCondition>
+                        <responseCondition>
+                            <responseIf>
+                                <gt>
+                                    <variable identifier="numAttempts"/>
+                                    <baseValue baseType="integer">3</baseValue>
+                                </gt>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <baseValue baseType="identifier">THREETRIES</baseValue>
+                                        <baseValue baseType="identifier">SOLUTION</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="completionStatus">
+                                    <baseValue baseType="identifier">completed</baseValue>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="ASKHINT">
+                                    <baseValue baseType="identifier">null</baseValue>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="ASKSOLUTION">
+                                    <baseValue baseType="identifier">null</baseValue>
+                                </setOutcomeValue>
+                            </responseIf>
+                        </responseCondition>
+                    </responseElse>
+                </responseCondition>
+            </responseElse>
+        </responseCondition>
+    </responseProcessing>
+</assessmentItem>

@@ -1,0 +1,788 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p1"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.imsglobal.org/xsd/imsqti_v2p1 imsqti_v2p1.xsd	http://mathassess.qtitools.org/xsd/mathassess mathassess.xsd"
+	identifier="Test04-011377-strline001-mxpc" title="Find the intercept, gradient and equation of a line" adaptive="true"
+	timeDependent="false" xmlns:m="http://www.w3.org/1998/Math/MathML"
+	xmlns:ma="http://mathassess.qtitools.org/xsd/mathassess">
+    <!-- originally MAD05-Factors-SR, modified to the simpler case with a quadratic expression in x -->
+    <responseDeclaration identifier="RESPONSE1" cardinality="single" baseType="integer"/>
+    <responseDeclaration identifier="RESPONSE2" cardinality="record"/>
+    <responseDeclaration identifier="RESPONSE3" cardinality="record"/>
+    <responseDeclaration identifier="pInput2" cardinality="single" baseType="string"/>
+    <responseDeclaration identifier="pInput3" cardinality="single" baseType="string"/>
+    <responseDeclaration identifier="HINTREQUEST" cardinality="single" baseType="boolean"/>
+	<responseDeclaration identifier="SOLREQUEST" cardinality="single" baseType="boolean"/>
+	<outcomeDeclaration baseType="identifier" cardinality="multiple" identifier="FEEDBACK"/>
+	<outcomeDeclaration baseType="identifier" cardinality="single" identifier="EMPTY"/>
+	<outcomeDeclaration baseType="float" cardinality="single" identifier="SCORE" normalMaximum="4.0"
+		normalMinimum="0.0">
+		<defaultValue>
+			<value>0.0</value>
+		</defaultValue>
+	</outcomeDeclaration>
+	<outcomeDeclaration baseType="boolean" cardinality="single" identifier="seenSolution">
+		<defaultValue>
+			<value>false</value>
+		</defaultValue>
+	</outcomeDeclaration>
+	<outcomeDeclaration baseType="boolean" cardinality="single" identifier="seenHint">
+		<defaultValue>
+			<value>false</value>
+		</defaultValue>
+	</outcomeDeclaration>
+	<outcomeDeclaration baseType="identifier" cardinality="single" identifier="ASKHINT">
+		<defaultValue>
+			<value>askhint</value>
+		</defaultValue>
+	</outcomeDeclaration>
+	<outcomeDeclaration baseType="identifier" cardinality="single" identifier="ASKSOLUTION">
+		<defaultValue>
+			<value>asksolution</value>
+		</defaultValue>
+	</outcomeDeclaration>
+    <outcomeDeclaration identifier="oInput2" cardinality="record"/>
+    <outcomeDeclaration baseType="string" cardinality="single" identifier="opInput2"/>
+    <outcomeDeclaration identifier="oInput3" cardinality="record"/>
+    <outcomeDeclaration baseType="string" cardinality="single" identifier="opInput3"/>
+    <outcomeDeclaration identifier="oEq" cardinality="record"/>
+    <outcomeDeclaration identifier="oBadEq" cardinality="record"/>
+	<outcomeDeclaration identifier="oGcd1" cardinality="record"/>
+	<outcomeDeclaration identifier="oGcd2" cardinality="record"/>
+	<outcomeDeclaration identifier="oDummy" cardinality="single" baseType="boolean"/>
+    <outcomeDeclaration identifier="ob20" cardinality="single" baseType="boolean"/>
+    <outcomeDeclaration identifier="ob21" cardinality="single" baseType="boolean"/>
+    <outcomeDeclaration identifier="ob22" cardinality="single" baseType="boolean"/>
+    <outcomeDeclaration identifier="ob23" cardinality="single" baseType="boolean"/>
+    <outcomeDeclaration identifier="ob24" cardinality="single" baseType="boolean"/>
+    <outcomeDeclaration identifier="ob25" cardinality="single" baseType="boolean"/>
+    <outcomeDeclaration identifier="ob30" cardinality="single" baseType="boolean"/>
+    <outcomeDeclaration identifier="ob31" cardinality="single" baseType="boolean"/>
+    <outcomeDeclaration identifier="ob32" cardinality="single" baseType="boolean"/>
+    <outcomeDeclaration identifier="ob33" cardinality="single" baseType="boolean"/>
+    <outcomeDeclaration identifier="ob34" cardinality="single" baseType="boolean"/>
+    <outcomeDeclaration identifier="ob35" cardinality="single" baseType="boolean"/>
+    <templateDeclaration baseType="boolean" cardinality="single" identifier="inTest">
+        <defaultValue>
+            <value>false</value>
+        </defaultValue>
+    </templateDeclaration>
+    <templateDeclaration baseType="identifier" cardinality="multiple" identifier="tHide"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="nTries"
+        mathVariable="false" paramVariable="false">
+        <defaultValue>
+            <value>3</value>
+        </defaultValue>
+    </templateDeclaration>
+    <templateDeclaration identifier="tDummy" cardinality="single" baseType="boolean"/>
+    <templateDeclaration identifier="iA" cardinality="single" baseType="integer" mathVariable="true"/>
+    <templateDeclaration identifier="iB" cardinality="single" baseType="integer" mathVariable="true"/>
+    <templateDeclaration identifier="iC" cardinality="single" baseType="integer" mathVariable="true"/>
+    <templateDeclaration identifier="iType" cardinality="single" baseType="integer" mathVariable="false"/>
+    <templateDeclaration identifier="mX" cardinality="record" mathVariable="true"/>
+    <templateDeclaration identifier="mGradient" cardinality="record" mathVariable="true"/>
+    <templateDeclaration identifier="mY" cardinality="record" mathVariable="true"/>
+    <templateDeclaration identifier="mF2" cardinality="record" mathVariable="true"/>
+    <templateDeclaration identifier="mInvert" cardinality="record" mathVariable="true"/>
+    <templateDeclaration identifier="mSwapEq" cardinality="record" mathVariable="true"/>
+    <templateDeclaration identifier="mQues" cardinality="record" mathVariable="true"/>
+	<templateDeclaration identifier="mAns" cardinality="record" mathVariable="true"/>
+	<templateProcessing>
+	    <templateCondition>
+	        <templateIf>
+	            <variable identifier="inTest"/>
+	            <setTemplateValue identifier="tHide">
+	                <multiple>
+	                    <baseValue baseType="identifier">InputFeedback</baseValue>
+	                    <baseValue baseType="identifier">TriesMessage</baseValue>
+	                    <baseValue baseType="identifier">SolHintFeedback</baseValue>
+	                    <baseValue baseType="identifier">SolHintButtons</baseValue>
+	                </multiple>
+	            </setTemplateValue>
+	        </templateIf>
+	    </templateCondition>
+	    <setTemplateValue identifier="iA">
+	        <product>
+	            <randomInteger min="1" max="5"/>
+	            <randomInteger min="-1" max="1" step="2"/>
+	        </product>
+	    </setTemplateValue>
+	    <setTemplateValue identifier="iB">
+	        <product>
+	            <randomInteger min="1" max="5"/>
+	            <randomInteger min="-1" max="1" step="2"/>
+	        </product>
+	    </setTemplateValue>
+	    <setTemplateValue identifier="iC">
+	        <product>
+	            <randomInteger min="1" max="5"/>
+	            <randomInteger min="-1" max="1" step="2"/>
+	        </product>
+	    </setTemplateValue>
+	    <templateConstraint>
+	        <not>
+	            <equal toleranceMode="exact">
+	                <variable identifier="iB"/>
+	                <variable identifier="iC"/>
+	            </equal>
+	        </not>
+	    </templateConstraint>
+	    <setTemplateValue identifier="tDummy">
+			<customOperator class="org.qtitools.mathassess.ScriptRule" ma:syntax="text/x-maxima">
+				<baseValue baseType="string">
+					<![CDATA[
+            mNum: iB-iC;
+            mY: y;
+			mGradient: ev(mNum/iA,simp);
+			mInvert: ev(iA/mNum,simp);
+			mSwapEq: ev(iC*x+mGradient,simp); 
+			mAns: ev(mGradient*x+iC,simp);
+			]]>
+				</baseValue>
+			</customOperator>
+		</setTemplateValue>
+	    <setCorrectResponse identifier="RESPONSE1">
+	        <variable identifier="iC"/>
+	    </setCorrectResponse>
+	    <setCorrectResponse identifier="RESPONSE2">
+	        <variable identifier="mGradient"/>
+	    </setCorrectResponse>
+	    <setCorrectResponse identifier="RESPONSE3">
+	        <variable identifier="mAns"/>
+	    </setCorrectResponse>
+	</templateProcessing>
+	<itemBody>
+	    <p>A straight line crosses the y-axis at the point (0, <printedVariable identifier="iC"/>)&#160;
+	        and passes through the point P&#160;(<printedVariable identifier="iA"/>, <printedVariable identifier="iB"/>).</p>
+	    <div>Find 
+	        <ol>
+	            <li>the intercept on the y-axis (an integer)</li>
+	            <li>the gradient of the line (an integer or a fraction in its lowest terms)</li>
+	            <li>the equation of the line (an integer or a fraction in its lowest terms).</li>
+	        </ol>
+		</div>
+	    <div class="">
+	        <table class="">
+	            <tbody class="">
+	                <tr class="">
+	                    <td class="">
+	                        Intercept&#160;=&#160;
+	                    </td>
+	                    <td class="">
+	                        <textEntryInteraction responseIdentifier="RESPONSE1" expectedLength="20"/>
+	                    </td>
+	                    <td class="">
+	                        <templateBlock templateIdentifier="tHide" identifier="InputFeedback"
+	                            showHide="hide">
+	                            <div class="">
+	                            <feedbackInline id="feedbackInline2" identifier="INCORRECT1"
+	                                outcomeIdentifier="FEEDBACK" showHide="show"> Your value for the intercept on the y-axis is incorrect. However, this value will be used in marking your input for the equation. </feedbackInline>
+	                        </div>
+	                        <div class="">
+	                            <feedbackInline id="feedbackInline2" identifier="SIGN1"
+	                                outcomeIdentifier="FEEDBACK" showHide="show"> No, the value you entered for the intercept on the y-axis has the wrong sign. However, this value will be used in marking your input for the equation.</feedbackInline>
+	                        </div>
+	                        <div class="">
+	                            <feedbackInline id="feedbackInline3" identifier="CORRECT1"
+	                                outcomeIdentifier="FEEDBACK" showHide="show"> Well done, that's the correct value for the intercept on the y-axis.
+	                            </feedbackInline>
+	                        </div>
+	                        </templateBlock>
+	                    </td>
+	                </tr>
+	                <tr class="">
+	                    <td class="">
+	                        Gradient&#160;=&#160;
+	                    </td>
+	                    <td class="">
+	                        <customInteraction class="org.qtitools.mathassess.MathEntryInteraction"
+	                            responseIdentifier="RESPONSE2" ma:printIdentifier="pInput2" ma:syntax="text/x-maxima"
+	                            ma:expectedLength="15" id="customInteraction01"/>
+	                    </td>
+	                    <td class="">
+	                        <templateBlock templateIdentifier="tHide" identifier="InputFeedback"
+	                            showHide="hide">
+	                            <div class="">
+	                            <feedbackInline id="feedbackInline3" identifier="CORRECT2"
+	                                outcomeIdentifier="FEEDBACK" showHide="show"> Well done, that's the correct value for the gradient.
+	                            </feedbackInline>
+	                        </div>
+	                        <div class="">
+	                            <feedbackInline id="feedbackInline2" identifier="Inverted"
+	                                outcomeIdentifier="FEEDBACK" showHide="show"> No, you have swapped the numerator and denominator of the fraction which is the value of the gradient. However, this value will be used in marking your input for the equation.</feedbackInline>
+	                        </div>
+	                        <div class="">
+	                            <feedbackInline id="feedbackInline2" identifier="SIGN2"
+	                                outcomeIdentifier="FEEDBACK" showHide="show"> No, the value you entered for the gradient has the wrong sign. However, this value will be used in marking your input for the equation.</feedbackInline>
+	                        </div>
+	                        <div class="">
+	                            <feedbackInline id="feedbackInline2" identifier="Intercept"
+	                                outcomeIdentifier="FEEDBACK" showHide="show"> No, that's the intercept, not the gradient. However, this value will be used in marking your input for the equation.</feedbackInline>
+	                        </div>
+	                        <div class="">
+	                            <feedbackInline id="feedbackInline2" identifier="GradientOP"
+	                                outcomeIdentifier="FEEDBACK" showHide="show"> No, you have found the gradient of the line from the origin to P. However, this value will be used in marking your input for the equation.</feedbackInline>
+	                        </div>
+	                        <div class="">
+	                            <feedbackInline id="feedbackInline2" identifier="INCORRECT2"
+	                                outcomeIdentifier="FEEDBACK" showHide="show"> Your value for the gradient is incorrect. However, this value will be used in marking your input for the equation.</feedbackInline>
+	                        </div>
+	                        </templateBlock>
+	                    </td>
+	                </tr>
+	                <tr class="">
+	                    <td class="">
+	                        <printedVariable identifier="mY"/>&#160;=&#160;
+	                    </td>
+	                    <td class="">
+	                        <customInteraction class="org.qtitools.mathassess.MathEntryInteraction"
+	                            responseIdentifier="RESPONSE3" ma:printIdentifier="pInput3" ma:syntax="text/x-maxima"
+	                            ma:expectedLength="25" id="customInteraction02"/>
+	                    </td>
+	                    <td class="">
+	                        <templateBlock templateIdentifier="tHide" identifier="InputFeedback"
+	                            showHide="hide">
+	                            <div class="">
+	                            <feedbackInline id="feedbackInline3" identifier="CORRECT3"
+	                                outcomeIdentifier="FEEDBACK" showHide="show"> Well done, that is the correct equation of the line.
+	                            </feedbackInline>
+	                        </div>
+	                        <div class="">
+	                            <feedbackInline id="feedbackInline3" identifier="CORRECT3IVs"
+	                                outcomeIdentifier="FEEDBACK" showHide="show"> Well done, that is the equation of the line using the values for intercept and gradient that you entered.
+	                            </feedbackInline>
+	                        </div>
+	                        <div class="">
+	                            <feedbackInline id="feedbackInline2" identifier="Swapped"
+	                                outcomeIdentifier="FEEDBACK" showHide="show"> No, you have used the value for the intercept in place of the gradient and vice versa. </feedbackInline>
+	                        </div>
+	                        <div class="">
+	                            <feedbackInline id="feedbackInline2" identifier="SwappedIVs"
+	                                outcomeIdentifier="FEEDBACK" showHide="show"> No, you have used your value for the intercept in place of the gradient and vice versa. </feedbackInline>
+	                        </div>
+	                        <div class="">
+	                            <feedbackInline id="feedbackInline2" identifier="INCORRECT3"
+	                                outcomeIdentifier="FEEDBACK" showHide="show"> No, that is not the equation of the line. </feedbackInline>
+	                        </div>
+	                        <div class="">
+	                            <feedbackInline id="feedbackInline3" identifier="NullInput"
+	                                outcomeIdentifier="FEEDBACK" showHide="show"> Please enter a value in each box, then submit your answer.
+	                            </feedbackInline>
+	                        </div>
+	                        </templateBlock>
+	                    </td>
+	                </tr>
+	            </tbody>
+	        </table>
+	    </div>
+	    <templateBlock templateIdentifier="tHide" identifier="TriesMessage" showHide="show">
+	        <p>You may attempt this question up to <printedVariable identifier="nTries"/> times
+	            during the test.</p>
+	    </templateBlock>
+	    <templateBlock templateIdentifier="tHide" identifier="SolHintFeedback" showHide="hide">
+	        <feedbackBlock id="feedbackBlock3" identifier="NoMoreTries"
+	            outcomeIdentifier="FEEDBACK" showHide="show">
+	            <p>You have had <printedVariable identifier="nTries"/> attempts at answering this question, so here is the
+	                solution:</p>
+	        </feedbackBlock>
+	        <feedbackBlock showHide="show" outcomeIdentifier="FEEDBACK" identifier="SOLUTION">
+	        <ol>
+	            <li>
+	                <p>The line crosses the y-axis at (0, <printedVariable identifier="iC"/>), so  <printedVariable identifier="iC"/> is the intercept.</p>
+	            </li>
+	            <li>
+	                <div>
+	                    <m:math display="block" id="mathML1">
+	                        <m:semantics>
+	                            <m:mrow>
+	                                <m:mtext>Gradient of line </m:mtext>
+	                                <m:mo>=</m:mo>
+	                                <m:mfrac>
+	                                    <m:mtext>y-difference</m:mtext>
+	                                    <m:mtext>x-difference</m:mtext>
+	                                </m:mfrac>
+	                                <m:mo>=</m:mo>
+	                                <m:mfrac>
+	                                    <m:mrow>
+	                                        <m:mi>iB</m:mi>
+	                                        <m:mo>-</m:mo>
+	                                        <m:mi>iC</m:mi>
+	                                    </m:mrow>
+	                                    <m:mi>iA</m:mi>
+	                                </m:mfrac>
+	                                <m:mo>=</m:mo>
+	                                <m:mi>mGradient</m:mi>
+	                            </m:mrow>
+	                            <m:annotation encoding="SnuggleTeX">\[\mbox{Gradient of line }=\frac{\mbox{y-difference}}{\mbox{x-difference}}=\frac{\qv{iB}-\qv{iC}}{\qv{iA}}=\qv{mAns}\]</m:annotation>
+	                        </m:semantics>
+	                    </m:math>
+	                </div>
+	            </li>
+	            <li>
+	                <p>The equation of the line is</p>
+	                <div>
+	                    <m:math display="block" id="mathML0">
+	                        <m:semantics>
+	                            <m:mrow>
+	                                <m:mi>y</m:mi>
+	                                <m:mo>=</m:mo>
+	                                <m:mi>m</m:mi>
+	                                <m:mi>x</m:mi>
+	                                <m:mo>+</m:mo>
+	                                <m:mi>c</m:mi>
+	                            </m:mrow>
+	                            <m:annotation encoding="SnuggleTeX">\[y=mx+c\]</m:annotation>
+	                        </m:semantics>
+	                    </m:math>
+	                </div>
+	                <p>Where <em>m</em> is the gradient and <em>c</em> is the intercept on the y-axis.</p>
+	                <p>So the equation of the line is</p>
+	                <div>
+	                    <m:math display="block" id="mathML01">
+	                        <m:semantics>
+	                            <m:mrow>
+	                                <m:mi>y</m:mi>
+	                                <m:mo>=</m:mo>
+	                                <m:mi>mAns</m:mi>
+	                            </m:mrow>
+	                            <m:annotation encoding="SnuggleTeX">\[y=\qv{mAns}\]</m:annotation>
+	                        </m:semantics>
+	                    </m:math>
+	                </div>
+	            </li>
+	        </ol>
+	    </feedbackBlock>
+		<feedbackBlock showHide="show" outcomeIdentifier="FEEDBACK" identifier="HINT">
+			<div>
+			    <ol>
+			        <li>Where does the line cross the y-axis?</li>
+			        <li>The gradient of the line joining (<em>x</em><sub>1</sub>, <em>y</em><sub>1</sub>) and (<em>x</em><sub>2</sub>, <em>y</em><sub>2</sub>) is given by
+			            <div>
+			                <m:math display="block" id="mathML11">
+			                    <m:semantics>
+			                        <m:mrow>
+			                            <m:mtext>Gradient</m:mtext>
+			                            <m:mo>=</m:mo>
+			                            <m:mfrac>
+			                                <m:mrow>
+			                                    <m:mo>(</m:mo>
+			                                    <m:msub>
+			                                        <m:mi>y</m:mi>
+			                                        <m:mn>2</m:mn>
+			                                    </m:msub>
+			                                    <m:mo>-</m:mo>
+			                                    <m:msub>
+			                                        <m:mi>y</m:mi>
+			                                        <m:mn>1</m:mn>
+			                                    </m:msub>
+			                                    <m:mo>)</m:mo>
+			                                </m:mrow>
+			                                <m:mrow>
+			                                    <m:mo>(</m:mo>
+			                                    <m:msub>
+			                                        <m:mi>x</m:mi>
+			                                        <m:mn>2</m:mn>
+			                                    </m:msub>
+			                                    <m:mo>-</m:mo>
+			                                    <m:msub>
+			                                        <m:mi>x</m:mi>
+			                                        <m:mn>1</m:mn>
+			                                    </m:msub>
+			                                    <m:mo>)</m:mo>
+			                                </m:mrow>
+			                            </m:mfrac>
+			                        </m:mrow>
+			                        <m:annotation encoding="SnuggleTeX">\[\mbox{Gradient of line joining }(x_1,y_1)\mbox{ and }(x_2,y_2)=\frac{y_2-y_1}{x_2-x_1}\]</m:annotation>
+			                    </m:semantics>
+			                </m:math>
+			            </div>
+			        </li>
+			        <li>
+			            Consider the values you have for the intercept and gradient.
+			        </li>
+			    </ol>
+			</div>
+		</feedbackBlock>
+		<feedbackBlock identifier="SEEN-SOLUTION" outcomeIdentifier="FEEDBACK" showHide="show">
+			<p> Since you have viewed the solution, your score for this question will be 0. </p>
+		</feedbackBlock>
+		<feedbackBlock identifier="SEEN-HINT" outcomeIdentifier="FEEDBACK" showHide="show">
+			<p> Since you have viewed the hint, your score for this question will be halved. </p>
+		</feedbackBlock>
+	    </templateBlock>
+	    <templateBlock templateIdentifier="tHide" identifier="SolHintButtons" showHide="hide">
+	        <feedbackBlock identifier="askhint" outcomeIdentifier="ASKHINT" showHide="show">
+			<p>
+				<endAttemptInteraction id="endAttemptInteraction1" responseIdentifier="HINTREQUEST"
+					title="Show Hint"/>
+			</p>
+		</feedbackBlock>
+		<feedbackBlock identifier="asksolution" outcomeIdentifier="ASKSOLUTION" showHide="show">
+			<p>
+				<endAttemptInteraction id="endAttemptInteraction2" responseIdentifier="SOLREQUEST"
+					title="Show Solution"/>
+			</p>
+		</feedbackBlock>
+	    </templateBlock>
+	</itemBody>
+	<responseProcessing>
+		<setOutcomeValue identifier="FEEDBACK">
+			<multiple>
+				<variable identifier="EMPTY"/>
+			</multiple>
+		</setOutcomeValue>
+		<responseCondition>
+			<responseIf>
+				<variable identifier="HINTREQUEST"/>
+				<setOutcomeValue identifier="FEEDBACK">
+					<multiple>
+						<baseValue baseType="identifier">HINT</baseValue>
+					</multiple>
+				</setOutcomeValue>
+				<setOutcomeValue identifier="seenHint">
+					<baseValue baseType="boolean">true</baseValue>
+				</setOutcomeValue>
+			</responseIf>
+			<responseElseIf>
+				<variable identifier="SOLREQUEST"/>
+				<setOutcomeValue identifier="FEEDBACK">
+					<multiple>
+						<baseValue baseType="identifier">SOLUTION</baseValue>
+					</multiple>
+				</setOutcomeValue>
+				<setOutcomeValue identifier="seenSolution">
+					<baseValue baseType="boolean">true</baseValue>
+				</setOutcomeValue>
+				<setOutcomeValue identifier="completionStatus">
+					<baseValue baseType="identifier">completed</baseValue>
+				</setOutcomeValue>
+				<setOutcomeValue identifier="ASKHINT">
+					<baseValue baseType="identifier">null</baseValue>
+				</setOutcomeValue>
+				<setOutcomeValue identifier="ASKSOLUTION">
+					<baseValue baseType="identifier">null</baseValue>
+				</setOutcomeValue>
+			</responseElseIf>
+		    <responseElse>
+		        <responseCondition>
+		            <responseIf>
+		                <or>
+		                    <isNull>
+		                        <variable identifier="RESPONSE1"/>
+		                    </isNull>
+		                    <isNull>
+		                        <variable identifier="RESPONSE2"/>
+		                    </isNull>
+		                    <isNull>
+		                        <variable identifier="RESPONSE3"/>
+		                    </isNull>
+		                </or>
+		                <setOutcomeValue identifier="FEEDBACK">
+		                    <multiple>
+		                        <baseValue baseType="identifier">NullInput</baseValue>
+		                    </multiple>
+		                </setOutcomeValue>
+		                <setOutcomeValue identifier="SCORE">
+		                    <baseValue baseType="float">0.0</baseValue>
+		                </setOutcomeValue>
+		            </responseIf>
+		            <responseElse>
+		                <responseCondition>
+		                    <responseIf>
+		                        <equal toleranceMode="exact">
+		                            <variable identifier="RESPONSE1"/>
+		                            <correct identifier="RESPONSE1"/>
+		                        </equal>
+		                        <setOutcomeValue identifier="FEEDBACK">
+		                            <multiple>
+		                                <baseValue baseType="identifier">CORRECT1</baseValue>
+		                            </multiple>
+		                        </setOutcomeValue>
+		                        <setOutcomeValue identifier="SCORE">
+		                            <baseValue baseType="float">1.0</baseValue>
+		                        </setOutcomeValue>
+		                    </responseIf>
+		                    <responseElseIf>
+		                        <equal toleranceMode="exact">
+		                            <sum>
+		                                <variable identifier="RESPONSE1"/>
+		                                <correct identifier="RESPONSE1"/>
+		                            </sum>
+		                            <baseValue baseType="integer">0</baseValue>
+		                        </equal>
+		                        <setOutcomeValue identifier="FEEDBACK">
+		                            <multiple>
+		                                <baseValue baseType="identifier">SIGN1</baseValue>
+		                            </multiple>
+		                        </setOutcomeValue>
+		                        <setOutcomeValue identifier="SCORE">
+		                            <baseValue baseType="float">0.5</baseValue>
+		                        </setOutcomeValue>
+		                    </responseElseIf>
+		                    <responseElse>
+		                        <setOutcomeValue identifier="FEEDBACK">
+		                            <multiple>
+		                                <baseValue baseType="identifier">INCORRECT1</baseValue>
+		                            </multiple>
+		                        </setOutcomeValue>
+		                        <setOutcomeValue identifier="SCORE">
+		                            <baseValue baseType="float">0.0</baseValue>
+		                        </setOutcomeValue>
+		                    </responseElse>
+		                </responseCondition>
+		                <setOutcomeValue identifier="oDummy">
+		                    <customOperator class="org.qtitools.mathassess.ScriptRule" ma:syntax="text/x-maxima">
+		                        <baseValue baseType="string"><![CDATA[
+                                    
+ oInput2: ev(RESPONSE2,simp);
+ ob20: is(is(equal(RESPONSE2,mGradient))=true);
+ ob21: is(is(equal(RESPONSE2,mInvert))=true);
+ ob22: is(is(equal(ev(RESPONSE2+mGradient,simp),0))=true);
+ ob23: is(is(equal(RESPONSE2,iC))=true);
+ ob24: is(is(equal(RESPONSE2,ev(iB/iA,simp)))=true);
+ oInput3: ev(RESPONSE3,simp);
+ oEq: ev(RESPONSE2*x+RESPONSE1,simp);
+ oSwapEq: ev(RESPONSE1*x+RESPONSE2,simp); 
+ ob30: is(is(equal(RESPONSE3,mAns))=true);
+ ob31: is(is(equal(RESPONSE3,oEq))=true);
+ ob32: is(is(equal(RESPONSE3,mSwapEq))=true);
+ ob33: is(is(equal(RESPONSE3,oSwapEq))=true);
+ 
+]]></baseValue>
+		                    </customOperator>
+		                </setOutcomeValue>
+		                <setOutcomeValue identifier="opInput2">
+		                    <fieldValue fieldIdentifier="PMathML">
+		                        <variable identifier="oInput2"/>
+		                    </fieldValue>
+		                </setOutcomeValue>
+		                <setOutcomeValue identifier="opInput3">
+		                    <fieldValue fieldIdentifier="PMathML">
+		                        <variable identifier="oInput3"/>
+		                    </fieldValue>
+		                </setOutcomeValue>
+		                <responseCondition>
+		                    <responseIf>
+		                        <variable identifier="ob20"/>
+		                        <setOutcomeValue identifier="FEEDBACK">
+		                            <multiple>
+		                                <variable identifier="FEEDBACK"/>
+		                                <baseValue baseType="identifier">CORRECT2</baseValue>
+		                            </multiple>
+		                        </setOutcomeValue>
+		                        <setOutcomeValue identifier="SCORE">
+		                            <sum>
+		                                <variable identifier="SCORE"/>
+		                                <baseValue baseType="float">1.0</baseValue>
+		                            </sum>
+		                        </setOutcomeValue>
+		                    </responseIf>
+		                    <responseElseIf>
+		                        <variable identifier="ob21"/>
+		                        <setOutcomeValue identifier="FEEDBACK">
+		                            <multiple>
+		                                <variable identifier="FEEDBACK"/>
+		                                <baseValue baseType="identifier">Inverted</baseValue>
+		                            </multiple>
+		                        </setOutcomeValue>
+		                        <setOutcomeValue identifier="SCORE">
+		                            <sum>
+		                                <variable identifier="SCORE"/>
+		                                <baseValue baseType="float">0.0</baseValue>
+		                            </sum>
+		                        </setOutcomeValue>
+		                    </responseElseIf>
+		                    <responseElseIf>
+		                        <variable identifier="ob22"/>
+		                        <setOutcomeValue identifier="FEEDBACK">
+		                            <multiple>
+		                                <variable identifier="FEEDBACK"/>
+		                                <baseValue baseType="identifier">SIGN2</baseValue>
+		                            </multiple>
+		                        </setOutcomeValue>
+		                        <setOutcomeValue identifier="SCORE">
+		                            <sum>
+		                                <variable identifier="SCORE"/>
+		                                <baseValue baseType="float">0.5</baseValue>
+		                            </sum>
+		                        </setOutcomeValue>
+		                    </responseElseIf>
+		                    <responseElseIf>
+		                        <variable identifier="ob23"/>
+		                        <setOutcomeValue identifier="FEEDBACK">
+		                            <multiple>
+		                                <variable identifier="FEEDBACK"/>
+		                                <baseValue baseType="identifier">Intercept</baseValue>
+		                            </multiple>
+		                        </setOutcomeValue>
+		                        <setOutcomeValue identifier="SCORE">
+		                            <sum>
+		                                <variable identifier="SCORE"/>
+		                                <baseValue baseType="float">0.0</baseValue>
+		                            </sum>
+		                        </setOutcomeValue>
+		                    </responseElseIf>
+		                    <responseElseIf>
+		                        <variable identifier="ob24"/>
+		                        <setOutcomeValue identifier="FEEDBACK">
+		                            <multiple>
+		                                <variable identifier="FEEDBACK"/>
+		                                <baseValue baseType="identifier">GradientOP</baseValue>
+		                            </multiple>
+		                        </setOutcomeValue>
+		                        <setOutcomeValue identifier="SCORE">
+		                            <sum>
+		                                <variable identifier="SCORE"/>
+		                                <baseValue baseType="float">0.0</baseValue>
+		                            </sum>
+		                        </setOutcomeValue>
+		                    </responseElseIf>
+		                    <responseElse>
+		                        <setOutcomeValue identifier="FEEDBACK">
+		                            <multiple>
+		                                <variable identifier="FEEDBACK"/>
+		                                <baseValue baseType="identifier">INCORRECT2</baseValue>
+		                            </multiple>
+		                        </setOutcomeValue>
+		                        <setOutcomeValue identifier="SCORE">
+		                            <sum>
+		                                <variable identifier="SCORE"/>
+		                                <baseValue baseType="float">0.0</baseValue>
+		                            </sum>
+		                        </setOutcomeValue>
+		                    </responseElse>
+		                </responseCondition>
+		                <responseCondition>
+		                    <responseIf>
+		                        <variable identifier="ob30"/>
+		                        <setOutcomeValue identifier="FEEDBACK">
+		                            <multiple>
+		                                <variable identifier="FEEDBACK"/>
+		                                <baseValue baseType="identifier">CORRECT3</baseValue>
+		                            </multiple>
+		                        </setOutcomeValue>
+		                        <setOutcomeValue identifier="SCORE">
+		                            <sum>
+		                                <variable identifier="SCORE"/>
+		                                <baseValue baseType="float">2.0</baseValue>
+		                            </sum>
+		                        </setOutcomeValue>
+		                    </responseIf>
+		                    <responseElseIf>
+		                        <variable identifier="ob31"/>
+		                        <setOutcomeValue identifier="FEEDBACK">
+		                            <multiple>
+		                                <variable identifier="FEEDBACK"/>
+		                                <baseValue baseType="identifier">CORRECT3IVs</baseValue>
+		                            </multiple>
+		                        </setOutcomeValue>
+		                        <setOutcomeValue identifier="SCORE">
+		                            <sum>
+		                                <variable identifier="SCORE"/>
+		                                <baseValue baseType="float">2.0</baseValue>
+		                            </sum>
+		                        </setOutcomeValue>
+		                    </responseElseIf>
+		                    <responseElseIf>
+		                        <variable identifier="ob32"/>
+		                        <setOutcomeValue identifier="FEEDBACK">
+		                            <multiple>
+		                                <variable identifier="FEEDBACK"/>
+		                                <baseValue baseType="identifier">Swapped</baseValue>
+		                            </multiple>
+		                        </setOutcomeValue>
+		                        <setOutcomeValue identifier="SCORE">
+		                            <sum>
+		                                <variable identifier="SCORE"/>
+		                                <baseValue baseType="float">1.0</baseValue>
+		                            </sum>
+		                        </setOutcomeValue>
+		                    </responseElseIf>
+		                    <responseElseIf>
+		                        <variable identifier="ob33"/>
+		                        <setOutcomeValue identifier="FEEDBACK">
+		                            <multiple>
+		                                <variable identifier="FEEDBACK"/>
+		                                <baseValue baseType="identifier">SwappedIVs</baseValue>
+		                            </multiple>
+		                        </setOutcomeValue>
+		                        <setOutcomeValue identifier="SCORE">
+		                            <sum>
+		                                <variable identifier="SCORE"/>
+		                                <baseValue baseType="float">1.0</baseValue>
+		                            </sum>
+		                        </setOutcomeValue>
+		                    </responseElseIf>
+		                    <responseElse>
+		                        <setOutcomeValue identifier="FEEDBACK">
+		                            <multiple>
+		                                <variable identifier="FEEDBACK"/>
+		                                <baseValue baseType="identifier">INCORRECT3</baseValue>
+		                            </multiple>
+		                        </setOutcomeValue>
+		                        <setOutcomeValue identifier="SCORE">
+		                            <sum>
+		                                <variable identifier="SCORE"/>
+		                                <baseValue baseType="float">0.0</baseValue>
+		                            </sum>
+		                        </setOutcomeValue>
+		                    </responseElse>
+		                </responseCondition>
+		                <responseCondition>
+		                    <responseIf>
+		                        <variable identifier="seenSolution"/>
+		                        <setOutcomeValue identifier="FEEDBACK">
+		                            <multiple>
+		                                <variable identifier="FEEDBACK"/>
+		                                <baseValue baseType="identifier">SEEN-SOLUTION</baseValue>
+		                            </multiple>
+		                        </setOutcomeValue>
+		                        <setOutcomeValue identifier="SCORE">
+		                            <baseValue baseType="float">0.0</baseValue>
+		                        </setOutcomeValue>
+		                    </responseIf>
+		                    <responseElseIf>
+		                        <variable identifier="seenHint"/>
+		                        <setOutcomeValue identifier="FEEDBACK">
+		                            <multiple>
+		                                <variable identifier="FEEDBACK"/>
+		                                <baseValue baseType="identifier">SEEN-HINT</baseValue>
+		                            </multiple>
+		                        </setOutcomeValue>
+		                        <setOutcomeValue identifier="SCORE">
+		                            <divide>
+		                                <variable identifier="SCORE"/>
+		                                <baseValue baseType="float">2.0</baseValue>
+		                            </divide>
+		                        </setOutcomeValue>
+		                    </responseElseIf>
+		                </responseCondition>
+		                <responseCondition>
+		                    <responseIf>
+		                        <gte>
+		                            <variable identifier="numAttempts"/>
+		                            <variable identifier="nTries"/>
+		                        </gte>
+		                        <setOutcomeValue identifier="FEEDBACK">
+		                            <multiple>
+		                                <baseValue baseType="identifier">NoMoreTries</baseValue>
+		                                <baseValue baseType="identifier">SOLUTION</baseValue>
+		                            </multiple>
+		                        </setOutcomeValue>
+		                        <setOutcomeValue identifier="completionStatus">
+		                            <baseValue baseType="identifier">completed</baseValue>
+		                        </setOutcomeValue>
+		                        <setOutcomeValue identifier="ASKHINT">
+		                            <baseValue baseType="identifier">null</baseValue>
+		                        </setOutcomeValue>
+		                        <setOutcomeValue identifier="ASKSOLUTION">
+		                            <baseValue baseType="identifier">null</baseValue>
+		                        </setOutcomeValue>
+		                    </responseIf>
+		                </responseCondition>
+		            </responseElse>
+		        </responseCondition>
+		    </responseElse>
+		</responseCondition>
+	</responseProcessing>
+</assessmentItem>

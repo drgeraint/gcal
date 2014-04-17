@@ -1,0 +1,1038 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<assessmentItem toolVersion="0.5.1" toolName="Mathqurate" title="Find an angle in a scalene triangle, given the three sides"
+    timeDependent="false" identifier="CosineRule-002-Angle" adaptive="true"
+    xsi:schemaLocation="http://www.imsglobal.org/xsd/imsqti_v2p1 imsqti_v2p1.xsd"
+    xmlns="http://www.imsglobal.org/xsd/imsqti_v2p1" xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:m="http://www.w3.org/1998/Math/MathML"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <responseDeclaration identifier="RESPONSE1" cardinality="single" baseType="float"/>
+    <responseDeclaration identifier="RESPONSE2" cardinality="single" baseType="string"/>
+    <responseDeclaration identifier="HINTREQUEST" cardinality="single" baseType="boolean"/>
+    <responseDeclaration identifier="SOLREQUEST" cardinality="single" baseType="boolean"/>
+    <outcomeDeclaration baseType="float" cardinality="single" identifier="SCORE"
+        normalMaximum="10.0" normalMinimum="0.0">
+        <defaultValue>
+            <value>0.0</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="identifier" cardinality="multiple" identifier="FEEDBACK"/>
+    <outcomeDeclaration baseType="identifier" cardinality="single" identifier="EMPTY"/>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="seenSolution">
+        <defaultValue>
+            <value>false</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="seenHint">
+        <defaultValue>
+            <value>false</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="identifier" cardinality="single" identifier="ASKHINT">
+        <defaultValue>
+            <value>askhint</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="identifier" cardinality="single" identifier="ASKSOLUTION">
+        <defaultValue>
+            <value>asksolution</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration identifier="oMult" cardinality="single" baseType="float">
+        <defaultValue>
+            <value>1.0</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration identifier="oPower" cardinality="single" baseType="float"/>
+    <outcomeDeclaration identifier="unitsOK" cardinality="single" baseType="boolean">
+        <defaultValue>
+            <value>true</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <templateDeclaration identifier="icc" cardinality="single" baseType="integer"
+        paramVariable="false" mathVariable="true">
+        <defaultValue>
+            <value>23</value>
+        </defaultValue>
+    </templateDeclaration>
+    <templateDeclaration identifier="iaa" cardinality="single" baseType="integer"
+        paramVariable="false" mathVariable="true">
+        <defaultValue>
+            <value>15</value>
+        </defaultValue>
+    </templateDeclaration>
+    <templateDeclaration identifier="ibb" cardinality="single" baseType="integer"
+        paramVariable="false" mathVariable="true">
+        <defaultValue>
+            <value>19</value>
+        </defaultValue>
+    </templateDeclaration>
+    <templateDeclaration identifier="iTemp" cardinality="single" baseType="integer"
+        paramVariable="false" mathVariable="true"/>
+    <templateDeclaration identifier="ia" cardinality="single" baseType="integer"
+        paramVariable="false" mathVariable="true"/>
+    <templateDeclaration identifier="ib" cardinality="single" baseType="integer"
+        paramVariable="false" mathVariable="true"/>
+    <templateDeclaration identifier="ic" cardinality="single" baseType="integer"
+        paramVariable="false" mathVariable="true"/>
+    <templateDeclaration identifier="iaSq" cardinality="single" baseType="integer"
+        paramVariable="false" mathVariable="true"/>
+    <templateDeclaration identifier="ibSq" cardinality="single" baseType="integer"
+        paramVariable="false" mathVariable="true"/>
+    <templateDeclaration identifier="icSq" cardinality="single" baseType="integer"
+        paramVariable="false" mathVariable="true"/>
+    <templateDeclaration identifier="i2ab" cardinality="single" baseType="integer"
+        paramVariable="false" mathVariable="true"/>
+    <templateDeclaration identifier="i2bc" cardinality="single" baseType="integer"
+        paramVariable="false" mathVariable="true"/>
+    <templateDeclaration identifier="i2ca" cardinality="single" baseType="integer"
+        paramVariable="false" mathVariable="true"/>
+    <templateDeclaration identifier="iType" cardinality="single" baseType="integer"
+        paramVariable="false" mathVariable="true"/>
+    <templateDeclaration identifier="iType1" cardinality="single" baseType="integer"
+        paramVariable="false" mathVariable="true"/>
+    <templateDeclaration identifier="iType2" cardinality="single" baseType="integer"
+        paramVariable="false" mathVariable="true"/>
+    <templateDeclaration identifier="iUnits" cardinality="single" baseType="integer"
+        paramVariable="false" mathVariable="true"/>
+    <templateDeclaration identifier="cosA" cardinality="single" baseType="float"
+        paramVariable="false" mathVariable="true"/>
+    <templateDeclaration identifier="cosB" cardinality="single" baseType="float"
+        paramVariable="false" mathVariable="true"/>
+    <templateDeclaration identifier="cosC" cardinality="single" baseType="float"
+        paramVariable="false" mathVariable="true"/>
+    <templateDeclaration identifier="fA" cardinality="single" baseType="float"
+        paramVariable="false" mathVariable="true"/>
+    <templateDeclaration identifier="fB" cardinality="single" baseType="float"
+        paramVariable="false" mathVariable="true"/>
+    <templateDeclaration identifier="fC" cardinality="single" baseType="float"
+        paramVariable="false" mathVariable="true"/>
+    <templateDeclaration identifier="fAns" cardinality="single" baseType="float"
+        paramVariable="false" mathVariable="true"/>
+    <templateDeclaration identifier="fPiOver180" cardinality="single" baseType="float"
+        paramVariable="false" mathVariable="true"/>
+    <templateDeclaration identifier="sUnits" cardinality="single" baseType="string"
+        paramVariable="false" mathVariable="false"/>
+    <templateDeclaration identifier="sAngle" cardinality="single" baseType="string"
+        paramVariable="false" mathVariable="false"/>
+    <templateDeclaration identifier="sSidea" cardinality="single" baseType="string"
+        paramVariable="false" mathVariable="true"/>
+    <templateDeclaration identifier="sSideb" cardinality="single" baseType="string"
+        paramVariable="false" mathVariable="true"/>
+    <templateDeclaration identifier="sSidec" cardinality="single" baseType="string"
+        paramVariable="false" mathVariable="true"/>
+    <templateDeclaration identifier="sAngleA" cardinality="single" baseType="string"
+        paramVariable="false" mathVariable="true"/>
+    <templateDeclaration identifier="sAngleB" cardinality="single" baseType="string"
+        paramVariable="false" mathVariable="true"/>
+    <templateDeclaration identifier="sAngleC" cardinality="single" baseType="string"
+        paramVariable="false" mathVariable="true"/>
+    <templateDeclaration identifier="sSides" cardinality="ordered" baseType="string"
+        paramVariable="false" mathVariable="false"/>
+    <templateDeclaration identifier="sAngles" cardinality="ordered" baseType="string"
+        paramVariable="false" mathVariable="false"/>
+    <templateProcessing>
+        <!-- 
+tqa:=Random(3,9,1)*10  -  side a
+tqb:=Random(3,9,1)*10  -  side b
+tqc:=Random(3,9,1)*10  -  side c
+- make a the longest side
+if tqb>tqa then
+  temp:=tqb
+  tqb:=tqa
+  tqa:=temp
+end if
+if tqc>tqa then
+  temp:=tqc
+  tqc:=tqa
+  tqa:=temp
+end if
+
+Test(tqb+tqc<tqa,GoTo(IconID@"retry"))  - doesn't join up into a triangle
+- make a the shortest side
+if tqb<tqa then
+  temp:=tqb
+  tqb:=tqa
+  tqa:=temp
+end if
+if tqc<tqa then
+  temp:=tqc
+  tqc:=tqa
+  tqa:=temp
+end if
+
+Test(tqa = tqb & tqa = tqc, GoTo(IconID@"retry"))  - All angles the same
+
+tqd:=tqb*tqb + tqc*tqc - tqa*tqa
+tqe:=2*tqb*tqc
+tqf:=tqd/tqe
+tqg:=ACOS(tqf)*180/Pi
+tqh:=Round(tqg,0)
+-
+
+tqk:=Random(1,3,1)   - randomise side required
+tqp:="A B C"
+tqq:="b c a"
+tqr:="c a b"
+tqs:="a b c"
+tqt:="CAB ABC BCA"
+tqpp:=GetWord(tqk,tqp)
+tqqq:=GetWord(tqk,tqq)
+tqrr:=GetWord(tqk,tqr)
+tqss:=GetWord(tqk,tqs)
+tqtt:=GetWord(tqk,tqt)
+        -->
+        <setTemplateValue identifier="iaa">
+            <randomInteger min="5" max="50"/>
+        </setTemplateValue>
+        <setTemplateValue identifier="ibb">
+            <randomInteger min="5" max="50"/>
+        </setTemplateValue>
+        <setTemplateValue identifier="icc">
+            <randomInteger min="5" max="50"/>
+        </setTemplateValue>
+        <templateCondition>
+            <templateIf>
+                <gt>
+                    <variable identifier="ibb"/>
+                    <variable identifier="iaa"/>
+                </gt>
+                <setTemplateValue identifier="iTemp">
+                    <variable identifier="ibb"/>
+                </setTemplateValue>
+                <setTemplateValue identifier="ibb">
+                    <variable identifier="iaa"/>
+                </setTemplateValue>
+                <setTemplateValue identifier="iaa">
+                    <variable identifier="iTemp"/>
+                </setTemplateValue>
+            </templateIf>
+        </templateCondition>
+        <templateCondition>
+            <templateIf>
+                <gt>
+                    <variable identifier="icc"/>
+                    <variable identifier="iaa"/>
+                </gt>
+                <setTemplateValue identifier="iTemp">
+                    <variable identifier="icc"/>
+                </setTemplateValue>
+                <setTemplateValue identifier="icc">
+                    <variable identifier="iaa"/>
+                </setTemplateValue>
+                <setTemplateValue identifier="iaa">
+                    <variable identifier="iTemp"/>
+                </setTemplateValue>
+            </templateIf>
+        </templateCondition>
+        <templateConstraint>
+            <lt>
+                <variable identifier="iaa"/>
+                <sum>
+                    <variable identifier="ibb"/>
+                    <variable identifier="icc"/>
+                </sum>
+            </lt>
+        </templateConstraint>
+        <setTemplateValue identifier="iType">
+            <randomInteger min="1" max="3"/>
+        </setTemplateValue>
+        <templateCondition>
+            <templateIf>
+                <equal toleranceMode="exact">
+                    <variable identifier="iType"/>
+                    <baseValue baseType="integer">1</baseValue>
+                </equal>
+                <setTemplateValue identifier="ia">
+                    <variable identifier="iaa"/>
+                </setTemplateValue>
+                <setTemplateValue identifier="ib">
+                    <variable identifier="ibb"/>
+                </setTemplateValue>
+                <setTemplateValue identifier="ic">
+                    <variable identifier="icc"/>
+                </setTemplateValue>
+            </templateIf>
+            <templateElseIf>
+                <equal toleranceMode="exact">
+                    <variable identifier="iType"/>
+                    <baseValue baseType="integer">2</baseValue>
+                </equal>
+                <setTemplateValue identifier="ia">
+                    <variable identifier="ibb"/>
+                </setTemplateValue>
+                <setTemplateValue identifier="ib">
+                    <variable identifier="icc"/>
+                </setTemplateValue>
+                <setTemplateValue identifier="ic">
+                    <variable identifier="iaa"/>
+                </setTemplateValue>
+            </templateElseIf>
+            <templateElse>
+                <setTemplateValue identifier="ia">
+                    <variable identifier="icc"/>
+                </setTemplateValue>
+                <setTemplateValue identifier="ib">
+                    <variable identifier="iaa"/>
+                </setTemplateValue>
+                <setTemplateValue identifier="ic">
+                    <variable identifier="ibb"/>
+                </setTemplateValue>
+            </templateElse>
+        </templateCondition>
+        <setTemplateValue identifier="iType1">
+            <sum>
+                <integerModulus>
+                    <variable identifier="iType"/>
+                    <baseValue baseType="integer">3</baseValue>
+                </integerModulus>
+                <baseValue baseType="integer">1</baseValue>
+            </sum>
+        </setTemplateValue>
+        <setTemplateValue identifier="iType2">
+            <sum>
+                <integerModulus>
+                    <sum>
+                        <variable identifier="iType"/>
+                        <baseValue baseType="integer">1</baseValue>
+                    </sum>
+                    <baseValue baseType="integer">3</baseValue>
+                </integerModulus>
+                <baseValue baseType="integer">1</baseValue>
+            </sum>
+        </setTemplateValue>
+        <setTemplateValue identifier="sSides">
+            <ordered>
+                <baseValue baseType="string">a</baseValue>
+                <baseValue baseType="string">b</baseValue>
+                <baseValue baseType="string">c</baseValue>
+            </ordered>
+        </setTemplateValue>
+        <setTemplateValue identifier="sAngles">
+            <ordered>
+                <baseValue baseType="string">A</baseValue>
+                <baseValue baseType="string">B</baseValue>
+                <baseValue baseType="string">C</baseValue>
+            </ordered>
+        </setTemplateValue>
+        <setTemplateValue identifier="sSidea">
+            <index n="iType">
+                <variable identifier="sSides"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="sSideb">
+            <index n="iType1">
+                <variable identifier="sSides"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="sSidec">
+            <index n="iType2">
+                <variable identifier="sSides"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="sAngleA">
+            <index n="iType">
+                <variable identifier="sAngles"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iaSq">
+            <round>
+                <power>
+                    <variable identifier="ia"/>
+                    <baseValue baseType="integer">2</baseValue>
+                </power>
+            </round>
+        </setTemplateValue>
+        <setTemplateValue identifier="ibSq">
+            <round>
+                <power>
+                    <variable identifier="ib"/>
+                    <baseValue baseType="integer">2</baseValue>
+                </power>
+            </round>
+        </setTemplateValue>
+        <setTemplateValue identifier="icSq">
+            <round>
+                <power>
+                    <variable identifier="ic"/>
+                    <baseValue baseType="integer">2</baseValue>
+                </power>
+            </round>
+        </setTemplateValue>
+        <setTemplateValue identifier="i2ab">
+            <product>
+                <baseValue baseType="integer">2</baseValue>
+                <variable identifier="ia"/>
+                <variable identifier="ib"/>
+            </product>
+        </setTemplateValue>
+        <setTemplateValue identifier="i2bc">
+            <product>
+                <baseValue baseType="integer">2</baseValue>
+                <variable identifier="ic"/>
+                <variable identifier="ib"/>
+            </product>
+        </setTemplateValue>
+        <setTemplateValue identifier="i2ca">
+            <product>
+                <baseValue baseType="integer">2</baseValue>
+                <variable identifier="ia"/>
+                <variable identifier="ic"/>
+            </product>
+        </setTemplateValue>
+        <setTemplateValue identifier="fPiOver180">
+            <divide>
+                <mathConstant name="pi"/>
+                <baseValue baseType="integer">180</baseValue>
+            </divide>
+        </setTemplateValue>
+        <setTemplateValue identifier="cosA">
+            <roundTo roundingMode="decimalPlaces" figures="6">
+                <divide>
+                    <subtract>
+                        <sum>
+                            <variable identifier="icSq"/>
+                            <variable identifier="ibSq"/>
+                        </sum>
+                        <variable identifier="iaSq"/>
+                    </subtract>
+                    <variable identifier="i2bc"/>
+                </divide>
+            </roundTo>
+        </setTemplateValue>
+        <templateConstraint>
+            <lte>
+                <mathOperator name="abs">
+                    <variable identifier="cosA"/>
+                </mathOperator>
+                <baseValue baseType="integer">1</baseValue>
+            </lte>
+        </templateConstraint>
+        <setTemplateValue identifier="cosB">
+            <roundTo roundingMode="decimalPlaces" figures="6">
+                <divide>
+                   <subtract>
+                       <sum>
+                           <variable identifier="iaSq"/>
+                           <variable identifier="icSq"/>
+                       </sum>
+                       <variable identifier="ibSq"/>
+                   </subtract>
+                   <variable identifier="i2ca"/>
+               </divide>
+            </roundTo>
+        </setTemplateValue>
+        <templateConstraint>
+            <lte>
+                <mathOperator name="abs">
+                    <variable identifier="cosB"/>
+                </mathOperator>
+                <baseValue baseType="integer">1</baseValue>
+            </lte>
+        </templateConstraint>
+        <setTemplateValue identifier="cosC">
+            <roundTo roundingMode="decimalPlaces" figures="6">
+                <divide>
+                    <subtract>
+                        <sum>
+                            <variable identifier="iaSq"/>
+                            <variable identifier="ibSq"/>
+                        </sum>
+                        <variable identifier="icSq"/>
+                    </subtract>
+                    <variable identifier="i2ab"/>
+                </divide>
+            </roundTo>
+        </setTemplateValue>
+        <templateConstraint>
+            <lte>
+                <mathOperator name="abs">
+                    <variable identifier="cosC"/>
+                </mathOperator>
+                <baseValue baseType="integer">1</baseValue>
+            </lte>
+        </templateConstraint>
+        <setTemplateValue identifier="fA">
+            <roundTo roundingMode="decimalPlaces" figures="4">
+                <divide>
+                    <mathOperator name="acos">
+                        <variable identifier="cosA"/>
+                    </mathOperator>
+                    <variable identifier="fPiOver180"/>
+                </divide>
+            </roundTo>
+        </setTemplateValue>
+        <setTemplateValue identifier="fB">
+            <roundTo roundingMode="decimalPlaces" figures="4">
+                <divide>
+                    <mathOperator name="acos">
+                        <variable identifier="cosB"/>
+                    </mathOperator>
+                    <variable identifier="fPiOver180"/>
+                </divide>
+            </roundTo>
+        </setTemplateValue>
+        <setTemplateValue identifier="fC">
+            <roundTo roundingMode="decimalPlaces" figures="4">
+                <divide>
+                    <mathOperator name="acos">
+                        <variable identifier="cosB"/>
+                    </mathOperator>
+                    <variable identifier="fPiOver180"/>
+                </divide>
+            </roundTo>
+        </setTemplateValue>
+        <setTemplateValue identifier="iUnits">
+            <randomInteger min="1" max="2"/>
+        </setTemplateValue>
+        <templateCondition>
+            <templateIf>
+                <equal toleranceMode="exact">
+                    <variable identifier="iUnits"/>
+                    <baseValue baseType="integer">2</baseValue>
+                </equal>
+                <setTemplateValue identifier="sUnits">
+                    <baseValue baseType="string">m</baseValue>
+                </setTemplateValue>
+            </templateIf>
+            <templateElse>
+                <setTemplateValue identifier="sUnits">
+                    <baseValue baseType="string">cm</baseValue>
+                </setTemplateValue>
+            </templateElse>
+        </templateCondition>
+        <templateCondition>
+            <templateIf>
+                <equal toleranceMode="exact">
+                    <variable identifier="iType"/>
+                    <baseValue baseType="integer">1</baseValue>
+                </equal>
+                <setTemplateValue identifier="fAns">
+                    <roundTo roundingMode="decimalPlaces" figures="2">
+                        <variable identifier="fA"/>
+                    </roundTo>
+                </setTemplateValue>
+            </templateIf>
+            <templateElseIf>
+                <equal toleranceMode="exact">
+                    <variable identifier="iType"/>
+                    <baseValue baseType="integer">2</baseValue>
+                </equal>
+                <setTemplateValue identifier="fAns">
+                    <roundTo roundingMode="decimalPlaces" figures="2">
+                        <variable identifier="fB"/>
+                    </roundTo>
+                </setTemplateValue>
+            </templateElseIf>
+            <templateElse>
+                <setTemplateValue identifier="fAns">
+                    <roundTo roundingMode="decimalPlaces" figures="2">
+                        <variable identifier="fC"/>
+                    </roundTo>
+                </setTemplateValue>
+            </templateElse>
+        </templateCondition>
+    </templateProcessing>
+    <itemBody>
+        <p>In triangle ABC, side a=<printedVariable identifier="iaa"/><printedVariable identifier="sUnits"/>
+            , side b =<printedVariable identifier="ibb"/><printedVariable identifier="sUnits"/>
+            and side c=<printedVariable identifier="icc"/><printedVariable identifier="sUnits"/>. 
+            Find angle <printedVariable identifier="sAngleA"/> in degrees.</p>
+        <div class="">
+            <p>Enter your answer to 2 decimal places.</p>
+            <p><printedVariable identifier="sAngleA"/> =  <textEntryInteraction responseIdentifier="RESPONSE1" expectedLength="20"/>&#xb0;</p>
+        </div>
+        <div class="">
+            <feedbackInline id="feedbackInline3" showHide="show" outcomeIdentifier="FEEDBACK"
+                identifier="Correct"> OK </feedbackInline></div>
+        <div class="">
+            <feedbackInline id="feedbackInline2" showHide="show" outcomeIdentifier="FEEDBACK"
+                identifier="Partial"> Not far off... </feedbackInline></div>
+        <div class="">
+            <feedbackInline id="feedbackInline2" showHide="show" outcomeIdentifier="FEEDBACK"
+                identifier="SinB"> You have entered the value of cos(<printedVariable identifier="sAngleA"/>); you need to take use the inverse sine function to find the angle.</feedbackInline></div>
+        <div class="">
+            <feedbackInline id="feedbackInline2" showHide="show" outcomeIdentifier="FEEDBACK"
+            identifier="OtherAngle"> You have entered the value of the wrong angle; the question asks for angle <printedVariable identifier="sAngle"/>.; you need to take use the inverse sine function to find the angle.</feedbackInline></div>
+        <div class="">
+            <feedbackInline id="feedbackInline2" showHide="show" outcomeIdentifier="FEEDBACK"
+                identifier="Radians"> You seem to have your calculator set to use radians.</feedbackInline></div>
+        <div class="">
+            <feedbackInline id="feedbackInline2" showHide="show" outcomeIdentifier="FEEDBACK"
+                identifier="Incorrect"> No, that's not correct. </feedbackInline></div>
+        <div class="">
+            <feedbackBlock id="feedbackBlock11" identifier="THREETRIES" outcomeIdentifier="FEEDBACK"
+                showHide="show">
+                <p> You have had three attempts at answering this question, so here is the solution:
+                </p>
+            </feedbackBlock>
+            <feedbackBlock identifier="SOLUTION" outcomeIdentifier="FEEDBACK" showHide="show">
+                <p>We apply the cosine rule</p>
+                    <p>
+                        <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+                            <semantics>
+                                <mtable>
+                                    <mtr>
+                                        <mtd columnalign="center">
+                                            <msup>
+                                                <mi>sSidea</mi>
+                                                <mn>2</mn>
+                                            </msup>
+                                        </mtd>
+                                        <mtd columnalign="center">
+                                            <mo>=</mo>
+                                        </mtd>
+                                        <mtd columnalign="left">
+                                            <msup>
+                                                <mi>sSideb</mi>
+                                                <mn>2</mn>
+                                            </msup>
+                                            <mo>+</mo>
+                                            <msup>
+                                                <mi>sSidec</mi>
+                                                <mn>2</mn>
+                                            </msup>
+                                            <mo>-</mo>
+                                            <mn>2</mn>
+                                            <mi>sSideb</mi>
+                                            <mi>sSidec</mi>
+                                            <mrow>
+                                                <mi>cos</mi>
+                                                <mfenced close=")" open="(">
+                                                    <mi>sAngleA</mi>
+                                                </mfenced>
+                                            </mrow>
+                                        </mtd>
+                                    </mtr>
+                                    <mtr>
+                                        <mtd columnalign="center">
+                                            <mn>2</mn>
+                                            <mi>sSideb</mi>
+                                            <mi>sSidec</mi>
+                                            <mrow>
+                                                <mi>cos</mi>
+                                                <mfenced close=")" open="(">
+                                                    <mi>sAngleA</mi>
+                                                </mfenced>
+                                            </mrow>
+                                        </mtd>
+                                        <mtd columnalign="center">
+                                            <mo>=</mo>
+                                        </mtd>
+                                        <mtd columnalign="left">
+                                            <msup>
+                                                <mi>sSideb</mi>
+                                                <mn>2</mn>
+                                            </msup>
+                                            <mo>+</mo>
+                                            <msup>
+                                                <mi>sSidec</mi>
+                                                <mn>2</mn>
+                                            </msup>
+                                            <mo>-</mo>
+                                            <msup>
+                                                <mi>sSidea</mi>
+                                                <mn>2</mn>
+                                            </msup>
+                                        </mtd>
+                                    </mtr>
+                                    <mtr>
+                                        <mtd columnalign="center">
+                                            <mrow>
+                                                <mi>cos</mi>
+                                                <mfenced close=")" open="(">
+                                                    <mi>sAngleA</mi>
+                                                </mfenced>
+                                            </mrow>
+                                        </mtd>
+                                        <mtd columnalign="center">
+                                            <mo>=</mo>
+                                        </mtd>
+                                        <mtd columnalign="left">
+                                            <mfrac>
+                                                <mrow>
+                                                    <msup>
+                                                        <mi>sSideb</mi>
+                                                        <mn>2</mn>
+                                                    </msup>
+                                                    <mo>+</mo>
+                                                    <msup>
+                                                        <mi>sSidec</mi>
+                                                        <mn>2</mn>
+                                                    </msup>
+                                                    <mo>-</mo>
+                                                    <msup>
+                                                        <mi>sSidea</mi>
+                                                        <mn>2</mn>
+                                                    </msup>
+                                                </mrow>
+                                                <mrow>
+                                                    <mn>2</mn>
+                                                    <mi>sSideb</mi>
+                                                    <mi>sSidec</mi>
+                                                </mrow>
+                                            </mfrac>
+                                        </mtd>
+                                    </mtr>
+                                    <mtr>
+                                        <mtd columnalign="center">
+                                            <mrow>
+                                                <mi>cos</mi>
+                                                <mfenced close=")" open="(">
+                                                    <mi>sAngleA</mi>
+                                                </mfenced>
+                                            </mrow>
+                                        </mtd>
+                                        <mtd columnalign="center">
+                                            <mo>=</mo>
+                                        </mtd>
+                                        <mtd columnalign="left">
+                                            <mfrac>
+                                                <mrow>
+                                                    <msup>
+                                                        <mi>ib</mi>
+                                                        <mn>2</mn>
+                                                    </msup>
+                                                    <mo>+</mo>
+                                                    <msup>
+                                                        <mi>ic</mi>
+                                                        <mn>2</mn>
+                                                    </msup>
+                                                    <mo>-</mo>
+                                                    <msup>
+                                                        <mi>ia</mi>
+                                                        <mn>2</mn>
+                                                    </msup>
+                                                </mrow>
+                                                <mrow>
+                                                    <mn>2</mn>
+                                                    <mo>&#xd7;</mo>
+                                                    <mi>ib</mi>
+                                                    <mo>&#xd7;</mo>
+                                                    <mi>ic</mi>
+                                                </mrow>
+                                            </mfrac>
+                                        </mtd>
+                                    </mtr>
+                                    <mtr>
+                                        <mtd columnalign="center">
+                                            <mrow>
+                                                <mi>cos</mi>
+                                                <mfenced close=")" open="(">
+                                                    <mi>sAngleA</mi>
+                                                </mfenced>
+                                            </mrow>
+                                        </mtd>
+                                        <mtd columnalign="center">
+                                            <mo>=</mo>
+                                        </mtd>
+                                        <mtd columnalign="left">
+                                            <mfrac>
+                                                <mrow>
+                                                    <mi>ibSq</mi>
+                                                    <mo>+</mo>
+                                                    <mi>icSq</mi>
+                                                    <mo>-</mo>
+                                                    <mi>iaSq</mi>
+                                                </mrow>
+                                                <mrow>
+                                                    <mi>i2bc</mi>
+                                                </mrow>
+                                            </mfrac>
+                                        </mtd>
+                                    </mtr>
+                                    <mtr>
+                                        <mtd columnalign="center">
+                                            <mrow>
+                                                <mi>cos</mi>
+                                                <mfenced close=")" open="(">
+                                                    <mi>sAngleA</mi>
+                                                </mfenced>
+                                            </mrow>
+                                        </mtd>
+                                        <mtd columnalign="center">
+                                            <mo>=</mo>
+                                        </mtd>
+                                        <mtd columnalign="left">
+                                            <mi>cosA</mi>
+                                        </mtd>
+                                    </mtr>
+                                    <mtr>
+                                        <mtd columnalign="right">
+                                            <mi>sAngleA</mi>
+                                        </mtd>
+                                        <mtd columnalign="center">
+                                            <mo>=</mo>
+                                        </mtd>
+                                        <mtd columnalign="left">
+                                            <msup>
+                                                <mi>cos</mi>
+                                                <mn>-1</mn>
+                                            </msup>
+                                            <mfenced close=")" open="(">
+                                                <mi>cosA</mi>
+                                            </mfenced>
+                                        </mtd>
+                                    </mtr>
+                                    <mtr>
+                                        <mtd columnalign="right">
+                                            <mi>sAngleA</mi>
+                                        </mtd>
+                                        <mtd columnalign="center">
+                                            <mo>=</mo>
+                                        </mtd>
+                                        <mtd columnalign="left">
+                                            <mi>fAns</mi>
+                                            <mo>&#xb0;</mo>
+                                        </mtd>
+                                    </mtr>
+                                </mtable>
+                                <annotation encoding="SnuggleTeX"
+                                    >\begin{eqnarray*}
+                                    \qv{sSidea}^2&amp;=&amp;\qv{sSideb}^2+\qv{sSidec}^2-2\qv{sSideb}\qv{sSidec}\cos(sAngleA)\\
+                                    2bc cos(sAngleA)&amp;=&amp;\qv{sSideb}^2+\qv{sSidec}^2-\qv{sSidea}^2\\
+                                    cos(sAngleA)&amp;=&amp;\frac{\qv{sSideb}^2+\qv{sSidec}^2-\qv{sSidea}^2}{2\qv{sSideb}\qv{sSidec}}\\
+                                    cos(sAngleA)&amp;=&amp;\frac{\qv{ib}^2+\qv{ic}^2-\qv{ia}^2}{2\times\qv{ib}\times\qv{ic}}\\
+                                    cos(sAngleA)&amp;=&amp;\frac{\qv{ibSq}+\qv{icSq}-\qv{iaSq}}{\qv{i2bc}}\\
+                                    cos(sAngleA)&amp;=&amp;\qv{cosA}\\
+                                    sAngleA&amp;=&amp;\acos{\qv{cosA}}\\
+                                    sAngleA&amp;=&amp;\qv{fAns}\degree \end{eqnarray*}</annotation>
+                            </semantics>
+                        </math>
+                    </p>
+            </feedbackBlock></div>
+        <div class="">
+            <feedbackBlock identifier="HINT" outcomeIdentifier="FEEDBACK" showHide="show">
+                <p>Use the cosine rule:</p>
+                    <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+                        <semantics>
+                            <mtable>
+                                <mtr>
+                                    <mtd columnalign="center">
+                                        <msup>
+                                            <mi>c</mi>
+                                            <mn>2</mn>
+                                        </msup>
+                                    </mtd>
+                                    <mtd columnalign="center">
+                                        <mo>=</mo>
+                                    </mtd>
+                                    <mtd columnalign="left">
+                                        <msup>
+                                            <mi>a</mi>
+                                            <mn>2</mn>
+                                        </msup>
+                                        <mo>+</mo>
+                                        <msup>
+                                            <mi>b</mi>
+                                            <mn>2</mn>
+                                        </msup>
+                                        <mo>-</mo>
+                                        <mn>2</mn>
+                                        <mn>a</mn>
+                                        <mi>b</mi>
+                                        <mrow>
+                                            <mi>cos</mi>
+                                            <mfenced close=")" open="(">
+                                                <mi>C</mi>
+                                            </mfenced>
+                                        </mrow>
+                                    </mtd>
+                                </mtr>
+                            </mtable>
+                            <annotation encoding="SnuggleTeX"
+                                >\[c^2&amp;=&amp;a^2+b^2-2ab cos(C)\]</annotation>
+                        </semantics>
+                    </math>
+
+            </feedbackBlock></div>
+        <feedbackBlock identifier="SEEN-SOLUTION" outcomeIdentifier="FEEDBACK" showHide="show">
+            <p> Since you have viewed the solution, your score for this question will be 0. </p>
+        </feedbackBlock>
+        <feedbackBlock identifier="SEEN-HINT" outcomeIdentifier="FEEDBACK" showHide="show">
+            <p> Since you have viewed the hint, your score for this question will be halved. </p>
+        </feedbackBlock>
+        <feedbackBlock identifier="askhint" outcomeIdentifier="ASKHINT" showHide="show">
+            <div>
+                <endAttemptInteraction id="endAttemptInteraction1" responseIdentifier="HINTREQUEST"
+                    title="Show Hint"/>
+            </div>
+        </feedbackBlock>
+        <feedbackBlock identifier="asksolution" outcomeIdentifier="ASKSOLUTION" showHide="show">
+            <div>
+                <endAttemptInteraction id="endAttemptInteraction2" responseIdentifier="SOLREQUEST"
+                    title="Show Solution"/>
+            </div>
+        </feedbackBlock>
+    </itemBody>
+    <responseProcessing>
+        <setOutcomeValue identifier="FEEDBACK">
+            <multiple>
+                <variable identifier="EMPTY"/>
+            </multiple>
+        </setOutcomeValue>
+        <responseCondition>
+            <responseIf>
+                <variable identifier="HINTREQUEST"/>
+                <setOutcomeValue identifier="FEEDBACK">
+                    <multiple>
+                        <baseValue baseType="identifier">HINT</baseValue>
+                    </multiple>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="seenHint">
+                    <baseValue baseType="boolean">true</baseValue>
+                </setOutcomeValue>
+            </responseIf>
+            <responseElseIf>
+                <variable identifier="SOLREQUEST"/>
+                <setOutcomeValue identifier="FEEDBACK">
+                    <multiple>
+                        <baseValue baseType="identifier">SOLUTION</baseValue>
+                    </multiple>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="seenSolution">
+                    <baseValue baseType="boolean">true</baseValue>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="completionStatus">
+                    <baseValue baseType="identifier">completed</baseValue>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="ASKHINT">
+                    <baseValue baseType="identifier">null</baseValue>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="ASKSOLUTION">
+                    <baseValue baseType="identifier">null</baseValue>
+                </setOutcomeValue>
+            </responseElseIf>
+            <responseElse>
+                <responseCondition>
+                    <responseIf>
+                        <isNull>
+                            <variable identifier="RESPONSE1"/>
+                        </isNull>
+                        <setOutcomeValue identifier="SCORE">
+                            <baseValue baseType="float">0</baseValue>
+                        </setOutcomeValue>
+                    </responseIf>
+                    <responseElse>
+                        <responseCondition>
+                            <responseIf>
+                                <equalRounded roundingMode="decimalPlaces" figures="2">
+                                    <variable identifier="fAns"/>
+                                    <variable identifier="RESPONSE1"/>
+                                </equalRounded>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <baseValue baseType="identifier">Correct</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="SCORE">
+                                    <baseValue baseType="float">2.0</baseValue>
+                                </setOutcomeValue>
+                            </responseIf>
+                            <responseElseIf>
+                                <equalRounded roundingMode="decimalPlaces" figures="1">
+                                    <variable identifier="RESPONSE1"/>
+                                    <variable identifier="fAns"/>
+                                </equalRounded>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <baseValue baseType="identifier">Partial</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="SCORE">
+                                    <baseValue baseType="float">1.0</baseValue>
+                                </setOutcomeValue>
+                            </responseElseIf>
+                            <responseElseIf>
+                                <or>
+                                    <equalRounded roundingMode="decimalPlaces" figures="2">
+                                        <variable identifier="RESPONSE1"/>
+                                        <variable identifier="fA"/>
+                                    </equalRounded>
+                                    <equalRounded roundingMode="decimalPlaces" figures="2">
+                                        <variable identifier="RESPONSE1"/>
+                                        <variable identifier="fB"/>
+                                    </equalRounded>
+                                    <equalRounded roundingMode="decimalPlaces" figures="2">
+                                        <variable identifier="RESPONSE1"/>
+                                        <variable identifier="fC"/>
+                                    </equalRounded>
+                                </or>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <baseValue baseType="identifier">OtherAngle</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="SCORE">
+                                    <baseValue baseType="float">1.0</baseValue>
+                                </setOutcomeValue>
+                            </responseElseIf>
+                            <responseElse>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <baseValue baseType="identifier">Incorrect</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="SCORE">
+                                    <baseValue baseType="float">0.0</baseValue>
+                                </setOutcomeValue>
+                            </responseElse>
+                        </responseCondition>
+                        <responseCondition>
+                            <responseIf>
+                                <gt>
+                                    <variable identifier="numAttempts"/>
+                                    <baseValue baseType="integer">                                            3                                        </baseValue>
+                                </gt>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <baseValue baseType="identifier">                                                THREETRIES                                            </baseValue>
+                                        <baseValue baseType="identifier">                                                SOLUTION                                            </baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="completionStatus">
+                                    <baseValue baseType="identifier">                                            completed                                        </baseValue>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="ASKHINT">
+                                    <baseValue baseType="identifier">                                            null                                        </baseValue>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="ASKSOLUTION">
+                                    <baseValue baseType="identifier">                                            null                                        </baseValue>
+                                </setOutcomeValue>
+                            </responseIf>
+                        </responseCondition>
+                        <responseCondition>
+                            <responseIf>
+                                <variable identifier="seenSolution"/>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <variable identifier="FEEDBACK"/>
+                                        <baseValue baseType="identifier">SEEN-SOLUTION</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="SCORE">
+                                    <baseValue baseType="float">0.0</baseValue>
+                                </setOutcomeValue>
+                            </responseIf>
+                            <responseElseIf>
+                                <variable identifier="seenHint"/>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <variable identifier="FEEDBACK"/>
+                                        <baseValue baseType="identifier">SEEN-HINT</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="SCORE">
+                                    <divide>
+                                        <variable identifier="SCORE"/>
+                                        <baseValue baseType="float">2.0</baseValue>
+                                    </divide>
+                                </setOutcomeValue>
+                            </responseElseIf>
+                        </responseCondition>
+                    </responseElse>
+                </responseCondition>
+            </responseElse>
+        </responseCondition>
+    </responseProcessing>
+</assessmentItem>

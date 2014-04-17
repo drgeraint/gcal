@@ -1,0 +1,634 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p1"    
+    xmlns:m="http://www.w3.org/1998/Math/MathML"
+    xmlns:ma="http://mathassess.qtitools.org/xsd/mathassess"
+    xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" adaptive="true"
+    identifier="GU-DIAGNOSYS302" timeDependent="false" title="Scientific notation"
+    toolName="Mathqurate" toolVersion="1.0" xml:lang=""
+    xsi:schemaLocation="http://www.imsglobal.org/xsd/imsqti_v2p1 imsqti_v2p1.xsd">
+    <responseDeclaration baseType="integer" cardinality="single" identifier="RESPONSE"/>
+    <responseDeclaration baseType="boolean" cardinality="single" identifier="HINTREQUEST"/>
+    <responseDeclaration baseType="boolean" cardinality="single" identifier="SOLREQUEST"/>
+    <outcomeDeclaration baseType="float" cardinality="single" identifier="SCORE" normalMaximum="2.0"
+        normalMinimum="0.0">
+        <defaultValue>
+            <value>0.0</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="identifier" cardinality="multiple" identifier="FEEDBACK"/>
+    <outcomeDeclaration baseType="identifier" cardinality="single" identifier="EMPTY"/>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="seenSolution">
+        <defaultValue>
+            <value>false</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="seenHint">
+        <defaultValue>
+            <value>false</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="identifier" cardinality="single" identifier="ASKHINT">
+        <defaultValue>
+            <value>askhint</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="identifier" cardinality="single" identifier="ASKSOLUTION">
+        <defaultValue>
+            <value>asksolution</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="float" cardinality="single" identifier="fIn"/>
+    <outcomeDeclaration baseType="integer" cardinality="single" identifier="iLeft"/>
+    <outcomeDeclaration baseType="integer" cardinality="single" identifier="iRight"/>
+    <outcomeDeclaration baseType="integer" cardinality="single" identifier="nSF"/>
+    <outcomeDeclaration baseType="identifier" cardinality="single" identifier="oNumber"/>
+    <templateDeclaration baseType="boolean" cardinality="single" identifier="tDummy"
+        mathVariable="false" paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iA" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iB" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iBM3"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iN" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iAns"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="identifier" cardinality="single" identifier="tNumber"
+        mathVariable="false" paramVariable="false"/>
+    <templateDeclaration baseType="float" cardinality="single" identifier="fA" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="float" cardinality="single" identifier="fB" mathVariable="true"
+        paramVariable="false"/>
+    <templateProcessing>
+        <!--<setTemplateValue identifier="tDummy">
+            <customOperator class="org.qtitools.mathassess.ScriptRule" ma:syntax="text/x-maxima">
+                <baseValue baseType="string"><![CDATA[
+
+ s1 : make_random_state(true)$ set_random_state(s1);
+
+ choose(list) := list[1+random(length(list))];
+
+ r0([range]) := if length(range) = 2 then choose(makelist(i, i, range[1], range[2])) else choose(makelist(i, i, min(range[1],0), max(range[1], 0)));
+
+ r1([range]) := if length(range) = 2 then choose(delete(0, makelist(i, i, range[1], range[2]))) else if signum(range[1])=1 then choose(makelist(i, i, 1, range[1])) else choose(makelist(i, i, range[1], -1));
+
+ nExponent(p) := ev(floor(log(p)/log(10))+1,numer,simp);
+
+ simp:true;
+
+ iA: r1(101,9999);
+
+ iB: nExponent(iA);
+
+ fA: ev(iA/10^(iB-1),numer,simp);
+
+ iADP: ev(iB-1,numer,simp);
+
+ iN: r1(-3,3);
+
+ fB: ev(fA*10^iN,numer,simp);
+
+ iBDP: if (iN<0) then ev(iADP+abs(iN),numer,simp) elseif (iN>=iADP) then 0 else ev(iADP-iN,numer,simp);
+
+ iZ: iN;
+
+ iAns: iN;
+
+
+]]></baseValue>
+            </customOperator>
+        </setTemplateValue>
+        <templateCondition>
+            <templateIf>
+                <equal toleranceMode="exact">
+                    <variable identifier="iBDP"/>
+                    <baseValue baseType="integer">0</baseValue>
+                </equal>
+                <setTemplateValue identifier="tNumber">
+                    <baseValue baseType="identifier">BDP0</baseValue>
+                </setTemplateValue>
+            </templateIf>
+            <templateElseIf>
+                <equal toleranceMode="exact">
+                    <variable identifier="iBDP"/>
+                    <baseValue baseType="integer">1</baseValue>
+                </equal>
+                <setTemplateValue identifier="tNumber">
+                    <baseValue baseType="identifier">BDP1</baseValue>
+                </setTemplateValue>
+            </templateElseIf>
+            <templateElseIf>
+                <equal toleranceMode="exact">
+                    <variable identifier="iBDP"/>
+                    <baseValue baseType="integer">2</baseValue>
+                </equal>
+                <setTemplateValue identifier="tNumber">
+                    <baseValue baseType="identifier">BDP2</baseValue>
+                </setTemplateValue>
+            </templateElseIf>
+            <templateElseIf>
+                <equal toleranceMode="exact">
+                    <variable identifier="iBDP"/>
+                    <baseValue baseType="integer">3</baseValue>
+                </equal>
+                <setTemplateValue identifier="tNumber">
+                    <baseValue baseType="identifier">BDP3</baseValue>
+                </setTemplateValue>
+            </templateElseIf>
+            <templateElseIf>
+                <equal toleranceMode="exact">
+                    <variable identifier="iBDP"/>
+                    <baseValue baseType="integer">4</baseValue>
+                </equal>
+                <setTemplateValue identifier="tNumber">
+                    <baseValue baseType="identifier">BDP4</baseValue>
+                </setTemplateValue>
+            </templateElseIf>
+            <templateElseIf>
+                <equal toleranceMode="exact">
+                    <variable identifier="iBDP"/>
+                    <baseValue baseType="integer">5</baseValue>
+                </equal>
+                <setTemplateValue identifier="tNumber">
+                    <baseValue baseType="identifier">BDP5</baseValue>
+                </setTemplateValue>
+            </templateElseIf>
+            <templateElseIf>
+                <equal toleranceMode="exact">
+                    <variable identifier="iBDP"/>
+                    <baseValue baseType="integer">6</baseValue>
+                </equal>
+                <setTemplateValue identifier="tNumber">
+                    <baseValue baseType="identifier">BDP6</baseValue>
+                </setTemplateValue>
+            </templateElseIf>
+            <templateElseIf>
+                <equal toleranceMode="exact">
+                    <variable identifier="iBDP"/>
+                    <baseValue baseType="integer">7</baseValue>
+                </equal>
+                <setTemplateValue identifier="tNumber">
+                    <baseValue baseType="identifier">BDP7</baseValue>
+                </setTemplateValue>
+            </templateElseIf>
+        </templateCondition>
+        <templateCondition>
+            <templateIf>
+                <equal toleranceMode="exact">
+                    <variable identifier="iADP"/>
+                    <baseValue baseType="integer">2</baseValue>
+                </equal>
+                <setTemplateValue identifier="sNumber">
+                    <baseValue baseType="identifier">ADP2</baseValue>
+                </setTemplateValue>
+            </templateIf>
+            <templateElseIf>
+                <equal toleranceMode="exact">
+                    <variable identifier="iADP"/>
+                    <baseValue baseType="integer">3</baseValue>
+                </equal>
+                <setTemplateValue identifier="sNumber">
+                    <baseValue baseType="identifier">ADP3</baseValue>
+                </setTemplateValue>
+            </templateElseIf>
+            </templateCondition>-->
+        <setTemplateValue identifier="iA">
+            <randomInteger max="9999" min="1001"/>
+        </setTemplateValue>
+        <setTemplateValue identifier="iN">
+            <randomInteger max="2" min="1"/>
+        </setTemplateValue>
+        <templateCondition>
+            <templateIf>
+                <equal toleranceMode="exact">
+                    <variable identifier="iN"/>
+                    <baseValue baseType="integer">1</baseValue>
+                </equal>
+                <setTemplateValue identifier="iBM3">
+                    <randomInteger max="4" min="-2"/>
+                </setTemplateValue>
+            </templateIf>
+            <templateElse>
+                <setTemplateValue identifier="iBM3">
+                    <randomInteger max="-3" min="-6"/>
+                </setTemplateValue>
+            </templateElse>
+        </templateCondition>
+
+        <setTemplateValue identifier="iB">
+            <subtract>
+                <variable identifier="iBM3"/>
+                <baseValue baseType="integer">3</baseValue>
+            </subtract>
+        </setTemplateValue>
+        <setTemplateValue identifier="iAns">
+            <variable identifier="iBM3"/>
+        </setTemplateValue>
+        <setTemplateValue identifier="fA">
+            <divide>
+                <variable identifier="iA"/>
+                <baseValue baseType="integer">1000</baseValue>
+            </divide>
+        </setTemplateValue>
+        <setTemplateValue identifier="fB">
+            <product>
+                <variable identifier="iA"/>
+                <power>
+                    <baseValue baseType="integer">10</baseValue>
+                    <variable identifier="iB"/>
+                </power>
+            </product>
+        </setTemplateValue>
+        <templateCondition>
+            <templateIf>
+                <gte>
+                    <variable identifier="iB"/>
+                    <baseValue baseType="integer">0</baseValue>
+                </gte>
+                <setTemplateValue identifier="tNumber">
+                    <baseValue baseType="identifier">BDP0</baseValue>
+                </setTemplateValue>
+            </templateIf>
+            <templateElseIf>
+                <equal toleranceMode="exact">
+                    <variable identifier="iB"/>
+                    <baseValue baseType="integer">-1</baseValue>
+                </equal>
+                <setTemplateValue identifier="tNumber">
+                    <baseValue baseType="identifier">BDP1</baseValue>
+                </setTemplateValue>
+            </templateElseIf>
+            <templateElseIf>
+                <equal toleranceMode="exact">
+                    <variable identifier="iB"/>
+                    <baseValue baseType="integer">-2</baseValue>
+                </equal>
+                <setTemplateValue identifier="tNumber">
+                    <baseValue baseType="identifier">BDP2</baseValue>
+                </setTemplateValue>
+            </templateElseIf>
+            <templateElseIf>
+                <equal toleranceMode="exact">
+                    <variable identifier="iB"/>
+                    <baseValue baseType="integer">-3</baseValue>
+                </equal>
+                <setTemplateValue identifier="tNumber">
+                    <baseValue baseType="identifier">BDP3</baseValue>
+                </setTemplateValue>
+            </templateElseIf>
+            <templateElseIf>
+                <equal toleranceMode="exact">
+                    <variable identifier="iB"/>
+                    <baseValue baseType="integer">-4</baseValue>
+                </equal>
+                <setTemplateValue identifier="tNumber">
+                    <baseValue baseType="identifier">BDP4</baseValue>
+                </setTemplateValue>
+            </templateElseIf>
+            <templateElseIf>
+                <equal toleranceMode="exact">
+                    <variable identifier="iB"/>
+                    <baseValue baseType="integer">-5</baseValue>
+                </equal>
+                <setTemplateValue identifier="tNumber">
+                    <baseValue baseType="identifier">BDP5</baseValue>
+                </setTemplateValue>
+            </templateElseIf>
+            <templateElseIf>
+                <equal toleranceMode="exact">
+                    <variable identifier="iB"/>
+                    <baseValue baseType="integer">-6</baseValue>
+                </equal>
+                <setTemplateValue identifier="tNumber">
+                    <baseValue baseType="identifier">BDP6</baseValue>
+                </setTemplateValue>
+            </templateElseIf>
+            <templateElseIf>
+                <equal toleranceMode="exact">
+                    <variable identifier="iB"/>
+                    <baseValue baseType="integer">-7</baseValue>
+                </equal>
+                <setTemplateValue identifier="tNumber">
+                    <baseValue baseType="identifier">BDP7</baseValue>
+                </setTemplateValue>
+            </templateElseIf>
+            <templateElseIf>
+                <equal toleranceMode="exact">
+                    <variable identifier="iB"/>
+                    <baseValue baseType="integer">-8</baseValue>
+                </equal>
+                <setTemplateValue identifier="tNumber">
+                    <baseValue baseType="identifier">BDP8</baseValue>
+                </setTemplateValue>
+            </templateElseIf>
+            <templateElseIf>
+                <equal toleranceMode="exact">
+                    <variable identifier="iB"/>
+                    <baseValue baseType="integer">-9</baseValue>
+                </equal>
+                <setTemplateValue identifier="tNumber">
+                    <baseValue baseType="identifier">BDP9</baseValue>
+                </setTemplateValue>
+            </templateElseIf>
+        </templateCondition>
+    </templateProcessing>
+    <itemBody>
+        <p>We can write the number   <templateInline identifier="BDP0" showHide="show"
+                templateIdentifier="tNumber">
+                <printedVariable format="%9.0f" identifier="fB"/>
+            </templateInline>
+            <templateInline identifier="BDP1" showHide="show" templateIdentifier="tNumber">
+                <printedVariable format="%9.1f" identifier="fB"/>
+            </templateInline>
+            <templateInline identifier="BDP2" showHide="show" templateIdentifier="tNumber">
+                <printedVariable format="%10.2f" identifier="fB"/>
+            </templateInline>
+            <templateInline identifier="BDP3" showHide="show" templateIdentifier="tNumber">
+                <printedVariable format="%10.3f" identifier="fB"/>
+            </templateInline>
+            <templateInline identifier="BDP4" showHide="show" templateIdentifier="tNumber">
+                <printedVariable format="%11.4f" identifier="fB"/>
+            </templateInline>
+            <templateInline identifier="BDP5" showHide="show" templateIdentifier="tNumber">
+                <printedVariable format="%11.5f" identifier="fB"/>
+            </templateInline>
+            <templateInline identifier="BDP6" showHide="show" templateIdentifier="tNumber">
+                <printedVariable format="%12.6f" identifier="fB"/>
+            </templateInline>
+            <templateInline identifier="BDP7" showHide="show" templateIdentifier="tNumber">
+                <printedVariable format="%12.7f" identifier="fB"/>
+            </templateInline>
+            <templateInline identifier="BDP8" showHide="show" templateIdentifier="tNumber">
+                <printedVariable format="%13.8f" identifier="fB"/>
+            </templateInline>
+            <templateInline identifier="BDP9" showHide="show" templateIdentifier="tNumber">
+                <printedVariable format="%13.9f" identifier="fB"/>
+            </templateInline>   in the form  <printedVariable format="%12.3f" identifier="fA"/>
+            <m:math id="mathML1">
+                <m:semantics>
+                    <m:mrow>
+                        <m:mo>×</m:mo>
+                        <m:msup>
+                            <m:mn>10</m:mn>
+                            <m:mi>n</m:mi>
+                        </m:msup>
+                    </m:mrow>
+                    <m:annotation encoding="SnuggleTeX">\[\qv{fB} \times 10^n\]</m:annotation>
+                </m:semantics>
+            </m:math>, what is the number n? </p>
+        <div>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <textEntryInteraction base="10" expectedLength="20"
+                                responseIdentifier="RESPONSE"/>
+                        </td>
+                        <td>
+                            <feedbackInline identifier="CORRECT" outcomeIdentifier="FEEDBACK"
+                                showHide="show"> Correct </feedbackInline>
+                            <feedbackInline identifier="WRONG-SIGN" outcomeIdentifier="FEEDBACK"
+                                showHide="show"> You have the wrong sign. </feedbackInline>
+                            <feedbackInline identifier="INCORRECT" outcomeIdentifier="FEEDBACK"
+                                showHide="show"> Incorrect </feedbackInline>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <feedbackBlock identifier="THREETRIES" outcomeIdentifier="FEEDBACK" showHide="show">
+            <p>You have had three attempts at answering this question, so here is the solution:</p>
+        </feedbackBlock>
+        <feedbackBlock identifier="SOLUTION" outcomeIdentifier="FEEDBACK" showHide="show">
+            <p>
+                <templateInline identifier="BDP0" showHide="show" templateIdentifier="tNumber">
+                    <printedVariable format="%12.0f" identifier="fB"/>
+                </templateInline>
+                <templateInline identifier="BDP1" showHide="show" templateIdentifier="tNumber">
+                    <printedVariable format="%12.1f" identifier="fB"/>
+                </templateInline>
+                <templateInline identifier="BDP2" showHide="show" templateIdentifier="tNumber">
+                    <printedVariable format="%12.2f" identifier="fB"/>
+                </templateInline>
+                <templateInline identifier="BDP3" showHide="show" templateIdentifier="tNumber">
+                    <printedVariable format="%12.3f" identifier="fB"/>
+                </templateInline>
+                <templateInline identifier="BDP4" showHide="show" templateIdentifier="tNumber">
+                    <printedVariable format="%12.4f" identifier="fB"/>
+                </templateInline>
+                <templateInline identifier="BDP5" showHide="show" templateIdentifier="tNumber">
+                    <printedVariable format="%12.5f" identifier="fB"/>
+                </templateInline>
+                <templateInline identifier="BDP6" showHide="show" templateIdentifier="tNumber">
+                    <printedVariable format="%12.6f" identifier="fB"/>
+                </templateInline>
+                <templateInline identifier="BDP7" showHide="show" templateIdentifier="tNumber">
+                    <printedVariable format="%12.7f" identifier="fB"/>
+                </templateInline>
+                <templateInline identifier="BDP8" showHide="show" templateIdentifier="tNumber">
+                    <printedVariable format="%13.8f" identifier="fB"/>
+                </templateInline>
+                <templateInline identifier="BDP9" showHide="show" templateIdentifier="tNumber">
+                    <printedVariable format="%13.9f" identifier="fB"/>
+                </templateInline>   =   <printedVariable format="%12.3f" identifier="fA"/>
+                <m:math id="mathML2">
+                    <m:semantics>
+                        <m:mrow>
+                            <m:mo>×</m:mo>
+                            <m:msup>
+                                <m:mn>10</m:mn>
+                                <m:mi>iAns</m:mi>
+                            </m:msup>
+                        </m:mrow>
+                        <m:annotation encoding="SnuggleTeX">\[\qv{fB} = \qv{fA} \times
+                            10^\qv{iAns}\]</m:annotation>
+                    </m:semantics>
+                </m:math>
+            </p>
+        </feedbackBlock>
+        <feedbackBlock identifier="HINT" outcomeIdentifier="FEEDBACK" showHide="show">
+            <p class="">If a number is multiplied by e.g.<m:math id="mathML3">
+                    <m:semantics>
+                        <m:msup>
+                            <m:mn>10</m:mn>
+                            <m:mn>-1</m:mn>
+                        </m:msup>
+                        <m:annotation encoding="SnuggleTeX">\[10^{-1}\]</m:annotation>
+                    </m:semantics>
+                </m:math>, that means it is divided by 10, or multiplied by<m:math id="mathML4">
+                    <m:semantics>
+                        <m:msup>
+                            <m:mn>10</m:mn>
+                            <m:mn>2</m:mn>
+                        </m:msup>
+                        <m:annotation encoding="SnuggleTeX">\[10^2\]</m:annotation>
+                    </m:semantics>
+                </m:math>means multiplied by 100.</p>
+        </feedbackBlock>
+        <feedbackBlock identifier="SEEN-SOLUTION" outcomeIdentifier="FEEDBACK" showHide="show">
+            <p>Since you have viewed the solution, your score for this question will be 0.</p>
+        </feedbackBlock>
+        <feedbackBlock identifier="SEEN-HINT" outcomeIdentifier="FEEDBACK" showHide="show">
+            <p>Since you have viewed the hint, your score for this question will be halved.</p>
+        </feedbackBlock>
+        <feedbackBlock id="feedbackBlock7" identifier="askhint" outcomeIdentifier="ASKHINT"
+            showHide="show">
+            <p>
+                <endAttemptInteraction id="endAttemptInteraction1" responseIdentifier="HINTREQUEST"
+                    title="Show Hint"/>
+            </p>
+        </feedbackBlock>
+        <feedbackBlock id="feedbackBlock8" identifier="asksolution" outcomeIdentifier="ASKSOLUTION"
+            showHide="show">
+            <p>
+                <endAttemptInteraction id="endAttemptInteraction2" responseIdentifier="SOLREQUEST"
+                    title="Show Solution"/>
+            </p>
+        </feedbackBlock>
+    </itemBody>
+    <responseProcessing>
+        <setOutcomeValue identifier="FEEDBACK">
+            <multiple>
+                <variable identifier="EMPTY"/>
+            </multiple>
+        </setOutcomeValue>
+        <responseCondition>
+            <responseIf>
+                <variable identifier="HINTREQUEST"/>
+                <setOutcomeValue identifier="FEEDBACK">
+                    <multiple>
+                        <baseValue baseType="identifier">HINT</baseValue>
+                    </multiple>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="seenHint">
+                    <baseValue baseType="boolean">true</baseValue>
+                </setOutcomeValue>
+            </responseIf>
+            <responseElseIf>
+                <variable identifier="SOLREQUEST"/>
+                <setOutcomeValue identifier="seenSolution">
+                    <baseValue baseType="boolean">true</baseValue>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="FEEDBACK">
+                    <multiple>
+                        <baseValue baseType="identifier">SOLUTION</baseValue>
+                    </multiple>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="completionStatus">
+                    <baseValue baseType="identifier">completed</baseValue>
+                </setOutcomeValue>
+            </responseElseIf>
+            <responseElse>
+                <responseCondition>
+                    <responseIf>
+                        <isNull>
+                            <variable identifier="RESPONSE"/>
+                        </isNull>
+                        <setOutcomeValue identifier="SCORE">
+                            <baseValue baseType="float">0</baseValue>
+                        </setOutcomeValue>
+                    </responseIf>
+                    <responseElse>
+                        <responseCondition>
+                            <responseIf>
+                                <equal toleranceMode="exact">
+                                    <variable identifier="RESPONSE"/>
+                                    <variable identifier="iAns"/>
+                                </equal>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <baseValue baseType="identifier">CORRECT</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="SCORE">
+                                    <baseValue baseType="float">2</baseValue>
+                                </setOutcomeValue>
+                            </responseIf>
+                            <responseElseIf>
+                                <equal toleranceMode="exact">
+                                    <sum>
+                                        <variable identifier="RESPONSE"/>
+                                        <variable identifier="iAns"/>
+                                    </sum>
+                                    <baseValue baseType="integer">0</baseValue>
+                                </equal>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <baseValue baseType="identifier">WRONG-SIGN</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="SCORE">
+                                    <baseValue baseType="float">1</baseValue>
+                                </setOutcomeValue>
+                            </responseElseIf>
+                            <responseElse>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <baseValue baseType="identifier">INCORRECT</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="SCORE">
+                                    <baseValue baseType="float">0</baseValue>
+                                </setOutcomeValue>
+                            </responseElse>
+                        </responseCondition>
+                        <responseCondition>
+                            <responseIf>
+                                <variable identifier="seenSolution"/>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <variable identifier="FEEDBACK"/>
+                                        <baseValue baseType="identifier">SEEN-SOLUTION</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="SCORE">
+                                    <baseValue baseType="float">0.0</baseValue>
+                                </setOutcomeValue>
+                            </responseIf>
+                            <responseElseIf>
+                                <variable identifier="seenHint"/>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <variable identifier="FEEDBACK"/>
+                                        <baseValue baseType="identifier">SEEN-HINT</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="SCORE">
+                                    <divide>
+                                        <variable identifier="SCORE"/>
+                                        <baseValue baseType="float">2.0</baseValue>
+                                    </divide>
+                                </setOutcomeValue>
+                            </responseElseIf>
+                        </responseCondition>
+                        <responseCondition>
+                            <responseIf>
+                                <gt>
+                                    <variable identifier="numAttempts"/>
+                                    <baseValue baseType="integer">3</baseValue>
+                                </gt>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <baseValue baseType="identifier">THREETRIES</baseValue>
+                                        <baseValue baseType="identifier">SOLUTION</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="completionStatus">
+                                    <baseValue baseType="identifier">completed</baseValue>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="ASKHINT">
+                                    <baseValue baseType="identifier">null</baseValue>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="ASKSOLUTION">
+                                    <baseValue baseType="identifier">null</baseValue>
+                                </setOutcomeValue>
+                            </responseIf>
+                        </responseCondition>
+                    </responseElse>
+                </responseCondition>
+            </responseElse>
+        </responseCondition>
+    </responseProcessing>
+</assessmentItem>

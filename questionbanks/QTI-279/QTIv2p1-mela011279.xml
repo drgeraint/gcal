@@ -1,0 +1,555 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Element! --><!-- assessmentItem element! --><assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p1"
+                xmlns:m="http://www.w3.org/1998/Math/MathML"
+                xmlns:xi="http://www.w3.org/2001/XInclude"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xmlns:ma="http://mathassess.qtitools.org/xsd/mathassess"
+                toolName="Uniqurate"
+                toolVersion="1.0"
+                xml:lang="en"
+                adaptive="true"
+                timeDependent="false"
+                identifier="mela011279"
+                title="Improper fraction to mixed number 2"
+                xsi:schemaLocation="http://www.imsglobal.org/xsd/imsqti_v2p1 imsqti_v2p1.xsd http://mathassess.qtitools.org/xsd/mathassess mathassess.xsd">
+    <responseDeclaration identifier="RESPONSE1" baseType="integer" cardinality="single"/>
+    <responseDeclaration identifier="RESPONSE" cardinality="record"/>
+    <responseDeclaration baseType="string" cardinality="single" identifier="printMath"/>
+    <responseDeclaration identifier="SOLREQUEST" baseType="boolean" cardinality="single"/>
+    <responseDeclaration identifier="HINTREQUEST" baseType="boolean" cardinality="single"/>
+    <outcomeDeclaration identifier="SOLPARTS" baseType="identifier" cardinality="multiple"/>
+    <outcomeDeclaration identifier="SCORE" baseType="float" cardinality="single" normalMaximum="2.0"
+                       normalMinimum="0">
+        <defaultValue>
+         <value>0</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration identifier="seenSolution" baseType="boolean" cardinality="single">
+      <defaultValue>
+         <value>false</value>
+      </defaultValue>
+   </outcomeDeclaration>
+   <outcomeDeclaration identifier="seenHint" baseType="boolean" cardinality="single">
+      <defaultValue>
+         <value>false</value>
+      </defaultValue>
+   </outcomeDeclaration>
+   <outcomeDeclaration identifier="ASKSOLUTION" baseType="identifier" cardinality="single">
+      <defaultValue>
+         <value>asksolution</value>
+      </defaultValue>
+   </outcomeDeclaration>
+   <outcomeDeclaration identifier="ASKHINT" baseType="identifier" cardinality="single">
+      <defaultValue>
+         <value>askhint</value>
+      </defaultValue>
+   </outcomeDeclaration>
+   <outcomeDeclaration identifier="EMPTY" baseType="identifier" cardinality="single"/>
+   <outcomeDeclaration identifier="FEEDBACK" baseType="identifier" cardinality="multiple"/>
+    <outcomeDeclaration identifier="oDummy" cardinality="single" baseType="boolean"/>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="isRational"/>
+    <templateDeclaration identifier="showSolParts" baseType="identifier" cardinality="multiple"
+                        mathVariable="false"
+                        paramVariable="false">
+        <defaultValue>
+         <value>NONE</value>
+        </defaultValue>
+    </templateDeclaration>
+    <templateDeclaration identifier="fullMarks" baseType="float" cardinality="single"
+                        mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="fPart1Score" baseType="float" cardinality="single"
+                        mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="fPart2Score" baseType="float" cardinality="single"
+                        mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="fMarksOff" baseType="float" cardinality="single"
+                        mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="iQparts" baseType="integer" cardinality="single"
+                        mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="iQrequire" baseType="integer" cardinality="single"
+                        mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="iQtype" baseType="integer" cardinality="single" mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="iQnumnums" baseType="integer" cardinality="single"
+                        mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="iA" baseType="integer" cardinality="single" mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="iB" baseType="integer" cardinality="single" mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="iC" baseType="integer" cardinality="single" mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="iD" baseType="integer" cardinality="single" mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="iE" baseType="integer" cardinality="single" mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="iF" baseType="integer" cardinality="single" mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="iG" baseType="integer" cardinality="single" mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="iH" baseType="integer" cardinality="single" mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="fD" baseType="float" cardinality="single" mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="iGcd" baseType="integer" cardinality="single" mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="oQans" cardinality="record" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration identifier="tDummy" cardinality="single" baseType="boolean"/>
+
+    <templateProcessing>
+        <setTemplateValue identifier="fullMarks">
+         <baseValue baseType="float">2.0</baseValue>
+        </setTemplateValue>
+        <setTemplateValue identifier="fPart1Score">
+         <baseValue baseType="float">1.0</baseValue>
+        </setTemplateValue>
+        <setTemplateValue identifier="fPart2Score">
+         <baseValue baseType="float">1.0</baseValue>
+        </setTemplateValue>
+        <setTemplateValue identifier="fMarksOff">
+         <baseValue baseType="float">1.0</baseValue>
+        </setTemplateValue>
+        <setTemplateValue identifier="iQparts">
+         <baseValue baseType="integer">1</baseValue>
+        </setTemplateValue>
+        <setTemplateValue identifier="iQrequire">
+         <baseValue baseType="integer">1</baseValue>
+        </setTemplateValue>
+
+      <!-- getting improper fraction F/G -->
+        <setTemplateValue identifier="iF">
+         <randomInteger min="5" max="50"/>
+        </setTemplateValue>
+        
+        <setTemplateValue identifier="iG">
+         <randomInteger min="2" max="49"/>
+        </setTemplateValue>
+        <templateConstraint>
+            <lt>
+                <variable identifier="iG"/>
+                <variable identifier="iF"/>
+            </lt>
+        </templateConstraint>
+      <!-- ~~~~~~~~~~~~~~~~~~~~ -->
+
+<!-- reduce F/G to lowest terms A/B -->
+        <setTemplateValue identifier="iGcd">    
+         <gcd>
+            <variable identifier="iF"/>
+            <variable identifier="iG"/>
+         </gcd>
+        </setTemplateValue>
+        <setTemplateValue identifier="iA">    
+            <integerDivide>
+            <variable identifier="iF"/>
+            <variable identifier="iGcd"/>
+         </integerDivide>
+        </setTemplateValue>
+        <setTemplateValue identifier="iB">    
+            <integerDivide>
+            <variable identifier="iG"/>
+            <variable identifier="iGcd"/>
+         </integerDivide>
+
+        </setTemplateValue>
+      <!-- ~~~~~~~~~~~~~~~~~~~~ -->
+<!-- if F/G is a whole number, add 1 to F to get a fraction -->
+        <templateConstraint>
+         <not>    
+            <equal toleranceMode="exact">        
+               <variable identifier="iB"/>        
+               <baseValue baseType="integer">1</baseValue>    
+            </equal>    
+         </not>
+         <!--            <templateElse/>-->
+        </templateConstraint>
+      <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+<!-- getting mixed number E F/B -->
+        <setTemplateValue identifier="iD">    
+         <integerDivide>
+            <variable identifier="iA"/>
+            <variable identifier="iB"/>
+         </integerDivide>
+        </setTemplateValue>
+
+        <setTemplateValue identifier="iE">  
+            <subtract>
+            <variable identifier="iA"/>
+            <product>
+               <variable identifier="iB"/>
+               <variable identifier="iD"/>
+            </product>
+         </subtract>
+        </setTemplateValue>
+      <!-- ~~~~~~~~~~~~~~~~~~~~ -->
+        <setTemplateValue identifier="tDummy">
+            <customOperator class="org.qtitools.mathassess.ScriptRule" ma:syntax="text/x-maxima">
+                <baseValue baseType="string"><![CDATA[oQans: iE/iB;]]></baseValue>
+            </customOperator>
+        </setTemplateValue>
+        
+        
+        <setCorrectResponse identifier="RESPONSE1">
+         <variable identifier="iD"/>
+        </setCorrectResponse>
+        <setCorrectResponse identifier="RESPONSE">
+         <variable identifier="oQans"/>
+        </setCorrectResponse>
+        
+    </templateProcessing>
+    
+    <itemBody>
+<!--        <p class="QTEXT">A/B: <printedVariable identifier="iA"/>/<printedVariable identifier="iB"/> ;;; F/G: <printedVariable identifier="iF"/>/<printedVariable identifier="iG"/> </p>
+        <p class="QTEXT">D E/B: <printedVariable identifier="iD"/> : <printedVariable identifier="iE"/>/<printedVariable identifier="iB"/> </p>-->
+        <div class="QTEXT">
+         <p>Convert  <m:math display="block">            
+               <m:mfrac>            
+                  <m:mi>iA</m:mi>            
+                  <m:mi>iB</m:mi>        
+               </m:mfrac>    
+            </m:math>
+          to a mixed number.</p>
+      </div>
+      <!--        <p class="QTEXT">Enter the whole number.</p>
+        <p class="QTEXT">Now give the fraction.</p>-->
+        <div class="EQCENTRE">
+         <table>
+            <tbody>
+               <tr>    
+                  <td>        
+                     <textEntryInteraction expectedLength="15" responseIdentifier="RESPONSE1"/>    
+                  </td>    
+                  <td>        
+                      <customInteraction class="org.qtitools.mathassess.MathEntryInteraction"
+                          id="customInteraction0" ma:printIdentifier="printMath" ma:syntax="text/x-maxima"
+                          responseIdentifier="RESPONSE"/>
+                  </td> 
+               </tr>
+                <tr>    
+                    <td>(whole number)</td>    
+                    <td>(fraction)</td>
+                </tr>
+                <tr>
+                  <td>        
+                      <div class="">
+                          <feedbackInline id="feedbackInline1" identifier="CORRECT1" outcomeIdentifier="FEEDBACK"
+                              showHide="show"> Correct whole number </feedbackInline>
+                      </div>
+                      <div class="">
+                          <feedbackInline id="feedbackInline2" identifier="INCORRECT1" outcomeIdentifier="FEEDBACK"
+                              showHide="show"> Incorrect whole number </feedbackInline>
+                      </div>
+                  </td>    
+                  <td>        
+                      <div class="">
+                          <feedbackInline id="feedbackInline0" identifier="FORBIDDEN" outcomeIdentifier="FEEDBACK"
+                              showHide="show"> Your input contains an expression which is not allowed in this
+                              question. </feedbackInline>
+                      </div>
+                      <div class="">
+                          <feedbackInline id="feedbackInline1" identifier="CORRECT2" outcomeIdentifier="FEEDBACK"
+                              showHide="show"> Correct fraction </feedbackInline>
+                      </div>
+                      <div class="">
+                          <feedbackInline id="feedbackInline2" identifier="INCORRECT2" outcomeIdentifier="FEEDBACK"
+                              showHide="show"> Incorrect fraction </feedbackInline>
+                      </div>
+                      <div class="">
+                          <feedbackInline id="feedbackInline3" identifier="NOTSIMP" outcomeIdentifier="FEEDBACK"
+                              showHide="show"> Your second answer is not completely simplified. </feedbackInline>
+                      </div>
+                      <div class="">
+                          <feedbackInline id="feedbackInline3" identifier="NOTFRAC" outcomeIdentifier="FEEDBACK"
+                              showHide="show"> Your second answer should be a fraction in its lowest terms.
+                          </feedbackInline>
+                      </div>
+                  </td>
+               </tr>
+
+            </tbody>
+         </table>
+      </div>
+        <feedbackBlock identifier="SOLUTION" outcomeIdentifier="FEEDBACK" showHide="show">
+         <div class="EQCENTRE">
+             <m:math display="block">                            
+                 <m:mtable>
+                  <m:mtr>
+                      <m:mtd columnalign="right">
+                          <m:mfrac>                    
+                              <m:mi>iA</m:mi>                    
+                              <m:mi>iB</m:mi>                
+                          </m:mfrac>                    
+                      </m:mtd>
+                      <m:mtd columnalign="center">
+                          <m:mo>=</m:mo>
+                      </m:mtd>
+                      <m:mtd columnalign="left">
+                          <m:mi>iA</m:mi>                
+                          <m:mo>÷</m:mo>                
+                          <m:mi>iB</m:mi>                    
+                      </m:mtd>
+                  </m:mtr>  
+                     <m:mtr>
+                         <m:mtd> </m:mtd>
+                         <m:mtd columnalign="center">
+                             <m:mo>=</m:mo>
+                         </m:mtd>
+                         <m:mtd columnalign="left">
+                             <m:mi>iD</m:mi>                
+                             <m:mtext> r </m:mtext>                
+                             <m:mi>iE</m:mi>                    
+                         </m:mtd>
+                     </m:mtr>
+                 </m:mtable>
+             </m:math>
+             <m:math display="block">
+                 <m:mtable>
+                     <m:mtr>
+                         <m:mtd columnalign="right">
+                             <m:mfrac>                    
+                                 <m:mi>iA</m:mi>                    
+                                 <m:mi>iB</m:mi>                
+                             </m:mfrac>                    
+                         </m:mtd>
+                         <m:mtd columnalign="center">
+                             <m:mo>=</m:mo>
+                         </m:mtd>
+                         <m:mtd columnalign="left">
+                             <m:mi>iD</m:mi>                
+                             <m:mfrac>                    
+                                 <m:mi>iE</m:mi>                    
+                                 <m:mi>iB</m:mi>                
+                             </m:mfrac>                    
+                         </m:mtd>
+                     </m:mtr>
+                 </m:mtable>
+             </m:math>        
+         </div>
+        </feedbackBlock>
+        <feedbackBlock identifier="HINT" outcomeIdentifier="FEEDBACK" showHide="show">
+         <p>How many times does <printedVariable identifier="iB"/> divide <printedVariable identifier="iA"/>?</p>
+      </feedbackBlock>
+        <div class="">
+         <feedbackBlock showHide="show" identifier="askhint" outcomeIdentifier="ASKHINT">
+            <p>
+               <endAttemptInteraction responseIdentifier="HINTREQUEST" title="Show Hint"/>
+            </p>
+         </feedbackBlock>
+         <feedbackBlock showHide="show" identifier="asksolution" outcomeIdentifier="ASKSOLUTION">
+            <p>
+               <endAttemptInteraction responseIdentifier="SOLREQUEST" title="Show Solution"/>
+            </p>
+         </feedbackBlock>
+      </div>
+    </itemBody>
+   <!--    <responseProcessing template="rpmelaExpr.xml" />-->
+    <responseProcessing>
+        <setOutcomeValue identifier="FEEDBACK">
+            <multiple>
+                <variable identifier="EMPTY"/>
+            </multiple>
+        </setOutcomeValue>
+        <responseCondition>
+         <responseIf>    
+            <variable identifier="HINTREQUEST"/>    
+            <setOutcomeValue identifier="FEEDBACK">        
+               <multiple>            
+                   <baseValue baseType="identifier">HINT</baseValue>        
+               </multiple>    
+            </setOutcomeValue>
+         </responseIf>
+         <responseElseIf>    
+            <variable identifier="SOLREQUEST"/>    
+            <setOutcomeValue identifier="FEEDBACK">        
+               <multiple>            
+                  <baseValue baseType="identifier">SOLUTION</baseValue>        
+               </multiple>    
+            </setOutcomeValue>
+         </responseElseIf>
+         <responseElse>    
+            <responseCondition> <!-- first one clears previous score and feedback -->
+                <responseIf>
+                    <isNull>
+                        <variable identifier="RESPONSE1"/>
+                    </isNull>
+                    <setOutcomeValue identifier="SCORE">
+                        <baseValue baseType="float">0.0</baseValue>
+                    </setOutcomeValue>
+                </responseIf>
+                <responseElseIf>            
+                  <match>                
+                     <variable identifier="RESPONSE1"/>                
+                     <correct identifier="RESPONSE1"/>            
+                  </match>            
+                  <setOutcomeValue identifier="SCORE">                
+                     <variable identifier="fPart1Score"/>            
+                  </setOutcomeValue>            
+                  <setOutcomeValue identifier="FEEDBACK">                
+                     <multiple>
+                         <baseValue baseType="identifier">CORRECT1</baseValue>
+                     </multiple>            
+                  </setOutcomeValue>        
+               </responseElseIf>        
+               <responseElse>            
+                  <setOutcomeValue identifier="SCORE">                
+                     <baseValue baseType="float">0.0</baseValue>            
+                  </setOutcomeValue>            
+                  <setOutcomeValue identifier="FEEDBACK">                
+                     <multiple>
+                         <baseValue baseType="identifier">WRONG1</baseValue>
+                     </multiple>            
+                  </setOutcomeValue>        
+               </responseElse>    
+            </responseCondition>    
+             <responseCondition>
+                 <responseIf>
+                     <isNull>
+                         <variable identifier="RESPONSE"/>
+                     </isNull>
+                     <setOutcomeValue identifier="SCORE">
+                         <variable identifier="SCORE"/>
+                     </setOutcomeValue>
+                 </responseIf>
+                 <responseElseIf>
+                     <substring caseSensitive="false">
+                         <baseValue baseType="string">*</baseValue>
+                         <variable identifier="printMath"/>
+                     </substring>
+                     <setOutcomeValue identifier="FEEDBACK">
+                         <multiple>
+                             <variable identifier="FEEDBACK"/>
+                             <baseValue baseType="identifier">FORBIDDEN</baseValue>
+                         </multiple>
+                     </setOutcomeValue>
+                 </responseElseIf>
+                 <responseElse>
+                     <setOutcomeValue identifier="oDummy">
+                         <customOperator class="org.qtitools.mathassess.ScriptRule"
+                             ma:simplify="false" ma:syntax="text/x-maxima">
+                             <baseValue baseType="string"><![CDATA[
+	
+	 isRational:ev(ratnump(RESPONSE),simp);
+	 
+	]]></baseValue>
+                         </customOperator>
+                     </setOutcomeValue>
+                     <responseCondition>
+                         <responseIf>
+                             <not>
+                                 <variable identifier="isRational"/>
+                             </not>
+                             <setOutcomeValue identifier="FEEDBACK">
+                                 <multiple>
+                                     <variable identifier="FEEDBACK"/>
+                                     <baseValue baseType="identifier">NOTFRAC</baseValue>
+                                 </multiple>
+                             </setOutcomeValue>
+                         </responseIf>
+                         <responseElseIf>
+                             <customOperator class="org.qtitools.mathassess.CasCompare"
+                                 ma:action="syntequal" ma:syntax="text/x-maxima">
+                                 <variable identifier="RESPONSE"/>
+                                 <variable identifier="oQans"/>
+                             </customOperator>
+                             <setOutcomeValue identifier="FEEDBACK">
+                                 <multiple>
+                                     <variable identifier="FEEDBACK"/>
+                                     <baseValue baseType="identifier">CORRECT2</baseValue>
+                                 </multiple>
+                             </setOutcomeValue>
+                             <setOutcomeValue identifier="SCORE">
+                                 <sum>
+                                     <variable identifier="SCORE"/>
+                                     <variable identifier="fPart2Score"/>
+                                 </sum>
+                             </setOutcomeValue>
+                         </responseElseIf>
+                         <responseElseIf>
+                             <customOperator class="org.qtitools.mathassess.CasCompare"
+                                 ma:action="equal" ma:syntax="text/x-maxima">
+                                 <variable identifier="RESPONSE"/>
+                                 <variable identifier="oQans"/>
+                             </customOperator>
+                             <setOutcomeValue identifier="FEEDBACK">
+                                 <multiple>
+                                     <variable identifier="FEEDBACK"/>
+                                     <baseValue baseType="identifier">NOTSIMP</baseValue>
+                                 </multiple>
+                             </setOutcomeValue>
+                         </responseElseIf>
+                         <responseElse>
+                             <setOutcomeValue identifier="FEEDBACK">
+                                 <multiple>
+                                     <variable identifier="FEEDBACK"/>
+                                     <baseValue baseType="identifier">INCORRECT2</baseValue>
+                                 </multiple>
+                             </setOutcomeValue>
+                         </responseElse>
+                     </responseCondition>
+                 </responseElse>
+             </responseCondition>
+             <responseCondition>
+                 <responseIf>
+                     <gt>
+                         <variable identifier="numAttempts"/>
+                         <baseValue baseType="integer">                                            3                                        </baseValue>
+                     </gt>
+                     <setOutcomeValue identifier="FEEDBACK">
+                         <multiple>
+                             <baseValue baseType="identifier">THREETRIES</baseValue>
+                             <baseValue baseType="identifier">SOLUTION</baseValue>
+                         </multiple>
+                     </setOutcomeValue>
+                     <setOutcomeValue identifier="completionStatus">
+                         <baseValue baseType="identifier">completed</baseValue>
+                     </setOutcomeValue>
+                     <setOutcomeValue identifier="ASKHINT">
+                         <baseValue baseType="identifier">null</baseValue>
+                     </setOutcomeValue>
+                     <setOutcomeValue identifier="ASKSOLUTION">
+                         <baseValue baseType="identifier">null</baseValue>
+                     </setOutcomeValue>
+                 </responseIf>
+             </responseCondition>
+             <responseCondition>
+                 <responseIf>
+                     <variable identifier="seenSolution"/>
+                     <setOutcomeValue identifier="FEEDBACK">
+                         <multiple>
+                             <variable identifier="FEEDBACK"/>
+                             <baseValue baseType="identifier">SEEN-SOLUTION</baseValue>
+                         </multiple>
+                     </setOutcomeValue>
+                     <setOutcomeValue identifier="SCORE">
+                         <baseValue baseType="float">0.0</baseValue>
+                     </setOutcomeValue>
+                 </responseIf>
+                 <responseElseIf>
+                     <variable identifier="seenHint"/>
+                     <setOutcomeValue identifier="FEEDBACK">
+                         <multiple>
+                             <variable identifier="FEEDBACK"/>
+                             <baseValue baseType="identifier">SEEN-HINT</baseValue>
+                         </multiple>
+                     </setOutcomeValue>
+                     <setOutcomeValue identifier="SCORE">
+                         <divide>
+                             <variable identifier="SCORE"/>
+                             <baseValue baseType="float">2.0</baseValue>
+                         </divide>
+                     </setOutcomeValue>
+                 </responseElseIf>
+             </responseCondition>
+         </responseElse>
+        </responseCondition>
+    </responseProcessing>
+
+</assessmentItem>

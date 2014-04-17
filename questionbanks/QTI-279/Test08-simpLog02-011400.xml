@@ -1,0 +1,1620 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p1"
+    xmlns:m="http://www.w3.org/1998/Math/MathML"
+    xmlns:ma="http://mathassess.qtitools.org/xsd/mathassess"
+    xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" adaptive="true"
+    identifier="Test08-simpLog02-011400" timeDependent="false"
+    title="Simplify a sum of logs 2" toolName="Mathqurate"
+    toolVersion="1.0" xml:lang=""
+    xsi:schemaLocation="http://www.imsglobal.org/xsd/imsqti_v2p1 imsqti_v2p1.xsd http://mathassess.qtitools.org/xsd/mathassess mathassess.xsd">
+    <responseDeclaration cardinality="single" baseType="integer" identifier="RESPONSEA"/>
+    <responseDeclaration cardinality="single" baseType="integer" identifier="RESPONSEB"/>
+    <responseDeclaration cardinality="single" baseType="integer" identifier="RESPONSEC"/>
+    <responseDeclaration baseType="boolean" cardinality="single" identifier="HINTREQUEST"/>
+    <responseDeclaration baseType="boolean" cardinality="single" identifier="SOLREQUEST"/>
+    <outcomeDeclaration baseType="float" cardinality="single" identifier="SCORE" normalMaximum="2.0"
+        normalMinimum="0.0">
+        <defaultValue>
+            <value>0.0</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="seenSolution">
+        <defaultValue>
+            <value>false</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="seenHint">
+        <defaultValue>
+            <value>false</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="identifier" cardinality="single" identifier="ASKHINT">
+        <defaultValue>
+            <value>askhint</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="identifier" cardinality="single" identifier="ASKSOLUTION">
+        <defaultValue>
+            <value>asksolution</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="identifier" cardinality="multiple" identifier="FEEDBACK"/>
+    <outcomeDeclaration baseType="identifier" cardinality="single" identifier="EMPTY"/>
+    <templateDeclaration baseType="identifier" cardinality="multiple" identifier="tParts" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="boolean" cardinality="single" identifier="tDummy"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iType" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iBase" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iBaseC" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iPowerC" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iAbsAns1" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iAbsA1" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iAbsA2" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iShowAns1" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iShowA1" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iShowA2" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iA1" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iA2" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iA3" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iB" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iC" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iBC" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iAns1" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iAns2" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="string" cardinality="single" identifier="sFunc" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration cardinality="record" identifier="mSignA1" mathVariable="true" paramVariable="false"/>
+    <templateDeclaration cardinality="record" identifier="mSignA2" mathVariable="true" paramVariable="false"/>
+    <templateDeclaration cardinality="record" identifier="mSignA3" mathVariable="true" paramVariable="false"/>
+    <templateDeclaration cardinality="record" identifier="mSignAns1" mathVariable="true" paramVariable="false"/>
+    <templateDeclaration cardinality="record" identifier="mSignA11" mathVariable="true" paramVariable="false"/>
+    <templateDeclaration cardinality="record" identifier="mSignA21" mathVariable="true" paramVariable="false"/>
+    <templateDeclaration cardinality="record" identifier="mSignA31" mathVariable="true" paramVariable="false"/>
+    <templateDeclaration cardinality="record" identifier="mSignAns11" mathVariable="true" paramVariable="false"/>
+    <templateProcessing>
+        <!-- 
+tqd:=1
+tqp:=tqd
+repeat while tqp=tqd 
+  tqd:=1
+  tqg:=tqd
+  repeat while tqg=tqd 
+    Test(Random(0,1,1),tqa:=Random(-9,-1,1),tqa:=Random(1,9,1))  -  x value
+    Test(Random(0,1,1),tqb:=Random(-9,-1,1),tqb:=Random(1,9,1))  -  y value
+
+    repeat while ABS(tqa)=ABS(tqb)
+     Test(Random(0,1,1),tqb:=Random(-9,-1,1),tqb:=Random(1,9,1))  -  y value
+    end repeat
+
+    tqd:=Random(2,9,1)  -  a value
+    tqe:=tqd
+     repeat while tqd=tqe
+       tqe:=Random(2,12,1)
+     end repeat
+     tqf:=tqd
+     repeat while tqf=tqd | tqf=tqe
+       tqf:=Random(2,12,1)
+     end repeat
+
+     branch:=Random(1,2,1)
+     if branch=1 then
+        tqc:=-1*tqa  -  z value
+     else
+        tqc:=-1*tqb  -  z value
+     end if
+
+     tqg:=tqe*tqf  -  C value
+  end repeat 
+
+  if ABS(tqa)=1 then
+    Test(tqa<0,tqq:="-",tqq:="")
+  else
+    tqq:=tqa
+  end if
+
+  Test(tqb<0,tqr:="-",tqr:="+")
+  Test(ABS(tqb)=1,tqs:="",tqs:=ABS(tqb))
+
+  Test(tqc<0,tqt:="-",tqt:="+")
+  Test(ABS(tqc)=1,tqu:="",tqu:=ABS(tqc))
+
+  if branch=1 then
+    tqo:=tqb+tqc
+    tqp:=tqf
+  else
+    tqo:=tqa+tqc
+    tqp:=tqe
+  end if
+
+end repeat 
+
+tqrr:=tqqq^"log("^tqd^")"^tqp
+
+tqm:=tqo-tqc
+
+tqw:=0
+if tqp=4 then
+  tqw:=1
+  tqx:=2
+  tqy:=2
+else if tqp=9 then
+  tqw:=1
+  tqx:=3
+  tqy:=2
+else if tqp=8 then
+  tqw:=1
+  tqx:=2
+  tqy:=3
+end if
+
+if tqw=1 then
+  tqi:=tqy*tqqq
+  tqj:=tqx
+else
+  tqi:=tqqq
+  tqj:=tqp
+end if
+        -->
+        <setTemplateValue identifier="iBase">
+            <randomInteger max="10" min="2"/>
+        </setTemplateValue>
+        <setTemplateValue identifier="iAbsA1">
+            <randomInteger max="9" min="2"/>
+        </setTemplateValue>
+        <setTemplateValue identifier="iAbsA2">
+            <randomInteger max="9" min="2"/>
+        </setTemplateValue>
+        <templateConstraint>
+            <not>
+                <equal toleranceMode="exact">
+                    <variable identifier="iAbsA1"/>
+                    <variable identifier="iAbsA2"/>
+                </equal>
+            </not>
+        </templateConstraint>
+        <setTemplateValue identifier="iA1">
+            <product>
+                <variable identifier="iAbsA1"/>
+                <randomInteger max="1" min="-1" step="2"/>
+            </product>
+        </setTemplateValue>
+        <setTemplateValue identifier="iA2">
+            <product>
+                <variable identifier="iAbsA2"/>
+                <randomInteger max="1" min="-1" step="2"/>
+            </product>
+        </setTemplateValue>
+        <setTemplateValue identifier="iB">
+            <randomInteger max="9" min="2"/>
+        </setTemplateValue>
+        <setTemplateValue identifier="iC">
+            <randomInteger max="9" min="2"/>
+        </setTemplateValue>
+        <templateConstraint>
+            <and>
+                <not>
+                    <equal toleranceMode="exact">
+                        <variable identifier="iB"/>
+                        <variable identifier="iC"/>
+                    </equal>
+                </not>
+                <equal toleranceMode="exact">
+                    <gcd>
+                        <variable identifier="iBase"/>
+                        <variable identifier="iC"/>
+                    </gcd>
+                    <baseValue baseType="integer">1</baseValue>
+                </equal>
+            </and>
+        </templateConstraint>
+        <setTemplateValue identifier="iA3">
+            <subtract>
+                <baseValue baseType="integer">0</baseValue>
+                <variable identifier="iA1"/>
+            </subtract>
+        </setTemplateValue>
+        <setTemplateValue identifier="iAns1">
+            <sum>
+                <variable identifier="iA3"/>
+                <variable identifier="iA2"/>
+            </sum>
+        </setTemplateValue>
+        <setTemplateValue identifier="iAbsAns1">
+            <round>
+                <mathOperator name="abs">
+                    <variable identifier="iAns1"/>
+                </mathOperator>
+            </round>
+        </setTemplateValue>
+        <setTemplateValue identifier="iBC">
+            <product>
+                <variable identifier="iB"/>
+                <variable identifier="iC"/>
+            </product>
+        </setTemplateValue>
+        <setTemplateValue identifier="tDummy">
+            <customOperator class="org.qtitools.mathassess.ScriptRule" ma:syntax="text/x-maxima">
+                <baseValue baseType="string"><![CDATA[
+ if (is(iA1>=0)=true) then mSignA1:maOperator("+") else mSignA1:maOperator("-");                  
+ if (is(iA2>=0)=true) then mSignA2:maOperator("+") else mSignA2:maOperator("-");                  
+ if (is(iA3>=0)=true) then mSignA3:maOperator("+") else mSignA3:maOperator("-");                  
+ if (is(iAns1>=0)=true) then mSignAns1:maOperator("+") else mSignAns1:maOperator("-");                  
+ if (is(iA1>=0)=true) then mSignA1:maOperator("+") else mSignA11:maOperator("-");                  
+ if (is(iA2>=0)=true) then mSignA2:maOperator("+") else mSignA21:maOperator("-");                  
+ if (is(iA3>=0)=true) then mSignA3:maOperator("+") else mSignA31:maOperator("-");                  
+ if (is(iAns1>=0)=true) then mSignAns1:maOperator("+") else mSignAns11:maOperator("-");                  
+]]>
+                </baseValue>
+            </customOperator>
+        </setTemplateValue>
+        <templateCondition>
+            <templateIf>
+                <not>
+                    <equal toleranceMode="exact">
+                        <variable identifier="iAbsA1"/>
+                        <baseValue baseType="integer">1</baseValue>
+                    </equal>
+                </not>
+                <setTemplateValue identifier="iShowA1">
+                    <variable identifier="iAbsA1"/>
+                </setTemplateValue>
+            </templateIf>
+        </templateCondition>
+        <templateCondition>
+            <templateIf>
+                <not>
+                    <equal toleranceMode="exact">
+                        <variable identifier="iAbsA2"/>
+                        <baseValue baseType="integer">1</baseValue>
+                    </equal>
+                </not>
+                <setTemplateValue identifier="iShowA2">
+                    <variable identifier="iAbsA2"/>
+                </setTemplateValue>
+            </templateIf>
+        </templateCondition>
+        <templateCondition>
+            <templateIf>
+                <not>
+                    <equal toleranceMode="exact">
+                        <variable identifier="iAbsAns1"/>
+                        <baseValue baseType="integer">1</baseValue>
+                    </equal>
+                </not>
+                <setTemplateValue identifier="iShowAns1">
+                    <variable identifier="iAbsAns1"/>
+                </setTemplateValue>
+            </templateIf>
+        </templateCondition>
+        <setTemplateValue identifier="iType">
+            <randomInteger max="4" min="1"/>
+        </setTemplateValue>
+        <templateCondition>
+            <templateIf>
+                <equal toleranceMode="exact">
+                    <variable identifier="iType"/>
+                    <baseValue baseType="integer">1</baseValue>
+                </equal>
+                <setTemplateValue identifier="tParts">
+                    <multiple>
+                        <baseValue baseType="identifier">Q1</baseValue>
+                        <baseValue baseType="identifier">Sol1</baseValue>
+                    </multiple>
+                </setTemplateValue>
+            </templateIf>
+            <templateElseIf>
+                <equal toleranceMode="exact">
+                    <variable identifier="iType"/>
+                    <baseValue baseType="integer">2</baseValue>
+                </equal>
+                <setTemplateValue identifier="tParts">
+                    <multiple>
+                        <baseValue baseType="identifier">Q2</baseValue>
+                        <baseValue baseType="identifier">Sol2</baseValue>
+                    </multiple>
+                </setTemplateValue>
+            </templateElseIf>
+            <templateElseIf>
+                <equal toleranceMode="exact">
+                    <variable identifier="iType"/>
+                    <baseValue baseType="integer">3</baseValue>
+                </equal>
+                <setTemplateValue identifier="tParts">
+                    <multiple>
+                        <baseValue baseType="identifier">Q3</baseValue>
+                        <baseValue baseType="identifier">Sol3</baseValue>
+                    </multiple>
+                </setTemplateValue>
+            </templateElseIf>
+            <templateElse>
+                <setTemplateValue identifier="tParts">
+                    <multiple>
+                        <baseValue baseType="identifier">Q4</baseValue>
+                        <baseValue baseType="identifier">Sol4</baseValue>
+                    </multiple>
+                </setTemplateValue>
+            </templateElse>
+        </templateCondition>
+        <templateCondition>
+            <templateIf>
+                <equal toleranceMode="exact">
+                    <variable identifier="iC"/>
+                    <baseValue baseType="integer">4</baseValue>
+                </equal>
+                <setTemplateValue identifier="iBaseC">
+                    <baseValue baseType="integer">2</baseValue>
+                </setTemplateValue>
+                <setTemplateValue identifier="iPowerC">
+                    <baseValue baseType="integer">2</baseValue>
+                </setTemplateValue>
+                <setTemplateValue identifier="tParts">
+                    <multiple>
+                        <variable identifier="tParts"/>
+                        <baseValue baseType="identifier">SolFinal</baseValue>
+                    </multiple>
+                </setTemplateValue>
+            </templateIf>
+            <templateElseIf>
+                <equal toleranceMode="exact">
+                    <variable identifier="iC"/>
+                    <baseValue baseType="integer">8</baseValue>
+                </equal>
+                <setTemplateValue identifier="iBaseC">
+                    <baseValue baseType="integer">2</baseValue>
+                </setTemplateValue>
+                <setTemplateValue identifier="iPowerC">
+                    <baseValue baseType="integer">3</baseValue>
+                </setTemplateValue>
+                <setTemplateValue identifier="tParts">
+                    <multiple>
+                        <variable identifier="tParts"/>
+                        <baseValue baseType="identifier">SolFinal</baseValue>
+                    </multiple>
+                </setTemplateValue>
+            </templateElseIf>
+            <templateElseIf>
+                <equal toleranceMode="exact">
+                    <variable identifier="iC"/>
+                    <baseValue baseType="integer">9</baseValue>
+                </equal>
+                <setTemplateValue identifier="iBaseC">
+                    <baseValue baseType="integer">3</baseValue>
+                </setTemplateValue>
+                <setTemplateValue identifier="iPowerC">
+                    <baseValue baseType="integer">2</baseValue>
+                </setTemplateValue>
+                <setTemplateValue identifier="tParts">
+                    <multiple>
+                        <variable identifier="tParts"/>
+                        <baseValue baseType="identifier">SolFinal</baseValue>
+                    </multiple>
+                </setTemplateValue>
+            </templateElseIf>
+            <templateElse>
+                <setTemplateValue identifier="iBaseC">
+                    <variable identifier="iC"/>
+                </setTemplateValue>
+                <setTemplateValue identifier="iPowerC">
+                    <baseValue baseType="integer">1</baseValue>
+                </setTemplateValue>
+            </templateElse>
+        </templateCondition>
+        <setTemplateValue identifier="iAns2">
+            <product>
+                <variable identifier="iAns1"/>
+                <variable identifier="iPowerC"/>
+            </product>
+        </setTemplateValue>
+        <setCorrectResponse identifier="RESPONSEA">
+            <variable identifier="iAns2"/>
+        </setCorrectResponse>
+        <setCorrectResponse identifier="RESPONSEC">
+            <variable identifier="iBase"/>
+        </setCorrectResponse>
+        <setCorrectResponse identifier="RESPONSEB">
+            <variable identifier="iBaseC"/>
+        </setCorrectResponse>
+    </templateProcessing>
+    <itemBody class="">
+        <div>
+            <p>Simplify </p>
+            <templateBlock templateIdentifier="tParts" identifier="Q1" showHide="show">
+                <m:math display="block" id="mathML011">
+                    <m:semantics>
+                        <m:mrow>
+                            <m:mrow>
+                                <m:mi>mSignA11</m:mi>
+                                <m:mi>iShowA1</m:mi>
+                                <m:msub>
+                                    <m:mi>log</m:mi>
+                                    <m:mi>iBase</m:mi>
+                                </m:msub>
+                                <m:mfenced close=")" open="(">
+                                    <m:mi>iB</m:mi>
+                                </m:mfenced>
+                            </m:mrow>
+                            <m:mi>mSignA2</m:mi>
+                            <m:mrow>
+                                <m:mi>iShowA2</m:mi>
+                                <m:msub>
+                                    <m:mi>log</m:mi>
+                                    <m:mi>iBase</m:mi>
+                                </m:msub>
+                                <m:mfenced close=")" open="(">
+                                    <m:mi>iC</m:mi>
+                                </m:mfenced>
+                            </m:mrow>
+                            <m:mi>mSignA3</m:mi>
+                            <m:mrow>
+                                <m:mi>iShowA1</m:mi>
+                                <m:msub>
+                                    <m:mi>log</m:mi>
+                                    <m:mi>iBase</m:mi>
+                                </m:msub>
+                                <m:mfenced close=")" open="(">
+                                    <m:mi>iBC</m:mi>
+                                </m:mfenced>
+                            </m:mrow>
+                        </m:mrow>
+                        <m:annotation encoding="SnuggleTeX"
+                            >\[\qv{mSignA11}\qv{iShowA1}\log_{\qv{iBase}}(\qv{iB})\qv{mSignA2}\qv{iShowA2}\log_{\qv{iBase}}(\qv{iC})\qv{mSignA3}\qv{iShowA1}\log_{\qv{iBase}}(\qv{iBC})\]</m:annotation>
+                    </m:semantics>
+                </m:math>
+            </templateBlock>
+            <templateBlock templateIdentifier="tParts" identifier="Q2" showHide="show">
+                <m:math display="block" id="mathML02">
+                    <m:semantics>
+                        <m:mrow>
+                            <m:mrow>
+                                <m:mi>mSignA21</m:mi>
+                                <m:mi>iShowA2</m:mi>
+                                <m:msub>
+                                    <m:mi>log</m:mi>
+                                    <m:mi>iBase</m:mi>
+                                </m:msub>
+                                <m:mfenced close=")" open="(">
+                                    <m:mi>iC</m:mi>
+                                </m:mfenced>
+                            </m:mrow>
+                            <m:mi>mSignA1</m:mi>
+                            <m:mrow>
+                                <m:mi>iShowA1</m:mi>
+                                <m:msub>
+                                    <m:mi>log</m:mi>
+                                    <m:mi>iBase</m:mi>
+                                </m:msub>
+                                <m:mfenced close=")" open="(">
+                                    <m:mi>iB</m:mi>
+                                </m:mfenced>
+                            </m:mrow>
+                            <m:mi>mSignA3</m:mi>
+                            <m:mrow>
+                                <m:mi>iShowA1</m:mi>
+                                <m:msub>
+                                    <m:mi>log</m:mi>
+                                    <m:mi>iBase</m:mi>
+                                </m:msub>
+                                <m:mfenced close=")" open="(">
+                                    <m:mi>iBC</m:mi>
+                                </m:mfenced>
+                            </m:mrow>
+                        </m:mrow>
+                        <m:annotation encoding="SnuggleTeX"
+                            >\[\qv{mSignA21}\qv{iShowA2}\log_{\qv{iBase}}(\qv{iC})\qv{mSignA1}\qv{iShowA1}\log_{\qv{iBase}}(\qv{iB})\qv{mSignA3}\qv{iShowA1}\log_{\qv{iBase}}(\qv{iBC})\]</m:annotation>
+                    </m:semantics>
+                </m:math>
+            </templateBlock>
+            <templateBlock templateIdentifier="tParts" identifier="Q3" showHide="show">
+                <m:math display="block" id="mathML03">
+                    <m:semantics>
+                        <m:mrow>
+                            <m:mrow>
+                                <m:mi>mSignA31</m:mi>
+                                <m:mi>iShowA1</m:mi>
+                                <m:msub>
+                                    <m:mi>log</m:mi>
+                                    <m:mi>iBase</m:mi>
+                                </m:msub>
+                                <m:mfenced close=")" open="(">
+                                    <m:mi>iBC</m:mi>
+                                </m:mfenced>
+                            </m:mrow>
+                            <m:mi>mSignA2</m:mi>
+                            <m:mrow>
+                                <m:mi>iShowA2</m:mi>
+                                <m:msub>
+                                    <m:mi>log</m:mi>
+                                    <m:mi>iBase</m:mi>
+                                </m:msub>
+                                <m:mfenced close=")" open="(">
+                                    <m:mi>iC</m:mi>
+                                </m:mfenced>
+                            </m:mrow>
+                            <m:mi>mSignA1</m:mi>
+                            <m:mrow>
+                                <m:mi>iShowA1</m:mi>
+                                <m:msub>
+                                    <m:mi>log</m:mi>
+                                    <m:mi>iBase</m:mi>
+                                </m:msub>
+                                <m:mfenced close=")" open="(">
+                                    <m:mi>iB</m:mi>
+                                </m:mfenced>
+                            </m:mrow>
+                        </m:mrow>
+                        <m:annotation encoding="SnuggleTeX"
+                            >\[\qv{mSignA31}\qv{iShowA1}\log_{\qv{iBase}}(\qv{iBC})\qv{mSignA2}\qv{iShowA2}\log_{\qv{iBase}}(\qv{iC})\qv{mSignA1}\qv{iShowA1}\log_{\qv{iBase}}(\qv{iB})\]</m:annotation>
+                    </m:semantics>
+                </m:math>
+            </templateBlock>
+            <templateBlock templateIdentifier="tParts" identifier="Q4" showHide="show">
+                <m:math display="block" id="mathML04">
+                    <m:semantics>
+                        <m:mrow>
+                            <m:mrow>
+                                <m:mi>mSignA21</m:mi>
+                                <m:mi>iShowA2</m:mi>
+                                <m:msub>
+                                    <m:mi>log</m:mi>
+                                    <m:mi>iBase</m:mi>
+                                </m:msub>
+                                <m:mfenced close=")" open="(">
+                                    <m:mi>iC</m:mi>
+                                </m:mfenced>
+                            </m:mrow>
+                            <m:mi>mSignA3</m:mi>
+                            <m:mrow>
+                                <m:mi>iShowA1</m:mi>
+                                <m:msub>
+                                    <m:mi>log</m:mi>
+                                    <m:mi>iBase</m:mi>
+                                </m:msub>
+                                <m:mfenced close=")" open="(">
+                                    <m:mi>iBC</m:mi>
+                                </m:mfenced>
+                            </m:mrow>
+                            <m:mi>mSignA1</m:mi>
+                            <m:mrow>
+                                <m:mi>iShowA1</m:mi>
+                                <m:msub>
+                                    <m:mi>log</m:mi>
+                                    <m:mi>iBase</m:mi>
+                                </m:msub>
+                                <m:mfenced close=")" open="(">
+                                    <m:mi>iB</m:mi>
+                                </m:mfenced>
+                            </m:mrow>
+                        </m:mrow>
+                        <m:annotation encoding="SnuggleTeX"
+                            >\[\qv{mSignA21}\qv{iShowA2}\log_{\qv{iBase}}(\qv{iC})\qv{mSignA3}\qv{iShowA1}\log_{\qv{iBase}}(\qv{iBC})\qv{mSignA1}\qv{iShowA1}\log_{\qv{iBase}}(\qv{iB})\]</m:annotation>
+                    </m:semantics>
+                </m:math>
+            </templateBlock>
+        </div>
+        <p>Enter your answer in the form&#160;
+            <m:math>
+                <m:mi>x</m:mi>
+                <m:msub>
+                    <m:mi>log</m:mi>
+                    <m:mi>b</m:mi>
+                </m:msub>
+                <m:mfenced close=")" open="(">
+                    <m:mi>y</m:mi>
+                </m:mfenced>
+            </m:math>&#160;
+            where&#160;<m:math><m:mi>y</m:mi></m:math>&#160;has the smallest possible value.</p>
+        <div class="">
+            <table>
+                <tbody>
+                    <tr>
+                        <td>
+                            <textEntryInteraction responseIdentifier="RESPONSEA" expectedLength="10" />
+                        </td>
+                        <td>
+                            <m:math>
+                                <m:mtext>l o g</m:mtext>
+                            </m:math>&#160;<!-- prevent Norton from trying to force login! -->
+                        </td>
+                        <td>&#160;&#160;&#160;&#160;&#160;</td>
+                        <td>
+                            (<textEntryInteraction responseIdentifier="RESPONSEB" expectedLength="10" />)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>&#160;&#160;&#160;&#160;&#160;</td>
+                        <td>&#160;&#160;&#160;&#160;&#160;</td>
+                        <td><textEntryInteraction responseIdentifier="RESPONSEC" expectedLength="10" /></td>
+                        <td>&#160;&#160;&#160;&#160;&#160;</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <feedbackBlock id="feedbackBlock4" identifier="Correct1" outcomeIdentifier="FEEDBACK"
+            showHide="show">
+            <p>The coefficient is correct.</p>
+        </feedbackBlock>
+        <feedbackBlock id="feedbackBlock5" identifier="Incorrect1" outcomeIdentifier="FEEDBACK"
+            showHide="show">
+            <p>The coefficient  is incorrect.</p>
+        </feedbackBlock>
+        <feedbackBlock id="feedbackBlock4" identifier="Correct2" outcomeIdentifier="FEEDBACK"
+            showHide="show">
+            <p>The base is correct.</p>
+        </feedbackBlock>
+        <feedbackBlock id="feedbackBlock5" identifier="Incorrect2" outcomeIdentifier="FEEDBACK"
+            showHide="show">
+            <p>The base is incorrect.</p>
+        </feedbackBlock>
+        <feedbackBlock id="feedbackBlock4" identifier="Correct3" outcomeIdentifier="FEEDBACK"
+            showHide="show">
+            <p>The value in the brackets is correct.</p>
+        </feedbackBlock>
+        <feedbackBlock id="feedbackBlock5" identifier="Incorrect3" outcomeIdentifier="FEEDBACK"
+            showHide="show">
+            <p>The value in the brackets is incorrect.</p>
+        </feedbackBlock>
+        <feedbackBlock id="feedbackBlock10" identifier="THREETRIES" outcomeIdentifier="FEEDBACK"
+            showHide="show">
+            <p>You have had three attempts at answering this question, so here is the solution:</p>
+        </feedbackBlock>
+        <feedbackBlock id="feedbackBlock59" identifier="SOLUTION" outcomeIdentifier="FEEDBACK"
+            showHide="show">
+            <div class="">
+                <templateBlock templateIdentifier="tParts" identifier="Sol1" showHide="show">
+                    <div class="">
+                        <m:math display="block" id="mathML11">
+                            <m:semantics>
+                                <m:mtable>
+                                    <m:mtr>
+                                        <m:mtd columnalign="right">
+                                            <m:mrow>
+                                                <m:mrow>
+                                                    <m:mi>mSignA11</m:mi>
+                                                    <m:mi>iShowA1</m:mi>
+                                                    <m:msub>
+                                                        <m:mi>log</m:mi>
+                                                        <m:mi>iBase</m:mi>
+                                                    </m:msub>
+                                                    <m:mfenced close=")" open="(">
+                                                        <m:mi>iB</m:mi>
+                                                    </m:mfenced>
+                                                </m:mrow>
+                                                <m:mi>mSignA2</m:mi>
+                                                <m:mrow>
+                                                    <m:mi>iShowA2</m:mi>
+                                                    <m:msub>
+                                                        <m:mi>log</m:mi>
+                                                        <m:mi>iBase</m:mi>
+                                                    </m:msub>
+                                                    <m:mfenced close=")" open="(">
+                                                        <m:mi>iC</m:mi>
+                                                    </m:mfenced>
+                                                </m:mrow>
+                                                <m:mi>mSignA3</m:mi>
+                                                <m:mrow>
+                                                    <m:mi>iShowA1</m:mi>
+                                                    <m:msub>
+                                                        <m:mi>log</m:mi>
+                                                        <m:mi>iBase</m:mi>
+                                                    </m:msub>
+                                                    <m:mfenced close=")" open="(">
+                                                        <m:mi>iBC</m:mi>
+                                                    </m:mfenced>
+                                                </m:mrow>
+                                            </m:mrow>
+                                        </m:mtd>
+                                        <m:mtd columnalign="center">
+                                            <m:mo>=</m:mo>
+                                        </m:mtd>
+                                        <m:mtd columnalign="left">
+                                            <m:mrow>
+                                                <m:mrow>
+                                                    <m:mi>mSignA11</m:mi>
+                                                    <m:mi>iShowA1</m:mi>
+                                                    <m:msub>
+                                                        <m:mi>log</m:mi>
+                                                        <m:mi>iBase</m:mi>
+                                                    </m:msub>
+                                                    <m:mfenced close=")" open="(">
+                                                        <m:mi>iB</m:mi>
+                                                    </m:mfenced>
+                                                </m:mrow>
+                                                <m:mi>mSignA2</m:mi>
+                                                <m:mrow>
+                                                    <m:mi>iShowA2</m:mi>
+                                                    <m:msub>
+                                                        <m:mi>log</m:mi>
+                                                        <m:mi>iBase</m:mi>
+                                                    </m:msub>
+                                                    <m:mfenced close=")" open="(">
+                                                        <m:mi>iC</m:mi>
+                                                    </m:mfenced>
+                                                </m:mrow>
+                                                <m:mi>mSignA3</m:mi>
+                                                <m:mrow>
+                                                    <m:mi>iShowA1</m:mi>
+                                                    <m:msub>
+                                                        <m:mi>log</m:mi>
+                                                        <m:mi>iBase</m:mi>
+                                                    </m:msub>
+                                                    <m:mfenced close=")" open="(">
+                                                        <m:mi>iB</m:mi>
+                                                    </m:mfenced>
+                                                </m:mrow>
+                                                <m:mi>mSignA3</m:mi>
+                                                <m:mrow>
+                                                    <m:mi>iShowA1</m:mi>
+                                                    <m:msub>
+                                                        <m:mi>log</m:mi>
+                                                        <m:mi>iBase</m:mi>
+                                                    </m:msub>
+                                                    <m:mfenced close=")" open="(">
+                                                        <m:mi>iC</m:mi>
+                                                    </m:mfenced>
+                                                </m:mrow>
+                                            </m:mrow>
+                                        </m:mtd>
+                                    </m:mtr>
+                                    <m:mtr>
+                                        <m:mtd columnalign="right">
+                                            <m:mtext> </m:mtext>
+                                        </m:mtd>
+                                        <m:mtd columnalign="center">
+                                            <m:mo>=</m:mo>
+                                        </m:mtd>
+                                        <m:mtd columnalign="left">
+                                            <m:mrow>
+                                                <m:mrow>
+                                                    <m:mi>mSignA21</m:mi>
+                                                    <m:mi>iShowA2</m:mi>
+                                                    <m:msub>
+                                                        <m:mi>log</m:mi>
+                                                        <m:mi>iBase</m:mi>
+                                                    </m:msub>
+                                                    <m:mfenced close=")" open="(">
+                                                        <m:mi>iC</m:mi>
+                                                    </m:mfenced>
+                                                </m:mrow>
+                                                <m:mi>mSignA3</m:mi>
+                                                <m:mrow>
+                                                    <m:mi>iShowA1</m:mi>
+                                                    <m:msub>
+                                                        <m:mi>log</m:mi>
+                                                        <m:mi>iBase</m:mi>
+                                                    </m:msub>
+                                                    <m:mfenced close=")" open="(">
+                                                        <m:mi>iC</m:mi>
+                                                    </m:mfenced>
+                                                </m:mrow>
+                                            </m:mrow>
+                                        </m:mtd>
+                                    </m:mtr>
+                                    <m:mtr>
+                                        <m:mtd columnalign="right">
+                                            <m:mtext> </m:mtext>
+                                        </m:mtd>
+                                        <m:mtd columnalign="center">
+                                            <m:mo>=</m:mo>
+                                        </m:mtd>
+                                        <m:mtd columnalign="left">
+                                            <m:mrow>
+                                                <m:mrow>
+                                                    <m:mi>mSignAns11</m:mi>
+                                                    <m:mi>iShowAns1</m:mi>
+                                                    <m:msub>
+                                                        <m:mi>log</m:mi>
+                                                        <m:mi>iBase</m:mi>
+                                                    </m:msub>
+                                                    <m:mfenced close=")" open="(">
+                                                        <m:mi>iC</m:mi>
+                                                    </m:mfenced>
+                                                </m:mrow>
+                                            </m:mrow>
+                                        </m:mtd>
+                                    </m:mtr>
+                                </m:mtable>
+                                <m:annotation encoding="SnuggleTeX">\begin{eqnarray*}\qv{mSignA11}\qv{iShowA1}\log_{\qv{iBase}}(\qv{iB})\qv{mSignA2}\qv{iShowA2}\log_{\qv{iBase}}(\qv{iC})\qv{mSignA3}\qv{iShowA1}\log_{\qv{iBase}}(\qv{iBC})
+                                    &amp;=&amp;\qv{mSignA11}\qv{iShowA1}\log_{\qv{iBase}}(\qv{iB})\qv{mSignA2}\qv{iShowA2}\log_{\qv{iBase}}(\qv{iC})\qv{mSignA3}\qv{iShowA1}\log_{\qv{iBase}}(\qv{iB})\qv{mSignA3}\qv{iShowA1}\log_{\qv{iBase}}(\qv{iC})\\
+                                    &amp;=&amp;\qv{mSignA21}\qv{iShowA2}\log_{\qv{iBase}}(\qv{iC})\qv{mSignA3}\qv{iShowA1}\log_{\qv{iBase}}(\qv{iC})\\
+                                    &amp;=&amp;\qv{mSignAns11}\qv{iShowAns1}\log_{\qv{iBase}}(\qv{iC})\end{eqnarray*}</m:annotation>
+                            </m:semantics>
+                        </m:math>
+                    </div>
+                </templateBlock>
+                <templateBlock templateIdentifier="tParts" identifier="Sol2" showHide="show">
+                    <div class="">
+                        <m:math display="block" id="mathML12">
+                            <m:semantics>
+                                <m:mtable>
+                                    <m:mtr>
+                                        <m:mtd columnalign="right">
+                                            <m:mrow>
+                                                <m:mrow>
+                                                    <m:mi>mSignA21</m:mi>
+                                                    <m:mi>iShowA2</m:mi>
+                                                    <m:msub>
+                                                        <m:mi>log</m:mi>
+                                                        <m:mi>iBase</m:mi>
+                                                    </m:msub>
+                                                    <m:mfenced close=")" open="(">
+                                                        <m:mi>iC</m:mi>
+                                                    </m:mfenced>
+                                                </m:mrow>
+                                                <m:mi>mSignA1</m:mi>
+                                                <m:mrow>
+                                                    <m:mi>iShowA1</m:mi>
+                                                    <m:msub>
+                                                        <m:mi>log</m:mi>
+                                                        <m:mi>iBase</m:mi>
+                                                    </m:msub>
+                                                    <m:mfenced close=")" open="(">
+                                                        <m:mi>iB</m:mi>
+                                                    </m:mfenced>
+                                                </m:mrow>
+                                                <m:mi>mSignA3</m:mi>
+                                                <m:mrow>
+                                                    <m:mi>iShowA1</m:mi>
+                                                    <m:msub>
+                                                        <m:mi>log</m:mi>
+                                                        <m:mi>iBase</m:mi>
+                                                    </m:msub>
+                                                    <m:mfenced close=")" open="(">
+                                                        <m:mi>iBC</m:mi>
+                                                    </m:mfenced>
+                                                </m:mrow>
+                                            </m:mrow>
+                                        </m:mtd>
+                                        <m:mtd columnalign="center">
+                                            <m:mo>=</m:mo>
+                                        </m:mtd>
+                                        <m:mtd columnalign="left">
+                                            <m:mrow>
+                                                <m:mrow>
+                                                    <m:mi>mSignA21</m:mi>
+                                                    <m:mi>iShowA2</m:mi>
+                                                    <m:msub>
+                                                        <m:mi>log</m:mi>
+                                                        <m:mi>iBase</m:mi>
+                                                    </m:msub>
+                                                    <m:mfenced close=")" open="(">
+                                                        <m:mi>iC</m:mi>
+                                                    </m:mfenced>
+                                                </m:mrow>
+                                                <m:mi>mSignA1</m:mi>
+                                                <m:mrow>
+                                                    <m:mi>iShowA1</m:mi>
+                                                    <m:msub>
+                                                        <m:mi>log</m:mi>
+                                                        <m:mi>iBase</m:mi>
+                                                    </m:msub>
+                                                    <m:mfenced close=")" open="(">
+                                                        <m:mi>iB</m:mi>
+                                                    </m:mfenced>
+                                                </m:mrow>
+                                                <m:mi>mSignA3</m:mi>
+                                                <m:mrow>
+                                                    <m:mi>iShowA1</m:mi>
+                                                    <m:msub>
+                                                        <m:mi>log</m:mi>
+                                                        <m:mi>iBase</m:mi>
+                                                    </m:msub>
+                                                    <m:mfenced close=")" open="(">
+                                                        <m:mi>iB</m:mi>
+                                                    </m:mfenced>
+                                                </m:mrow>
+                                                <m:mi>mSignA3</m:mi>
+                                                <m:mrow>
+                                                    <m:mi>iShowA1</m:mi>
+                                                    <m:msub>
+                                                        <m:mi>log</m:mi>
+                                                        <m:mi>iBase</m:mi>
+                                                    </m:msub>
+                                                    <m:mfenced close=")" open="(">
+                                                        <m:mi>iC</m:mi>
+                                                    </m:mfenced>
+                                                </m:mrow>
+                                            </m:mrow>
+                                        </m:mtd>
+                                    </m:mtr>
+                                    <m:mtr>
+                                        <m:mtd columnalign="right">
+                                            <m:mtext> </m:mtext>
+                                        </m:mtd>
+                                        <m:mtd columnalign="center">
+                                            <m:mo>=</m:mo>
+                                        </m:mtd>
+                                        <m:mtd columnalign="left">
+                                            <m:mrow>
+                                                <m:mrow>
+                                                    <m:mi>mSignA21</m:mi>
+                                                    <m:mi>iShowA2</m:mi>
+                                                    <m:msub>
+                                                        <m:mi>log</m:mi>
+                                                        <m:mi>iBase</m:mi>
+                                                    </m:msub>
+                                                    <m:mfenced close=")" open="(">
+                                                        <m:mi>iC</m:mi>
+                                                    </m:mfenced>
+                                                </m:mrow>
+                                                <m:mi>mSignA3</m:mi>
+                                                <m:mrow>
+                                                    <m:mi>iShowA1</m:mi>
+                                                    <m:msub>
+                                                        <m:mi>log</m:mi>
+                                                        <m:mi>iBase</m:mi>
+                                                    </m:msub>
+                                                    <m:mfenced close=")" open="(">
+                                                        <m:mi>iC</m:mi>
+                                                    </m:mfenced>
+                                                </m:mrow>
+                                            </m:mrow>
+                                        </m:mtd>
+                                    </m:mtr>
+                                    <m:mtr>
+                                        <m:mtd columnalign="right">
+                                            <m:mtext> </m:mtext>
+                                        </m:mtd>
+                                        <m:mtd columnalign="center">
+                                            <m:mo>=</m:mo>
+                                        </m:mtd>
+                                        <m:mtd columnalign="left">
+                                            <m:mrow>
+                                                <m:mrow>
+                                                    <m:mi>mSignAns11</m:mi>
+                                                    <m:mi>iShowAns1</m:mi>
+                                                    <m:msub>
+                                                        <m:mi>log</m:mi>
+                                                        <m:mi>iBase</m:mi>
+                                                    </m:msub>
+                                                    <m:mfenced close=")" open="(">
+                                                        <m:mi>iC</m:mi>
+                                                    </m:mfenced>
+                                                </m:mrow>
+                                            </m:mrow>
+                                        </m:mtd>
+                                    </m:mtr>
+                                </m:mtable>
+                                <m:annotation encoding="SnuggleTeX">\begin{eqnarray*}\qv{mSignA21}\qv{iShowA2}\log_{\qv{iBase}}(\qv{iC})\qv{mSignA1}\qv{iShowA1}\log_{\qv{iBase}}(\qv{iB})\qv{mSignA3}\qv{iShowA1}\log_{\qv{iBase}}(\qv{iBC})
+                                    &amp;=&amp;\qv{mSignA21}\qv{iShowA2}\log_{\qv{iBase}}(\qv{iC})\qv{mSignA1}\qv{iShowA1}\log_{\qv{iBase}}(\qv{iB})\qv{mSignA3}\qv{iShowA1}\log_{\qv{iBase}}(\qv{iB})\qv{mSignA3}\qv{iShowA1}\log_{\qv{iBase}}(\qv{iC})\\
+                                    &amp;=&amp;\qv{mSignA21}\qv{iShowA2}\log_{\qv{iBase}}(\qv{iC})\qv{mSignA3}\qv{iShowA1}\log_{\qv{iBase}}(\qv{iC})\\
+                                    &amp;=&amp;\qv{mSignAns11}\qv{iShowAns1}\log_{\qv{iBase}}(\qv{iC})\end{eqnarray*}</m:annotation>
+                            </m:semantics>
+                        </m:math>
+                    </div>
+                </templateBlock>
+                <templateBlock templateIdentifier="tParts" identifier="Sol3" showHide="show">
+                    <div class="">
+                        <m:math display="block" id="mathML13">
+                            <m:semantics>
+                                <m:mtable>
+                                    <m:mtr>
+                                        <m:mtd columnalign="right">
+                                            <m:mrow>
+                                                <m:mrow>
+                                                    <m:mi>mSignA31</m:mi>
+                                                    <m:mi>iShowA1</m:mi>
+                                                    <m:msub>
+                                                        <m:mi>log</m:mi>
+                                                        <m:mi>iBase</m:mi>
+                                                    </m:msub>
+                                                    <m:mfenced close=")" open="(">
+                                                        <m:mi>iBC</m:mi>
+                                                    </m:mfenced>
+                                                </m:mrow>
+                                                <m:mi>mSignA2</m:mi>
+                                                <m:mrow>
+                                                    <m:mi>iShowA2</m:mi>
+                                                    <m:msub>
+                                                        <m:mi>log</m:mi>
+                                                        <m:mi>iBase</m:mi>
+                                                    </m:msub>
+                                                    <m:mfenced close=")" open="(">
+                                                        <m:mi>iC</m:mi>
+                                                    </m:mfenced>
+                                                </m:mrow>
+                                                <m:mi>mSignA1</m:mi>
+                                                <m:mrow>
+                                                    <m:mi>iShowA1</m:mi>
+                                                    <m:msub>
+                                                        <m:mi>log</m:mi>
+                                                        <m:mi>iBase</m:mi>
+                                                    </m:msub>
+                                                    <m:mfenced close=")" open="(">
+                                                        <m:mi>iB</m:mi>
+                                                    </m:mfenced>
+                                                </m:mrow>
+                                            </m:mrow>
+                                        </m:mtd>
+                                        <m:mtd columnalign="center">
+                                            <m:mo>=</m:mo>
+                                        </m:mtd>
+                                        <m:mtd columnalign="left">
+                                            <m:mrow>
+                                                <m:mrow>
+                                                    <m:mi>mSignA31</m:mi>
+                                                    <m:mi>iShowA1</m:mi>
+                                                    <m:msub>
+                                                        <m:mi>log</m:mi>
+                                                        <m:mi>iBase</m:mi>
+                                                    </m:msub>
+                                                    <m:mfenced close=")" open="(">
+                                                        <m:mi>iB</m:mi>
+                                                    </m:mfenced>
+                                                </m:mrow>
+                                                <m:mi>mSignA3</m:mi>
+                                                <m:mrow>
+                                                    <m:mi>iShowA1</m:mi>
+                                                    <m:msub>
+                                                        <m:mi>log</m:mi>
+                                                        <m:mi>iBase</m:mi>
+                                                    </m:msub>
+                                                    <m:mfenced close=")" open="(">
+                                                        <m:mi>iC</m:mi>
+                                                    </m:mfenced>
+                                                </m:mrow>
+                                                <m:mi>mSignA2</m:mi>
+                                                <m:mrow>
+                                                    <m:mi>iShowA2</m:mi>
+                                                    <m:msub>
+                                                        <m:mi>log</m:mi>
+                                                        <m:mi>iBase</m:mi>
+                                                    </m:msub>
+                                                    <m:mfenced close=")" open="(">
+                                                        <m:mi>iC</m:mi>
+                                                    </m:mfenced>
+                                                </m:mrow>
+                                                <m:mi>mSignA1</m:mi>
+                                                <m:mrow>
+                                                    <m:mi>iShowA1</m:mi>
+                                                    <m:msub>
+                                                        <m:mi>log</m:mi>
+                                                        <m:mi>iBase</m:mi>
+                                                    </m:msub>
+                                                    <m:mfenced close=")" open="(">
+                                                        <m:mi>iB</m:mi>
+                                                    </m:mfenced>
+                                                </m:mrow>
+                                            </m:mrow>
+                                        </m:mtd>
+                                    </m:mtr>
+                                    <m:mtr>
+                                        <m:mtd columnalign="right">
+                                            <m:mtext> </m:mtext>
+                                        </m:mtd>
+                                        <m:mtd columnalign="center">
+                                            <m:mo>=</m:mo>
+                                        </m:mtd>
+                                        <m:mtd columnalign="left">
+                                            <m:mrow>
+                                                <m:mrow>
+                                                    <m:mi>mSignA31</m:mi>
+                                                    <m:mi>iShowA1</m:mi>
+                                                    <m:msub>
+                                                        <m:mi>log</m:mi>
+                                                        <m:mi>iBase</m:mi>
+                                                    </m:msub>
+                                                    <m:mfenced close=")" open="(">
+                                                        <m:mi>iC</m:mi>
+                                                    </m:mfenced>
+                                                </m:mrow>
+                                                <m:mi>mSignA2</m:mi>
+                                                <m:mrow>
+                                                    <m:mi>iShowA2</m:mi>
+                                                    <m:msub>
+                                                        <m:mi>log</m:mi>
+                                                        <m:mi>iBase</m:mi>
+                                                    </m:msub>
+                                                    <m:mfenced close=")" open="(">
+                                                        <m:mi>iC</m:mi>
+                                                    </m:mfenced>
+                                                </m:mrow>
+                                            </m:mrow>
+                                        </m:mtd>
+                                    </m:mtr>
+                                    <m:mtr>
+                                        <m:mtd columnalign="right">
+                                            <m:mtext> </m:mtext>
+                                        </m:mtd>
+                                        <m:mtd columnalign="center">
+                                            <m:mo>=</m:mo>
+                                        </m:mtd>
+                                        <m:mtd columnalign="left">
+                                            <m:mrow>
+                                                <m:mrow>
+                                                    <m:mi>mSignAns11</m:mi>
+                                                    <m:mi>iShowAns1</m:mi>
+                                                    <m:msub>
+                                                        <m:mi>log</m:mi>
+                                                        <m:mi>iBase</m:mi>
+                                                    </m:msub>
+                                                    <m:mfenced close=")" open="(">
+                                                        <m:mi>iC</m:mi>
+                                                    </m:mfenced>
+                                                </m:mrow>
+                                            </m:mrow>
+                                        </m:mtd>
+                                    </m:mtr>
+                                </m:mtable>
+                                <m:annotation encoding="SnuggleTeX">\begin{eqnarray*}\qv{mSignA31}\qv{iShowA1}\log_{\qv{iBase}}(\qv{iBC})\qv{mSignA2}\qv{iShowA2}\log_{\qv{iBase}}(\qv{iC})\qv{mSignA3}\qv{iShowA1}\log_{\qv{iBase}}(\qv{iBC})
+                                    &amp;=&amp;\qv{mSignA31}\qv{iShowA1}\log_{\qv{iBase}}(\qv{iB})\qv{mSignA3}\qv{iShowA1}\log_{\qv{iBase}}(\qv{iC})\qv{mSignA2}\qv{iShowA2}\log_{\qv{iBase}}(\qv{iC})\qv{mSignA1}\qv{iShowA1}\log_{\qv{iBase}}(\qv{iB})\\
+                                    &amp;=&amp;\qv{mSignA31}\qv{iShowA1}\log_{\qv{iBase}}(\qv{iC})\qv{mSignA2}\qv{iShowA2}\log_{\qv{iBase}}(\qv{iC})\\
+                                    &amp;=&amp;\qv{mSignAns11}\qv{iShowAns1}\log_{\qv{iBase}}(\qv{iC})\end{eqnarray*}</m:annotation>
+                            </m:semantics>
+                        </m:math>
+                    </div>
+                </templateBlock>
+                <templateBlock templateIdentifier="tParts" identifier="Sol4" showHide="show">
+                    <div class="">
+                        <m:math display="block" id="mathML14">
+                            <m:semantics>
+                                <m:mtable>
+                                    <m:mtr>
+                                        <m:mtd columnalign="right">
+                                            <m:mrow>
+                                                <m:mrow>
+                                                    <m:mi>mSignA21</m:mi>
+                                                    <m:mi>iShowA2</m:mi>
+                                                    <m:msub>
+                                                        <m:mi>log</m:mi>
+                                                        <m:mi>iBase</m:mi>
+                                                    </m:msub>
+                                                    <m:mfenced close=")" open="(">
+                                                        <m:mi>iC</m:mi>
+                                                    </m:mfenced>
+                                                </m:mrow>
+                                                <m:mi>mSignA3</m:mi>
+                                                <m:mrow>
+                                                    <m:mi>iShowA1</m:mi>
+                                                    <m:msub>
+                                                        <m:mi>log</m:mi>
+                                                        <m:mi>iBase</m:mi>
+                                                    </m:msub>
+                                                    <m:mfenced close=")" open="(">
+                                                        <m:mi>iBC</m:mi>
+                                                    </m:mfenced>
+                                                </m:mrow>
+                                                <m:mi>mSignA1</m:mi>
+                                                <m:mrow>
+                                                    <m:mi>iShowA1</m:mi>
+                                                    <m:msub>
+                                                        <m:mi>log</m:mi>
+                                                        <m:mi>iBase</m:mi>
+                                                    </m:msub>
+                                                    <m:mfenced close=")" open="(">
+                                                        <m:mi>iB</m:mi>
+                                                    </m:mfenced>
+                                                </m:mrow>
+                                            </m:mrow>
+                                        </m:mtd>
+                                        <m:mtd columnalign="center">
+                                            <m:mo>=</m:mo>
+                                        </m:mtd>
+                                        <m:mtd columnalign="left">
+                                            <m:mrow>
+                                                <m:mrow>
+                                                    <m:mi>mSignA21</m:mi>
+                                                    <m:mi>iShowA2</m:mi>
+                                                    <m:msub>
+                                                        <m:mi>log</m:mi>
+                                                        <m:mi>iBase</m:mi>
+                                                    </m:msub>
+                                                    <m:mfenced close=")" open="(">
+                                                        <m:mi>iC</m:mi>
+                                                    </m:mfenced>
+                                                </m:mrow>
+                                                <m:mi>mSignA3</m:mi>
+                                                <m:mrow>
+                                                    <m:mi>iShowA1</m:mi>
+                                                    <m:msub>
+                                                        <m:mi>log</m:mi>
+                                                        <m:mi>iBase</m:mi>
+                                                    </m:msub>
+                                                    <m:mfenced close=")" open="(">
+                                                        <m:mi>iB</m:mi>
+                                                    </m:mfenced>
+                                                </m:mrow>
+                                                <m:mi>mSignA3</m:mi>
+                                                <m:mrow>
+                                                    <m:mi>iShowA1</m:mi>
+                                                    <m:msub>
+                                                        <m:mi>log</m:mi>
+                                                        <m:mi>iBase</m:mi>
+                                                    </m:msub>
+                                                    <m:mfenced close=")" open="(">
+                                                        <m:mi>iC</m:mi>
+                                                    </m:mfenced>
+                                                </m:mrow>
+                                                <m:mi>mSignA1</m:mi>
+                                                <m:mrow>
+                                                    <m:mi>iShowA1</m:mi>
+                                                    <m:msub>
+                                                        <m:mi>log</m:mi>
+                                                        <m:mi>iBase</m:mi>
+                                                    </m:msub>
+                                                    <m:mfenced close=")" open="(">
+                                                        <m:mi>iB</m:mi>
+                                                    </m:mfenced>
+                                                </m:mrow>
+                                            </m:mrow>
+                                        </m:mtd>
+                                    </m:mtr>
+                                    <m:mtr>
+                                        <m:mtd columnalign="right">
+                                            <m:mtext> </m:mtext>
+                                        </m:mtd>
+                                        <m:mtd columnalign="center">
+                                            <m:mo>=</m:mo>
+                                        </m:mtd>
+                                        <m:mtd columnalign="left">
+                                            <m:mrow>
+                                                <m:mrow>
+                                                    <m:mi>mSignA21</m:mi>
+                                                    <m:mi>iShowA2</m:mi>
+                                                    <m:msub>
+                                                        <m:mi>log</m:mi>
+                                                        <m:mi>iBase</m:mi>
+                                                    </m:msub>
+                                                    <m:mfenced close=")" open="(">
+                                                        <m:mi>iC</m:mi>
+                                                    </m:mfenced>
+                                                </m:mrow>
+                                                <m:mi>mSignA3</m:mi>
+                                                <m:mrow>
+                                                    <m:mi>iShowA1</m:mi>
+                                                    <m:msub>
+                                                        <m:mi>log</m:mi>
+                                                        <m:mi>iBase</m:mi>
+                                                    </m:msub>
+                                                    <m:mfenced close=")" open="(">
+                                                        <m:mi>iC</m:mi>
+                                                    </m:mfenced>
+                                                </m:mrow>
+                                            </m:mrow>
+                                        </m:mtd>
+                                    </m:mtr>
+                                    <m:mtr>
+                                        <m:mtd columnalign="right">
+                                            <m:mtext> </m:mtext>
+                                        </m:mtd>
+                                        <m:mtd columnalign="center">
+                                            <m:mo>=</m:mo>
+                                        </m:mtd>
+                                        <m:mtd columnalign="left">
+                                            <m:mrow>
+                                                <m:mrow>
+                                                    <m:mi>mSignAns11</m:mi>
+                                                    <m:mi>iShowAns1</m:mi>
+                                                    <m:msub>
+                                                        <m:mi>log</m:mi>
+                                                        <m:mi>iBase</m:mi>
+                                                    </m:msub>
+                                                    <m:mfenced close=")" open="(">
+                                                        <m:mi>iC</m:mi>
+                                                    </m:mfenced>
+                                                </m:mrow>
+                                            </m:mrow>
+                                        </m:mtd>
+                                    </m:mtr>
+                                </m:mtable>
+                                <m:annotation encoding="SnuggleTeX">\begin{eqnarray*}\qv{mSignA21}\qv{iShowA2}\log_{\qv{iBase}}(\qv{iC})\qv{mSignA3}\qv{iShowA1}\log_{\qv{iBase}}(\qv{iBC})\qv{mSignA1}\qv{iShowA1}\log_{\qv{iBase}}(\qv{iB})
+                                    &amp;=&amp;\qv{mSignA21}\qv{iShowA2}\log_{\qv{iBase}}(\qv{iC})\qv{mSignA3}\qv{iShowA1}\log_{\qv{iBase}}(\qv{iB})\qv{mSignA3}\qv{iShowA1}\log_{\qv{iBase}}(\qv{iC})\qv{mSignA1}\qv{iShowA1}\log_{\qv{iBase}}(\qv{iB})\\
+                                    &amp;=&amp;\qv{mSignA21}\qv{iShowA2}\log_{\qv{iBase}}(\qv{iC})\qv{mSignA3}\qv{iShowA1}\log_{\qv{iBase}}(\qv{iC})\\
+                                    &amp;=&amp;\qv{mSignAns11}\qv{iShowAns1}\log_{\qv{iBase}}(\qv{iC})\end{eqnarray*}</m:annotation>
+                            </m:semantics>
+                        </m:math>
+                    </div>
+                </templateBlock>
+                <templateBlock templateIdentifier="tParts" identifier="SolFinal" showHide="show">
+                    <p>This can still be simplified:</p>
+                    <div class="">
+                        <m:math display="block" id="mathML2">
+                            <m:semantics>
+                                <m:mtable>
+                                    <m:mtr>
+                                        <m:mtd columnalign="right">
+                                            <m:mrow>
+                                                <m:mrow>
+                                                    <m:mi>mSignAns11</m:mi>
+                                                    <m:mi>iShowAns1</m:mi>
+                                                    <m:msub>
+                                                        <m:mi>log</m:mi>
+                                                        <m:mi>iBase</m:mi>
+                                                    </m:msub>
+                                                    <m:mfenced close=")" open="(">
+                                                        <m:mi>iC</m:mi>
+                                                    </m:mfenced>
+                                                </m:mrow>
+                                            </m:mrow>
+                                        </m:mtd>
+                                        <m:mtd columnalign="center">
+                                            <m:mo>=</m:mo>
+                                        </m:mtd>
+                                        <m:mtd columnalign="left">
+                                            <m:mrow>
+                                                <m:mrow>
+                                                    <m:mi>mSignAns11</m:mi>
+                                                    <m:mi>iShowAns1</m:mi>
+                                                    <m:msub>
+                                                        <m:mi>log</m:mi>
+                                                        <m:mi>iBase</m:mi>
+                                                    </m:msub>
+                                                    <m:mfenced close=")" open="(">
+                                                        <m:msup>
+                                                            <m:mi>iBaseC</m:mi>
+                                                            <m:mi>iPowerC</m:mi>
+                                                        </m:msup>
+                                                    </m:mfenced>
+                                                </m:mrow>
+                                            </m:mrow>
+                                        </m:mtd>
+                                    </m:mtr>
+                                    <m:mtr>
+                                        <m:mtd columnalign="right">
+                                            <m:mtext> </m:mtext>
+                                        </m:mtd>
+                                        <m:mtd columnalign="center">
+                                            <m:mo>=</m:mo>
+                                        </m:mtd>
+                                        <m:mtd columnalign="left">
+                                            <m:mrow>
+                                                <m:mrow>
+                                                    <m:mi>iAns2</m:mi>
+                                                    <m:msub>
+                                                        <m:mi>log</m:mi>
+                                                        <m:mi>iBase</m:mi>
+                                                    </m:msub>
+                                                    <m:mfenced close=")" open="(">
+                                                        <m:mi>iBaseC</m:mi>
+                                                    </m:mfenced>
+                                                </m:mrow>
+                                            </m:mrow>
+                                        </m:mtd>
+                                    </m:mtr>
+                                </m:mtable>
+                                <m:annotation encoding="SnuggleTeX"
+                                    >\begin{eqnarray*}\qv{mSignAns11}\qv{iShowAns1}\log_{\qv{iBase}}(\qv{iC})&amp;=&amp;\qv{mSignAns11}\qv{iShowAns1}\log_{\qv{iBase}}(\qv{iBaseC}^{\qv{iPowerC}})\\
+                                    x&amp;=&amp;\qv{iAns2}\log_{\qv{iBase}}(\qv{iBaseC})\end{eqnarray*}</m:annotation>
+                            </m:semantics>
+                        </m:math>
+                    </div>
+                </templateBlock>
+            </div>
+        </feedbackBlock>
+        <feedbackBlock id="feedbackBlock11" identifier="HINT" outcomeIdentifier="FEEDBACK"
+            showHide="show">
+            <p>Use the laws of logarithms.</p>
+        </feedbackBlock>
+        <feedbackBlock id="feedbackBlock12" identifier="SEEN-SOLUTION" outcomeIdentifier="FEEDBACK"
+            showHide="show">
+            <p>Since you have viewed the solution, your score for this question will be 0.</p>
+        </feedbackBlock>
+        <feedbackBlock id="feedbackBlock13" identifier="SEEN-HINT" outcomeIdentifier="FEEDBACK"
+            showHide="show">
+            <p>Since you have viewed the hint, your score for this question will be halved.</p>
+        </feedbackBlock>
+        <feedbackBlock id="feedbackBlock14" identifier="askhint" outcomeIdentifier="ASKHINT"
+            showHide="show">
+            <p>
+                <endAttemptInteraction id="endAttemptInteraction1" responseIdentifier="HINTREQUEST"
+                    title="Show Hint"/>
+            </p>
+        </feedbackBlock>
+        <feedbackBlock id="feedbackBlock15" identifier="asksolution" outcomeIdentifier="ASKSOLUTION"
+            showHide="show">
+            <p>
+                <endAttemptInteraction id="endAttemptInteraction2" responseIdentifier="SOLREQUEST"
+                    title="Show Solution"/>
+            </p>
+        </feedbackBlock>
+    </itemBody>
+    <responseProcessing>
+        <setOutcomeValue identifier="FEEDBACK">
+            <multiple>
+                <variable identifier="EMPTY"/>
+            </multiple>
+        </setOutcomeValue>
+        <responseCondition>
+            <responseIf>
+                <variable identifier="HINTREQUEST"/>
+                <setOutcomeValue identifier="FEEDBACK">
+                    <multiple>
+                        <baseValue baseType="identifier">HINT</baseValue>
+                    </multiple>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="seenHint">
+                    <baseValue baseType="boolean">true</baseValue>
+                </setOutcomeValue>
+            </responseIf>
+            <responseElseIf>
+                <variable identifier="SOLREQUEST"/>
+                <setOutcomeValue identifier="seenSolution">
+                    <baseValue baseType="boolean">true</baseValue>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="FEEDBACK">
+                    <multiple>
+                        <baseValue baseType="identifier">SOLUTION</baseValue>
+                    </multiple>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="completionStatus">
+                    <baseValue baseType="identifier">completed</baseValue>
+                </setOutcomeValue>
+            </responseElseIf>
+            <responseElse>
+                <responseCondition>
+                    <responseIf>
+                        <or>
+                            <isNull>
+                                <variable identifier="RESPONSEA"/>
+                            </isNull>
+                            <isNull>
+                                <variable identifier="RESPONSEB"/>
+                            </isNull>
+                            <isNull>
+                                <variable identifier="RESPONSEC"/>
+                            </isNull>
+                        </or>
+                        <setOutcomeValue identifier="SCORE">
+                            <baseValue baseType="float">0.0</baseValue>
+                        </setOutcomeValue>
+                    </responseIf>
+                    <responseElse>
+                        <responseCondition>
+                            <responseIf>
+                                <equal toleranceMode="exact">
+                                    <variable identifier="RESPONSEA"/>
+                                    <variable identifier="iAns2"/>
+                                </equal>
+                                <setOutcomeValue identifier="SCORE">
+                                    <baseValue baseType="float">1.0</baseValue>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <baseValue baseType="identifier">Correct1</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                            </responseIf>
+                            <responseElse>
+                                <setOutcomeValue identifier="SCORE">
+                                    <baseValue baseType="float">0.0</baseValue>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <baseValue baseType="identifier">Incorrect1</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                            </responseElse>
+                        </responseCondition>
+                        <responseCondition>
+                            <responseIf>
+                                <equal toleranceMode="exact">
+                                    <variable identifier="RESPONSEC"/>
+                                    <variable identifier="iBase"/>
+                                </equal>
+                                <setOutcomeValue identifier="SCORE">
+                                    <sum>
+                                        <variable identifier="SCORE"/>
+                                        <baseValue baseType="float">1.0</baseValue>
+                                    </sum>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <variable identifier="FEEDBACK"/>
+                                        <baseValue baseType="identifier">Correct2</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                            </responseIf>
+                            <responseElse>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <variable identifier="FEEDBACK"/>
+                                        <baseValue baseType="identifier">Incorrect2</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                            </responseElse>
+                        </responseCondition>
+                        <responseCondition>
+                            <responseIf>
+                                <equal toleranceMode="exact">
+                                    <variable identifier="RESPONSEB"/>
+                                    <variable identifier="iBaseC"/>
+                                </equal>
+                                <setOutcomeValue identifier="SCORE">
+                                    <sum>
+                                        <variable identifier="SCORE"/>
+                                        <baseValue baseType="float">1.0</baseValue>
+                                    </sum>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <variable identifier="FEEDBACK"/>
+                                        <baseValue baseType="identifier">Correct3</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                            </responseIf>
+                            <responseElse>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <variable identifier="FEEDBACK"/>
+                                        <baseValue baseType="identifier">Incorrect3</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                            </responseElse>
+                        </responseCondition>
+                        <responseCondition>
+                            <responseIf>
+                                <variable identifier="seenSolution"/>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <variable identifier="FEEDBACK"/>
+                                        <baseValue baseType="identifier">SEEN-SOLUTION</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="SCORE">
+                                    <baseValue baseType="float">0.0</baseValue>
+                                </setOutcomeValue>
+                            </responseIf>
+                            <responseElseIf>
+                                <variable identifier="seenHint"/>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <variable identifier="FEEDBACK"/>
+                                        <baseValue baseType="identifier">SEEN-HINT</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="SCORE">
+                                    <divide>
+                                        <variable identifier="SCORE"/>
+                                        <baseValue baseType="float">2.0</baseValue>
+                                    </divide>
+                                </setOutcomeValue>
+                            </responseElseIf>
+                        </responseCondition>
+                        <responseCondition>
+                            <responseIf>
+                                <gt>
+                                    <variable identifier="numAttempts"/>
+                                    <baseValue baseType="integer">3</baseValue>
+                                </gt>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <baseValue baseType="identifier">THREETRIES</baseValue>
+                                        <baseValue baseType="identifier">SOLUTION</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="completionStatus">
+                                    <baseValue baseType="identifier">completed</baseValue>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="ASKHINT">
+                                    <baseValue baseType="identifier">null</baseValue>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="ASKSOLUTION">
+                                    <baseValue baseType="identifier">null</baseValue>
+                                </setOutcomeValue>
+                            </responseIf>
+                        </responseCondition>
+                    </responseElse>
+                </responseCondition>
+            </responseElse>
+        </responseCondition>
+    </responseProcessing>
+</assessmentItem>

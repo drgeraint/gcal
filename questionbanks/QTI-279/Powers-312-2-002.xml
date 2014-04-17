@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p1"    
+    xmlns:m="http://www.w3.org/1998/Math/MathML"
+    xmlns:ma="http://mathassess.qtitools.org/xsd/mathassess"
+    xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" adaptive="true"
+    identifier="Powers-312-2-002" timeDependent="false"
+    title="Multiply powers: n^a n^b, a,b +ve integers" toolName="Mathqurate" toolVersion="1.0"
+    xml:lang=""
+    xsi:schemaLocation="http://www.imsglobal.org/xsd/imsqti_v2p1 imsqti_v2p1.xsd http://mathassess.qtitools.org/xsd/mathassess mathassess.xsd">
+    <responseDeclaration cardinality="record" identifier="RESPONSE"/>
+    <responseDeclaration baseType="string" cardinality="single" identifier="printMath"/>
+    <responseDeclaration baseType="boolean" cardinality="single" identifier="HINTREQUEST"/>
+    <responseDeclaration baseType="boolean" cardinality="single" identifier="SOLREQUEST"/>
+    <outcomeDeclaration baseType="identifier" cardinality="multiple" identifier="FEEDBACK"/>
+    <outcomeDeclaration baseType="identifier" cardinality="single" identifier="EMPTY"/>
+    <outcomeDeclaration baseType="float" cardinality="single" identifier="SCORE" normalMaximum="2.0"
+        normalMinimum="0.0">
+        <defaultValue>
+            <value>0 </value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="seenSolution">
+        <defaultValue>
+            <value>false</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="seenHint">
+        <defaultValue>
+            <value>false</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="identifier" cardinality="single" identifier="ASKHINT">
+        <defaultValue>
+            <value>askhint</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="identifier" cardinality="single" identifier="ASKSOLUTION">
+        <defaultValue>
+            <value>asksolution</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration cardinality="record" identifier="oInput"/>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="oDummy"/>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="isEquiv"/>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="isEqual"/>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="isOK"/>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="numOK"/>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="denomOK"/>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="isOrig"/>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="numOrig"/>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="denomOrig"/>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="isNotSimp"/>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="isRecip"/>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="isAdded"/>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="isSubtracted"/>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="isMultiplied"/>
+    <templateDeclaration baseType="boolean" cardinality="single" identifier="tDummy"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iA" mathVariable="true"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iB" mathVariable="true"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iN" mathVariable="true"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iZ" mathVariable="true"/>
+    <templateDeclaration cardinality="record" identifier="mX" mathVariable="true"/>
+    <templateDeclaration cardinality="record" identifier="mNum" mathVariable="true"/>
+    <templateDeclaration cardinality="record" identifier="mDen" mathVariable="true"/>
+    <templateDeclaration cardinality="record" identifier="mQues" mathVariable="true"/>
+    <templateDeclaration cardinality="record" identifier="mAns" mathVariable="true"/>
+    <templateDeclaration cardinality="record" identifier="mAdd" mathVariable="true"/>
+    <templateDeclaration cardinality="record" identifier="mSub" mathVariable="true"/>
+    <templateDeclaration cardinality="record" identifier="mMult" mathVariable="true"/>
+    <templateProcessing>
+        <setTemplateValue identifier="iA">
+            <baseValue baseType="integer">0</baseValue>
+        </setTemplateValue>
+        <setTemplateValue identifier="tDummy">
+            <customOperator class="org.qtitools.mathassess.ScriptRule" ma:syntax="text/x-maxima">
+                <baseValue baseType="string"><![CDATA[
+
+ s1 : make_random_state(true)$ set_random_state(s1);
+
+ iA: 0;
+
+ iB: 0;
+
+ iC: 0;
+
+ iZ: 0;
+
+ iA: ev(random(9)+2,numer,simp);
+
+ iB: ev(random(9)+1,numer,simp);
+
+ iZ: ev(iA+iB,numer,simp);
+
+ iN: ev(random(9)+2,numer,simp);
+
+ simp: false;
+
+ mNum: if iA=1 then iN else iN^iA;
+
+ mDen: if iB=1 then iN else iN^iB;
+
+ mQues: mNum*mDen;
+
+ mAns: iN^iZ;
+
+ mAdd: mAns;
+
+ mSub: iN^(ev(iA-iB,numer,simp));
+
+ mMult: iN^(ev(iA*iB,numer,simp));
+
+ 
+
+]]></baseValue>
+            </customOperator>
+        </setTemplateValue>
+    </templateProcessing>
+    <itemBody class="">
+        <div class="">Simplify</div>
+        <div class="">
+            <m:math display="block" id="mathML0">
+                <m:semantics>
+                    <m:mrow>
+                        <m:mi>mNum</m:mi>
+                        <m:mi>mDen</m:mi>
+                    </m:mrow>
+                    <m:annotation encoding="SnuggleTeX">\[{\qv{mNum}}{\qv{mDen}}\]</m:annotation>
+                </m:semantics>
+            </m:math>
+        </div>
+        <div class="">
+            <customInteraction class="org.qtitools.mathassess.MathEntryInteraction"
+                id="customInteraction0" ma:expectedLength="25" ma:printIdentifier="printMath"
+                ma:syntax="text/x-maxima" responseIdentifier="RESPONSE"/>
+        </div>
+        <div class="">
+            <feedbackInline id="feedbackInline0" identifier="CORRECT-EQ"
+                outcomeIdentifier="FEEDBACK" showHide="show"> Correct </feedbackInline>
+            <feedbackInline id="feedbackInline1" identifier="CORRECT-OK"
+                outcomeIdentifier="FEEDBACK" showHide="show"> OK </feedbackInline>
+            <feedbackInline id="feedbackInline2" identifier="NOTSIMP" outcomeIdentifier="FEEDBACK"
+                showHide="show"> That is not the simplest form of the expression. </feedbackInline>
+            <feedbackInline id="feedbackInline3" identifier="INCORRECT" outcomeIdentifier="FEEDBACK"
+                showHide="show"> Incorrect </feedbackInline>
+            <feedbackInline id="feedbackInline4" identifier="ORIGINAL" outcomeIdentifier="FEEDBACK"
+                showHide="show"> That is the expression you started with! </feedbackInline>
+            <feedbackInline id="feedbackInline5" identifier="ADDED" outcomeIdentifier="FEEDBACK"
+                showHide="show"> Correct; you have applied the rule for multiplying powers. </feedbackInline>
+            <feedbackInline id="feedbackInline6" identifier="SUBTRACTED"
+                outcomeIdentifier="FEEDBACK" showHide="show"> Incorrect; you seem to have applied
+                the rule for dividing powers. </feedbackInline>
+            <feedbackInline id="feedbackInline7" identifier="MULTIPLIED"
+                outcomeIdentifier="FEEDBACK" showHide="show"> Incorrect; you seem to have applied
+                the rule for a power of a power. </feedbackInline>
+            <feedbackInline id="feedbackInline8" identifier="RECIPROCAL"
+                outcomeIdentifier="FEEDBACK" showHide="show"> The sign of the power is incorrect.
+            </feedbackInline>
+        </div>
+        <feedbackBlock id="feedbackBlock9" identifier="HINT" outcomeIdentifier="FEEDBACK"
+            showHide="show">
+            <p> We are multiplying expressions involving powers, so what should we do with the
+                indices? </p>
+        </feedbackBlock>
+        <feedbackBlock id="feedbackBlock10" identifier="SOLUTION" outcomeIdentifier="FEEDBACK"
+            showHide="show">
+            <p> We are multiplying expressions involving powers, so we add the indices: </p>
+            <p>
+                <m:math display="block" id="mathML1">
+                    <m:semantics>
+                        <m:mrow>
+                            <m:msup>
+                                <m:mi> iN </m:mi>
+                                <m:mi> iA </m:mi>
+                            </m:msup>
+                            <m:msup>
+                                <m:mi> iN </m:mi>
+                                <m:mi> iB </m:mi>
+                            </m:msup>
+                            <m:mo> = </m:mo>
+                            <m:msup>
+                                <m:mi> iN </m:mi>
+                                <m:mfenced close=")" open="(">
+                                    <m:mrow>
+                                        <m:mi> iA </m:mi>
+                                        <m:mo> + </m:mo>
+                                        <m:mi> iB </m:mi>
+                                    </m:mrow>
+                                </m:mfenced>
+                            </m:msup>
+                            <m:mo> = </m:mo>
+                            <m:msup>
+                                <m:mi> iN </m:mi>
+                                <m:mi> iZ </m:mi>
+                            </m:msup>
+                        </m:mrow>
+                        <m:annotation encoding="SnuggleTeX">
+                            \[{\qv{iN}^\qv{iA}}{\qv{iN}^\qv{iB}}=\qv{iN}^(\qv{iA}+\qv{iB})=\qv{iN}^\qv{iZ}\]
+                        </m:annotation>
+                    </m:semantics>
+                </m:math>
+            </p>
+        </feedbackBlock>
+        <feedbackBlock id="feedbackBlock11" identifier="SEEN-SOLUTION" outcomeIdentifier="FEEDBACK"
+            showHide="show">
+            <p> Since you have viewed the solution, your score for this question will be 0. </p>
+        </feedbackBlock>
+        <feedbackBlock id="feedbackBlock12" identifier="SEEN-HINT" outcomeIdentifier="FEEDBACK"
+            showHide="show">
+            <p> Since you have viewed the hint, your score for this question will be halved. </p>
+        </feedbackBlock>
+        <feedbackBlock id="feedbackBlock13" identifier="askhint" outcomeIdentifier="ASKHINT"
+            showHide="show">
+            <p>
+                <endAttemptInteraction id="endAttemptInteraction1" responseIdentifier="HINTREQUEST"
+                    title="Show Hint"/>
+            </p>
+        </feedbackBlock>
+        <feedbackBlock id="feedbackBlock14" identifier="asksolution" outcomeIdentifier="ASKSOLUTION"
+            showHide="show">
+            <p>
+                <endAttemptInteraction id="endAttemptInteraction2" responseIdentifier="SOLREQUEST"
+                    title="Show Solution"/>
+            </p>
+        </feedbackBlock>
+    </itemBody>
+    <responseProcessing>
+        <setOutcomeValue identifier="FEEDBACK">
+            <multiple>
+                <variable identifier="EMPTY"/>
+            </multiple>
+        </setOutcomeValue>
+        <responseCondition>
+            <responseIf>
+                <variable identifier="HINTREQUEST"/>
+                <setOutcomeValue identifier="FEEDBACK">
+                    <multiple>
+                        <baseValue baseType="identifier">HINT</baseValue>
+                    </multiple>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="seenHint">
+                    <baseValue baseType="boolean">true</baseValue>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="ASKHINT">
+                    <baseValue baseType="identifier">null</baseValue>
+                </setOutcomeValue>
+            </responseIf>
+            <responseElseIf>
+                <variable identifier="SOLREQUEST"/>
+                <setOutcomeValue identifier="FEEDBACK">
+                    <multiple>
+                        <baseValue baseType="identifier">SOLUTION</baseValue>
+                    </multiple>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="seenSolution">
+                    <baseValue baseType="boolean">true</baseValue>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="ASKHINT">
+                    <baseValue baseType="identifier">null</baseValue>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="ASKSOLUTION">
+                    <baseValue baseType="identifier">null</baseValue>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="completionStatus">
+                    <baseValue baseType="identifier">completed</baseValue>
+                </setOutcomeValue>
+            </responseElseIf>
+            <responseElse>
+                <responseCondition>
+                    <responseIf>
+                        <isNull>
+                            <variable identifier="RESPONSE"/>
+                        </isNull>
+                        <setOutcomeValue identifier="SCORE">
+                            <baseValue baseType="float">0.0</baseValue>
+                        </setOutcomeValue>
+                    </responseIf>
+                    <responseElse>
+                        <setOutcomeValue identifier="SCORE">
+                            <baseValue baseType="float">0.0</baseValue>
+                        </setOutcomeValue>
+                        <setOutcomeValue identifier="oDummy">
+                            <customOperator class="org.qtitools.mathassess.ScriptRule"
+                                ma:simplify="false" ma:syntax="text/x-maxima">
+                                <baseValue baseType="string"><![CDATA[
+
+ oInput:RESPONSE;
+
+ equalp(p,q):= block([simp:false], if p=q then return(true) else return(false) )$ isEqual: equalp(RESPONSE,mAns);
+
+ equivp(p,q):= block([simp:true], if is(equal(p,q))=true then return(true) else return(false) )$ isEquiv: equivp(RESPONSE,mAns);
+
+ isRecip: equivp(RESPONSE,1/mAns);
+
+ isOrig: equalp(RESPONSE,mQues);
+
+ numR1: equalp(num(RESPONSE),mX^iZ);
+
+ numR2: equivp(num(RESPONSE),1);
+
+ denR1: equivp(denom(RESPONSE),1);
+
+ denR2: equalp(denom(RESPONSE),mX^(-iZ));
+
+ negPower: is(ev(-iZ,numer,simp)>0);
+
+ isSimp: equalp(RESPONSE,ev(RESPONSE,simp));
+
+ isNotSimp: if((numR2 and denR2 and not negPower) or (isEquiv and not isSimp)) then true else false;
+
+ isOK: if ((numR1 and denR1) or (negPower and numR2 and denR2)) then true else false;
+
+ isAdded: equivp(RESPONSE,mAdd);
+
+ isSubtracted: equivp(RESPONSE,mSub);
+
+ isMultiplied: equivp(RESPONSE,mMult);
+
+ 
+
+]]></baseValue>
+                            </customOperator>
+                        </setOutcomeValue>
+                        <responseCondition>
+                            <responseIf>
+                                <variable identifier="isEqual"/>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <baseValue baseType="identifier">CORRECT-EQ</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="SCORE">
+                                    <baseValue baseType="float">2.0</baseValue>
+                                </setOutcomeValue>
+                            </responseIf>
+                            <responseElseIf>
+                                <variable identifier="isOK"/>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <baseValue baseType="identifier">CORRECT-OK</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="SCORE">
+                                    <baseValue baseType="float">2.0</baseValue>
+                                </setOutcomeValue>
+                            </responseElseIf>
+                            <responseElseIf>
+                                <variable identifier="isOrig"/>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <baseValue baseType="identifier">ORIGINAL</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                            </responseElseIf>
+                            <responseElseIf>
+                                <variable identifier="isNotSimp"/>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <baseValue baseType="identifier">NOTSIMP</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                            </responseElseIf>
+                            <responseElseIf>
+                                <variable identifier="isRecip"/>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <baseValue baseType="identifier">RECIPROCAL</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                            </responseElseIf>
+                            <responseElseIf>
+                                <variable identifier="isAdded"/>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <baseValue baseType="identifier">ADDED</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                            </responseElseIf>
+                            <responseElseIf>
+                                <variable identifier="isSubtracted"/>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <baseValue baseType="identifier">SUBTRACTED</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="SCORE">
+                                    <baseValue baseType="float">2.0</baseValue>
+                                </setOutcomeValue>
+                            </responseElseIf>
+                            <responseElseIf>
+                                <variable identifier="isMultiplied"/>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <baseValue baseType="identifier">MULTIPLIED</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                            </responseElseIf>
+                            <responseElse>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <baseValue baseType="identifier">INCORRECT</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                            </responseElse>
+                        </responseCondition>
+                    </responseElse>
+                </responseCondition>
+                <responseCondition>
+                    <responseIf>
+                        <variable identifier="seenSolution"/>
+                        <setOutcomeValue identifier="FEEDBACK">
+                            <multiple>
+                                <variable identifier="FEEDBACK"/>
+                                <baseValue baseType="identifier">SEEN-SOLUTION</baseValue>
+                            </multiple>
+                        </setOutcomeValue>
+                        <setOutcomeValue identifier="SCORE">
+                            <baseValue baseType="float">0.0</baseValue>
+                        </setOutcomeValue>
+                    </responseIf>
+                    <responseElseIf>
+                        <variable identifier="seenHint"/>
+                        <setOutcomeValue identifier="FEEDBACK">
+                            <multiple>
+                                <variable identifier="FEEDBACK"/>
+                                <baseValue baseType="identifier">SEEN-HINT</baseValue>
+                            </multiple>
+                        </setOutcomeValue>
+                        <setOutcomeValue identifier="SCORE">
+                            <divide>
+                                <variable identifier="SCORE"/>
+                                <baseValue baseType="float">2.0</baseValue>
+                            </divide>
+                        </setOutcomeValue>
+                    </responseElseIf>
+                </responseCondition>
+            </responseElse>
+        </responseCondition>
+    </responseProcessing>
+</assessmentItem>

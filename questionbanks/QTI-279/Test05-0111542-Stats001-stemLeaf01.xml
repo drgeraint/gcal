@@ -1,0 +1,3453 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p1"    
+    xmlns:m="http://www.w3.org/1998/Math/MathML"
+    xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" adaptive="true" 
+    identifier="Test05-0111542-Stats001-stemLeaf01"
+    timeDependent="false" title="Interpret a stem and leaf graph" toolName="Mathqurate" toolVersion="1.0"
+    xml:lang="en"
+    xsi:schemaLocation="http://www.imsglobal.org/xsd/imsqti_v2p1 imsqti_v2p1.xsd">
+    <responseDeclaration baseType="integer" cardinality="single" identifier="RESPONSE1"/>
+    <responseDeclaration baseType="float" cardinality="single" identifier="RESPONSE2"/>
+    <responseDeclaration baseType="integer" cardinality="single" identifier="RESPONSE3"/>
+    <responseDeclaration baseType="string" cardinality="single" identifier="sInput"/>
+    <responseDeclaration baseType="boolean" cardinality="single" identifier="HINTREQUEST"/>
+    <responseDeclaration baseType="boolean" cardinality="single" identifier="SOLREQUEST"/>
+    <outcomeDeclaration baseType="float" cardinality="single" identifier="SCORE" normalMaximum="2.0"
+        normalMinimum="0.0">
+        <defaultValue>
+            <value>0.0</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="seenSolution">
+        <defaultValue>
+            <value>false</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="seenHint">
+        <defaultValue>
+            <value>false</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="identifier" cardinality="single" identifier="ASKHINT">
+        <defaultValue>
+            <value>askhint</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="identifier" cardinality="single" identifier="ASKSOLUTION">
+        <defaultValue>
+            <value>asksolution</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="identifier" cardinality="multiple" identifier="FEEDBACK"/>
+    <outcomeDeclaration baseType="identifier" cardinality="single" identifier="EMPTY"/>
+    <templateDeclaration baseType="boolean" cardinality="single" identifier="inTest">
+        <defaultValue>
+            <value>false</value>
+        </defaultValue>
+    </templateDeclaration>
+    <templateDeclaration baseType="identifier" cardinality="multiple" identifier="tHide"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="nTries"
+        mathVariable="false" paramVariable="false">
+        <defaultValue>
+            <value>3</value>
+        </defaultValue>
+    </templateDeclaration>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iF00"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iF01"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iF02"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iF03"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iF04"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iF05"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iF06"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iF07"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iF08"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iF09"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iN"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iType"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="identifier" cardinality="multiple" identifier="tParts"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iStart"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iIncr"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="float" cardinality="single" identifier="fIncr"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iVal01"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iVal02"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iVal03"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iVal04"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iVal05"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iVal06"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iVal07"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="string" cardinality="single" identifier="sIntro" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="string" cardinality="single" identifier="sExplain" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="string" cardinality="single" identifier="sMeasure"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iLoHiStem"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iLoHiLeaf"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="string" cardinality="single" identifier="sLoHi"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="float" cardinality="single" identifier="fLoHi"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="string" cardinality="single" identifier="sGtLt"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iGtLt"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iStem"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iLeaf"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="float" cardinality="single" identifier="fGtLt"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="ordered" identifier="iFreqList01"
+        mathVariable="true" paramVariable="false">
+        <defaultValue>
+            <value>0</value>
+            <value>0</value>
+            <value>0</value>
+            <value>0</value>
+            <value>1</value>
+            <value>2</value>
+            <value>0</value>
+            <value>0</value>
+            <value>0</value>
+            <value>1</value>
+        </defaultValue>
+    </templateDeclaration>
+    <templateDeclaration baseType="integer" cardinality="ordered" identifier="iFreqList02"
+        mathVariable="true" paramVariable="false">
+        <defaultValue>
+            <value>1</value>
+            <value>0</value>
+            <value>0</value>
+            <value>1</value>
+            <value>0</value>
+            <value>2</value>
+            <value>0</value>
+            <value>0</value>
+            <value>1</value>
+            <value>1</value>
+        </defaultValue>
+    </templateDeclaration>
+    <templateDeclaration baseType="integer" cardinality="ordered" identifier="iFreqList03"
+        mathVariable="true" paramVariable="false">
+        <defaultValue>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0</value>
+            <value>3</value>
+            <value>0</value>
+            <value>2</value>
+            <value>0</value>
+            <value>1</value>
+            <value>1</value>
+        </defaultValue>
+    </templateDeclaration>
+    <templateDeclaration baseType="integer" cardinality="ordered" identifier="iFreqList04"
+        mathVariable="true" paramVariable="false">
+        <defaultValue>
+            <value>0</value>
+            <value>0</value>
+            <value>0</value>
+            <value>0</value>
+            <value>0</value>
+            <value>0</value>
+            <value>0</value>
+            <value>0</value>
+            <value>0</value>
+            <value>0</value>
+        </defaultValue>
+    </templateDeclaration>
+    <templateDeclaration baseType="integer" cardinality="ordered" identifier="iFreqList05"
+        mathVariable="true" paramVariable="false">
+        <defaultValue>
+            <value>2</value>
+            <value>1</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>3</value>
+            <value>1</value>
+            <value>0</value>
+            <value>1</value>
+            <value>2</value>
+        </defaultValue>
+    </templateDeclaration>
+    <templateDeclaration baseType="integer" cardinality="ordered" identifier="iFreqList06"
+        mathVariable="true" paramVariable="false">
+        <defaultValue>
+            <value>1</value>
+            <value>2</value>
+            <value>1</value>
+            <value>1</value>
+            <value>1</value>
+            <value>0</value>
+            <value>0</value>
+            <value>2</value>
+            <value>3</value>
+            <value>3</value>
+        </defaultValue>
+    </templateDeclaration>
+    <templateDeclaration baseType="integer" cardinality="ordered" identifier="iFreqList07"
+        mathVariable="true" paramVariable="false">
+        <defaultValue>
+            <value>3</value>
+            <value>2</value>
+            <value>1</value>
+            <value>2</value>
+            <value>0</value>
+            <value>0</value>
+            <value>0</value>
+            <value>0</value>
+            <value>0</value>
+            <value>0</value>
+        </defaultValue>
+    </templateDeclaration>
+    <templateDeclaration identifier="iSumF01" cardinality="single" baseType="integer" mathVariable="false" paramVariable="false">
+        <defaultValue>
+            <value>4</value>
+        </defaultValue>
+    </templateDeclaration>
+    <templateDeclaration identifier="iSumF02" cardinality="single" baseType="integer" mathVariable="false" paramVariable="false">
+        <defaultValue>
+            <value>6</value>
+        </defaultValue>
+    </templateDeclaration>
+    <templateDeclaration identifier="iSumF03" cardinality="single" baseType="integer" mathVariable="false" paramVariable="false">
+        <defaultValue>
+            <value>9</value>
+        </defaultValue>
+    </templateDeclaration>
+    <templateDeclaration identifier="iSumF04" cardinality="single" baseType="integer" mathVariable="false" paramVariable="false">
+        <defaultValue>
+            <value>0</value>
+        </defaultValue>
+    </templateDeclaration>
+    <templateDeclaration identifier="iSumF05" cardinality="single" baseType="integer" mathVariable="false" paramVariable="false">
+        <defaultValue>
+            <value>12</value>
+        </defaultValue>
+    </templateDeclaration>
+    <templateDeclaration identifier="iSumF06" cardinality="single" baseType="integer" mathVariable="false" paramVariable="false">
+        <defaultValue>
+            <value>14</value>
+        </defaultValue>
+    </templateDeclaration>
+    <templateDeclaration identifier="iSumF07" cardinality="single" baseType="integer" mathVariable="false" paramVariable="false">
+        <defaultValue>
+            <value>8</value>
+        </defaultValue>
+    </templateDeclaration>
+    <templateDeclaration baseType="integer" cardinality="ordered" identifier="iSample01" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="ordered" identifier="iSample02" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="ordered" identifier="iSample03" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="ordered" identifier="iSample04" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="ordered" identifier="iSample05" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="ordered" identifier="iSample06" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="ordered" identifier="iSample07" mathVariable="true"
+        paramVariable="false"/>
+    <templateProcessing>
+        <templateCondition>
+            <templateIf>
+                <variable identifier="inTest"/>
+                <setTemplateValue identifier="tHide">
+                    <multiple>
+                        <baseValue baseType="identifier">InputFeedback</baseValue>
+                        <baseValue baseType="identifier">TriesMessage</baseValue>
+                        <baseValue baseType="identifier">SolHintFeedback</baseValue>
+                        <baseValue baseType="identifier">SolHintButtons</baseValue>
+                    </multiple>
+                </setTemplateValue>
+            </templateIf>
+        </templateCondition>
+        
+        <setTemplateValue identifier="iFreqList01">
+            <ordered>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                    </multiple>
+                </random>
+            </ordered>
+        </setTemplateValue>
+        <setTemplateValue identifier="iSumF01">
+            <sum>
+                <variable identifier="iFreqList01"/>
+            </sum>
+        </setTemplateValue>
+        <templateConstraint>
+            <and>
+                <gt>
+                    <variable identifier="iSumF01"/>
+                    <baseValue baseType="integer">0</baseValue>
+                </gt>
+                <lte>
+                    <variable identifier="iSumF01"/>
+                    <baseValue baseType="integer">15</baseValue>
+                </lte>
+            </and>
+        </templateConstraint>
+        <setTemplateValue identifier="iFreqList02">
+            <ordered>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                        <randomInteger min="0" max="3"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                        <randomInteger min="0" max="3"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                        <randomInteger min="0" max="3"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                        <randomInteger min="0" max="3"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                        <randomInteger min="0" max="3"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                        <randomInteger min="0" max="3"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                        <randomInteger min="0" max="3"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                        <randomInteger min="0" max="3"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                        <randomInteger min="0" max="3"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                        <randomInteger min="0" max="3"/>
+                    </multiple>
+                </random>
+            </ordered>
+        </setTemplateValue>
+        <setTemplateValue identifier="iSumF02">
+            <sum>
+                <variable identifier="iFreqList02"/>
+            </sum>
+        </setTemplateValue>
+        <templateConstraint>
+            <lte>
+                <variable identifier="iSumF02"/>
+                <baseValue baseType="integer">15</baseValue>
+            </lte>
+        </templateConstraint>
+        <setTemplateValue identifier="iFreqList03">
+            <ordered>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                        <randomInteger min="0" max="3"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                        <randomInteger min="0" max="3"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                        <randomInteger min="0" max="3"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                        <randomInteger min="0" max="3"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                        <randomInteger min="0" max="3"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                        <randomInteger min="0" max="3"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                        <randomInteger min="0" max="3"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                        <randomInteger min="0" max="3"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                        <randomInteger min="0" max="3"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                        <randomInteger min="0" max="3"/>
+                    </multiple>
+                </random>
+            </ordered>
+        </setTemplateValue>
+        <setTemplateValue identifier="iSumF03">
+            <sum>
+                <variable identifier="iFreqList03"/>
+            </sum>
+        </setTemplateValue>
+        <templateConstraint>
+            <lte>
+                <variable identifier="iSumF03"/>
+                <baseValue baseType="integer">15</baseValue>
+            </lte>
+        </templateConstraint>
+        <setTemplateValue identifier="iFreqList04">
+            <ordered>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                        <randomInteger min="0" max="3"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                        <randomInteger min="0" max="3"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                        <randomInteger min="0" max="3"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                        <randomInteger min="0" max="3"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                        <randomInteger min="0" max="3"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                        <randomInteger min="0" max="3"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                        <randomInteger min="0" max="3"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                        <randomInteger min="0" max="3"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                        <randomInteger min="0" max="3"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                        <randomInteger min="0" max="3"/>
+                    </multiple>
+                </random>
+            </ordered>
+        </setTemplateValue>
+        <setTemplateValue identifier="iSumF04">
+            <sum>
+                <variable identifier="iFreqList04"/>
+            </sum>
+        </setTemplateValue>
+        <templateConstraint>
+            <lte>
+                <variable identifier="iSumF04"/>
+                <baseValue baseType="integer">15</baseValue>
+            </lte>
+        </templateConstraint>
+        <setTemplateValue identifier="iFreqList05">
+            <ordered>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                        <randomInteger min="0" max="3"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                        <randomInteger min="0" max="3"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                        <randomInteger min="0" max="3"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                        <randomInteger min="0" max="3"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                        <randomInteger min="0" max="3"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                        <randomInteger min="0" max="3"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                        <randomInteger min="0" max="3"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                        <randomInteger min="0" max="3"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                        <randomInteger min="0" max="3"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                        <randomInteger min="0" max="3"/>
+                    </multiple>
+                </random>
+            </ordered>
+        </setTemplateValue>
+        <setTemplateValue identifier="iSumF05">
+            <sum>
+                <variable identifier="iFreqList05"/>
+            </sum>
+        </setTemplateValue>
+        <templateConstraint>
+            <lte>
+                <variable identifier="iSumF05"/>
+                <baseValue baseType="integer">15</baseValue>
+            </lte>
+        </templateConstraint>
+        <setTemplateValue identifier="iFreqList06">
+            <ordered>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                        <randomInteger min="0" max="3"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                        <randomInteger min="0" max="3"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                        <randomInteger min="0" max="3"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                        <randomInteger min="0" max="3"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                        <randomInteger min="0" max="3"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                        <randomInteger min="0" max="3"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                        <randomInteger min="0" max="3"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                        <randomInteger min="0" max="3"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                        <randomInteger min="0" max="3"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                        <randomInteger min="0" max="3"/>
+                    </multiple>
+                </random>
+            </ordered>
+        </setTemplateValue>
+        <setTemplateValue identifier="iSumF06">
+            <sum>
+                <variable identifier="iFreqList06"/>
+            </sum>
+        </setTemplateValue>
+        <templateConstraint>
+            <lte>
+                <variable identifier="iSumF06"/>
+                <baseValue baseType="integer">15</baseValue>
+            </lte>
+        </templateConstraint>
+        <setTemplateValue identifier="iFreqList07">
+            <ordered>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                        <randomInteger min="0" max="3"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                        <randomInteger min="0" max="3"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                        <randomInteger min="0" max="3"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                        <randomInteger min="0" max="3"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                        <randomInteger min="0" max="3"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                        <randomInteger min="0" max="3"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                        <randomInteger min="0" max="3"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                        <randomInteger min="0" max="3"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                        <randomInteger min="0" max="3"/>
+                    </multiple>
+                </random>
+                <random>
+                    <multiple>
+                        <baseValue baseType="integer">0</baseValue>
+                        <randomInteger min="0" max="2"/>
+                        <randomInteger min="0" max="3"/>
+                    </multiple>
+                </random>
+            </ordered>
+        </setTemplateValue>
+        <setTemplateValue identifier="iSumF07">
+            <sum>
+                <variable identifier="iFreqList07"/>
+            </sum>
+        </setTemplateValue>
+        <templateConstraint>
+            <and>
+                <gt>
+                    <variable identifier="iSumF07"/>
+                    <baseValue baseType="integer">0</baseValue>
+                </gt>
+                <lte>
+                    <variable identifier="iSumF07"/>
+                    <baseValue baseType="integer">15</baseValue>
+                </lte>
+            </and>
+        </templateConstraint>
+        <setTemplateValue identifier="iN">
+            <sum>
+                <variable identifier="iSumF01"/>
+                <variable identifier="iSumF02"/>
+                <variable identifier="iSumF03"/>
+                <variable identifier="iSumF04"/>
+                <variable identifier="iSumF05"/>
+                <variable identifier="iSumF06"/>
+                <variable identifier="iSumF07"/>
+            </sum>
+        </setTemplateValue>
+        <templateConstraint>
+            <and>
+                <gte>
+                    <variable identifier="iN"/>
+                    <baseValue baseType="integer">30</baseValue>
+                </gte>
+                <lte>
+                    <variable identifier="iN"/>
+                    <baseValue baseType="integer">70</baseValue>
+                </lte>
+            </and>
+        </templateConstraint>
+        <setTemplateValue identifier="iF00">
+            <index n="10">
+                <variable identifier="iFreqList01"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF01">
+            <index n="1">
+                <variable identifier="iFreqList01"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF02">
+            <index n="2">
+                <variable identifier="iFreqList01"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF03">
+            <index n="3">
+                <variable identifier="iFreqList01"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF04">
+            <index n="4">
+                <variable identifier="iFreqList01"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF05">
+            <index n="5">
+                <variable identifier="iFreqList01"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF06">
+            <index n="6">
+                <variable identifier="iFreqList01"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF07">
+            <index n="7">
+                <variable identifier="iFreqList01"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF08">
+            <index n="8">
+                <variable identifier="iFreqList01"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF09">
+            <index n="9">
+                <variable identifier="iFreqList01"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iSample01">
+            <ordered>
+                <repeat numberRepeats="iF00">
+                    <baseValue baseType="integer">0</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF01">
+                    <baseValue baseType="integer">1</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF02">
+                    <baseValue baseType="integer">2</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF03">
+                    <baseValue baseType="integer">3</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF04">
+                    <baseValue baseType="integer">4</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF05">
+                    <baseValue baseType="integer">5</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF06">
+                    <baseValue baseType="integer">6</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF07">
+                    <baseValue baseType="integer">7</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF08">
+                    <baseValue baseType="integer">8</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF09">
+                    <baseValue baseType="integer">9</baseValue>
+                </repeat>
+            </ordered>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF00">
+            <index n="10">
+                <variable identifier="iFreqList02"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF01">
+            <index n="1">
+                <variable identifier="iFreqList02"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF02">
+            <index n="2">
+                <variable identifier="iFreqList02"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF03">
+            <index n="3">
+                <variable identifier="iFreqList02"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF04">
+            <index n="4">
+                <variable identifier="iFreqList02"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF05">
+            <index n="5">
+                <variable identifier="iFreqList02"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF06">
+            <index n="6">
+                <variable identifier="iFreqList02"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF07">
+            <index n="7">
+                <variable identifier="iFreqList02"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF08">
+            <index n="8">
+                <variable identifier="iFreqList02"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF09">
+            <index n="9">
+                <variable identifier="iFreqList02"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iSample02">
+            <ordered>
+                <repeat numberRepeats="iF00">
+                    <baseValue baseType="integer">0</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF01">
+                    <baseValue baseType="integer">1</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF02">
+                    <baseValue baseType="integer">2</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF03">
+                    <baseValue baseType="integer">3</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF04">
+                    <baseValue baseType="integer">4</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF05">
+                    <baseValue baseType="integer">5</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF06">
+                    <baseValue baseType="integer">6</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF07">
+                    <baseValue baseType="integer">7</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF08">
+                    <baseValue baseType="integer">8</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF09">
+                    <baseValue baseType="integer">9</baseValue>
+                </repeat>
+            </ordered>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF00">
+            <index n="10">
+                <variable identifier="iFreqList03"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF01">
+            <index n="1">
+                <variable identifier="iFreqList03"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF02">
+            <index n="2">
+                <variable identifier="iFreqList03"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF03">
+            <index n="3">
+                <variable identifier="iFreqList03"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF04">
+            <index n="4">
+                <variable identifier="iFreqList03"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF05">
+            <index n="5">
+                <variable identifier="iFreqList03"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF06">
+            <index n="6">
+                <variable identifier="iFreqList03"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF07">
+            <index n="7">
+                <variable identifier="iFreqList03"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF08">
+            <index n="8">
+                <variable identifier="iFreqList03"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF09">
+            <index n="9">
+                <variable identifier="iFreqList03"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iSample03">
+            <ordered>
+                <repeat numberRepeats="iF00">
+                    <baseValue baseType="integer">0</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF01">
+                    <baseValue baseType="integer">1</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF02">
+                    <baseValue baseType="integer">2</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF03">
+                    <baseValue baseType="integer">3</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF04">
+                    <baseValue baseType="integer">4</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF05">
+                    <baseValue baseType="integer">5</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF06">
+                    <baseValue baseType="integer">6</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF07">
+                    <baseValue baseType="integer">7</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF08">
+                    <baseValue baseType="integer">8</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF09">
+                    <baseValue baseType="integer">9</baseValue>
+                </repeat>
+            </ordered>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF00">
+            <index n="10">
+                <variable identifier="iFreqList04"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF01">
+            <index n="1">
+                <variable identifier="iFreqList04"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF02">
+            <index n="2">
+                <variable identifier="iFreqList04"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF03">
+            <index n="3">
+                <variable identifier="iFreqList04"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF04">
+            <index n="4">
+                <variable identifier="iFreqList04"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF05">
+            <index n="5">
+                <variable identifier="iFreqList04"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF06">
+            <index n="6">
+                <variable identifier="iFreqList04"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF07">
+            <index n="7">
+                <variable identifier="iFreqList04"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF08">
+            <index n="8">
+                <variable identifier="iFreqList04"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF09">
+            <index n="9">
+                <variable identifier="iFreqList04"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iSample04">
+            <ordered>
+                <repeat numberRepeats="iF00">
+                    <baseValue baseType="integer">0</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF01">
+                    <baseValue baseType="integer">1</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF02">
+                    <baseValue baseType="integer">2</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF03">
+                    <baseValue baseType="integer">3</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF04">
+                    <baseValue baseType="integer">4</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF05">
+                    <baseValue baseType="integer">5</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF06">
+                    <baseValue baseType="integer">6</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF07">
+                    <baseValue baseType="integer">7</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF08">
+                    <baseValue baseType="integer">8</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF09">
+                    <baseValue baseType="integer">9</baseValue>
+                </repeat>
+            </ordered>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF00">
+            <index n="10">
+                <variable identifier="iFreqList05"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF01">
+            <index n="1">
+                <variable identifier="iFreqList05"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF02">
+            <index n="2">
+                <variable identifier="iFreqList05"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF03">
+            <index n="3">
+                <variable identifier="iFreqList05"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF04">
+            <index n="4">
+                <variable identifier="iFreqList05"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF05">
+            <index n="5">
+                <variable identifier="iFreqList05"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF06">
+            <index n="6">
+                <variable identifier="iFreqList05"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF07">
+            <index n="7">
+                <variable identifier="iFreqList05"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF08">
+            <index n="8">
+                <variable identifier="iFreqList05"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF09">
+            <index n="9">
+                <variable identifier="iFreqList05"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iSample05">
+            <ordered>
+                <repeat numberRepeats="iF00">
+                    <baseValue baseType="integer">0</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF01">
+                    <baseValue baseType="integer">1</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF02">
+                    <baseValue baseType="integer">2</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF03">
+                    <baseValue baseType="integer">3</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF04">
+                    <baseValue baseType="integer">4</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF05">
+                    <baseValue baseType="integer">5</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF06">
+                    <baseValue baseType="integer">6</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF07">
+                    <baseValue baseType="integer">7</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF08">
+                    <baseValue baseType="integer">8</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF09">
+                    <baseValue baseType="integer">9</baseValue>
+                </repeat>
+            </ordered>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF00">
+            <index n="10">
+                <variable identifier="iFreqList06"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF01">
+            <index n="1">
+                <variable identifier="iFreqList06"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF02">
+            <index n="2">
+                <variable identifier="iFreqList06"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF03">
+            <index n="3">
+                <variable identifier="iFreqList06"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF04">
+            <index n="4">
+                <variable identifier="iFreqList06"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF05">
+            <index n="5">
+                <variable identifier="iFreqList06"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF06">
+            <index n="6">
+                <variable identifier="iFreqList06"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF07">
+            <index n="7">
+                <variable identifier="iFreqList06"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF08">
+            <index n="8">
+                <variable identifier="iFreqList06"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF09">
+            <index n="9">
+                <variable identifier="iFreqList06"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iSample06">
+            <ordered>
+                <repeat numberRepeats="iF00">
+                    <baseValue baseType="integer">0</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF01">
+                    <baseValue baseType="integer">1</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF02">
+                    <baseValue baseType="integer">2</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF03">
+                    <baseValue baseType="integer">3</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF04">
+                    <baseValue baseType="integer">4</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF05">
+                    <baseValue baseType="integer">5</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF06">
+                    <baseValue baseType="integer">6</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF07">
+                    <baseValue baseType="integer">7</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF08">
+                    <baseValue baseType="integer">8</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF09">
+                    <baseValue baseType="integer">9</baseValue>
+                </repeat>
+            </ordered>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF00">
+            <index n="10">
+                <variable identifier="iFreqList07"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF01">
+            <index n="1">
+                <variable identifier="iFreqList07"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF02">
+            <index n="2">
+                <variable identifier="iFreqList07"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF03">
+            <index n="3">
+                <variable identifier="iFreqList07"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF04">
+            <index n="4">
+                <variable identifier="iFreqList07"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF05">
+            <index n="5">
+                <variable identifier="iFreqList07"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF06">
+            <index n="6">
+                <variable identifier="iFreqList07"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF07">
+            <index n="7">
+                <variable identifier="iFreqList07"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF08">
+            <index n="8">
+                <variable identifier="iFreqList07"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iF09">
+            <index n="9">
+                <variable identifier="iFreqList07"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iSample07">
+            <ordered>
+                <repeat numberRepeats="iF00">
+                    <baseValue baseType="integer">0</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF01">
+                    <baseValue baseType="integer">1</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF02">
+                    <baseValue baseType="integer">2</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF03">
+                    <baseValue baseType="integer">3</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF04">
+                    <baseValue baseType="integer">4</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF05">
+                    <baseValue baseType="integer">5</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF06">
+                    <baseValue baseType="integer">6</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF07">
+                    <baseValue baseType="integer">7</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF08">
+                    <baseValue baseType="integer">8</baseValue>
+                </repeat>
+                <repeat numberRepeats="iF09">
+                    <baseValue baseType="integer">9</baseValue>
+                </repeat>
+            </ordered>
+        </setTemplateValue>
+        <setTemplateValue identifier="iType">
+            <randomInteger min="1" max="2"/>
+        </setTemplateValue>
+        <setTemplateValue identifier="sIntro">
+            <index n="iType">
+                <ordered>
+                    <baseValue baseType="string">The stem and leaf graph shows the exam results for a Maths class.</baseValue>
+                    <baseValue baseType="string">The stem and leaf graph shows the haemoglobin levels recorded for patients at a doctor's surgery over the past month.</baseValue>
+                </ordered>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="sExplain">
+            <index n="iType">
+                <ordered>
+                    <baseValue baseType="string">84 %</baseValue>
+                    <baseValue baseType="string">a haemoglobin level of 8.4</baseValue>
+                </ordered>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iStart">
+            <index n="iType">
+                <ordered>
+                    <baseValue baseType="integer">3</baseValue>
+                    <baseValue baseType="integer">7</baseValue>
+                </ordered>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iIncr">
+            <index n="iType">
+                <ordered>
+                    <baseValue baseType="integer">10</baseValue>
+                    <baseValue baseType="integer">1</baseValue>
+                </ordered>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="fIncr">
+            <index n="iType">
+                <ordered>
+                    <baseValue baseType="float">1.0</baseValue>
+                    <baseValue baseType="float">0.1</baseValue>
+                </ordered>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iVal01">
+            <variable identifier="iStart"/>
+        </setTemplateValue>
+        <setTemplateValue identifier="iVal02">
+            <sum>
+                <variable identifier="iStart"/>
+                <baseValue baseType="integer">1</baseValue>
+            </sum>
+        </setTemplateValue>
+        <setTemplateValue identifier="iVal03">
+            <sum>
+                <variable identifier="iStart"/>
+                <baseValue baseType="integer">2</baseValue>
+            </sum>
+        </setTemplateValue>
+        <setTemplateValue identifier="iVal04">
+            <sum>
+                <variable identifier="iStart"/>
+                <baseValue baseType="integer">3</baseValue>
+            </sum>
+        </setTemplateValue>
+        <setTemplateValue identifier="iVal05">
+            <sum>
+                <variable identifier="iStart"/>
+                <baseValue baseType="integer">4</baseValue>
+            </sum>
+        </setTemplateValue>
+        <setTemplateValue identifier="iVal06">
+            <sum>
+                <variable identifier="iStart"/>
+                <baseValue baseType="integer">5</baseValue>
+            </sum>
+        </setTemplateValue>
+        <setTemplateValue identifier="iVal07">
+            <sum>
+                <variable identifier="iStart"/>
+                <baseValue baseType="integer">6</baseValue>
+            </sum>
+        </setTemplateValue>
+        <templateCondition>
+            <templateIf>
+                <equal toleranceMode="exact">
+                    <variable identifier="iType"/>
+                    <baseValue baseType="integer">1</baseValue>
+                </equal>
+                <setTemplateValue identifier="tParts">
+                    <multiple>
+                        <baseValue baseType="identifier">Ques11</baseValue>
+                        <baseValue baseType="identifier">Ques21</baseValue>
+                        <baseValue baseType="identifier">ValGtLt1</baseValue>
+                        <baseValue baseType="identifier">ValGtLt3</baseValue>
+                    </multiple>
+                </setTemplateValue>
+            </templateIf>
+            <templateElse>
+                <setTemplateValue identifier="tParts">
+                    <multiple>
+                        <baseValue baseType="identifier">Ques12</baseValue>
+                        <baseValue baseType="identifier">Ques22</baseValue>
+                        <baseValue baseType="identifier">ValGtLt2</baseValue>
+                        <baseValue baseType="identifier">ValGtLt4</baseValue>
+                    </multiple>
+                </setTemplateValue>
+            </templateElse>
+        </templateCondition>
+        <setTemplateValue identifier="sLoHi">
+            <random>
+                <multiple>
+                    <baseValue baseType="string">lowest</baseValue>
+                    <baseValue baseType="string">highest</baseValue>
+                </multiple>
+            </random>
+        </setTemplateValue>
+        <templateCondition>
+            <templateIf>
+                <match>
+                    <variable identifier="sLoHi"/>
+                    <baseValue baseType="string">lowest</baseValue>
+                </match>
+                <setTemplateValue identifier="iLoHiStem">
+                    <variable identifier="iVal01"/>
+                </setTemplateValue>
+                <setTemplateValue identifier="iLoHiLeaf">
+                    <index n="1">
+                        <variable identifier="iSample01"/>
+                    </index>
+                </setTemplateValue>
+                <setTemplateValue identifier="fLoHi">
+                    <sum>
+                        <product>
+                            <variable identifier="iIncr"/>
+                            <variable identifier="iLoHiStem"/>
+                        </product>
+                        <product>
+                            <variable identifier="fIncr"/>
+                            <variable identifier="iLoHiLeaf"/>
+                        </product>
+                    </sum>
+                </setTemplateValue>
+            </templateIf>
+            <templateElse>
+                <setTemplateValue identifier="iLoHiStem">
+                    <variable identifier="iVal07"/>
+                </setTemplateValue>
+                <setTemplateValue identifier="iLoHiLeaf">
+                    <index n="iSumF07">
+                        <variable identifier="iSample07"/>
+                    </index>
+                </setTemplateValue>
+                <setTemplateValue identifier="fLoHi">
+                    <sum>
+                        <product>
+                            <variable identifier="iIncr"/>
+                            <variable identifier="iLoHiStem"/>
+                        </product>
+                        <product>
+                            <variable identifier="fIncr"/>
+                            <variable identifier="iLoHiLeaf"/>
+                        </product>
+                    </sum>
+                </setTemplateValue>
+            </templateElse>
+        </templateCondition>
+        <setTemplateValue identifier="sGtLt">
+            <random>
+                <multiple>
+                    <baseValue baseType="string">greater</baseValue>
+                    <baseValue baseType="string">less</baseValue>
+                </multiple>
+            </random>
+        </setTemplateValue>
+        <setTemplateValue identifier="iStem">
+            <randomInteger min="2" max="5"/>
+        </setTemplateValue>
+        <setTemplateValue identifier="iLeaf">
+            <randomInteger min="1" max="9"/>
+        </setTemplateValue>
+        <setTemplateValue identifier="fGtLt">
+            <sum>
+                <product>
+                    <sum>
+                        <variable identifier="iStart"/>
+                        <variable identifier="iStem"/>
+                    </sum>
+                    <variable identifier="iIncr"/>
+                </product>
+                <product>
+                    <variable identifier="fIncr"/>
+                    <variable identifier="iLeaf"/>
+                </product>
+            </sum>
+        </setTemplateValue>
+        <templateCondition>
+            <templateIf>
+                <match>
+                    <variable identifier="sGtLt"/>
+                    <baseValue baseType="string">less</baseValue>
+                </match>
+                <setTemplateValue identifier="iGtLt">
+                    <sum>
+                        <variable identifier="iSumF01"/>
+                        <variable identifier="iSumF02"/>
+                    </sum>
+                </setTemplateValue>
+                <templateCondition>
+                    <templateIf>
+                        <equal toleranceMode="exact">
+                            <variable identifier="iStem"/>
+                            <baseValue baseType="integer">2</baseValue>
+                        </equal>
+                        <templateCondition>
+                            <templateIf>
+                                <gt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">0</baseValue>
+                                </gt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="10">
+                                            <variable identifier="iFreqList03"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <gt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">1</baseValue>
+                                </gt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="1">
+                                            <variable identifier="iFreqList03"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <gt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">2</baseValue>
+                                </gt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="2">
+                                            <variable identifier="iFreqList03"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <gt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">3</baseValue>
+                                </gt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="3">
+                                            <variable identifier="iFreqList03"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <gt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">4</baseValue>
+                                </gt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="4">
+                                            <variable identifier="iFreqList03"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <gt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">5</baseValue>
+                                </gt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="5">
+                                            <variable identifier="iFreqList03"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <gt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">6</baseValue>
+                                </gt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="6">
+                                            <variable identifier="iFreqList03"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <gt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">7</baseValue>
+                                </gt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="7">
+                                            <variable identifier="iFreqList03"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <gt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">8</baseValue>
+                                </gt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="8">
+                                            <variable identifier="iFreqList03"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                    </templateIf>
+                    <templateElseIf>
+                        <gt>
+                            <variable identifier="iStem"/>
+                            <baseValue baseType="integer">2</baseValue>
+                        </gt>
+                        <setTemplateValue identifier="iGtLt">
+                            <sum>
+                                <variable identifier="iGtLt"/>
+                                <variable identifier="iSumF03"/>
+                            </sum>
+                        </setTemplateValue>
+                    </templateElseIf>
+                </templateCondition>
+                <templateCondition>
+                    <templateIf>
+                        <equal toleranceMode="exact">
+                            <variable identifier="iStem"/>
+                            <baseValue baseType="integer">3</baseValue>
+                        </equal>
+                        <templateCondition>
+                            <templateIf>
+                                <gt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">0</baseValue>
+                                </gt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="10">
+                                            <variable identifier="iFreqList04"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <gt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">1</baseValue>
+                                </gt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="1">
+                                            <variable identifier="iFreqList04"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <gt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">2</baseValue>
+                                </gt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="2">
+                                            <variable identifier="iFreqList04"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <gt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">3</baseValue>
+                                </gt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="3">
+                                            <variable identifier="iFreqList04"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <gt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">4</baseValue>
+                                </gt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="4">
+                                            <variable identifier="iFreqList04"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <gt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">5</baseValue>
+                                </gt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="5">
+                                            <variable identifier="iFreqList04"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <gt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">6</baseValue>
+                                </gt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="6">
+                                            <variable identifier="iFreqList04"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <gt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">7</baseValue>
+                                </gt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="7">
+                                            <variable identifier="iFreqList04"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <gt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">8</baseValue>
+                                </gt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="8">
+                                            <variable identifier="iFreqList04"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                    </templateIf>
+                    <templateElseIf>
+                        <gt>
+                            <variable identifier="iStem"/>
+                            <baseValue baseType="integer">3</baseValue>
+                        </gt>
+                        <setTemplateValue identifier="iGtLt">
+                            <sum>
+                                <variable identifier="iGtLt"/>
+                                <variable identifier="iSumF04"/>
+                            </sum>
+                        </setTemplateValue>
+                    </templateElseIf>
+                </templateCondition>
+                <templateCondition>
+                    <templateIf>
+                        <equal toleranceMode="exact">
+                            <variable identifier="iStem"/>
+                            <baseValue baseType="integer">4</baseValue>
+                        </equal>
+                        <templateCondition>
+                            <templateIf>
+                                <gt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">0</baseValue>
+                                </gt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="10">
+                                            <variable identifier="iFreqList05"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <gt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">1</baseValue>
+                                </gt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="1">
+                                            <variable identifier="iFreqList05"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <gt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">2</baseValue>
+                                </gt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="2">
+                                            <variable identifier="iFreqList05"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <gt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">3</baseValue>
+                                </gt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="3">
+                                            <variable identifier="iFreqList05"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <gt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">4</baseValue>
+                                </gt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="4">
+                                            <variable identifier="iFreqList05"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <gt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">5</baseValue>
+                                </gt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="5">
+                                            <variable identifier="iFreqList05"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <gt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">6</baseValue>
+                                </gt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="6">
+                                            <variable identifier="iFreqList05"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <gt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">7</baseValue>
+                                </gt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="7">
+                                            <variable identifier="iFreqList05"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <gt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">8</baseValue>
+                                </gt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="8">
+                                            <variable identifier="iFreqList05"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                    </templateIf>
+                    <templateElseIf>
+                        <gt>
+                            <variable identifier="iStem"/>
+                            <baseValue baseType="integer">4</baseValue>
+                        </gt>
+                        <setTemplateValue identifier="iGtLt">
+                            <sum>
+                                <variable identifier="iGtLt"/>
+                                <variable identifier="iSumF05"/>
+                            </sum>
+                        </setTemplateValue>
+                    </templateElseIf>
+                </templateCondition>
+                <templateCondition>
+                    <templateIf>
+                        <equal toleranceMode="exact">
+                            <variable identifier="iStem"/>
+                            <baseValue baseType="integer">5</baseValue>
+                        </equal>
+                        <templateCondition>
+                            <templateIf>
+                                <gt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">0</baseValue>
+                                </gt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="10">
+                                            <variable identifier="iFreqList06"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <gt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">1</baseValue>
+                                </gt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="1">
+                                            <variable identifier="iFreqList06"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <gt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">2</baseValue>
+                                </gt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="2">
+                                            <variable identifier="iFreqList06"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <gt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">3</baseValue>
+                                </gt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="3">
+                                            <variable identifier="iFreqList06"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <gt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">4</baseValue>
+                                </gt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="4">
+                                            <variable identifier="iFreqList06"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <gt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">5</baseValue>
+                                </gt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="5">
+                                            <variable identifier="iFreqList06"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <gt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">6</baseValue>
+                                </gt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="6">
+                                            <variable identifier="iFreqList06"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <gt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">7</baseValue>
+                                </gt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="7">
+                                            <variable identifier="iFreqList06"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <gt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">8</baseValue>
+                                </gt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="8">
+                                            <variable identifier="iFreqList06"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                    </templateIf>
+                </templateCondition>
+            </templateIf>
+            <templateElse>
+                <setTemplateValue identifier="iGtLt">
+                    <variable identifier="iSumF07"/>
+                </setTemplateValue>
+                <templateCondition>
+                    <templateIf>
+                        <equal toleranceMode="exact">
+                            <variable identifier="iStem"/>
+                            <baseValue baseType="integer">5</baseValue>
+                        </equal>
+                        <templateCondition>
+                            <templateIf>
+                                <lt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">9</baseValue>
+                                </lt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="9">
+                                            <variable identifier="iFreqList06"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <lt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">8</baseValue>
+                                </lt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="8">
+                                            <variable identifier="iFreqList06"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <lt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">7</baseValue>
+                                </lt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="7">
+                                            <variable identifier="iFreqList06"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <lt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">6</baseValue>
+                                </lt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="6">
+                                            <variable identifier="iFreqList06"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <lt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">5</baseValue>
+                                </lt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="5">
+                                            <variable identifier="iFreqList06"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <lt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">4</baseValue>
+                                </lt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="4">
+                                            <variable identifier="iFreqList06"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <lt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">3</baseValue>
+                                </lt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="3">
+                                            <variable identifier="iFreqList06"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <lt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">2</baseValue>
+                                </lt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="2">
+                                            <variable identifier="iFreqList06"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <equal toleranceMode="exact">
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">1</baseValue>
+                                </equal>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="1">
+                                            <variable identifier="iFreqList06"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                    </templateIf>
+                    <templateElseIf>
+                        <lt>
+                            <variable identifier="iStem"/>
+                            <baseValue baseType="integer">5</baseValue>
+                        </lt>
+                        <setTemplateValue identifier="iGtLt">
+                            <sum>
+                                <variable identifier="iGtLt"/>
+                                <variable identifier="iSumF06"/>
+                            </sum>
+                        </setTemplateValue>
+                    </templateElseIf>
+                </templateCondition>
+                <templateCondition>
+                    <templateIf>
+                        <equal toleranceMode="exact">
+                            <variable identifier="iStem"/>
+                            <baseValue baseType="integer">4</baseValue>
+                        </equal>
+                        <templateCondition>
+                            <templateIf>
+                                <lt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">9</baseValue>
+                                </lt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="9">
+                                            <variable identifier="iFreqList05"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <lt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">8</baseValue>
+                                </lt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="8">
+                                            <variable identifier="iFreqList05"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <lt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">7</baseValue>
+                                </lt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="7">
+                                            <variable identifier="iFreqList05"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <lt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">6</baseValue>
+                                </lt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="6">
+                                            <variable identifier="iFreqList05"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <lt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">5</baseValue>
+                                </lt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="5">
+                                            <variable identifier="iFreqList05"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <lt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">4</baseValue>
+                                </lt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="4">
+                                            <variable identifier="iFreqList05"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <lt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">3</baseValue>
+                                </lt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="3">
+                                            <variable identifier="iFreqList05"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <lt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">2</baseValue>
+                                </lt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="2">
+                                            <variable identifier="iFreqList05"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <equal toleranceMode="exact">
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">1</baseValue>
+                                </equal>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="1">
+                                            <variable identifier="iFreqList05"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                    </templateIf>
+                    <templateElseIf>
+                        <lt>
+                            <variable identifier="iStem"/>
+                            <baseValue baseType="integer">4</baseValue>
+                        </lt>
+                        <setTemplateValue identifier="iGtLt">
+                            <sum>
+                                <variable identifier="iGtLt"/>
+                                <variable identifier="iSumF05"/>
+                            </sum>
+                        </setTemplateValue>
+                    </templateElseIf>
+                </templateCondition>
+                <templateCondition>
+                    <templateIf>
+                        <equal toleranceMode="exact">
+                            <variable identifier="iStem"/>
+                            <baseValue baseType="integer">3</baseValue>
+                        </equal>
+                        <templateCondition>
+                            <templateIf>
+                                <lt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">9</baseValue>
+                                </lt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="9">
+                                            <variable identifier="iFreqList04"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <lt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">8</baseValue>
+                                </lt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="8">
+                                            <variable identifier="iFreqList04"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <lt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">7</baseValue>
+                                </lt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="7">
+                                            <variable identifier="iFreqList04"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <lt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">6</baseValue>
+                                </lt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="6">
+                                            <variable identifier="iFreqList04"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <lt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">5</baseValue>
+                                </lt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="5">
+                                            <variable identifier="iFreqList04"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <lt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">4</baseValue>
+                                </lt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="4">
+                                            <variable identifier="iFreqList04"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <lt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">3</baseValue>
+                                </lt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="3">
+                                            <variable identifier="iFreqList04"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <lt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">2</baseValue>
+                                </lt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="2">
+                                            <variable identifier="iFreqList04"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <equal toleranceMode="exact">
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">1</baseValue>
+                                </equal>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="1">
+                                            <variable identifier="iFreqList04"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                    </templateIf>
+                    <templateElseIf>
+                        <lt>
+                            <variable identifier="iStem"/>
+                            <baseValue baseType="integer">3</baseValue>
+                        </lt>
+                        <setTemplateValue identifier="iGtLt">
+                            <sum>
+                                <variable identifier="iGtLt"/>
+                                <variable identifier="iSumF04"/>
+                            </sum>
+                        </setTemplateValue>
+                    </templateElseIf>
+                </templateCondition>
+                <templateCondition>
+                    <templateIf>
+                        <equal toleranceMode="exact">
+                            <variable identifier="iStem"/>
+                            <baseValue baseType="integer">2</baseValue>
+                        </equal>
+                        <templateCondition>
+                            <templateIf>
+                                <lt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">9</baseValue>
+                                </lt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="9">
+                                            <variable identifier="iFreqList03"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <lt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">8</baseValue>
+                                </lt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="8">
+                                            <variable identifier="iFreqList03"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <lt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">7</baseValue>
+                                </lt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="7">
+                                            <variable identifier="iFreqList03"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <lt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">6</baseValue>
+                                </lt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="6">
+                                            <variable identifier="iFreqList03"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <lt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">5</baseValue>
+                                </lt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="5">
+                                            <variable identifier="iFreqList03"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <lt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">4</baseValue>
+                                </lt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="4">
+                                            <variable identifier="iFreqList03"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <lt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">3</baseValue>
+                                </lt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="3">
+                                            <variable identifier="iFreqList03"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <lt>
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">2</baseValue>
+                                </lt>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="2">
+                                            <variable identifier="iFreqList03"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                        <templateCondition>
+                            <templateIf>
+                                <equal toleranceMode="exact">
+                                    <variable identifier="iLeaf"/>
+                                    <baseValue baseType="integer">1</baseValue>
+                                </equal>
+                                <setTemplateValue identifier="iGtLt">
+                                    <sum>
+                                        <variable identifier="iGtLt"/>
+                                        <index n="1">
+                                            <variable identifier="iFreqList03"/>
+                                        </index>
+                                    </sum>
+                                </setTemplateValue>
+                            </templateIf>
+                        </templateCondition>
+                    </templateIf>
+                </templateCondition>
+            </templateElse>
+        </templateCondition>
+        <setCorrectResponse identifier="RESPONSE1">
+            <variable identifier="iN"/>
+        </setCorrectResponse>
+        <setCorrectResponse identifier="RESPONSE2">
+            <variable identifier="fLoHi"/>
+        </setCorrectResponse>
+        <setCorrectResponse identifier="RESPONSE3">
+            <variable identifier="iGtLt"/>
+        </setCorrectResponse>
+    </templateProcessing>
+    <itemBody class="">
+        <div class="">
+            <p class=""><printedVariable identifier="sIntro"/></p>
+            <div>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <printedVariable identifier="iVal01"/>&#160;&#160;&#160;&#160;
+                            </td>
+                            <td>|&#160;&#160;</td>
+                            <td>
+                                <printedVariable identifier="iSample01" delimiter="&#160;&#160;"/>&#160;&#160;&#160;&#160; 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <printedVariable identifier="iVal02"/>&#160;&#160;&#160;&#160;
+                            </td>
+                            <td>|&#160;&#160;</td>
+                            <td>
+                                <printedVariable identifier="iSample02" delimiter="&#160;&#160;"/>&#160;&#160;&#160;&#160; 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <printedVariable identifier="iVal03"/>&#160;&#160;&#160;&#160;
+                            </td>
+                            <td>|&#160;&#160;</td>
+                            <td>
+                                <printedVariable identifier="iSample03" delimiter="&#160;&#160;"/>&#160;&#160;&#160;&#160; 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <printedVariable identifier="iVal04"/>&#160;&#160;&#160;&#160;
+                            </td>
+                            <td>|&#160;&#160;</td>
+                            <td>
+                                <printedVariable identifier="iSample04" delimiter="&#160;&#160;"/>&#160;&#160;&#160;&#160; 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <printedVariable identifier="iVal05"/>&#160;&#160;&#160;&#160;
+                            </td>
+                            <td>|&#160;&#160;</td>
+                            <td>
+                                <printedVariable identifier="iSample05" delimiter="&#160;&#160;"/>&#160;&#160;&#160;&#160; 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <printedVariable identifier="iVal06"/>&#160;&#160;&#160;&#160;
+                            </td>
+                            <td>|&#160;&#160;</td>
+                            <td>
+                                <printedVariable identifier="iSample06" delimiter="&#160;&#160;"/>&#160;&#160;&#160;&#160; 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <printedVariable identifier="iVal07"/>&#160;&#160;
+                            </td>
+                            <td>|&#160;&#160;</td>
+                            <td>
+                                <printedVariable identifier="iSample07" delimiter="&#160;&#160;"/>&#160;&#160;&#160;&#160; 
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>n = <printedVariable identifier="iN"/></td>
+                            <td colspan="2">&#160;&#160;&#160;&#160;8|4 represents <printedVariable identifier="sExplain"/></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                <ol>
+                    <li>How many results are recorded in total?</li>
+                    <li>
+                        <templateInline templateIdentifier="tParts" identifier="Ques11" showHide="show">What is the <printedVariable identifier="sLoHi"/> mark?</templateInline>
+                        <templateInline templateIdentifier="tParts" identifier="Ques12" showHide="show">What is the <printedVariable identifier="sLoHi"/> recorded haemoglobin level?</templateInline>
+                    </li>
+                    <li>
+                        <templateInline templateIdentifier="tParts" identifier="Ques21" showHide="show">How many students scored <printedVariable identifier="sGtLt"/>&#160;than&#160;<printedVariable identifier="fGtLt" format="%-5.0f"/>%?</templateInline>
+                        <templateInline templateIdentifier="tParts" identifier="Ques22" showHide="show">How many people have a haemoglobin level <printedVariable identifier="sGtLt"/>&#160;than&#160;<printedVariable identifier="fGtLt" format="%-5.1f"/>?</templateInline>
+                    </li>
+                </ol>
+            </div>
+            <div class="">
+                <table class="">
+                    <tbody class="">
+                        <tr class="">
+                            <td>Number of results =&#160;</td>
+                            <td class="">
+                                <textEntryInteraction expectedLength="20" id="textEntryInteraction01"
+                                    responseIdentifier="RESPONSE1"/>
+                            </td>
+                            <td class="">
+                                <templateInline templateIdentifier="tHide" identifier="InputFeedback"
+                                    showHide="hide">
+                                    <feedbackInline id="feedbackInline0" identifier="CORRECT1"
+                                    outcomeIdentifier="FEEDBACK" showHide="show"> Your first answer is correct </feedbackInline>
+                                <feedbackInline id="feedbackInline1" identifier="INCORRECT1"
+                                    outcomeIdentifier="FEEDBACK" showHide="show"> Your first answer is incorrect
+                                </feedbackInline>
+                                </templateInline>
+                            </td>
+                        </tr>
+                        <tr class="">
+                            <td>Value of <printedVariable identifier="sLoHi"/> result =&#160;</td>
+                            <td class="">
+                                <textEntryInteraction expectedLength="20" id="textEntryInteraction02"
+                                    responseIdentifier="RESPONSE2"/>
+                            </td>
+                            <td class="">
+                                <templateInline templateIdentifier="tHide" identifier="InputFeedback"
+                                    showHide="hide">
+                                    <feedbackInline id="feedbackInline0" identifier="CORRECT2"
+                                    outcomeIdentifier="FEEDBACK" showHide="show"> Your second answer is correct </feedbackInline>
+                                <feedbackInline id="feedbackInline1" identifier="INCORRECT2"
+                                    outcomeIdentifier="FEEDBACK" showHide="show"> Your second answer is incorrect
+                                </feedbackInline>
+                                </templateInline>
+                            </td>
+                        </tr>
+                        <tr class="">
+                            <td>Number of results <printedVariable identifier="sGtLt"/>&#160;than&#160;<templateInline templateIdentifier="tParts" identifier="ValGtLt1" showHide="show"><printedVariable identifier="fGtLt" format="%-5.0f"/></templateInline>
+                                <templateInline templateIdentifier="tParts" identifier="ValGtLt2" showHide="show"><printedVariable identifier="fGtLt" format="%-5.1f"/></templateInline> =&#160;</td>
+                            <td class="">
+                                <textEntryInteraction expectedLength="20" id="textEntryInteraction03"
+                                    responseIdentifier="RESPONSE3"/>
+                            </td>
+                            <td class="">
+                                <templateInline templateIdentifier="tHide" identifier="InputFeedback"
+                                    showHide="hide">
+                                    <feedbackInline id="feedbackInline0" identifier="CORRECT3"
+                                    outcomeIdentifier="FEEDBACK" showHide="show"> Your third answer is correct </feedbackInline>
+                                <feedbackInline id="feedbackInline1" identifier="INCORRECT3"
+                                    outcomeIdentifier="FEEDBACK" showHide="show"> Your third answer is incorrect
+                                </feedbackInline>
+                                </templateInline>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="">
+                <feedbackInline id="feedbackInline3" identifier="NullInput"
+                    outcomeIdentifier="FEEDBACK" showHide="show"> Please enter a value in each box, then submit your answer.
+                </feedbackInline>
+            </div>
+            <templateBlock templateIdentifier="tHide" identifier="TriesMessage" showHide="show">
+                <p>You may attempt this question up to <printedVariable identifier="nTries"/> times
+                    during the test.</p>
+            </templateBlock>
+            <templateBlock templateIdentifier="tHide" identifier="SolHintFeedback" showHide="hide">
+                <feedbackBlock id="feedbackBlock3" identifier="NoMoreTries"
+                    outcomeIdentifier="FEEDBACK" showHide="show">
+                    <p>You have had <printedVariable identifier="nTries"/> attempts at answering this question, so here is the
+                        solution:</p>
+                </feedbackBlock>
+                <feedbackBlock class="" id="feedbackBlock3" identifier="SOLUTION"
+                outcomeIdentifier="FEEDBACK" showHide="show">
+                <div>
+                    <ol>
+                        <li>By counting the values, or from the information in the table, <printedVariable identifier="iN"/>&#160;results were recorded.</li>
+                        <li>
+                            <div>
+                                The <printedVariable identifier="sLoHi"/> "stem" value for which "leaf" values are recorded is <printedVariable identifier="iLoHiStem"/>.
+                                The <printedVariable identifier="sLoHi"/> "leaf" value for  that "stem" value is <printedVariable identifier="iLoHiLeaf"/>.
+                                Hence the <printedVariable identifier="sLoHi"/> value is 
+                                <m:math display="block">
+                                    <m:mi>iLoHiStem</m:mi>
+                                    <m:mo>&#xd7;</m:mo>
+                                    <m:mi>iIncr</m:mi>
+                                    <m:mo>+</m:mo>
+                                    <m:mi>iLoHiLeaf</m:mi>
+                                    <m:mo>&#xd7;</m:mo>
+                                    <m:mi>fIncr</m:mi>
+                                    <m:mo>=</m:mo>
+                                    <m:mi>fLoHi</m:mi>
+                                </m:math>
+                            </div>
+                        </li>
+                        <li>By counting the values, <printedVariable identifier="iGtLt"/>&#160;results are <printedVariable identifier="sGtLt"/> than <templateInline templateIdentifier="tParts" identifier="ValGtLt3" showHide="show"><printedVariable identifier="fGtLt" format="%-5.0f"/></templateInline><templateInline templateIdentifier="tParts" identifier="ValGtLt4" showHide="show"><printedVariable identifier="fGtLt" format="%-5.1f"/></templateInline>.</li>
+                    </ol>
+                </div>
+            </feedbackBlock>
+            <feedbackBlock id="feedbackBlock6" identifier="HINT" outcomeIdentifier="FEEDBACK"
+                showHide="show">
+                <div>
+                    <ol>
+                        <li>Look carefully at the information provided to get the first answer.</li>
+                        <li>Read off the value from the table to find the second answer.</li>
+                        <li>Count results which satisfy the required condition for the third answer.</li>
+                    </ol>
+                </div>
+            </feedbackBlock>
+            <feedbackBlock id="feedbackBlock7" identifier="SEEN-SOLUTION"
+                outcomeIdentifier="FEEDBACK" showHide="show">
+                <p>Since you have viewed the solution, your score for this question will be 0.</p>
+            </feedbackBlock>
+            <feedbackBlock id="feedbackBlock8" identifier="SEEN-HINT" outcomeIdentifier="FEEDBACK"
+                showHide="show">
+                <p>Since you have viewed the hint, your score for this question will be halved.</p>
+            </feedbackBlock>
+            </templateBlock>
+            <templateBlock templateIdentifier="tHide" identifier="SolHintButtons" showHide="hide">
+                <feedbackBlock id="feedbackBlock9" identifier="askhint" outcomeIdentifier="ASKHINT"
+                showHide="show">
+                <p>
+                    <endAttemptInteraction id="endAttemptInteraction1"
+                        responseIdentifier="HINTREQUEST" title="Show Hint"/>
+                </p>
+            </feedbackBlock>
+            <feedbackBlock id="feedbackBlock10" identifier="asksolution"
+                outcomeIdentifier="ASKSOLUTION" showHide="show">
+                <p>
+                    <endAttemptInteraction id="endAttemptInteraction2"
+                        responseIdentifier="SOLREQUEST" title="Show Solution"/>
+                </p>
+            </feedbackBlock>
+            </templateBlock>
+        </div>
+    </itemBody>
+    <responseProcessing>
+        <setOutcomeValue identifier="FEEDBACK">
+            <multiple>
+                <variable identifier="EMPTY"/>
+            </multiple>
+        </setOutcomeValue>
+        <responseCondition>
+            <responseIf>
+                <variable identifier="HINTREQUEST"/>
+                <setOutcomeValue identifier="FEEDBACK">
+                    <multiple>
+                        <baseValue baseType="identifier">HINT</baseValue>
+                    </multiple>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="seenHint">
+                    <baseValue baseType="boolean">true</baseValue>
+                </setOutcomeValue>
+            </responseIf>
+            <responseElseIf>
+                <variable identifier="SOLREQUEST"/>
+                <setOutcomeValue identifier="FEEDBACK">
+                    <multiple>
+                        <baseValue baseType="identifier">SOLUTION</baseValue>
+                    </multiple>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="seenSolution">
+                    <baseValue baseType="boolean">true</baseValue>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="completionStatus">
+                    <baseValue baseType="identifier">completed</baseValue>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="ASKHINT">
+                    <baseValue baseType="identifier">null</baseValue>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="ASKSOLUTION">
+                    <baseValue baseType="identifier">null</baseValue>
+                </setOutcomeValue>
+            </responseElseIf>
+            <responseElse>
+                <responseCondition>
+                    <responseIf>
+                        <or>
+                            <isNull>
+                                <variable identifier="RESPONSE1"/>
+                            </isNull>
+                            <isNull>
+                                <variable identifier="RESPONSE2"/>
+                            </isNull>
+                            <isNull>
+                                <variable identifier="RESPONSE3"/>
+                            </isNull>
+                        </or>
+                        <setOutcomeValue identifier="FEEDBACK">
+                            <multiple>
+                                <baseValue baseType="identifier">NullInput</baseValue>
+                            </multiple>
+                        </setOutcomeValue>
+                        <setOutcomeValue identifier="SCORE">
+                            <baseValue baseType="float">0</baseValue>
+                        </setOutcomeValue>
+                    </responseIf>
+                    <responseElse>
+                        <responseCondition>
+                            <responseIf>
+                                <equal toleranceMode="exact">
+                                    <variable identifier="RESPONSE1"/>
+                                    <variable identifier="iN"/>
+                                </equal>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <baseValue baseType="identifier">CORRECT1</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="SCORE">
+                                    <baseValue baseType="float">1.0</baseValue>
+                                </setOutcomeValue>
+                            </responseIf>
+                            <responseElse>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <baseValue baseType="identifier">INCORRECT1</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="SCORE">
+                                    <baseValue baseType="float">0.0</baseValue>
+                                </setOutcomeValue>
+                            </responseElse>
+                        </responseCondition>
+                        <responseCondition>
+                            <responseIf>
+                                <equalRounded figures="1" roundingMode="decimalPlaces">
+                                    <variable identifier="RESPONSE2"/>
+                                    <variable identifier="fLoHi"/>
+                                </equalRounded>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <variable identifier="FEEDBACK"/>
+                                        <baseValue baseType="identifier">CORRECT2</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="SCORE">
+                                    <sum>
+                                        <variable identifier="SCORE"/>
+                                        <baseValue baseType="float">1.0</baseValue>
+                                    </sum>
+                                </setOutcomeValue>
+                            </responseIf>
+                            <responseElse>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <variable identifier="FEEDBACK"/>
+                                        <baseValue baseType="identifier">INCORRECT2</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="SCORE">
+                                    <sum>
+                                        <variable identifier="SCORE"/>
+                                        <baseValue baseType="float">0.0</baseValue>
+                                    </sum>
+                                </setOutcomeValue>
+                            </responseElse>
+                        </responseCondition>
+                        <responseCondition>
+                            <responseIf>
+                                <equal toleranceMode="exact">
+                                    <variable identifier="RESPONSE3"/>
+                                    <variable identifier="iGtLt"/>
+                                </equal>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <variable identifier="FEEDBACK"/>
+                                        <baseValue baseType="identifier">CORRECT3</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="SCORE">
+                                    <sum>
+                                        <variable identifier="SCORE"/>
+                                        <baseValue baseType="float">1.0</baseValue>
+                                    </sum>
+                                </setOutcomeValue>
+                            </responseIf>
+                            <responseElse>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <variable identifier="FEEDBACK"/>
+                                        <baseValue baseType="identifier">INCORRECT3</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="SCORE">
+                                    <sum>
+                                        <variable identifier="SCORE"/>
+                                        <baseValue baseType="float">0.0</baseValue>
+                                    </sum>
+                                </setOutcomeValue>
+                            </responseElse>
+                        </responseCondition>
+                        <responseCondition>
+                            <responseIf>
+                                <variable identifier="seenSolution"/>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <variable identifier="FEEDBACK"/>
+                                        <baseValue baseType="identifier">SEEN-SOLUTION</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="SCORE">
+                                    <baseValue baseType="float">0.0</baseValue>
+                                </setOutcomeValue>
+                            </responseIf>
+                            <responseElseIf>
+                                <variable identifier="seenHint"/>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <variable identifier="FEEDBACK"/>
+                                        <baseValue baseType="identifier">SEEN-HINT</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="SCORE">
+                                    <divide>
+                                        <variable identifier="SCORE"/>
+                                        <baseValue baseType="float">2.0</baseValue>
+                                    </divide>
+                                </setOutcomeValue>
+                            </responseElseIf>
+                        </responseCondition>
+                        <responseCondition>
+                            <responseIf>
+                                <gte>
+                                    <variable identifier="numAttempts"/>
+                                    <variable identifier="nTries"/>
+                                </gte>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <baseValue baseType="identifier">NoMoreTries</baseValue>
+                                        <baseValue baseType="identifier">SOLUTION</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="completionStatus">
+                                    <baseValue baseType="identifier">completed</baseValue>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="ASKHINT">
+                                    <baseValue baseType="identifier">null</baseValue>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="ASKSOLUTION">
+                                    <baseValue baseType="identifier">null</baseValue>
+                                </setOutcomeValue>
+                            </responseIf>
+                        </responseCondition>
+                    </responseElse>
+                </responseCondition>
+            </responseElse>
+        </responseCondition>
+    </responseProcessing>
+</assessmentItem>

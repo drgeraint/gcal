@@ -1,0 +1,678 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Element! --><!-- assessmentItem element! --><assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p1"
+                xmlns:m="http://www.w3.org/1998/Math/MathML"
+                xmlns:xi="http://www.w3.org/2001/XInclude"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                toolName="Uniqurate"
+                toolVersion="1.0"
+                xml:lang="en"
+                adaptive="true"
+                timeDependent="false"
+                identifier="mela011001-PythHyp"
+                title="Use Pythagoras to find hypotenuse"
+                xsi:schemaLocation="http://www.imsglobal.org/xsd/imsqti_v2p1 imsqti_v2p1.xsd">
+    <responseDeclaration identifier="HINTREQUEST" baseType="boolean" cardinality="single"/>
+    <responseDeclaration identifier="SOLREQUEST" baseType="boolean" cardinality="single"/>
+    <!-- RP uses float - would be better to use record as float input -->
+    <responseDeclaration identifier="RESPONSE" cardinality="single" baseType="float"/>
+    <!-- <responseDeclaration identifier="RESPONSE" cardinality="record"/> -->
+    <outcomeDeclaration identifier="seenSolution" baseType="boolean" cardinality="single">
+      <defaultValue>
+         <value>false</value>
+      </defaultValue>
+   </outcomeDeclaration>
+   <outcomeDeclaration identifier="seenHint" baseType="boolean" cardinality="single">
+      <defaultValue>
+         <value>false</value>
+      </defaultValue>
+   </outcomeDeclaration>
+   <outcomeDeclaration identifier="ASKSOLUTION" baseType="identifier" cardinality="single">
+      <defaultValue>
+         <value>asksolution</value>
+      </defaultValue>
+   </outcomeDeclaration>
+   <outcomeDeclaration identifier="ASKHINT" baseType="identifier" cardinality="single">
+      <defaultValue>
+         <value>askhint</value>
+      </defaultValue>
+   </outcomeDeclaration>
+    <outcomeDeclaration baseType="float" cardinality="single" identifier="floatRespValue" />
+    <outcomeDeclaration baseType="integer" cardinality="single" identifier="iRespDP" />
+    <outcomeDeclaration baseType="integer" cardinality="single" identifier="iRespSF" />
+    <outcomeDeclaration identifier="EMPTY" baseType="identifier" cardinality="single"/>
+   <outcomeDeclaration identifier="FEEDBACK" baseType="identifier" cardinality="multiple"/>
+    <outcomeDeclaration identifier="SOLPARTS" baseType="identifier" cardinality="multiple"/>
+    <outcomeDeclaration identifier="SCORE" baseType="float" cardinality="single" normalMaximum="2.0"
+                       normalMinimum="0">
+        <defaultValue>
+            <value>0
+            </value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <templateDeclaration identifier="showQParts" baseType="identifier" cardinality="multiple"
+                        mathVariable="false"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="showSolParts" baseType="identifier" cardinality="multiple"
+                        mathVariable="false"
+                        paramVariable="false">
+        <defaultValue>
+            <value>NONE
+            </value>
+        </defaultValue>
+    </templateDeclaration>
+    <templateDeclaration identifier="fullMarks" baseType="float" cardinality="single"
+                        mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="fMarksOff" baseType="float" cardinality="single"
+                        mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="iQparts" baseType="integer" cardinality="single"
+                        mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="iQrequire" baseType="integer" cardinality="single"
+                        mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="iQtype" baseType="integer" cardinality="single" mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="iQnumnums" baseType="integer" cardinality="single"
+                        mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iQdecpl" mathVariable="false" paramVariable="false" />
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iDecsig" mathVariable="false" paramVariable="false" />
+    <templateDeclaration identifier="oQues" cardinality="record" mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="iA" baseType="integer" cardinality="single" mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="iB" baseType="integer" cardinality="single" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration identifier="iC" baseType="integer" cardinality="single" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration identifier="iAns2" baseType="integer" cardinality="single" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration identifier="sSide1" baseType="string" cardinality="single" mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="sSide2" baseType="string" cardinality="single" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration identifier="sAngle" baseType="string" cardinality="single" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration identifier="iType" baseType="integer" cardinality="single" mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="fArads" baseType="float" cardinality="single" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration identifier="fAns" baseType="float" cardinality="single" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration identifier="fAns6" baseType="float" cardinality="single" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration identifier="fAns2" baseType="float" cardinality="single" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration identifier="fBad1" baseType="float" cardinality="single" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration identifier="fBad2" baseType="float" cardinality="single" mathVariable="true"
+        paramVariable="false"/>
+    <templateProcessing>
+        <setTemplateValue identifier="fullMarks">
+            <baseValue baseType="float">2.0</baseValue>
+        </setTemplateValue>
+        <setTemplateValue identifier="fMarksOff">
+            <baseValue baseType="float">2.0</baseValue>
+        </setTemplateValue>
+        <setTemplateValue identifier="iQparts">
+            <baseValue baseType="integer">1</baseValue>
+        </setTemplateValue>
+        <setTemplateValue identifier="iQrequire">
+            <baseValue baseType="integer">5</baseValue>
+        </setTemplateValue>
+        <setTemplateValue identifier="iDecsig">
+            <baseValue baseType="integer">1</baseValue>
+        </setTemplateValue>
+        <setTemplateValue identifier="iQdecpl">
+            <baseValue baseType="integer">2</baseValue>
+        </setTemplateValue>
+        <setTemplateValue identifier="iQnumnums">
+            <baseValue baseType="integer">1</baseValue>
+        </setTemplateValue>
+      <!-- make sure iA greater than iB -->
+        <setTemplateValue identifier="iA">
+            <randomInteger min="2" max="20"/>
+        </setTemplateValue>
+        <setTemplateValue identifier="iB">
+            <randomInteger min="2" max="20"/>
+        </setTemplateValue>
+        <setTemplateValue identifier="iAns2">
+            <round>
+                <sum>
+                    <power>
+                        <variable identifier="iA"/>
+                        <baseValue baseType="integer">2</baseValue>
+                    </power>
+                    <power>
+                        <variable identifier="iB"/>
+                        <baseValue baseType="integer">2</baseValue>
+                    </power>
+                </sum>
+            </round>
+        </setTemplateValue>
+        <setTemplateValue identifier="fAns">
+            <power>
+                <variable identifier="iAns2"/>
+                <divide>
+                    <baseValue baseType="integer">1</baseValue>
+                    <baseValue baseType="integer">2</baseValue>
+                </divide>
+            </power>
+        </setTemplateValue>
+        
+        <setTemplateValue identifier="fAns6">
+            <roundTo roundingMode="decimalPlaces" figures="6">
+                <variable identifier="fAns"/>
+            </roundTo>
+        </setTemplateValue>
+        
+        <setTemplateValue identifier="fAns2">
+            <roundTo roundingMode="decimalPlaces" figures="2">
+                <variable identifier="fAns"/>
+            </roundTo>
+        </setTemplateValue>
+        
+    </templateProcessing>
+    <itemBody>
+        <div class="QTEXT">
+            <p>In triangle ABC, angle B is 90&#xb0;, the length of AB is&#160;<printedVariable identifier="iA"/> 
+                and the length of BC is&#160;<printedVariable identifier="iB"/>. 
+            </p>
+            <p>Find the length of AC.</p>
+            <p>You may find it helpful to draw a diagram.</p>
+      </div>
+            <p>Give your answer correct to 2 decimal places.</p>
+        <div class="EQCENTRE">
+         <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <textEntryInteraction expectedLength="12" responseIdentifier="RESPONSE"/>
+                    </td>
+                    <td> 
+                        <feedbackInline class="PART_OK" identifier="CORRECT" outcomeIdentifier="FEEDBACK"
+                            showHide="show"> Correct </feedbackInline>
+                        <feedbackInline class="PART_NO" identifier="WRONG" outcomeIdentifier="FEEDBACK" showHide="show"> Incorrect </feedbackInline>
+                        <feedbackInline class="PART_NO" identifier="Bad1" outcomeIdentifier="FEEDBACK" showHide="show"> The hypotenuse is AC, you need to find BC. </feedbackInline>
+                    </td>
+                </tr>
+            </tbody>
+         </table>
+      </div>
+        <feedbackBlock identifier="SOLUTION" outcomeIdentifier="FEEDBACK" showHide="show">
+            <div class="EQCENTRE">
+                    <m:math display="block">
+                        <m:mtable>
+                            <m:mtr>
+                                <m:mtd columnalign="right">
+                                    <m:msup>
+                                        <m:mi>AC</m:mi>
+                                        <m:mn>2</m:mn>
+                                    </m:msup>
+                                </m:mtd>
+                                <m:mtd columnalign="center">
+                                    <m:mo>=</m:mo>
+                                </m:mtd>
+                                <m:mtd columnalign="left">
+                                    <m:msup>
+                                        <m:mi>AB</m:mi>
+                                        <m:mn>2</m:mn>
+                                    </m:msup>
+                                    <m:mo>+</m:mo>
+                                    <m:msup>
+                                        <m:mi>BC</m:mi>
+                                        <m:mn>2</m:mn>
+                                    </m:msup>
+                                </m:mtd>
+                            </m:mtr>
+                            <m:mtr>
+                                <m:mtd columnalign="right">
+                                    <m:msup>
+                                        <m:mi>AC</m:mi>
+                                        <m:mn>2</m:mn>
+                                    </m:msup>
+                                </m:mtd>
+                                <m:mtd columnalign="center">
+                                    <m:mo>=</m:mo>
+                                </m:mtd>
+                                <m:mtd columnalign="left">
+                                    <m:msup>
+                                        <m:mi>iA</m:mi>
+                                        <m:mn>2</m:mn>
+                                    </m:msup>
+                                    <m:mo>+</m:mo>
+                                    <m:msup>
+                                        <m:mi>iB</m:mi>
+                                        <m:mn>2</m:mn>
+                                    </m:msup>
+                                </m:mtd>
+                            </m:mtr>
+                            <m:mtr>
+                                <m:mtd columnalign="right">
+                                    <m:msup>
+                                        <m:mi>AC</m:mi>
+                                        <m:mn>2</m:mn>
+                                    </m:msup>
+                                </m:mtd>
+                                <m:mtd columnalign="center">
+                                    <m:mo>=</m:mo>
+                                </m:mtd>
+                                <m:mtd columnalign="left">
+                                    <m:mi>iAns2</m:mi>
+                                </m:mtd>
+                            </m:mtr>
+                            <m:mtr>
+                                <m:mtd columnalign="right">
+                                    <m:mi>AC</m:mi>
+                                </m:mtd>
+                                <m:mtd columnalign="center">
+                                    <m:mo>=</m:mo>
+                                </m:mtd>
+                                <m:mtd columnalign="left">
+                                    <m:msqrt>
+                                        <m:mi>iAns2</m:mi>
+                                    </m:msqrt>
+                                </m:mtd>
+                            </m:mtr>
+                            <m:mtr>
+                                <m:mtd columnalign="right">
+                                    <m:mtext>&#160;</m:mtext>
+                                </m:mtd>
+                                <m:mtd columnalign="center">
+                                    <m:mo>=</m:mo>
+                                </m:mtd>
+                                <m:mtd columnalign="left">
+                                    <m:mi>fAns6</m:mi>
+                                </m:mtd>
+                            </m:mtr>
+                            <m:mtr>
+                                <m:mtd columnalign="right">
+                                    <m:mtext>&#160;</m:mtext>
+                                </m:mtd>
+                                <m:mtd columnalign="center">
+                                    <m:mo>=</m:mo>
+                                </m:mtd>
+                                <m:mtd columnalign="left">
+                                    <m:mi>fAns2</m:mi>
+                                </m:mtd>
+                            </m:mtr>
+                        </m:mtable>
+                    </m:math>
+            </div>
+            <p>So the answer is <printedVariable identifier="fAns2" format="%-10.2f"/>&#160;to 2 decimal places.</p>
+        </feedbackBlock>
+        <feedbackBlock identifier="HINT" outcomeIdentifier="FEEDBACK" showHide="show">
+            <div class="QTEXT">
+            <p>Use Pythagoras' Theorem
+                <m:math>
+                    <m:msup>
+                        <m:mi>AB</m:mi>
+                        <m:mn>2</m:mn>
+                    </m:msup>
+                    <m:mo>+</m:mo>
+                    <m:msup>
+                        <m:mi>BC</m:mi>
+                        <m:mn>2</m:mn>
+                    </m:msup>
+                    <m:mo>=</m:mo>
+                    <m:msup>
+                        <m:mi>AC</m:mi>
+                        <m:mn>2</m:mn>
+                    </m:msup>
+                </m:math>
+            </p>
+         </div>
+        </feedbackBlock>
+        <div class="">
+         <feedbackBlock showHide="show" identifier="askhint" outcomeIdentifier="ASKHINT">
+            <p>
+               <endAttemptInteraction responseIdentifier="HINTREQUEST" title="Show Hint"/>
+            </p>
+         </feedbackBlock>
+         <feedbackBlock showHide="show" identifier="asksolution" outcomeIdentifier="ASKSOLUTION">
+            <p>
+               <endAttemptInteraction responseIdentifier="SOLREQUEST" title="Show Solution"/>
+            </p>
+         </feedbackBlock>
+      </div>
+    </itemBody>
+    <!-- use equalRounded because number of dp or sig figs is also required to be correct 
+     if user gives fewer dps or sig figs than required, judge wrong, if more judge partially correct 
+     
+     RESPONSE correct must be set to the UNROUNDED correct answer to get "TOOMANY" to display,
+     if the rounded value is used it will judge it WRONG.
+     
+    Needs these variables:
+    <responseDeclaration cardinality="record" identifier="RESPONSE" />
+	<responseDeclaration identifier="HINTREQUEST" cardinality="single" baseType="boolean"/>
+	<responseDeclaration identifier="SOLREQUEST" cardinality="single" baseType="boolean"/>
+    
+    <outcomeDeclaration baseType="float" cardinality="single" identifier="floatRespValue" />
+    <outcomeDeclaration baseType="integer" cardinality="single" identifier="iRespDP" />
+    <outcomeDeclaration baseType="integer" cardinality="single" identifier="iRespSF" />
+	<outcomeDeclaration baseType="identifier" cardinality="multiple" identifier="FEEDBACK"/>
+	<outcomeDeclaration baseType="identifier" cardinality="single" identifier="EMPTY"/>
+	<outcomeDeclaration baseType="float" cardinality="single" identifier="SCORE" normalMaximum="2.0"
+		normalMinimum="0.0">
+		<defaultValue>
+			<value>0.0</value>
+		</defaultValue>
+	</outcomeDeclaration>
+	<outcomeDeclaration baseType="boolean" cardinality="single" identifier="seenSolution">
+		<defaultValue>
+			<value>false</value>
+		</defaultValue>
+	</outcomeDeclaration>
+	<outcomeDeclaration baseType="boolean" cardinality="single" identifier="seenHint">
+		<defaultValue>
+			<value>false</value>
+		</defaultValue>
+	</outcomeDeclaration>
+	<outcomeDeclaration baseType="identifier" cardinality="single" identifier="ASKHINT">
+		<defaultValue>
+			<value>askhint</value>
+		</defaultValue>
+	</outcomeDeclaration>
+	<outcomeDeclaration baseType="identifier" cardinality="single" identifier="ASKSOLUTION">
+		<defaultValue>
+			<value>asksolution</value>
+		</defaultValue>
+	</outcomeDeclaration>
+	
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iQdecpl" mathVariable="true" paramVariable="true" />
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iDecsig" mathVariable="true" paramVariable="true" />
+    <templateDeclaration identifier="fAns" baseType="float" cardinality="single" mathVariable="true"
+        paramVariable="false"/>
+    
+    Feedback for CORRECT, TOOMANY, TOOFEW and WRONG may be provided, these are associated with the maths input box.
+    Feedback THREETRIES, SEEN-SOLUTION and SEEN-HINT are needed to explain why the question
+    shows the solution after 3 tries and changes SCORE to zero if the Solution was seen 
+    or SCORE/2 if the Hint was used.
+-->
+    <responseProcessing>
+        <setOutcomeValue identifier="FEEDBACK">
+            <multiple>
+                <variable identifier="EMPTY"/>
+            </multiple>
+        </setOutcomeValue>
+        <responseCondition>
+            <responseIf>
+                <variable identifier="HINTREQUEST"/>
+                <setOutcomeValue identifier="FEEDBACK">
+                    <multiple>
+                        <baseValue baseType="identifier">HINT</baseValue>
+                    </multiple>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="seenHint">
+                    <baseValue baseType="boolean">true</baseValue>
+                </setOutcomeValue>
+            </responseIf>
+            <responseElseIf>
+                <variable identifier="SOLREQUEST"/>
+                <setOutcomeValue identifier="FEEDBACK">
+                    <multiple>
+                        <baseValue baseType="identifier">SOLUTION</baseValue>
+                    </multiple>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="SOLPARTS">
+                    <variable identifier="showSolParts"/>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="seenSolution">
+                    <baseValue baseType="boolean">true</baseValue>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="completionStatus">
+                    <baseValue baseType="identifier">completed</baseValue>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="ASKHINT">
+                    <baseValue baseType="identifier">null</baseValue>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="ASKSOLUTION">
+                    <baseValue baseType="identifier">null</baseValue>
+                </setOutcomeValue>
+            </responseElseIf>
+            <responseElse>
+                <setOutcomeValue identifier="FEEDBACK">
+                    <!-- add initial member to feedback list -->
+                    <multiple>
+                        <baseValue baseType="identifier">JUDGING</baseValue>
+                    </multiple>
+                </setOutcomeValue>
+                <responseCondition>
+                    <responseIf>
+                        <isNull>
+                            <variable identifier="RESPONSE"/>
+                        </isNull>
+                        <setOutcomeValue identifier="SCORE">
+                            <baseValue baseType="float">0.0</baseValue>
+                        </setOutcomeValue>
+                    </responseIf>
+                    <responseElse>
+                        <setOutcomeValue identifier="floatRespValue">
+                            <variable identifier="RESPONSE"/>
+                        </setOutcomeValue>
+                        <responseCondition>
+                            <responseIf>
+                                <equal toleranceMode="exact">
+                                    <round>
+                                        <product>
+                                            <variable identifier="RESPONSE"/>
+                                            <power>
+                                                <baseValue baseType="integer">10</baseValue>
+                                                <variable identifier="iQdecpl"/>
+                                            </power>
+                                        </product>
+                                    </round>
+                                    <product>
+                                        <variable identifier="RESPONSE"/>
+                                        <power>
+                                            <baseValue baseType="integer">10</baseValue>
+                                            <variable identifier="iQdecpl"/>
+                                        </power>
+                                    </product>
+                                </equal>
+                                <setOutcomeValue identifier="iRespDP">
+                                    <variable identifier="iQdecpl"/>
+                                </setOutcomeValue>
+                            </responseIf>
+                            <responseElseIf>
+                                <equal toleranceMode="exact">
+                                    <round>
+                                        <product>
+                                            <variable identifier="RESPONSE"/>
+                                            <power>
+                                                <baseValue baseType="integer">10</baseValue>
+                                                <subtract>
+                                                    <variable identifier="iQdecpl"/>
+                                                    <baseValue baseType="integer">1</baseValue>
+                                                </subtract>
+                                            </power>
+                                        </product>
+                                    </round>
+                                    <product>
+                                        <variable identifier="RESPONSE"/>
+                                        <power>
+                                            <baseValue baseType="integer">10</baseValue>
+                                            <subtract>
+                                                <variable identifier="iQdecpl"/>
+                                                <baseValue baseType="integer">1</baseValue>
+                                            </subtract>
+                                        </power>
+                                    </product>
+                                </equal>
+                                <setOutcomeValue identifier="iRespDP">
+                                    <subtract>
+                                        <variable identifier="iQdecpl"/>
+                                        <baseValue baseType="integer">1</baseValue>
+                                    </subtract>
+                                </setOutcomeValue>
+                            </responseElseIf>
+                            <responseElseIf>
+                                <equal toleranceMode="exact">
+                                    <round>
+                                        <product>
+                                            <variable identifier="RESPONSE"/>
+                                            <power>
+                                                <baseValue baseType="integer">10</baseValue>
+                                                <subtract>
+                                                    <variable identifier="iQdecpl"/>
+                                                    <baseValue baseType="integer">2</baseValue>
+                                                </subtract>
+                                            </power>
+                                        </product>
+                                    </round>
+                                    <product>
+                                        <variable identifier="RESPONSE"/>
+                                        <power>
+                                            <baseValue baseType="integer">10</baseValue>
+                                            <subtract>
+                                                <variable identifier="iQdecpl"/>
+                                                <baseValue baseType="integer">2</baseValue>
+                                            </subtract>
+                                        </power>
+                                    </product>
+                                </equal>
+                                <setOutcomeValue identifier="iRespDP">
+                                    <subtract>
+                                        <variable identifier="iQdecpl"/>
+                                        <baseValue baseType="integer">2</baseValue>
+                                    </subtract>
+                                </setOutcomeValue>
+                            </responseElseIf>
+                            <responseElse>
+                                <setOutcomeValue identifier="iRespDP">
+                                    <baseValue baseType="integer">0</baseValue>
+                                </setOutcomeValue>
+                            </responseElse>
+                        </responseCondition>
+                        <responseCondition>
+                            <responseIf>
+                                <equalRounded roundingMode="decimalPlaces" figures="iQdecpl">
+                                    <variable identifier="floatRespValue"/>
+                                    <variable identifier="fAns"/>
+                                </equalRounded>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <baseValue baseType="identifier">CORRECT</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="SCORE">
+                                    <variable identifier="fullMarks"/>
+                                </setOutcomeValue>
+                            </responseIf>
+                            <responseElseIf>
+                                <equalRounded roundingMode="decimalPlaces" figures="iRespDP">
+                                    <variable identifier="floatRespValue"/>
+                                    <variable identifier="fAns"/>
+                                </equalRounded>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <baseValue baseType="identifier">TOOFEW</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="SCORE">
+                                    <subtract>
+                                        <variable identifier="fullMarks"/>
+                                        <variable identifier="fMarksOff"/>
+                                    </subtract>
+                                </setOutcomeValue>
+                            </responseElseIf>
+                            <responseElseIf>
+                                <equalRounded roundingMode="decimalPlaces" figures="iQdecpl">
+                                    <variable identifier="floatRespValue"/>
+                                    <variable identifier="fBad1"/>
+                                </equalRounded>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <baseValue baseType="identifier">Bad1</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="SCORE">
+                                    <baseValue baseType="float">0</baseValue>
+                                </setOutcomeValue>
+                            </responseElseIf>
+                            <responseElseIf>
+                                <equalRounded roundingMode="decimalPlaces" figures="iQdecpl">
+                                    <variable identifier="floatRespValue"/>
+                                    <variable identifier="fBad2"/>
+                                </equalRounded>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <baseValue baseType="identifier">Bad2</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="SCORE">
+                                    <baseValue baseType="float">0</baseValue>
+                                </setOutcomeValue>
+                            </responseElseIf>
+                            <responseElse>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <baseValue baseType="identifier">WRONG</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="SCORE">
+                                    <baseValue baseType="float">0</baseValue>
+                                </setOutcomeValue>
+                            </responseElse>
+                        </responseCondition>
+                        <responseCondition>
+                            <responseIf>
+                                <gt>
+                                    <variable identifier="numAttempts"/>
+                                    <baseValue baseType="integer">                                            3                                        </baseValue>
+                                </gt>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <baseValue baseType="identifier">THREETRIES</baseValue>
+                                        <baseValue baseType="identifier">SOLUTION</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="completionStatus">
+                                    <baseValue baseType="identifier">completed</baseValue>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="ASKHINT">
+                                    <baseValue baseType="identifier">null</baseValue>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="ASKSOLUTION">
+                                    <baseValue baseType="identifier">null</baseValue>
+                                </setOutcomeValue>
+                            </responseIf>
+                        </responseCondition>
+                        <responseCondition>
+                            <responseIf>
+                                <variable identifier="seenSolution"/>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <variable identifier="FEEDBACK"/>
+                                        <baseValue baseType="identifier">SEEN-SOLUTION</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="SCORE">
+                                    <baseValue baseType="float">0.0</baseValue>
+                                </setOutcomeValue>
+                            </responseIf>
+                            <responseElseIf>
+                                <variable identifier="seenHint"/>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <variable identifier="FEEDBACK"/>
+                                        <baseValue baseType="identifier">SEEN-HINT</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="SCORE">
+                                    <divide>
+                                        <variable identifier="SCORE"/>
+                                        <baseValue baseType="float">2.0</baseValue>
+                                    </divide>
+                                </setOutcomeValue>
+                            </responseElseIf>
+                        </responseCondition>
+                    </responseElse>
+                </responseCondition>
+            </responseElse>
+        </responseCondition>
+    </responseProcessing>
+</assessmentItem>

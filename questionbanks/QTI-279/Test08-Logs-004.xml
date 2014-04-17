@@ -1,0 +1,369 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p1"
+    xmlns:lip="http://www.imsglobal.org/xsd/imslip_v1p0"
+    xmlns:m="http://www.w3.org/1998/Math/MathML"
+    xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" adaptive="true"
+    identifier="Test08-Logs-004" timeDependent="false"
+    title="Logarithms: Alternate form of log_a(b)=c, integer values" toolName="Mathqurate"
+    toolVersion="1.0" xml:lang="en"
+    xsi:schemaLocation="http://www.imsglobal.org/xsd/imsqti_v2p1 imsqti_v2p1.xsd">
+    <responseDeclaration baseType="identifier" cardinality="single" identifier="RESPONSE">
+        <correctResponse>
+            <value>ChoiceA</value>
+        </correctResponse>
+    </responseDeclaration>
+    <responseDeclaration baseType="boolean" cardinality="single" identifier="HINTREQUEST"/>
+    <responseDeclaration baseType="boolean" cardinality="single" identifier="SOLREQUEST"/>
+    <outcomeDeclaration baseType="identifier" cardinality="multiple" identifier="FEEDBACK"/>
+    <outcomeDeclaration baseType="identifier" cardinality="single" identifier="EMPTY"/>
+    <outcomeDeclaration baseType="float" cardinality="single" identifier="SCORE" normalMaximum="2.0">
+        <defaultValue>
+            <value>0</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="seenSolution">
+        <defaultValue>
+            <value>false</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="seenHint">
+        <defaultValue>
+            <value>false</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="identifier" cardinality="single" identifier="ASKHINT">
+        <defaultValue>
+            <value>askhint</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="identifier" cardinality="single" identifier="ASKSOLUTION">
+        <defaultValue>
+            <value>asksolution</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iA" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iB" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iD" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="float" cardinality="single" identifier="fAns" mathVariable="true"
+        paramVariable="false"/>
+    <templateProcessing>
+        <setTemplateValue identifier="iA">
+            <randomInteger max="6" min="2"/>
+        </setTemplateValue>
+        <setTemplateValue identifier="iB">
+            <randomInteger max="4" min="1"/>
+        </setTemplateValue>
+        <setTemplateValue identifier="iD">
+            <round>
+                <power>
+                    <variable identifier="iA"/>
+                    <variable identifier="iB"/>
+                </power>
+            </round>
+        </setTemplateValue>
+    </templateProcessing>
+    <itemBody class="">
+        <div class="">Choose the other form of<m:math display="block" id="mathML0">
+                <m:semantics>
+                    <m:mrow>
+                        <m:msub>
+                            <m:mi>log</m:mi>
+                            <m:mi>iA</m:mi>
+                        </m:msub>
+                        <m:mfenced close=")" open="(">
+                            <m:mi>iD</m:mi>
+                        </m:mfenced>
+                        <m:mo>=</m:mo>
+                        <m:mi>iB</m:mi>
+                    </m:mrow>
+                    <m:annotation encoding="SnuggleTeX"
+                        >\[\log_{\qv{iA}}(\qv{iD})=\qv{iB}\]</m:annotation>
+                </m:semantics>
+            </m:math>
+            <choiceInteraction id="choiceInteraction0" maxChoices="1" responseIdentifier="RESPONSE"
+                shuffle="true">
+                <simpleChoice id="simpleChoice0" identifier="ChoiceA">
+                    <m:math display="block" id="mathML1">
+                        <m:semantics>
+                            <m:mrow>
+                                <m:msup>
+                                    <m:mi>iA</m:mi>
+                                    <m:mi>iB</m:mi>
+                                </m:msup>
+                                <m:mo>=</m:mo>
+                                <m:mi>iD</m:mi>
+                            </m:mrow>
+                            <m:annotation encoding="SnuggleTeX"
+                                >\[\qv{iA}^{\qv{iB}}=\qv{iD}\]</m:annotation>
+                        </m:semantics>
+                    </m:math>
+                </simpleChoice>
+                <simpleChoice id="simpleChoice1" identifier="ChoiceB">
+                    <m:math display="block" id="mathML2">
+                        <m:semantics>
+                            <m:mrow>
+                                <m:msup>
+                                    <m:mi>iA</m:mi>
+                                    <m:mi>iD</m:mi>
+                                </m:msup>
+                                <m:mo>=</m:mo>
+                                <m:mi>iB</m:mi>
+                            </m:mrow>
+                            <m:annotation encoding="SnuggleTeX"
+                                >\[\qv{iA}^{\qv{iD}}=\qv{iB}\]</m:annotation>
+                        </m:semantics>
+                    </m:math>
+                </simpleChoice>
+                <simpleChoice id="simpleChoice2" identifier="ChoiceC">
+                    <m:math display="block" id="mathML3">
+                        <m:semantics>
+                            <m:mrow>
+                                <m:msup>
+                                    <m:mi>iB</m:mi>
+                                    <m:mi>iD</m:mi>
+                                </m:msup>
+                                <m:mo>=</m:mo>
+                                <m:mi>iA</m:mi>
+                            </m:mrow>
+                            <m:annotation encoding="SnuggleTeX"
+                                >\[\qv{iB}^{\qv{iD}}=\qv{iA}\]</m:annotation>
+                        </m:semantics>
+                    </m:math>
+                </simpleChoice>
+                <simpleChoice id="simpleChoice3" identifier="ChoiceD">
+                    <m:math display="block" id="mathML4">
+                        <m:semantics>
+                            <m:mrow>
+                                <m:msup>
+                                    <m:mi>iB</m:mi>
+                                    <m:mi>iA</m:mi>
+                                </m:msup>
+                                <m:mo>=</m:mo>
+                                <m:mi>iD</m:mi>
+                            </m:mrow>
+                            <m:annotation encoding="SnuggleTeX"
+                                >\[\qv{iB}^{\qv{iA}}=\qv{iD}\]</m:annotation>
+                        </m:semantics>
+                    </m:math>
+                </simpleChoice>
+                <simpleChoice id="simpleChoice4" identifier="ChoiceE">
+                    <m:math display="block" id="mathML5">
+                        <m:semantics>
+                            <m:mrow>
+                                <m:msup>
+                                    <m:mi>iD</m:mi>
+                                    <m:mi>iA</m:mi>
+                                </m:msup>
+                                <m:mo>=</m:mo>
+                                <m:mi>iB</m:mi>
+                            </m:mrow>
+                            <m:annotation encoding="SnuggleTeX"
+                                >\[\qv{iD}^{\qv{iA}}=\qv{iB}\]</m:annotation>
+                        </m:semantics>
+                    </m:math>
+                </simpleChoice>
+                <simpleChoice id="simpleChoice5" identifier="ChoiceF">
+                    <m:math display="block" id="mathML6">
+                        <m:semantics>
+                            <m:mrow>
+                                <m:msup>
+                                    <m:mi>iD</m:mi>
+                                    <m:mi>iB</m:mi>
+                                </m:msup>
+                                <m:mo>=</m:mo>
+                                <m:mi>iA</m:mi>
+                            </m:mrow>
+                            <m:annotation encoding="SnuggleTeX"
+                                >\[\qv{iD}^{\qv{iB}}=\qv{iA}\]</m:annotation>
+                        </m:semantics>
+                    </m:math>
+                </simpleChoice>
+            </choiceInteraction>
+            <feedbackInline id="feedbackInline0" identifier="CORRECT" outcomeIdentifier="FEEDBACK"
+                showHide="show">Well done! That is correct! - <printedVariable class=""
+                    id="printedVariable0" identifier="SCORE"/> marks.</feedbackInline>
+            <feedbackInline id="feedbackInline1" identifier="INCORRECT" outcomeIdentifier="FEEDBACK"
+                showHide="show">Sorry, that's the wrong answer.</feedbackInline>
+            <feedbackInline id="feedbackInline2" identifier="PARTRIGHT" outcomeIdentifier="FEEDBACK"
+                showHide="show">Almost right, but not quite! - <printedVariable class=""
+                    id="printedVariable1" identifier="SCORE"/> marks.</feedbackInline>
+            <feedbackBlock class="" id="feedbackBlock3" identifier="SOLUTION"
+                outcomeIdentifier="FEEDBACK" showHide="show">
+                <div class="">The base is&#160;<printedVariable id="printedVariable2"
+                        identifier="iA"/>&#160;and the power is&#160;<printedVariable
+                        id="printedVariable3" identifier="iB"/>, so<m:math display="block"
+                        id="mathML7">
+                        <m:semantics>
+                            <m:mrow>
+                                <m:msub>
+                                    <m:mi>log</m:mi>
+                                    <m:mi>iA</m:mi>
+                                </m:msub>
+                                <m:mfenced close=")" open="(">
+                                    <m:mi>iD</m:mi>
+                                </m:mfenced>
+                                <m:mo>=</m:mo>
+                                <m:mi>iB</m:mi>
+                                <m:mo>⇒</m:mo>
+                                <m:msup>
+                                    <m:mi>iA</m:mi>
+                                    <m:mi>iB</m:mi>
+                                </m:msup>
+                                <m:mo>=</m:mo>
+                                <m:mi>iD</m:mi>
+                            </m:mrow>
+                            <m:annotation encoding="SnuggleTeX">\[\log_{\qv{iA}}(\qv{iD})=\qv{iB}
+                                \Rightarrow \qv{iA}^{\qv{iB}}=\qv{iD}\]</m:annotation>
+                        </m:semantics>
+                    </m:math>
+                </div>
+            </feedbackBlock>
+            <feedbackBlock id="feedbackBlock4" identifier="HINT" outcomeIdentifier="FEEDBACK"
+                showHide="show">
+                <div>A logarithm is a power of a base; in the given expression, which value is the
+                    base and which is the power?</div>
+            </feedbackBlock>
+            <feedbackBlock id="feedbackBlock5" identifier="SEEN-SOLUTION"
+                outcomeIdentifier="FEEDBACK" showHide="show">
+                <div>Since you have viewed the solution, your score for this question will be
+                    0.</div>
+            </feedbackBlock>
+            <feedbackBlock id="feedbackBlock6" identifier="SEEN-HINT" outcomeIdentifier="FEEDBACK"
+                showHide="show">
+                <div>Since you have viewed the hint, your score for this question will be divided by
+                    2.</div>
+            </feedbackBlock>
+            <feedbackBlock id="feedbackBlock7" identifier="askhint" outcomeIdentifier="ASKHINT"
+                showHide="show">
+                <div>
+                    <endAttemptInteraction id="endAttemptInteraction1"
+                        responseIdentifier="HINTREQUEST" title="Show Hint"/>
+                </div>
+            </feedbackBlock>
+            <feedbackBlock id="feedbackBlock8" identifier="asksolution"
+                outcomeIdentifier="ASKSOLUTION" showHide="show">
+                <div>
+                    <endAttemptInteraction id="endAttemptInteraction2"
+                        responseIdentifier="SOLREQUEST" title="Show Solution"/>
+                </div>
+            </feedbackBlock>
+        </div>
+    </itemBody>
+    <responseProcessing>
+        <responseCondition>
+            <responseIf>
+                <variable identifier="HINTREQUEST"/>
+                <setOutcomeValue identifier="FEEDBACK">
+                    <multiple>
+                        <baseValue baseType="identifier">HINT</baseValue>
+                    </multiple>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="seenHint">
+                    <baseValue baseType="boolean">true</baseValue>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="ASKHINT">
+                    <baseValue baseType="identifier">null</baseValue>
+                </setOutcomeValue>
+            </responseIf>
+            <responseElseIf>
+                <variable identifier="SOLREQUEST"/>
+                <setOutcomeValue identifier="FEEDBACK">
+                    <multiple>
+                        <baseValue baseType="identifier">SOLUTION</baseValue>
+                    </multiple>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="seenSolution">
+                    <baseValue baseType="boolean">true</baseValue>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="ASKHINT">
+                    <baseValue baseType="identifier">null</baseValue>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="ASKSOLUTION">
+                    <baseValue baseType="identifier">null</baseValue>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="completionStatus">
+                    <baseValue baseType="identifier">completed</baseValue>
+                </setOutcomeValue>
+            </responseElseIf>
+            <responseElse>
+                <responseCondition>
+                    <responseIf>
+                        <isNull>
+                            <variable identifier="RESPONSE"/>
+                        </isNull>
+                        <setOutcomeValue identifier="SCORE">
+                            <baseValue baseType="float">0.0</baseValue>
+                        </setOutcomeValue>
+                    </responseIf>
+                    <responseElse>
+                        <responseCondition>
+                            <responseIf>
+                                <match>
+                                    <variable identifier="RESPONSE"/>
+                                    <correct identifier="RESPONSE"/>
+                                </match>
+                                <setOutcomeValue identifier="SCORE">
+                                    <baseValue baseType="float">2.0</baseValue>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <baseValue baseType="identifier">CORRECT</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                            </responseIf>
+                            <responseElse>
+                                <setOutcomeValue identifier="SCORE">
+                                    <baseValue baseType="float">0</baseValue>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <baseValue baseType="identifier">INCORRECT</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                            </responseElse>
+                        </responseCondition>
+                        <setOutcomeValue identifier="completionStatus">
+                            <baseValue baseType="identifier">completed</baseValue>
+                        </setOutcomeValue>
+                        <setOutcomeValue identifier="ASKHINT">
+                            <baseValue baseType="identifier">null</baseValue>
+                        </setOutcomeValue>
+                        <responseCondition>
+                            <responseIf>
+                                <variable identifier="seenSolution"/>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <variable identifier="FEEDBACK"/>
+                                        <baseValue baseType="identifier">SEEN-SOLUTION</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="SCORE">
+                                    <baseValue baseType="float">0.0</baseValue>
+                                </setOutcomeValue>
+                            </responseIf>
+                            <responseElseIf>
+                                <variable identifier="seenHint"/>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <variable identifier="FEEDBACK"/>
+                                        <baseValue baseType="identifier">SEEN-HINT</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="SCORE">
+                                    <divide>
+                                        <variable identifier="SCORE"/>
+                                        <baseValue baseType="float">2</baseValue>
+                                    </divide>
+                                </setOutcomeValue>
+                            </responseElseIf>
+                        </responseCondition>
+                    </responseElse>
+                </responseCondition>
+            </responseElse>
+        </responseCondition>
+    </responseProcessing>
+</assessmentItem>

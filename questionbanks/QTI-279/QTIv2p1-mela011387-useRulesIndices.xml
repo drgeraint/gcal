@@ -1,0 +1,780 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Element! --><!-- assessmentItem element! --><assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p1"
+                xmlns:m="http://www.w3.org/1998/Math/MathML"
+                xmlns:xi="http://www.w3.org/2001/XInclude"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                xmlns:ma="http://mathassess.qtitools.org/xsd/mathassess"
+                toolName="Uniqurate"
+                toolVersion="1.0"
+                xml:lang="en"
+                adaptive="true"
+                timeDependent="false"
+                identifier="mela011387"
+                title="Use multiplication, division and power rules for positive indices
+                "
+                xsi:schemaLocation="http://www.imsglobal.org/xsd/imsqti_v2p1 imsqti_v2p1.xsd http://mathassess.qtitools.org/xsd/mathassess mathassess.xsd">
+    <responseDeclaration identifier="RESPONSE" cardinality="record"/>
+    <responseDeclaration identifier="printMath" cardinality="single" baseType="string"/>
+    <responseDeclaration identifier="HINTREQUEST" baseType="boolean" cardinality="single"/>
+    <responseDeclaration identifier="SOLREQUEST" baseType="boolean" cardinality="single"/>
+    <outcomeDeclaration identifier="seenSolution" baseType="boolean" cardinality="single">
+      <defaultValue>
+         <value>false</value>
+      </defaultValue>
+   </outcomeDeclaration>
+   <outcomeDeclaration identifier="seenHint" baseType="boolean" cardinality="single">
+      <defaultValue>
+         <value>false</value>
+      </defaultValue>
+   </outcomeDeclaration>
+   <outcomeDeclaration identifier="ASKSOLUTION" baseType="identifier" cardinality="single">
+      <defaultValue>
+         <value>asksolution</value>
+      </defaultValue>
+   </outcomeDeclaration>
+   <outcomeDeclaration identifier="ASKHINT" baseType="identifier" cardinality="single">
+      <defaultValue>
+         <value>askhint</value>
+      </defaultValue>
+   </outcomeDeclaration>
+   <outcomeDeclaration identifier="EMPTY" baseType="identifier" cardinality="single"/>
+   <outcomeDeclaration identifier="FEEDBACK" baseType="identifier" cardinality="multiple"/>
+    <outcomeDeclaration identifier="SOLPARTS" baseType="identifier" cardinality="multiple"/>
+    <outcomeDeclaration identifier="SCORE" baseType="float" cardinality="single" normalMaximum="2.0"
+                       normalMinimum="0">
+        <defaultValue>
+            <value>0
+            </value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration cardinality="record" identifier="mAns" /> 
+    <templateDeclaration identifier="showSolParts" baseType="identifier" cardinality="multiple"
+                        mathVariable="false"
+                        paramVariable="false">
+        <defaultValue>
+            <value>NONE
+            </value>
+        </defaultValue>
+    </templateDeclaration>
+    <templateDeclaration identifier="fullMarks" baseType="float" cardinality="single"
+                        mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="fMarksOff" baseType="float" cardinality="single"
+                        mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="iQparts" baseType="integer" cardinality="single"
+                        mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="iQrequire" baseType="integer" cardinality="single"
+                        mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="iQtype" baseType="integer" cardinality="single" mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="iQnumnums" baseType="integer" cardinality="single"
+                        mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="iNvars" baseType="integer" cardinality="single" mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="sDqbuff" baseType="string" cardinality="single" mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="sEqbuff" baseType="string" cardinality="single" mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="packedQuestion" baseType="string" cardinality="ordered"
+                        mathVariable="false"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="iA" baseType="integer" cardinality="single" mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="iB" baseType="integer" cardinality="single" mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="iC" baseType="integer" cardinality="single" mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="iD" baseType="integer" cardinality="single" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration identifier="iDm1" baseType="integer" cardinality="single" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration identifier="iB1" baseType="integer" cardinality="single" mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="iB2" baseType="integer" cardinality="single" mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="iG" baseType="integer" cardinality="single" mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="iEp" baseType="integer" cardinality="single" mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="iFp" baseType="integer" cardinality="single" mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="iGp" baseType="integer" cardinality="single" mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="iH" baseType="integer" cardinality="single" mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="iM" baseType="integer" cardinality="single" mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="iN" baseType="integer" cardinality="single" mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="iCD" baseType="integer" cardinality="single" mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="iAD" baseType="integer" cardinality="single" mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="tDummy" cardinality="single" baseType="boolean" mathVariable="false" paramVariable="false"/>
+    <templateDeclaration identifier="tSol" cardinality="single" baseType="identifier" mathVariable="false" paramVariable="false"/>
+    <templateDeclaration identifier="oQues" cardinality="record" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration identifier="oQuesNum" cardinality="record" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration identifier="oQuesDen" cardinality="record" mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="oSolNum1" cardinality="record" mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="oSolDen1" cardinality="record" mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="oSolNum2" cardinality="record" mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="oSolDen2" cardinality="record" mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="oQbuff" cardinality="record" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration identifier="mX1" cardinality="record" mathVariable="true"
+        paramVariable="false"/>
+    <templateProcessing>
+        <setTemplateValue identifier="fullMarks">
+            <baseValue baseType="float">2.0</baseValue>
+        </setTemplateValue>
+        <setTemplateValue identifier="fMarksOff">
+            <baseValue baseType="float">2.0</baseValue>
+        </setTemplateValue>
+        <setTemplateValue identifier="iQparts">
+            <baseValue baseType="integer">1</baseValue>
+        </setTemplateValue>
+        <setTemplateValue identifier="iQrequire">
+            <baseValue baseType="integer">3</baseValue>
+        </setTemplateValue>
+        <setTemplateValue identifier="iQtype">
+            <baseValue baseType="integer">8</baseValue>
+        </setTemplateValue>
+        <setTemplateValue identifier="iQnumnums">
+            <baseValue baseType="integer">0</baseValue>
+        </setTemplateValue>
+        <setTemplateValue identifier="iNvars">
+            <baseValue baseType="integer">2</baseValue>
+        </setTemplateValue>
+
+        <!-- 
+tqa:=Random(2,6,1)
+tqb:=Random(1,6,1)
+tqc:=Random(2,3,1)
+Test(tqb=tqc,tqb:=7)
+tqf:=1
+tqg:=tqa**(tqc-1)
+tqp:=tqa**tqc
+tqm:=tqf/tqg
+tqh:=tqc-tqb
+        -->
+        <setTemplateValue identifier="iA">
+            <randomInteger min="2" max="6"/>
+        </setTemplateValue>
+        <setTemplateValue identifier="iB1">
+            <randomInteger min="2" max="5"/>
+        </setTemplateValue>
+        <setTemplateValue identifier="iB2">
+            <randomInteger min="2" max="5"/>
+        </setTemplateValue>
+        <templateConstraint>
+            <not>
+                <equal toleranceMode="exact">
+                    <variable identifier="iB1"/>
+                    <variable identifier="iB2"/>
+                </equal>
+            </not>
+        </templateConstraint>
+        <setTemplateValue identifier="iC">
+            <randomInteger min="2" max="5"/>
+        </setTemplateValue>
+        <setTemplateValue identifier="iD">
+            <randomInteger min="2" max="5"/>
+        </setTemplateValue>
+        <setTemplateValue identifier="iCD">
+            <product>
+                <variable identifier="iC"/>
+                <variable identifier="iD"/>
+            </product>
+        </setTemplateValue>
+        <setTemplateValue identifier="iB">
+            <sum>
+                <variable identifier="iB1"/>
+                <variable identifier="iB2"/>
+            </sum>
+        </setTemplateValue>
+        <setTemplateValue identifier="iDm1">
+            <subtract>
+                <variable identifier="iD"/>
+                <baseValue baseType="integer">1</baseValue>
+            </subtract>
+        </setTemplateValue>
+        <setTemplateValue identifier="iAD">
+            <round>
+                <power>
+                    <variable identifier="iA"/>
+                    <variable identifier="iDm1"/>
+                </power>
+            </round>
+        </setTemplateValue>
+        <setTemplateValue identifier="iM">
+            <randomInteger min="1" max="2"/>
+        </setTemplateValue>
+        <templateCondition>
+            <templateIf>
+                <equal toleranceMode="exact">
+                    <variable identifier="iM"/>
+                    <baseValue baseType="integer">1</baseValue>
+                </equal>
+                <setTemplateValue identifier="tDummy">
+                    <customOperator class="org.qtitools.mathassess.ScriptRule" ma:syntax="text/x-maxima">
+                        <baseValue baseType="string"><![CDATA[
+ simp: false;
+ aa: ev(random(13),simp);
+ array(aarr1,13);
+ fillarray(aarr1,[a,b,c,m,p,q,r,s,t,u,v,w,x,y]);
+ mX1:aarr1[aa];
+ oQuesNum: iA*mX1^iB1*mX1^iB2;
+ oQuesDen: (iA*mX1^iC)^iD;
+ oQues:oQuesNum/oQuesDen;
+ oQbuff:ev(oQues,simp);
+]]></baseValue>
+                    </customOperator>
+                </setTemplateValue>
+                <setTemplateValue identifier="tSol">
+                    <baseValue baseType="identifier">Sol1</baseValue>
+                </setTemplateValue>
+            </templateIf>
+            <templateElse>
+                <setTemplateValue identifier="tDummy">
+                    <customOperator class="org.qtitools.mathassess.ScriptRule" ma:syntax="text/x-maxima">
+                        <baseValue baseType="string"><![CDATA[
+ simp: false;
+ aa: ev(random(13),simp);
+ array(aarr1,13);
+ fillarray(aarr1,[a,b,c,m,p,q,r,s,t,u,v,w,x,y]);
+ mX1:aarr1[aa];
+ oQuesDen: iA*mX1^iB;
+ oQuesNum: (iA*mX1^iC)^iD;
+ oQues:oQuesNum/oQuesDen;
+ oQbuff:ev(oQues,simp);
+]]></baseValue>
+                    </customOperator>
+                </setTemplateValue>
+                <setTemplateValue identifier="tSol">
+                    <baseValue baseType="identifier">Sol2</baseValue>
+                </setTemplateValue>
+            </templateElse>
+        </templateCondition>
+        
+        <setCorrectResponse identifier="RESPONSE">
+            <variable identifier="oQbuff"/>
+        </setCorrectResponse>
+        
+    </templateProcessing>
+    <itemBody>
+        <div class="QTEXT">
+         <p>Simplify</p>
+      </div>
+        <div class="EQCENTRE">
+         <p>
+             <m:math display="block">
+               <m:mi>oQues</m:mi>
+           </m:math>
+         </p>
+      </div>
+        <div class="QTEXT">
+         <p>as far as possible, leaving the answer with positive powers.</p>
+      </div>
+        <div class="EQCENTRE">
+            <div class="">
+                <customInteraction class="org.qtitools.mathassess.MathEntryInteraction" id="customInteraction0" ma:syntax="text/x-maxima" responseIdentifier="RESPONSE"/>    </div>
+            <div class="">
+                <feedbackInline id="feedbackInline0" identifier="CORRECT" outcomeIdentifier="FEEDBACK" showHide="show">                                                                                			Correct		                                                            </feedbackInline>    </div>
+            <div class="">
+                <feedbackInline id="feedbackInline1" identifier="NOTSIMP" outcomeIdentifier="FEEDBACK" showHide="show">                Your answer is almost correct, but not in its simplest form.            </feedbackInline>    </div>
+            <div class="">
+                <feedbackInline id="feedbackInline2" identifier="ORIG" outcomeIdentifier="FEEDBACK" showHide="show">                Your answer is the same as the original question.            </feedbackInline>    </div>
+            <div class="">
+                <feedbackInline id="feedbackInline3" identifier="INCORRECT" outcomeIdentifier="FEEDBACK" showHide="show">                Incorrect            </feedbackInline>    </div>
+        </div>
+        <feedbackBlock id="feedbackBlock4" identifier="THREETRIES" outcomeIdentifier="FEEDBACK" showHide="show">
+            <p>You have had three attempts at answering this question, so here is the solution:</p>
+        </feedbackBlock>
+        <feedbackBlock identifier="SOLUTION" outcomeIdentifier="FEEDBACK" showHide="show">
+            <div class="EQCENTRE">
+                <templateBlock templateIdentifier="tSol" identifier="Sol1" showHide="show">
+                    <m:math display="block" id="mathML0">
+                        <m:semantics>
+                            <m:mtable>
+                                <m:mtr>
+                                    <m:mtd columnalign="right">
+                                        <m:mi>oQues</m:mi>
+                                    </m:mtd>
+                                    <m:mtd columnalign="center">
+                                        <m:mo>=</m:mo>
+                                    </m:mtd>
+                                    <m:mtd columnalign="left">
+                                        <m:mfrac>
+                                            <m:mrow>
+                                                <m:mi>iA</m:mi>
+                                                <m:msup>
+                                                    <m:mi>mX1</m:mi>
+                                                    <m:mrow>
+                                                        <m:mi>iB1</m:mi>
+                                                        <m:mo>+</m:mo>
+                                                        <m:mi>iB2</m:mi>
+                                                    </m:mrow>
+                                                </m:msup>
+                                            </m:mrow>
+                                            <m:mrow>
+                                                <m:msup>
+                                                    <m:mi>iA</m:mi>
+                                                    <m:mi>iD</m:mi>
+                                                </m:msup>
+                                                <m:mo>&#xd7;</m:mo>
+                                                <m:msup>
+                                                    <m:mi>mX1</m:mi>
+                                                    <m:mrow>
+                                                        <m:mi>iC</m:mi>
+                                                        <m:mo>&#xd7;</m:mo>
+                                                        <m:mi>iD</m:mi>
+                                                    </m:mrow>
+                                                </m:msup>
+                                            </m:mrow>
+                                        </m:mfrac>
+                                    </m:mtd>
+                                </m:mtr>
+                                <m:mtr>
+                                    <m:mtd columnalign="right"/>
+                                    <m:mtd columnalign="center">
+                                        <m:mo>=</m:mo>
+                                    </m:mtd>
+                                    <m:mtd columnalign="left">
+                                        <m:mfrac>
+                                            <m:mrow>
+                                                <m:mi>iA</m:mi>
+                                                <m:msup>
+                                                    <m:mi>mX1</m:mi>
+                                                    <m:mrow>
+                                                        <m:mi>iB</m:mi>
+                                                    </m:mrow>
+                                                </m:msup>
+                                            </m:mrow>
+                                            <m:mrow>
+                                                <m:msup>
+                                                    <m:mi>iA</m:mi>
+                                                    <m:mi>iD</m:mi>
+                                                </m:msup>
+                                                <m:mo>&#xd7;</m:mo>
+                                                <m:msup>
+                                                    <m:mi>mX1</m:mi>
+                                                    <m:mrow>
+                                                        <m:mi>iCD</m:mi>
+                                                    </m:mrow>
+                                                </m:msup>
+                                            </m:mrow>
+                                        </m:mfrac>
+                                    </m:mtd>
+                                </m:mtr>
+                                <m:mtr>
+                                    <m:mtd columnalign="right"/>
+                                    <m:mtd columnalign="center">
+                                        <m:mo>=</m:mo>
+                                    </m:mtd>
+                                    <m:mtd columnalign="left">
+                                        <m:mfrac>
+                                            <m:mn>1</m:mn>
+                                            <m:msup>
+                                                <m:mi>iA</m:mi>
+                                                <m:mi>iDm1</m:mi>
+                                            </m:msup>
+                                        </m:mfrac>
+                                        <m:mrow>
+                                            <m:msup>
+                                                <m:mi>mX1</m:mi>
+                                                <m:mfenced open="(" close=")">
+                                                    <m:mrow>
+                                                        <m:mfenced open="(" close=")">
+                                                            <m:mi>iB</m:mi>
+                                                        </m:mfenced>
+                                                        <m:mo>-</m:mo>
+                                                        <m:mfenced open="(" close=")">
+                                                            <m:mi>iCD</m:mi>
+                                                        </m:mfenced>
+                                                    </m:mrow>
+                                                </m:mfenced>
+                                            </m:msup>
+                                        </m:mrow>
+                                    </m:mtd>
+                                </m:mtr>
+                                <m:mtr>
+                                    <m:mtd columnalign="right"/>
+                                    <m:mtd columnalign="center">
+                                        <m:mo>=</m:mo>
+                                    </m:mtd>
+                                    <m:mtd columnalign="left">
+                                        <m:mi>oQbuff</m:mi>
+                                    </m:mtd>
+                                </m:mtr>
+                            </m:mtable>
+                            <m:annotation encoding="SnuggleTeX">\begin{eqnarray}\qv{oQues} &amp;=&amp;
+                                \frac{\qv{iA}\qv{mX1}^(\qv{iB1}+\qv{iB2})}{\qv{iA}^\qv{iD}\times \qv{mX1}^(\qv{iC}\times \qv{iD})}
+                                &amp;=&amp; \frac{\qv{iA}\qv{mX1}^(\qv{iB})}{\qv{iA}^\qv{iD}\times \qv{mX1}^(\qv{iCD})
+                                \\ &amp;=&amp; \frac{1}{\qv{iAD}}\qv{mX1}^((\qv{iB})-(\qv{iCD})) \\ &amp;=&amp; \qv{oQbuff}
+                                \end</m:annotation>
+                        </m:semantics>
+                    </m:math>
+                </templateBlock>
+                <templateBlock templateIdentifier="tSol" identifier="Sol2" showHide="show">
+                    <m:math display="block" id="mathML1">
+                        <m:semantics>
+                            <m:mtable>
+                                <m:mtr>
+                                    <m:mtd columnalign="right">
+                                        <m:mi>oQues</m:mi>
+                                    </m:mtd>
+                                    <m:mtd columnalign="center">
+                                        <m:mo>=</m:mo>
+                                    </m:mtd>
+                                    <m:mtd columnalign="left">
+                                        <m:mfrac>
+                                            <m:mrow>
+                                                <m:msup>
+                                                    <m:mi>iA</m:mi>
+                                                    <m:mi>iD</m:mi>
+                                                </m:msup>
+                                                <m:mo>&#xd7;</m:mo>
+                                                <m:msup>
+                                                    <m:mi>mX1</m:mi>
+                                                    <m:mrow>
+                                                        <m:mi>iC</m:mi>
+                                                        <m:mo>&#xd7;</m:mo>
+                                                        <m:mi>iD</m:mi>
+                                                    </m:mrow>
+                                                </m:msup>
+                                            </m:mrow>
+                                            <m:mrow>
+                                                <m:mi>iA</m:mi>
+                                                <m:msup>
+                                                    <m:mi>mX1</m:mi>
+                                                    <m:mrow>
+                                                        <m:mi>iB1</m:mi>
+                                                        <m:mo>+</m:mo>
+                                                        <m:mi>iB2</m:mi>
+                                                    </m:mrow>
+                                                </m:msup>
+                                            </m:mrow>
+                                        </m:mfrac>
+                                    </m:mtd>
+                                </m:mtr>
+                                <m:mtr>
+                                    <m:mtd columnalign="right"/>
+                                    <m:mtd columnalign="center">
+                                        <m:mo>=</m:mo>
+                                    </m:mtd>
+                                    <m:mtd columnalign="left">
+                                        <m:mfrac>
+                                            <m:mrow>
+                                                <m:msup>
+                                                    <m:mi>iA</m:mi>
+                                                    <m:mi>iD</m:mi>
+                                                </m:msup>
+                                                <m:mo>&#xd7;</m:mo>
+                                                <m:msup>
+                                                    <m:mi>mX1</m:mi>
+                                                    <m:mrow>
+                                                        <m:mi>iCD</m:mi>
+                                                    </m:mrow>
+                                                </m:msup>
+                                            </m:mrow>
+                                            <m:mrow>
+                                                <m:mi>iA</m:mi>
+                                                <m:msup>
+                                                    <m:mi>mX1</m:mi>
+                                                    <m:mrow>
+                                                        <m:mi>iB</m:mi>
+                                                    </m:mrow>
+                                                </m:msup>
+                                            </m:mrow>
+                                        </m:mfrac>
+                                    </m:mtd>
+                                </m:mtr>
+                                <m:mtr>
+                                    <m:mtd columnalign="right"/>
+                                    <m:mtd columnalign="center">
+                                        <m:mo>=</m:mo>
+                                    </m:mtd>
+                                    <m:mtd columnalign="left">
+                                        <m:msup>
+                                            <m:mi>iA</m:mi>
+                                            <m:mi>iDm1</m:mi>
+                                        </m:msup>
+                                        <m:mrow>
+                                            <m:msup>
+                                                <m:mi>mX1</m:mi>
+                                                <m:mfenced open="(" close=")">
+                                                    <m:mrow>
+                                                        <m:mfenced open="(" close=")">
+                                                            <m:mi>iCD</m:mi>
+                                                        </m:mfenced>
+                                                        <m:mo>-</m:mo>
+                                                        <m:mfenced open="(" close=")">
+                                                            <m:mi>iB</m:mi>
+                                                        </m:mfenced>
+                                                    </m:mrow>
+                                                </m:mfenced>
+                                            </m:msup>
+                                        </m:mrow>
+                                    </m:mtd>
+                                </m:mtr>
+                                <m:mtr>
+                                    <m:mtd columnalign="right"/>
+                                    <m:mtd columnalign="center">
+                                        <m:mo>=</m:mo>
+                                    </m:mtd>
+                                    <m:mtd columnalign="left">
+                                        <m:mi>oQbuff</m:mi>
+                                    </m:mtd>
+                                </m:mtr>
+                            </m:mtable>
+                            <m:annotation encoding="SnuggleTeX">\begin{eqnarray}\qv{oQues} &amp;=&amp;
+                                \frac{\qv{iA}^\qv{iD}\times \qv{mX1}^(\qv{iC}\times \qv{iD})}{\qv{iA}\qv{mX1}^(\qv{iB1}+\qv{iB2})}
+                                &amp;=&amp; \frac{\qv{iA}^\qv{iD}\times \qv{mX1}^(\qv{iCD})}{\qv{iA}\qv{mX1}^(\qv{iB})}
+                                \\ &amp;=&amp; \qv{iAD}\qv{mX1}^((\qv{iCD})-(\qv{iB})) \\ &amp;=&amp; \qv{oQbuff}
+                                \end</m:annotation>
+                        </m:semantics>
+                    </m:math>
+                </templateBlock>
+            </div>
+        </feedbackBlock>
+        <feedbackBlock identifier="HINT" outcomeIdentifier="FEEDBACK" showHide="show">
+            <div class="QTEXT">
+            <p>1. Factorise fully the numerator and denominator.</p>
+         </div>
+            <div class="QTEXT">
+            <p>2. Cancel the common factors.</p>
+         </div>
+        </feedbackBlock>
+        <div class="">
+         <feedbackBlock showHide="show" identifier="askhint" outcomeIdentifier="ASKHINT">
+            <p>
+               <endAttemptInteraction responseIdentifier="HINTREQUEST" title="Show Hint"/>
+            </p>
+         </feedbackBlock>
+         <feedbackBlock showHide="show" identifier="asksolution" outcomeIdentifier="ASKSOLUTION">
+            <p>
+               <endAttemptInteraction responseIdentifier="SOLREQUEST" title="Show Solution"/>
+            </p>
+         </feedbackBlock>
+      </div>
+    </itemBody>
+    <!-- Use this template to judge an expression.
+    
+    The item must have the MathAssess namespace available.
+    
+    It requires the following declarations in the item:
+    <responseDeclaration cardinality="record" identifier="RESPONSE" />
+                - must be record to be able to use MathAssess extensions
+	<responseDeclaration identifier="HINTREQUEST" cardinality="single" baseType="boolean"/>
+	<responseDeclaration identifier="SOLREQUEST" cardinality="single" baseType="boolean"/>
+    
+    <outcomeDeclaration cardinality="record" identifier="mAns" /> 
+                - is set to the value of the correct response (as a maths expression)
+	<outcomeDeclaration baseType="identifier" cardinality="multiple" identifier="FEEDBACK"/>
+	<outcomeDeclaration baseType="identifier" cardinality="single" identifier="EMPTY"/>
+	<outcomeDeclaration baseType="float" cardinality="single" identifier="SCORE" normalMaximum="2.0"
+		normalMinimum="0.0">
+		<defaultValue>
+			<value>0.0</value>
+		</defaultValue>
+	</outcomeDeclaration>
+	<outcomeDeclaration baseType="boolean" cardinality="single" identifier="seenSolution">
+		<defaultValue>
+			<value>false</value>
+		</defaultValue>
+	</outcomeDeclaration>
+	<outcomeDeclaration baseType="boolean" cardinality="single" identifier="seenHint">
+		<defaultValue>
+			<value>false</value>
+		</defaultValue>
+	</outcomeDeclaration>
+	<outcomeDeclaration baseType="identifier" cardinality="single" identifier="ASKHINT">
+		<defaultValue>
+			<value>askhint</value>
+		</defaultValue>
+	</outcomeDeclaration>
+	<outcomeDeclaration baseType="identifier" cardinality="single" identifier="ASKSOLUTION">
+		<defaultValue>
+			<value>asksolution</value>
+		</defaultValue>
+	</outcomeDeclaration>
+                
+    Feedback for CORRECT and WRONG may be provided, these are associated with the maths input box.
+    Feedback THREETRIES, SEEN-SOLUTION and SEEN-HINT are needed to explain why the question
+    shows the solution after 3 tries and changes SCORE to zero if the Solution was seen 
+    or SCORE/2 if the Hint was used.
+--><responseProcessing xsi:schemaLocation="http://www.imsglobal.org/xsd/imsqti_v2p1 imsqti_v2p1.xsd http://mathassess.qtitools.org/xsd/mathassess mathassess.xsd">
+      <setOutcomeValue identifier="FEEDBACK">
+        <multiple>
+            <variable identifier="EMPTY"/>
+        </multiple>
+      </setOutcomeValue>
+      <responseCondition>
+        <responseIf>
+            <variable identifier="HINTREQUEST"/>
+            <setOutcomeValue identifier="FEEDBACK">
+                <multiple>
+                    <baseValue baseType="identifier">HINT</baseValue>
+                </multiple>
+            </setOutcomeValue>
+            <setOutcomeValue identifier="seenHint">
+                <baseValue baseType="boolean">true</baseValue>
+            </setOutcomeValue>
+        </responseIf>
+        <responseElseIf>
+            <variable identifier="SOLREQUEST"/>
+            <setOutcomeValue identifier="FEEDBACK">
+                <multiple>
+                    <baseValue baseType="identifier">SOLUTION</baseValue>
+                </multiple>
+            </setOutcomeValue>
+            <setOutcomeValue identifier="SOLPARTS">
+                <variable identifier="showSolParts"/>
+            </setOutcomeValue>
+            <setOutcomeValue identifier="seenSolution">
+                <baseValue baseType="boolean">true</baseValue>
+            </setOutcomeValue>
+            <setOutcomeValue identifier="completionStatus">
+                <baseValue baseType="identifier">completed</baseValue>
+            </setOutcomeValue>
+            <setOutcomeValue identifier="ASKHINT">
+                <baseValue baseType="identifier">null</baseValue>
+            </setOutcomeValue>
+            <setOutcomeValue identifier="ASKSOLUTION">
+                <baseValue baseType="identifier">null</baseValue>
+            </setOutcomeValue>
+        </responseElseIf>
+        <responseElse>
+            <setOutcomeValue identifier="mAns">
+                <correct identifier="RESPONSE"/>
+            </setOutcomeValue>
+            <responseCondition>
+                <responseIf>
+                    <isNull>
+                        <variable identifier="RESPONSE"/>
+                    </isNull>
+                    <setOutcomeValue identifier="SCORE">
+                        <baseValue baseType="float">0.0</baseValue>
+                    </setOutcomeValue>
+                </responseIf>
+                <responseElseIf>
+                    <customOperator class="org.qtitools.mathassess.CasCompare" ma:action="syntequal" ma:syntax="text/x-maxima">
+                        <variable identifier="RESPONSE"/>
+                        <variable identifier="mAns"/>
+                    </customOperator>
+                    <setOutcomeValue identifier="FEEDBACK">
+                        <multiple>
+                            <baseValue baseType="identifier">CORRECT</baseValue>
+                        </multiple>
+                    </setOutcomeValue>
+                    <setOutcomeValue identifier="SCORE">
+                        <baseValue baseType="float">2.0</baseValue>
+                    </setOutcomeValue>
+                </responseElseIf>
+                <responseElseIf>
+                    <customOperator class="org.qtitools.mathassess.CasCompare" ma:action="syntequal" ma:syntax="text/x-maxima">
+                        <variable identifier="RESPONSE"/>
+                        <variable identifier="oQues"/>
+                    </customOperator>
+                    <setOutcomeValue identifier="FEEDBACK">
+                        <multiple>
+                            <baseValue baseType="identifier">ORIG</baseValue>
+                        </multiple>
+                    </setOutcomeValue>
+                    <setOutcomeValue identifier="SCORE">
+                        <baseValue baseType="float">0.0</baseValue>
+                    </setOutcomeValue>
+                </responseElseIf>
+                <responseElseIf>
+                    <customOperator class="org.qtitools.mathassess.CasProcess" ma:returnType="boolean"
+                        ma:syntax="text/x-maxima">
+                        <baseValue baseType="string">is(is(equal(ev(RESPONSE,simp),mAns))=true);</baseValue>
+                    </customOperator>
+                    <setOutcomeValue identifier="FEEDBACK">
+                        <multiple>
+                            <baseValue baseType="identifier">NOTSIMP</baseValue>
+                        </multiple>
+                    </setOutcomeValue>
+                    <setOutcomeValue identifier="SCORE">
+                        <baseValue baseType="float">1.0</baseValue>
+                    </setOutcomeValue>
+                </responseElseIf>
+                <responseElse>
+                    <setOutcomeValue identifier="FEEDBACK">
+                        <multiple>
+                            <baseValue baseType="identifier">INCORRECT</baseValue>
+                        </multiple>
+                    </setOutcomeValue>
+                    <setOutcomeValue identifier="SCORE">
+                        <baseValue baseType="float">0.0</baseValue>
+                    </setOutcomeValue>
+                </responseElse>
+            </responseCondition>
+            <responseCondition>
+                <responseIf>
+                    <gt>
+                        <variable identifier="numAttempts"/>
+                        <baseValue baseType="integer">                                            3                                        </baseValue>
+                    </gt>
+                    <setOutcomeValue identifier="FEEDBACK">
+                        <multiple>
+                            <baseValue baseType="identifier">THREETRIES</baseValue>
+                            <baseValue baseType="identifier">SOLUTION</baseValue>
+                        </multiple>
+                    </setOutcomeValue>
+                    <setOutcomeValue identifier="completionStatus">
+                        <baseValue baseType="identifier">completed</baseValue>
+                    </setOutcomeValue>
+                    <setOutcomeValue identifier="ASKHINT">
+                        <baseValue baseType="identifier">null</baseValue>
+                    </setOutcomeValue>
+                    <setOutcomeValue identifier="ASKSOLUTION">
+                        <baseValue baseType="identifier">null</baseValue>
+                    </setOutcomeValue>
+                </responseIf>
+            </responseCondition>
+            <responseCondition>
+                <responseIf>
+                    <variable identifier="seenSolution"/>
+                    <setOutcomeValue identifier="FEEDBACK">
+                        <multiple>
+                            <variable identifier="FEEDBACK"/>
+                            <baseValue baseType="identifier">SEEN-SOLUTION</baseValue>
+                        </multiple>
+                    </setOutcomeValue>
+                    <setOutcomeValue identifier="SCORE">
+                        <baseValue baseType="float">0.0</baseValue>
+                    </setOutcomeValue>
+                </responseIf>
+                <responseElseIf>
+                    <variable identifier="seenHint"/>
+                    <setOutcomeValue identifier="FEEDBACK">
+                        <multiple>
+                            <variable identifier="FEEDBACK"/>
+                            <baseValue baseType="identifier">SEEN-HINT</baseValue>
+                        </multiple>
+                    </setOutcomeValue>
+                    <setOutcomeValue identifier="SCORE">
+                        <divide>
+                            <variable identifier="SCORE"/>
+                            <baseValue baseType="float">2.0</baseValue>
+                        </divide>
+                    </setOutcomeValue>
+                </responseElseIf>
+            </responseCondition>
+        </responseElse>
+      </responseCondition>
+   </responseProcessing>
+</assessmentItem>

@@ -1,0 +1,723 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p1"
+    xmlns:m="http://www.w3.org/1998/Math/MathML"
+    xmlns:ma="http://mathassess.qtitools.org/xsd/mathassess"
+    xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" adaptive="true" identifier="Diff-006-xForMaxMinCubic"
+    timeDependent="false" title="Give values of x where cubic has local maximum and local minimum"
+    toolName="Mathqurate" toolVersion="1.0" xml:lang="en"
+    xsi:schemaLocation="http://www.imsglobal.org/xsd/imsqti_v2p1 imsqti_v2p1.xsd http://mathassess.qtitools.org/xsd/mathassess mathassess.xsd">
+    <responseDeclaration baseType="integer" cardinality="single" identifier="RESPONSE1"/>
+    <responseDeclaration baseType="integer" cardinality="single" identifier="RESPONSE2"/>
+    <responseDeclaration baseType="boolean" cardinality="single" identifier="HINTREQUEST"/>
+    <responseDeclaration baseType="boolean" cardinality="single" identifier="SOLREQUEST"/>
+    <outcomeDeclaration baseType="float" cardinality="single" identifier="SCORE" normalMaximum="2.0">
+        <defaultValue>
+            <value>0.0</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="float" cardinality="single" identifier="SCORE1"/>
+    <outcomeDeclaration baseType="float" cardinality="single" identifier="SCORE2"/>
+    <outcomeDeclaration baseType="identifier" cardinality="multiple" identifier="FEEDBACK"/>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="seenSolution">
+        <defaultValue>
+            <value>false</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="seenHint">
+        <defaultValue>
+            <value>false</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="identifier" cardinality="single" identifier="EMPTY"/>
+    <outcomeDeclaration baseType="identifier" cardinality="single" identifier="ASKHINT">
+        <defaultValue>
+            <value>askhint</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="identifier" cardinality="single" identifier="ASKSOLUTION">
+        <defaultValue>
+            <value>asksolution</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="identifier" cardinality="multiple" identifier="SOLPARTS"/>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="odummy"/>
+    <outcomeDeclaration baseType="integer" cardinality="single" identifier="iVal1"/>
+    <outcomeDeclaration baseType="integer" cardinality="single" identifier="iVal2"/>
+    <templateDeclaration baseType="boolean" cardinality="single" identifier="keepRandomSeed"
+        mathVariable="false" paramVariable="false"/>
+    <templateDeclaration baseType="boolean" cardinality="single" identifier="doSubst"
+        mathVariable="false" paramVariable="false">
+        <defaultValue>
+            <value>true</value>
+        </defaultValue>
+    </templateDeclaration>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iRandomSeed"
+        mathVariable="false" paramVariable="false"/>
+    <templateDeclaration baseType="boolean" cardinality="single" identifier="tdummy"
+        mathVariable="false" paramVariable="false"/>
+    <templateDeclaration baseType="identifier" cardinality="multiple" identifier="showSolParts"
+        mathVariable="false" paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iA" mathVariable="true"
+        paramVariable="false">
+        <defaultValue>
+            <value>0</value>
+        </defaultValue>
+    </templateDeclaration>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iB" mathVariable="true"
+        paramVariable="false">
+        <defaultValue>
+            <value>0</value>
+        </defaultValue>
+    </templateDeclaration>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iA1"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iB1"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iA2"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iB2"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iA3"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iB3"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iA4"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iB4"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iMax"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iMin"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iC" mathVariable="true"
+        paramVariable="false">
+        <defaultValue>
+            <value>0</value>
+        </defaultValue>
+    </templateDeclaration>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iD" mathVariable="true"
+        paramVariable="false">
+        <defaultValue>
+            <value>0</value>
+        </defaultValue>
+    </templateDeclaration>
+    <templateDeclaration cardinality="record" identifier="mQues" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration cardinality="record" identifier="mDeriv" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration cardinality="record" identifier="mDerivFactors" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration cardinality="record" identifier="mDerivAm" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration cardinality="record" identifier="mDerivAp" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration cardinality="record" identifier="mDerivBm" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration cardinality="record" identifier="mDerivBp" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration cardinality="record" identifier="mX" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="ordered" identifier="iRandomState"
+        mathVariable="false" paramVariable="false"/>
+    <templateDeclaration baseType="string" cardinality="single" identifier="sIncA"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="string" cardinality="single" identifier="sIncB"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="string" cardinality="single" identifier="sTypeA"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="string" cardinality="single" identifier="sTypeB"
+        mathVariable="true" paramVariable="false"/>
+    <templateProcessing>
+        <setTemplateValue identifier="iA">
+            <randomInteger min="-6" max="2"/>
+        </setTemplateValue>
+        <setTemplateValue identifier="iB">
+            <sum>
+                <variable identifier="iA"/>
+                <randomInteger min="2" max="6" step="2"/>
+            </sum>
+        </setTemplateValue>
+        <setTemplateValue identifier="iC">
+            <product>
+                <randomInteger min="1" max="6"/>
+                <randomInteger min="-1" max="1" step="2"/>
+            </product>
+        </setTemplateValue>
+        <setTemplateValue identifier="iD">
+            <product>
+                <randomInteger min="1" max="2"/>
+                <randomInteger min="-1" max="1" step="2"/>
+            </product>
+        </setTemplateValue>
+        <setTemplateValue identifier="tdummy">
+            <customOperator class="org.qtitools.mathassess.ScriptRule" ma:syntax="text/x-maxima">
+                <baseValue baseType="string"><![CDATA[
+
+ iA1: iD;
+
+ iA2: ev((-3)*iD*(iA+iB)/2,simp);
+
+ iA3: ev(3*iD*iA*iB,simp);
+
+ iA4: iC;
+
+ iB4: 0;
+
+ iB3: 1;
+
+ iB2: 2;
+
+ iB1: 3;
+
+ choose(list) := list[1+random(length(list))];
+
+ varNames:[a,b,c,d,h,k,m,n,p,q,r,s,t,u,v,w,x,y,z];
+
+ mX:choose(varNames);
+
+ varNames: delete(mX,varNames);
+
+ mY:choose(varNames);
+
+ mQues: ev(iA1*x^iB1+iA2*x^iB2+iA3*x^iB3+iA4*x^iB4,simp);
+
+ mDeriv: ev(diff(mQues,x),simp);
+
+ mDerivAm: ev(subst(iA-1/2,x,mDeriv),simp);
+
+ mDerivAp: ev(subst(iA+1/2,x,mDeriv),simp);
+
+ mDerivBm: ev(subst(iB-1/2,x,mDeriv),simp);
+
+ mDerivBp: ev(subst(iB+1/2,x,mDeriv),simp);
+
+ mDerivFactors: ev((x-iA)*(x-iB),simp);
+
+ 
+
+]]></baseValue>
+            </customOperator>
+        </setTemplateValue>
+        <templateCondition>
+            <templateIf>
+                <gt>
+                    <variable identifier="iD"/>
+                    <baseValue baseType="integer">0</baseValue>
+                </gt>
+                <setTemplateValue identifier="iMax">
+                    <variable identifier="iA"/>
+                </setTemplateValue>
+                <setTemplateValue identifier="iMin">
+                    <variable identifier="iB"/>
+                </setTemplateValue>
+                <setTemplateValue identifier="sIncA">
+                    <baseValue baseType="string">positive to negative</baseValue>
+                </setTemplateValue>
+                <setTemplateValue identifier="sIncB">
+                    <baseValue baseType="string">negative to positive</baseValue>
+                </setTemplateValue>
+                <setTemplateValue identifier="sTypeA">
+                    <baseValue baseType="string">maximum</baseValue>
+                </setTemplateValue>
+                <setTemplateValue identifier="sTypeB">
+                    <baseValue baseType="string">minimum</baseValue>
+                </setTemplateValue>
+            </templateIf>
+            <templateElse>
+                <setTemplateValue identifier="iMax">
+                    <variable identifier="iB"/>
+                </setTemplateValue>
+                <setTemplateValue identifier="iMin">
+                    <variable identifier="iA"/>
+                </setTemplateValue>
+                <setTemplateValue identifier="sIncA">
+                    <baseValue baseType="string">negative to positive</baseValue>
+                </setTemplateValue>
+                <setTemplateValue identifier="sIncB">
+                    <baseValue baseType="string">positive to negative</baseValue>
+                </setTemplateValue>
+                <setTemplateValue identifier="sTypeA">
+                    <baseValue baseType="string">minimum</baseValue>
+                </setTemplateValue>
+                <setTemplateValue identifier="sTypeB">
+                    <baseValue baseType="string">maximum</baseValue>
+                </setTemplateValue>
+            </templateElse>
+        </templateCondition>
+    </templateProcessing>
+    <itemBody class="">
+        <div class="">
+            <p class="">The function</p>
+            <div class="">
+                <m:math display="block" id="mathML0">
+                    <m:semantics>
+                        <m:mrow>
+                            <m:mi>f</m:mi>
+                            <m:mfenced close=")" open="(">
+                                <m:mi>x</m:mi>
+                            </m:mfenced>
+                            <m:mo>=</m:mo>
+                            <m:mi>mQues</m:mi>
+                        </m:mrow>
+                        <m:annotation encoding="SnuggleTeX">\[f(\qv{x}) =
+                            \qv{mQues}\]</m:annotation>
+                    </m:semantics>
+                </m:math>
+            </div>
+            <p class="">has a local maximum at<m:math id="mathML1">
+                    <m:semantics>
+                        <m:mrow>
+                            <m:mi>x</m:mi>
+                            <m:mo>=</m:mo>
+                        </m:mrow>
+                        <m:annotation encoding="SnuggleTeX">\[x = \]</m:annotation>
+                    </m:semantics>
+                </m:math>
+                <textEntryInteraction expectedLength="20" id="textEntryInteraction0"
+                    label="mathInput" responseIdentifier="RESPONSE1"/>
+            </p>
+            <p class="">
+                <feedbackInline id="feedbackInline0" identifier="CORRECT1"
+                    outcomeIdentifier="FEEDBACK" showHide="show"> Yes, there is a local maximum at x
+                    = <printedVariable id="printedVariable0" identifier="iVal1"/>
+                </feedbackInline>
+                <feedbackInline id="feedbackInline1" identifier="INCORRECT1"
+                    outcomeIdentifier="FEEDBACK" showHide="show">No, there is not a local maximum at
+                    x = <printedVariable id="printedVariable0" identifier="iVal1"/>
+                </feedbackInline>
+            </p>
+            <p class="">and a local minimum at&#160;<m:math id="mathML2">
+                    <m:semantics>
+                        <m:mrow>
+                            <m:mi>x</m:mi>
+                            <m:mo>=</m:mo>
+                        </m:mrow>
+                        <m:annotation encoding="SnuggleTeX">\[x = \]</m:annotation>
+                    </m:semantics>
+                </m:math>
+                <textEntryInteraction expectedLength="20" id="textEntryInteraction1"
+                    label="mathInput" responseIdentifier="RESPONSE2"/>
+            </p>
+            <p class="">
+                <feedbackInline id="feedbackInline2" identifier="CORRECT2"
+                    outcomeIdentifier="FEEDBACK" showHide="show"> Yes, there is a local minimum at x
+                    = <printedVariable id="printedVariable2" identifier="iVal2"/>
+                </feedbackInline>
+                <feedbackInline id="feedbackInline3" identifier="INCORRECT2"
+                    outcomeIdentifier="FEEDBACK" showHide="show">No, there is not a local minimum at
+                    x = <printedVariable id="printedVariable3" identifier="iVal2"/>
+                </feedbackInline>
+            </p>
+            <feedbackBlock id="feedbackBlock4" identifier="THREETRIES" outcomeIdentifier="FEEDBACK"
+                showHide="show">
+                <p> You have had three attempts at answering this question, so here is the solution:
+                </p>
+            </feedbackBlock>
+            <feedbackBlock class="" id="feedbackBlock5" identifier="SOLUTION"
+                outcomeIdentifier="FEEDBACK" showHide="show">
+                <div class="">
+                    <m:math display="block" id="mathML3">
+                        <m:semantics>
+                            <m:mrow>
+                                <m:mi>f</m:mi>
+                                <m:mfenced close=")" open="(">
+                                    <m:mi>x</m:mi>
+                                </m:mfenced>
+                                <m:mo>=</m:mo>
+                                <m:mi>mQues</m:mi>
+                            </m:mrow>
+                            <m:annotation encoding="SnuggleTeX">\[f(x)=\qv{mQues}\]</m:annotation>
+                        </m:semantics>
+                    </m:math>
+                    <m:math display="block" id="mathML4">
+                        <m:semantics>
+                            <m:mrow>
+                                <m:msup>
+                                    <m:mi>f</m:mi>
+                                    <m:mo>&#x2032;</m:mo>
+                                </m:msup>
+                                <m:mfenced close=")" open="(">
+                                    <m:mi>x</m:mi>
+                                </m:mfenced>
+                                <m:mo>=</m:mo>
+                                <m:mi>mDeriv</m:mi>
+                            </m:mrow>
+                            <m:annotation encoding="SnuggleTeX">\[f^&#x2032;(x)=\qv{mDeriv}\]</m:annotation>
+                        </m:semantics>
+                    </m:math>
+                </div>
+                <div class="">
+                    <p class="">The stationary points occur when</p>
+                    <m:math display="block" id="mathML5">
+                        <m:semantics>
+                            <m:mrow>
+                                <m:msup>
+                                    <m:mi>f</m:mi>
+                                    <m:mo>&#x2032;</m:mo>
+                                </m:msup>
+                                <m:mfenced close=")" open="(">
+                                    <m:mi>x</m:mi>
+                                </m:mfenced>
+                                <m:mo>=</m:mo>
+                                <m:mn>0</m:mn>
+                            </m:mrow>
+                            <m:annotation encoding="SnuggleTeX">\[f^&#x2032;(x)=0\]</m:annotation>
+                        </m:semantics>
+                    </m:math>
+                    <p class="">i.e. when</p>
+                    <m:math display="block" id="mathML6">
+                        <m:semantics>
+                            <m:mtable>
+                                <m:mtr>
+                                    <m:mtd columnalign="right">
+                                        <m:mi>mDeriv</m:mi>
+                                    </m:mtd>
+                                    <m:mtd columnalign="center">
+                                        <m:mo>=</m:mo>
+                                    </m:mtd>
+                                    <m:mtd columnalign="left">
+                                        <m:mn>0</m:mn>
+                                    </m:mtd>
+                                </m:mtr>
+                                <m:mtr>
+                                    <m:mtd columnalign="right">
+                                        <m:mi>mDerivFactors</m:mi>
+                                    </m:mtd>
+                                    <m:mtd columnalign="center">
+                                        <m:mo>=</m:mo>
+                                    </m:mtd>
+                                    <m:mtd columnalign="left">
+                                        <m:mn>0</m:mn>
+                                    </m:mtd>
+                                </m:mtr>
+                            </m:mtable>
+                            <m:annotation encoding="SnuggleTeX"
+                                >\begin{eqnarray*}\qv{mDeriv}&amp;=&amp;0\\\qv{mDerivFactors}&amp;=&amp;0\end{eqnarray*}</m:annotation>
+                        </m:semantics>
+                    </m:math>
+                    <p class="">so the stationary points are at x =&#160;<printedVariable
+                        id="printedVariable4" identifier="iA"/>and x =&#160;<printedVariable
+                            id="printedVariable5" identifier="iB"/>. </p>
+                    <p class="">To determine the nature of the stationary points, check the value of
+                        the derivative on either side of each stationary point:</p>
+                    <p class="">Around x =&#160;<printedVariable id="printedVariable6" identifier="iA"/>:
+                            <m:math display="block" id="mathML7">
+                            <m:semantics>
+                                <m:mtable>
+                                    <m:mtr>
+                                        <m:mtd columnalign="right">
+                                            <m:msup>
+                                                <m:mi>f</m:mi>
+                                                <m:mo>&#x2032;</m:mo>
+                                            </m:msup>
+                                            <m:mfenced close=")" open="(">
+                                                <m:mrow>
+                                                  <m:mi>iA</m:mi>
+                                                  <m:mo>-</m:mo>
+                                                  <m:mfrac>
+                                                  <m:mn>1</m:mn>
+                                                  <m:mn>2</m:mn>
+                                                  </m:mfrac>
+                                                </m:mrow>
+                                            </m:mfenced>
+                                            <m:mo>=</m:mo>
+                                            <m:mi>mDerivAm</m:mi>
+                                        </m:mtd>
+                                    </m:mtr>
+                                    <m:mtr>
+                                        <m:mtd columnalign="right">
+                                            <m:msup>
+                                                <m:mi>f</m:mi>
+                                                <m:mo>&#x2032;</m:mo>
+                                            </m:msup>
+                                            <m:mfenced close=")" open="(">
+                                                <m:mrow>
+                                                  <m:mi>iA</m:mi>
+                                                  <m:mo>+</m:mo>
+                                                  <m:mfrac>
+                                                  <m:mn>1</m:mn>
+                                                  <m:mn>2</m:mn>
+                                                  </m:mfrac>
+                                                </m:mrow>
+                                            </m:mfenced>
+                                            <m:mo>=</m:mo>
+                                            <m:mi>mDerivAp</m:mi>
+                                        </m:mtd>
+                                    </m:mtr>
+                                </m:mtable>
+                                <m:annotation encoding="SnuggleTeX"
+                                    >\begin{eqnarray*}f^&#x2032;(\qv{iA}-\frac{1}{2})=\qv{mDerivAm}\\f^&#x2032;(\qv{iA}+\frac{1}{2})=\qv{mDerivAp}\end{eqnarray*}</m:annotation>
+                            </m:semantics>
+                        </m:math>So the slope of the curve is changing from <printedVariable
+                            id="printedVariable7" identifier="sIncA"/>&#160;and the stationary point is a
+                        local&#160;<printedVariable id="printedVariable8" identifier="sTypeA"/>.</p>
+                    <p class="">Around x =&#160;<printedVariable id="printedVariable9" identifier="iB"/>:
+                            <m:math display="block" id="mathML8">
+                            <m:semantics>
+                                <m:mtable>
+                                    <m:mtr>
+                                        <m:mtd columnalign="right">
+                                            <m:msup>
+                                                <m:mi>f</m:mi>
+                                                <m:mo>&#x2032;</m:mo>
+                                            </m:msup>
+                                            <m:mfenced close=")" open="(">
+                                                <m:mrow>
+                                                  <m:mi>iB</m:mi>
+                                                  <m:mo>-</m:mo>
+                                                  <m:mfrac>
+                                                  <m:mn>1</m:mn>
+                                                  <m:mn>2</m:mn>
+                                                  </m:mfrac>
+                                                </m:mrow>
+                                            </m:mfenced>
+                                            <m:mo>=</m:mo>
+                                            <m:mi>mDerivBm</m:mi>
+                                        </m:mtd>
+                                    </m:mtr>
+                                    <m:mtr>
+                                        <m:mtd columnalign="right">
+                                            <m:msup>
+                                                <m:mi>f</m:mi>
+                                                <m:mo>&#x2032;</m:mo>
+                                            </m:msup>
+                                            <m:mfenced close=")" open="(">
+                                                <m:mrow>
+                                                  <m:mi>iB</m:mi>
+                                                  <m:mo>+</m:mo>
+                                                  <m:mfrac>
+                                                  <m:mn>1</m:mn>
+                                                  <m:mn>2</m:mn>
+                                                  </m:mfrac>
+                                                </m:mrow>
+                                            </m:mfenced>
+                                            <m:mo>=</m:mo>
+                                            <m:mi>mDerivBp</m:mi>
+                                        </m:mtd>
+                                    </m:mtr>
+                                </m:mtable>
+                                <m:annotation encoding="SnuggleTeX"
+                                    >\begin{eqnarray*}f^&#x2032;(\qv{iB}-\frac{1}{2})=\qv{mDerivBm}\\f^&#x2032;(\qv{iB}+\frac{1}{2})=\qv{mDerivBp}\end{eqnarray*}</m:annotation>
+                            </m:semantics>
+                        </m:math>So the slope of the curve is changing from <printedVariable
+                            id="printedVariable10" identifier="sIncB"/>&#160;and the stationary point is a
+                        local&#160;<printedVariable id="printedVariable11" identifier="sTypeB"/>.</p>
+                </div>
+            </feedbackBlock>
+            <feedbackBlock id="feedbackBlock6" identifier="HINT" outcomeIdentifier="FEEDBACK"
+                showHide="show">
+                <p>At a local maximum, what can you say about the derivative? ...and the second
+                    derivative?</p>
+                <p>What happens at a local minimum?</p>
+            </feedbackBlock>
+            <feedbackBlock id="feedbackBlock7" identifier="SEEN-SOLUTION"
+                outcomeIdentifier="FEEDBACK" showHide="show">
+                <p> Since you have viewed the solution, your score for this question will be 0. </p>
+            </feedbackBlock>
+            <feedbackBlock id="feedbackBlock8" identifier="SEEN-HINT" outcomeIdentifier="FEEDBACK"
+                showHide="show">
+                <p> Since you have viewed the hint, your score for this question will be halved.
+                </p>
+            </feedbackBlock>
+            <feedbackBlock id="feedbackBlock9" identifier="askhint" outcomeIdentifier="ASKHINT"
+                showHide="show">
+                <p>
+                    <endAttemptInteraction id="endAttemptInteraction2"
+                        responseIdentifier="HINTREQUEST" title="Show Hint"/>
+                </p>
+            </feedbackBlock>
+            <feedbackBlock id="feedbackBlock10" identifier="asksolution"
+                outcomeIdentifier="ASKSOLUTION" showHide="show">
+                <p>
+                    <endAttemptInteraction id="endAttemptInteraction3"
+                        responseIdentifier="SOLREQUEST" title="Show Solution"/>
+                </p>
+            </feedbackBlock>
+        </div>
+    </itemBody>
+    <responseProcessing>
+        <setOutcomeValue identifier="FEEDBACK">
+            <multiple>
+                <variable identifier="EMPTY"/>
+            </multiple>
+        </setOutcomeValue>
+        <responseCondition>
+            <responseIf>
+                <variable identifier="HINTREQUEST"/>
+                <setOutcomeValue identifier="FEEDBACK">
+                    <multiple>
+                        <baseValue baseType="identifier">HINT</baseValue>
+                    </multiple>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="seenHint">
+                    <baseValue baseType="boolean">true</baseValue>
+                </setOutcomeValue>
+            </responseIf>
+            <responseElseIf>
+                <variable identifier="SOLREQUEST"/>
+                <setOutcomeValue identifier="FEEDBACK">
+                    <multiple>
+                        <baseValue baseType="identifier">SOLUTION</baseValue>
+                    </multiple>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="seenSolution">
+                    <baseValue baseType="boolean">true</baseValue>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="completionStatus">
+                    <baseValue baseType="identifier">completed</baseValue>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="ASKHINT">
+                    <baseValue baseType="identifier">null</baseValue>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="ASKSOLUTION">
+                    <baseValue baseType="identifier">null</baseValue>
+                </setOutcomeValue>
+            </responseElseIf>
+            <responseElse>
+                <responseCondition>
+                    <responseIf>
+                        <isNull>
+                            <variable identifier="RESPONSE1"/>
+                        </isNull>
+                        <setOutcomeValue identifier="SCORE1">
+                            <baseValue baseType="float">0</baseValue>
+                        </setOutcomeValue>
+                    </responseIf>
+                    <responseElse>
+                        <setOutcomeValue identifier="iVal1">
+                            <variable identifier="RESPONSE1"/>
+                        </setOutcomeValue>
+                        <responseCondition>
+                            <responseIf>
+                                <equal toleranceMode="exact">
+                                    <variable identifier="RESPONSE1"/>
+                                    <variable identifier="iMax"/>
+                                </equal>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <baseValue baseType="identifier">CORRECT1</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="SCORE1">
+                                    <baseValue baseType="float">1</baseValue>
+                                </setOutcomeValue>
+                            </responseIf>
+                            <responseElse>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <baseValue baseType="identifier">INCORRECT1</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="SCORE1">
+                                    <baseValue baseType="float">0</baseValue>
+                                </setOutcomeValue>
+                            </responseElse>
+                        </responseCondition>
+                    </responseElse>
+                </responseCondition>
+                <responseCondition>
+                    <responseIf>
+                        <isNull>
+                            <variable identifier="RESPONSE2"/>
+                        </isNull>
+                        <setOutcomeValue identifier="SCORE2">
+                            <baseValue baseType="float">0</baseValue>
+                        </setOutcomeValue>
+                    </responseIf>
+                    <responseElse>
+                        <setOutcomeValue identifier="iVal2">
+                            <variable identifier="RESPONSE2"/>
+                        </setOutcomeValue>
+                        <responseCondition>
+                            <responseIf>
+                                <equal toleranceMode="exact">
+                                    <variable identifier="RESPONSE2"/>
+                                    <variable identifier="iMin"/>
+                                </equal>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <variable identifier="FEEDBACK"/>
+                                        <baseValue baseType="identifier">CORRECT2</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="SCORE2">
+                                    <baseValue baseType="float">1</baseValue>
+                                </setOutcomeValue>
+                            </responseIf>
+                            <responseElse>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <variable identifier="FEEDBACK"/>
+                                        <baseValue baseType="identifier">INCORRECT2</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="SCORE2">
+                                    <baseValue baseType="float">0</baseValue>
+                                </setOutcomeValue>
+                            </responseElse>
+                        </responseCondition>
+                    </responseElse>
+                </responseCondition>
+                <setOutcomeValue identifier="SCORE">
+                    <sum>
+                        <variable identifier="SCORE1"/>
+                        <variable identifier="SCORE2"/>
+                    </sum>
+                </setOutcomeValue>
+                <responseCondition>
+                    <responseIf>
+                        <gt>
+                            <variable identifier="numAttempts"/>
+                            <baseValue baseType="integer">                                            3                                        </baseValue>
+                        </gt>
+                        <setOutcomeValue identifier="FEEDBACK">
+                            <multiple>
+                                <baseValue baseType="identifier">                                                THREETRIES                                            </baseValue>
+                                <baseValue baseType="identifier">                                                SOLUTION                                            </baseValue>
+                            </multiple>
+                        </setOutcomeValue>
+                        <setOutcomeValue identifier="completionStatus">
+                            <baseValue baseType="identifier">                                            completed                                        </baseValue>
+                        </setOutcomeValue>
+                        <setOutcomeValue identifier="ASKHINT">
+                            <baseValue baseType="identifier">                                            null                                        </baseValue>
+                        </setOutcomeValue>
+                        <setOutcomeValue identifier="ASKSOLUTION">
+                            <baseValue baseType="identifier">                                            null                                        </baseValue>
+                        </setOutcomeValue>
+                    </responseIf>
+                </responseCondition>
+                <responseCondition>
+                    <responseIf>
+                        <variable identifier="seenSolution"/>
+                        <setOutcomeValue identifier="FEEDBACK">
+                            <multiple>
+                                <variable identifier="FEEDBACK"/>
+                                <baseValue baseType="identifier">SEEN-SOLUTION</baseValue>
+                            </multiple>
+                        </setOutcomeValue>
+                        <setOutcomeValue identifier="SCORE">
+                            <baseValue baseType="float">0.0</baseValue>
+                        </setOutcomeValue>
+                    </responseIf>
+                    <responseElseIf>
+                        <variable identifier="seenHint"/>
+                        <setOutcomeValue identifier="FEEDBACK">
+                            <multiple>
+                                <variable identifier="FEEDBACK"/>
+                                <baseValue baseType="identifier">SEEN-HINT</baseValue>
+                            </multiple>
+                        </setOutcomeValue>
+                        <setOutcomeValue identifier="SCORE">
+                            <divide>
+                                <variable identifier="SCORE"/>
+                                <baseValue baseType="float">2.0</baseValue>
+                            </divide>
+                        </setOutcomeValue>
+                    </responseElseIf>
+                </responseCondition>
+            </responseElse>
+        </responseCondition>
+    </responseProcessing>
+</assessmentItem>

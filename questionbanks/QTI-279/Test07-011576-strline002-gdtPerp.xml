@@ -1,0 +1,671 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p1"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.imsglobal.org/xsd/imsqti_v2p1 imsqti_v2p1.xsd	http://mathassess.qtitools.org/xsd/mathassess mathassess.xsd"
+	identifier="Test07-011576-strline002-gdtPerp" title="Find the gradient of a perpendicular line" adaptive="true"
+	timeDependent="false" xmlns:m="http://www.w3.org/1998/Math/MathML"
+	xmlns:ma="http://mathassess.qtitools.org/xsd/mathassess">
+    <!-- originally MAD05-Factors-SR, modified to the simpler case with a quadratic expression in x -->
+    <responseDeclaration identifier="RESPONSE1" cardinality="record"/>
+    <responseDeclaration identifier="RESPONSE2" cardinality="record"/>
+    <responseDeclaration identifier="pInput1" cardinality="single" baseType="string"/>
+    <responseDeclaration identifier="pInput2" cardinality="single" baseType="string"/>
+    <responseDeclaration identifier="HINTREQUEST" cardinality="single" baseType="boolean"/>
+	<responseDeclaration identifier="SOLREQUEST" cardinality="single" baseType="boolean"/>
+	<outcomeDeclaration baseType="identifier" cardinality="multiple" identifier="FEEDBACK"/>
+	<outcomeDeclaration baseType="identifier" cardinality="single" identifier="EMPTY"/>
+	<outcomeDeclaration baseType="float" cardinality="single" identifier="SCORE" normalMaximum="2.0"
+		normalMinimum="0.0">
+		<defaultValue>
+			<value>0.0</value>
+		</defaultValue>
+	</outcomeDeclaration>
+	<outcomeDeclaration baseType="boolean" cardinality="single" identifier="seenSolution">
+		<defaultValue>
+			<value>false</value>
+		</defaultValue>
+	</outcomeDeclaration>
+	<outcomeDeclaration baseType="boolean" cardinality="single" identifier="seenHint">
+		<defaultValue>
+			<value>false</value>
+		</defaultValue>
+	</outcomeDeclaration>
+	<outcomeDeclaration baseType="identifier" cardinality="single" identifier="ASKHINT">
+		<defaultValue>
+			<value>askhint</value>
+		</defaultValue>
+	</outcomeDeclaration>
+	<outcomeDeclaration baseType="identifier" cardinality="single" identifier="ASKSOLUTION">
+		<defaultValue>
+			<value>asksolution</value>
+		</defaultValue>
+	</outcomeDeclaration>
+    <outcomeDeclaration identifier="oInput1" cardinality="record"/>
+    <outcomeDeclaration baseType="string" cardinality="single" identifier="oPInput1"/>
+    <outcomeDeclaration identifier="oInput2" cardinality="record"/>
+    <outcomeDeclaration baseType="string" cardinality="single" identifier="oPInput2"/>
+    <outcomeDeclaration identifier="oEq" cardinality="record"/>
+    <outcomeDeclaration identifier="oBadEq" cardinality="record"/>
+	<outcomeDeclaration identifier="oGcd1" cardinality="record"/>
+	<outcomeDeclaration identifier="oGcd2" cardinality="record"/>
+	<outcomeDeclaration identifier="oDummy" cardinality="single" baseType="boolean"/>
+    <outcomeDeclaration identifier="ob20" cardinality="single" baseType="boolean"/>
+    <outcomeDeclaration identifier="ob21" cardinality="single" baseType="boolean"/>
+    <outcomeDeclaration identifier="ob22" cardinality="single" baseType="boolean"/>
+    <outcomeDeclaration identifier="ob23" cardinality="single" baseType="boolean"/>
+    <outcomeDeclaration identifier="ob24" cardinality="single" baseType="boolean"/>
+    <outcomeDeclaration identifier="ob25" cardinality="single" baseType="boolean"/>
+    <outcomeDeclaration identifier="ob10" cardinality="single" baseType="boolean"/>
+    <outcomeDeclaration identifier="ob11" cardinality="single" baseType="boolean"/>
+    <outcomeDeclaration identifier="ob12" cardinality="single" baseType="boolean"/>
+    <outcomeDeclaration identifier="ob13" cardinality="single" baseType="boolean"/>
+    <outcomeDeclaration identifier="ob14" cardinality="single" baseType="boolean"/>
+    <outcomeDeclaration identifier="ob15" cardinality="single" baseType="boolean"/>
+    <templateDeclaration identifier="tDummy" cardinality="single" baseType="boolean"/>
+    <templateDeclaration identifier="tParts" cardinality="multiple" baseType="identifier"/>
+    <templateDeclaration identifier="sType" cardinality="single" baseType="string" mathVariable="true"/>
+    <templateDeclaration identifier="iA" cardinality="single" baseType="integer" mathVariable="true"/>
+    <templateDeclaration identifier="iB" cardinality="single" baseType="integer" mathVariable="true"/>
+    <templateDeclaration identifier="iC" cardinality="single" baseType="integer" mathVariable="true"/>
+    <templateDeclaration identifier="iType" cardinality="single" baseType="integer" mathVariable="false"/>
+    <templateDeclaration identifier="mX" cardinality="record" mathVariable="true"/>
+    <templateDeclaration identifier="mPara" cardinality="record" mathVariable="true"/>
+    <templateDeclaration identifier="mY" cardinality="record" mathVariable="true"/>
+    <templateDeclaration identifier="mPerp" cardinality="record" mathVariable="true"/>
+    <templateDeclaration identifier="mInvert" cardinality="record" mathVariable="true"/>
+    <templateDeclaration identifier="mSwapEq" cardinality="record" mathVariable="true"/>
+    <templateDeclaration identifier="mQues" cardinality="record" mathVariable="true"/>
+	<templateDeclaration identifier="mRHS" cardinality="record" mathVariable="true"/>
+	<templateProcessing>
+	    <setTemplateValue identifier="iA">
+	        <product>
+	            <randomInteger min="1" max="5"/>
+	            <randomInteger min="-1" max="1" step="2"/>
+	        </product>
+	    </setTemplateValue>
+	    <setTemplateValue identifier="iB">
+	        <product>
+	            <randomInteger min="1" max="5"/>
+	            <randomInteger min="-1" max="1" step="2"/>
+	        </product>
+	    </setTemplateValue>
+	    <setTemplateValue identifier="iC">
+	        <product>
+	            <randomInteger min="1" max="5"/>
+	            <randomInteger min="-1" max="1" step="2"/>
+	        </product>
+	    </setTemplateValue>
+	    <setTemplateValue identifier="iType">
+	        <baseValue baseType="integer">2</baseValue>
+	    </setTemplateValue>
+	    <setTemplateValue identifier="sType">
+	        <index n="iType">
+	            <ordered>
+	                <baseValue baseType="string">parallel</baseValue>
+	                <baseValue baseType="string">perpendicular</baseValue>
+	            </ordered>
+	        </index>
+	    </setTemplateValue>
+	    <setTemplateValue identifier="tParts">
+	        <multiple>
+	            <index n="iType">
+	                <ordered>
+	                    <baseValue baseType="identifier">Input1</baseValue>
+	                    <baseValue baseType="identifier">Input2</baseValue>
+	                </ordered>
+	            </index>
+	            <index n="iType">
+	                <ordered>
+	                    <baseValue baseType="identifier">Sol1</baseValue>
+	                    <baseValue baseType="identifier">Sol2</baseValue>
+	                </ordered>
+	            </index>
+	            <index n="iType">
+	                <ordered>
+	                    <baseValue baseType="identifier">Hint1</baseValue>
+	                    <baseValue baseType="identifier">Hint2</baseValue>
+	                </ordered>
+	            </index>
+	            <index n="iType">
+	                <ordered>
+	                    <baseValue baseType="identifier">Feedback1</baseValue>
+	                    <baseValue baseType="identifier">Feedback2</baseValue>
+	                </ordered>
+	            </index>
+	        </multiple>
+	    </setTemplateValue>
+	    <setTemplateValue identifier="tDummy">
+			<customOperator class="org.qtitools.mathassess.ScriptRule" ma:syntax="text/x-maxima">
+				<baseValue baseType="string">
+					<![CDATA[
+            mQues: ev(iA*x+iB*y,simp);
+            mRHS: ev(-iA*x/iB+iC,simp);
+			mPara: ev(-iA/iB,simp);
+			mInvPara: ev(-iB/iA,simp);
+			mInvPerp: ev(iA/iB,simp);
+			mPerp: ev(iB/iA,simp);
+			mX: x;
+			]]>
+				</baseValue>
+			</customOperator>
+		</setTemplateValue>
+	    <setCorrectResponse identifier="RESPONSE1">
+	        <variable identifier="mPara"/>
+	    </setCorrectResponse>
+	    <setCorrectResponse identifier="RESPONSE2">
+	        <variable identifier="mPerp"/>
+	    </setCorrectResponse>
+	</templateProcessing>
+	<itemBody>
+	    <div>
+	        <p>Find the gradient of a line which is <printedVariable identifier="sType"/> to the line&#160;&#160; 
+	            <m:math id="mathML01" display="block">
+	            <m:semantics>
+	                <m:mrow>
+	                    <m:mi>y</m:mi>
+	                    <m:mo>=</m:mo>
+	                    <m:mi>mRHS</m:mi>
+	                </m:mrow>
+	                <m:annotation encoding="SnuggleTeX">\[y=\qv{mRHS}\]</m:annotation>
+	            </m:semantics>
+	        </m:math> </p>
+	    </div>
+	    <templateBlock templateIdentifier="tParts" identifier="Input1" showHide="show">
+	        <div class="">
+	            <table class="">
+	                <tbody class="">
+	                    <tr class="">
+	                        <td class="">
+	                            Gradient of parallel line&#160;=&#160;
+	                        </td>
+	                        <td class="">
+	                            <customInteraction class="org.qtitools.mathassess.MathEntryInteraction"
+	                                responseIdentifier="RESPONSE1" ma:printIdentifier="pInput1" ma:syntax="text/x-maxima"
+	                                ma:expectedLength="15" id="customInteraction0"/>
+	                        </td>
+	                        <td class="">
+	                            <div class="">
+	                                <feedbackInline id="feedbackInline3" identifier="CORRECT1"
+	                                    outcomeIdentifier="FEEDBACK" showHide="show"> Well done, that's the correct value for the gradient of a parallel line.
+	                                </feedbackInline>
+	                            </div>
+	                            <div class="">
+	                                <feedbackInline id="feedbackInline2" identifier="Inverted1"
+	                                    outcomeIdentifier="FEEDBACK" showHide="show"> No, you have swapped the numerator and denominator of the fraction which is the value of the gradient of a parallel line.</feedbackInline>
+	                            </div>
+	                            <div class="">
+	                                <feedbackInline id="feedbackInline2" identifier="SIGN1"
+	                                    outcomeIdentifier="FEEDBACK" showHide="show"> No, the value you entered for the gradient of a parallel line has the wrong sign.</feedbackInline>
+	                            </div>
+	                            <div class="">
+	                                <feedbackInline id="feedbackInline2" identifier="Intercept1"
+	                                    outcomeIdentifier="FEEDBACK" showHide="show"> No, that's the intercept, not the gradient of a parallel line. </feedbackInline>
+	                            </div>
+	                            <div class="">
+	                                <feedbackInline id="feedbackInline2" identifier="Perp"
+	                                    outcomeIdentifier="FEEDBACK" showHide="show"> No, your input is the gradient of a perpendicular line.</feedbackInline>
+	                            </div>
+	                            <div class="">
+	                                <feedbackInline id="feedbackInline2" identifier="INCORRECT1"
+	                                    outcomeIdentifier="FEEDBACK" showHide="show"> Your value for the gradient of a parallel line is incorrect.</feedbackInline>
+	                            </div>
+	                        </td>
+	                    </tr>
+	                </tbody>
+	            </table>
+	        </div>
+	    </templateBlock>
+	    <templateBlock templateIdentifier="tParts" identifier="Input2" showHide="show">
+	        <div class="">
+	            <table class="">
+	                <tbody class="">
+	                    <tr class="">
+	                        <td class="">
+	                            Gradient of perpendicular line&#160;=&#160;
+	                        </td>
+	                        <td class="">
+	                            <customInteraction class="org.qtitools.mathassess.MathEntryInteraction"
+	                                responseIdentifier="RESPONSE2" ma:printIdentifier="pInput2" ma:syntax="text/x-maxima"
+	                                ma:expectedLength="25" id="customInteraction00"/>
+	                        </td>
+	                        <td class="">
+	                            <div class="">
+	                                <feedbackInline id="feedbackInline3" identifier="CORRECT2"
+	                                    outcomeIdentifier="FEEDBACK" showHide="show"> Well done, that's the correct value for the gradient of a perpendicular line.
+	                                </feedbackInline>
+	                            </div>
+	                            <div class="">
+	                                <feedbackInline id="feedbackInline2" identifier="Inverted2"
+	                                    outcomeIdentifier="FEEDBACK" showHide="show"> No, you have swapped the numerator and denominator of the fraction which is the value of the gradient of a perpendicular line.</feedbackInline>
+	                            </div>
+	                            <div class="">
+	                                <feedbackInline id="feedbackInline2" identifier="SIGN2"
+	                                    outcomeIdentifier="FEEDBACK" showHide="show"> No, the value you entered for the gradient of a perpendicular line has the wrong sign.</feedbackInline>
+	                            </div>
+	                            <div class="">
+	                                <feedbackInline id="feedbackInline2" identifier="Intercept2"
+	                                    outcomeIdentifier="FEEDBACK" showHide="show"> No, that's the intercept, not the gradient of a perpendicular line. </feedbackInline>
+	                            </div>
+	                            <div class="">
+	                                <feedbackInline id="feedbackInline2" identifier="Para"
+	                                    outcomeIdentifier="FEEDBACK" showHide="show"> No, your input is the gradient of a parallel line.</feedbackInline>
+	                            </div>
+	                            <div class="">
+	                                <feedbackInline id="feedbackInline2" identifier="INCORRECT2"
+	                                    outcomeIdentifier="FEEDBACK" showHide="show"> Your value for the gradient of a perpendicular line is incorrect.</feedbackInline>
+	                            </div>
+	                        </td>
+	                    </tr>
+	                </tbody>
+	            </table>
+	        </div>
+	    </templateBlock>
+	    
+	    <feedbackBlock id="feedbackBlock4" identifier="THREETRIES"
+	        outcomeIdentifier="FEEDBACK" showHide="show">
+	        <p> You have had three attempts at answering this question, so here is the
+	            solution: </p>
+	    </feedbackBlock>
+	    <feedbackBlock showHide="show" outcomeIdentifier="FEEDBACK" identifier="SOLUTION">
+	        <p>The gradient of the line is the coefficient of <printedVariable identifier="mX"/> in
+	        </p>
+	        <p>
+	            <m:math display="block" id="mathML04">
+	                <m:semantics>
+	                    <m:mrow>
+	                        <m:mi>y</m:mi>
+	                        <m:mo>=</m:mo>
+	                        <m:mi>mRHS</m:mi>
+	                    </m:mrow>
+	                    <m:annotation encoding="SnuggleTeX">\[y=\qv{mRHS}\]</m:annotation>
+	                </m:semantics>
+	            </m:math>
+	        </p>
+	        <p>Hence the gradient of this line is
+	            <m:math display="block" id="mathML05">
+	                <m:semantics>
+	                    <m:mrow>
+	                        <m:mi>m</m:mi>
+	                        <m:mo>=</m:mo>
+	                        <m:mi>mPara</m:mi>
+	                    </m:mrow>
+	                    <m:annotation encoding="SnuggleTeX">\[m=\qv{mPara}\]</m:annotation>
+	                </m:semantics>
+	            </m:math>
+	        </p>
+	        <templateBlock templateIdentifier="tParts" identifier="Sol1" showHide="show">
+	            <div>
+	                <p>A parallel line also has gradient</p>
+	                <div>
+	                    <m:math display="block" id="mathML06">
+	                        <m:semantics>
+	                            <m:mrow>
+	                                <m:mi>m</m:mi>
+	                                <m:mo>=</m:mo>
+	                                <m:mi>mPara</m:mi>
+	                            </m:mrow>
+	                            <m:annotation encoding="SnuggleTeX">\[m=\qv{mPara}\]</m:annotation>
+	                        </m:semantics>
+	                    </m:math>
+	                </div>
+	            </div>
+	        </templateBlock>
+	        <templateBlock templateIdentifier="tParts" identifier="Sol2" showHide="show">
+	            <div>
+	                <p>A perpendicular line has gradient</p>
+	                <div>
+	                    <m:math display="block" id="mathML0">
+	                        <m:semantics>
+	                            <m:mrow>
+	                                <m:mo>-</m:mo>
+	                                <m:mfrac>
+	                                    <m:mn>1</m:mn>
+	                                    <m:mi>m</m:mi>
+	                                </m:mfrac>
+	                                <m:mo>=</m:mo>
+	                                <m:mi>mPerp</m:mi>
+	                            </m:mrow>
+	                            <m:annotation encoding="SnuggleTeX">\[\frac{1}{m}=\qv{mPerp}\]</m:annotation>
+	                        </m:semantics>
+	                    </m:math>
+	                </div>
+	            </div>
+	        </templateBlock>
+	    </feedbackBlock>
+		<feedbackBlock showHide="show" outcomeIdentifier="FEEDBACK" identifier="HINT">
+		    <templateBlock templateIdentifier="tParts" identifier="Hint1" showHide="show">
+		        <p>A parallel line has the same gradient as the original line.</p>
+		    </templateBlock>
+		    <templateBlock templateIdentifier="tParts" identifier="Hint2" showHide="show">
+		        <p>The product of the gradient of a parallel and a perpendicular line is -1.</p>
+		    </templateBlock>
+		</feedbackBlock>
+		<feedbackBlock identifier="SEEN-SOLUTION" outcomeIdentifier="FEEDBACK" showHide="show">
+			<p> Since you have viewed the solution, your score for this question will be 0. </p>
+		</feedbackBlock>
+		<feedbackBlock identifier="SEEN-HINT" outcomeIdentifier="FEEDBACK" showHide="show">
+			<p> Since you have viewed the hint, your score for this question will be halved. </p>
+		</feedbackBlock>
+		<feedbackBlock identifier="askhint" outcomeIdentifier="ASKHINT" showHide="show">
+			<p>
+				<endAttemptInteraction id="endAttemptInteraction1" responseIdentifier="HINTREQUEST"
+					title="Show Hint"/>
+			</p>
+		</feedbackBlock>
+		<feedbackBlock identifier="asksolution" outcomeIdentifier="ASKSOLUTION" showHide="show">
+			<p>
+				<endAttemptInteraction id="endAttemptInteraction2" responseIdentifier="SOLREQUEST"
+					title="Show Solution"/>
+			</p>
+		</feedbackBlock>
+	</itemBody>
+	<responseProcessing>
+		<setOutcomeValue identifier="FEEDBACK">
+			<multiple>
+				<variable identifier="EMPTY"/>
+			</multiple>
+		</setOutcomeValue>
+		<responseCondition>
+			<responseIf>
+				<variable identifier="HINTREQUEST"/>
+				<setOutcomeValue identifier="FEEDBACK">
+					<multiple>
+						<baseValue baseType="identifier">HINT</baseValue>
+					</multiple>
+				</setOutcomeValue>
+				<setOutcomeValue identifier="seenHint">
+					<baseValue baseType="boolean">true</baseValue>
+				</setOutcomeValue>
+			</responseIf>
+			<responseElseIf>
+				<variable identifier="SOLREQUEST"/>
+				<setOutcomeValue identifier="FEEDBACK">
+					<multiple>
+						<baseValue baseType="identifier">SOLUTION</baseValue>
+					</multiple>
+				</setOutcomeValue>
+				<setOutcomeValue identifier="seenSolution">
+					<baseValue baseType="boolean">true</baseValue>
+				</setOutcomeValue>
+				<setOutcomeValue identifier="completionStatus">
+					<baseValue baseType="identifier">completed</baseValue>
+				</setOutcomeValue>
+				<setOutcomeValue identifier="ASKHINT">
+					<baseValue baseType="identifier">null</baseValue>
+				</setOutcomeValue>
+				<setOutcomeValue identifier="ASKSOLUTION">
+					<baseValue baseType="identifier">null</baseValue>
+				</setOutcomeValue>
+			</responseElseIf>
+		    <responseElse>
+		        <responseCondition>
+		            <responseIf>
+		                <and>
+		                    <isNull>
+		                        <variable identifier="RESPONSE1"/>
+		                    </isNull>
+		                    <isNull>
+		                        <variable identifier="RESPONSE2"/>
+		                    </isNull>
+		                </and>
+		                <setOutcomeValue identifier="SCORE">
+		                    <baseValue baseType="float">0.0</baseValue>
+		                </setOutcomeValue>
+		            </responseIf>
+		            <responseElse>
+		                <setOutcomeValue identifier="oDummy">
+		                    <customOperator class="org.qtitools.mathassess.ScriptRule" ma:syntax="text/x-maxima">
+		                        <baseValue baseType="string"><![CDATA[
+                                    
+ oInput1: ev(RESPONSE1,simp);
+ ob10: is(is(equal(RESPONSE1,mPara))=true);
+ ob11: is(is(equal(RESPONSE1,mInvPara))=true);
+ ob12: is(is(equal(ev(RESPONSE1+mPara,simp),0))=true);
+ ob13: is(is(equal(RESPONSE1,iC))=true);
+ ob14: is(is(equal(RESPONSE1,mPerp))=true);
+ oInput2: ev(RESPONSE2,simp);
+ ob20: is(is(equal(RESPONSE2,mPerp))=true);
+ ob21: is(is(equal(RESPONSE2,mInvPerp))=true);
+ ob22: is(is(equal(ev(RESPONSE2+mPerp,simp),0))=true);
+ ob23: is(is(equal(RESPONSE2,iC))=true);
+ ob24: is(is(equal(RESPONSE2,mPara))=true);
+ 
+]]></baseValue>
+		                    </customOperator>
+		                </setOutcomeValue>
+		                <setOutcomeValue identifier="oPInput1">
+		                    <fieldValue fieldIdentifier="PMathML">
+		                        <variable identifier="oInput1"/>
+		                    </fieldValue>
+		                </setOutcomeValue>
+		                <setOutcomeValue identifier="oPInput2">
+		                    <fieldValue fieldIdentifier="PMathML">
+		                        <variable identifier="oInput2"/>
+		                    </fieldValue>
+		                </setOutcomeValue>
+		                <responseCondition>
+		                    <responseIf>
+		                        <equal toleranceMode="exact">
+		                            <variable identifier="iType"/>
+		                            <baseValue baseType="integer">1</baseValue>
+		                        </equal>
+		                        <responseCondition>
+		                            <responseIf>
+		                                <variable identifier="ob10"/>
+		                                <setOutcomeValue identifier="FEEDBACK">
+		                                    <multiple>
+		                                        <variable identifier="FEEDBACK"/>
+		                                        <baseValue baseType="identifier">CORRECT1</baseValue>
+		                                    </multiple>
+		                                </setOutcomeValue>
+		                                <setOutcomeValue identifier="SCORE">
+		                                    <sum>
+		                                        <variable identifier="SCORE"/>
+		                                        <baseValue baseType="float">2.0</baseValue>
+		                                    </sum>
+		                                </setOutcomeValue>
+		                            </responseIf>
+		                            <responseElseIf>
+		                                <variable identifier="ob11"/>
+		                                <setOutcomeValue identifier="FEEDBACK">
+		                                    <multiple>
+		                                        <variable identifier="FEEDBACK"/>
+		                                        <baseValue baseType="identifier">Inverted1</baseValue>
+		                                    </multiple>
+		                                </setOutcomeValue>
+		                                <setOutcomeValue identifier="SCORE">
+		                                    <sum>
+		                                        <variable identifier="SCORE"/>
+		                                        <baseValue baseType="float">0.0</baseValue>
+		                                    </sum>
+		                                </setOutcomeValue>
+		                            </responseElseIf>
+		                            <responseElseIf>
+		                                <variable identifier="ob12"/>
+		                                <setOutcomeValue identifier="FEEDBACK">
+		                                    <multiple>
+		                                        <variable identifier="FEEDBACK"/>
+		                                        <baseValue baseType="identifier">SIGN1</baseValue>
+		                                    </multiple>
+		                                </setOutcomeValue>
+		                                <setOutcomeValue identifier="SCORE">
+		                                    <sum>
+		                                        <variable identifier="SCORE"/>
+		                                        <baseValue baseType="float">1.0</baseValue>
+		                                    </sum>
+		                                </setOutcomeValue>
+		                            </responseElseIf>
+		                            <responseElseIf>
+		                                <variable identifier="ob13"/>
+		                                <setOutcomeValue identifier="FEEDBACK">
+		                                    <multiple>
+		                                        <variable identifier="FEEDBACK"/>
+		                                        <baseValue baseType="identifier">Intercept1</baseValue>
+		                                    </multiple>
+		                                </setOutcomeValue>
+		                                <setOutcomeValue identifier="SCORE">
+		                                    <sum>
+		                                        <variable identifier="SCORE"/>
+		                                        <baseValue baseType="float">0.0</baseValue>
+		                                    </sum>
+		                                </setOutcomeValue>
+		                            </responseElseIf>
+		                            <responseElseIf>
+		                                <variable identifier="ob14"/>
+		                                <setOutcomeValue identifier="FEEDBACK">
+		                                    <multiple>
+		                                        <variable identifier="FEEDBACK"/>
+		                                        <baseValue baseType="identifier">Perp</baseValue>
+		                                    </multiple>
+		                                </setOutcomeValue>
+		                                <setOutcomeValue identifier="SCORE">
+		                                    <sum>
+		                                        <variable identifier="SCORE"/>
+		                                        <baseValue baseType="float">0.0</baseValue>
+		                                    </sum>
+		                                </setOutcomeValue>
+		                            </responseElseIf>
+		                            <responseElse>
+		                                <setOutcomeValue identifier="FEEDBACK">
+		                                    <multiple>
+		                                        <variable identifier="FEEDBACK"/>
+		                                        <baseValue baseType="identifier">INCORRECT1</baseValue>
+		                                    </multiple>
+		                                </setOutcomeValue>
+		                                <setOutcomeValue identifier="SCORE">
+		                                    <sum>
+		                                        <variable identifier="SCORE"/>
+		                                        <baseValue baseType="float">0.0</baseValue>
+		                                    </sum>
+		                                </setOutcomeValue>
+		                            </responseElse>
+		                        </responseCondition>
+		                    </responseIf>
+		                    <responseElse>
+		                        <responseCondition>
+		                            <responseIf>
+		                                <variable identifier="ob20"/>
+		                                <setOutcomeValue identifier="FEEDBACK">
+		                                    <multiple>
+		                                        <baseValue baseType="identifier">CORRECT2</baseValue>
+		                                    </multiple>
+		                                </setOutcomeValue>
+		                                <setOutcomeValue identifier="SCORE">
+		                                    <baseValue baseType="float">2.0</baseValue>
+		                                </setOutcomeValue>
+		                            </responseIf>
+		                            <responseElseIf>
+		                                <variable identifier="ob21"/>
+		                                <setOutcomeValue identifier="FEEDBACK">
+		                                    <multiple>
+		                                        <baseValue baseType="identifier">Inverted2</baseValue>
+		                                    </multiple>
+		                                </setOutcomeValue>
+		                                <setOutcomeValue identifier="SCORE">
+		                                    <baseValue baseType="float">0.0</baseValue>
+		                                </setOutcomeValue>
+		                            </responseElseIf>
+		                            <responseElseIf>
+		                                <variable identifier="ob22"/>
+		                                <setOutcomeValue identifier="FEEDBACK">
+		                                    <multiple>
+		                                        <baseValue baseType="identifier">SIGN2</baseValue>
+		                                    </multiple>
+		                                </setOutcomeValue>
+		                                <setOutcomeValue identifier="SCORE">
+		                                    <baseValue baseType="float">1.0</baseValue>
+		                                </setOutcomeValue>
+		                            </responseElseIf>
+		                            <responseElseIf>
+		                                <variable identifier="ob23"/>
+		                                <setOutcomeValue identifier="FEEDBACK">
+		                                    <multiple>
+		                                        <baseValue baseType="identifier">Intercept2</baseValue>
+		                                    </multiple>
+		                                </setOutcomeValue>
+		                                <setOutcomeValue identifier="SCORE">
+		                                    <baseValue baseType="float">0.0</baseValue>
+		                                </setOutcomeValue>
+		                            </responseElseIf>
+		                            <responseElseIf>
+		                                <variable identifier="ob24"/>
+		                                <setOutcomeValue identifier="FEEDBACK">
+		                                    <multiple>
+		                                        <baseValue baseType="identifier">Para</baseValue>
+		                                    </multiple>
+		                                </setOutcomeValue>
+		                                <setOutcomeValue identifier="SCORE">
+		                                    <baseValue baseType="float">0.0</baseValue>
+		                                </setOutcomeValue>
+		                            </responseElseIf>
+		                            <responseElse>
+		                                <setOutcomeValue identifier="FEEDBACK">
+		                                    <multiple>
+		                                        <baseValue baseType="identifier">INCORRECT2</baseValue>
+		                                    </multiple>
+		                                </setOutcomeValue>
+		                                <setOutcomeValue identifier="SCORE">
+		                                    <baseValue baseType="float">0.0</baseValue>
+		                                </setOutcomeValue>
+		                            </responseElse>
+		                        </responseCondition>
+		                    </responseElse>
+		                </responseCondition>
+		                <responseCondition>
+		                    <responseIf>
+		                        <variable identifier="seenSolution"/>
+		                        <setOutcomeValue identifier="FEEDBACK">
+		                            <multiple>
+		                                <variable identifier="FEEDBACK"/>
+		                                <baseValue baseType="identifier">SEEN-SOLUTION</baseValue>
+		                            </multiple>
+		                        </setOutcomeValue>
+		                        <setOutcomeValue identifier="SCORE">
+		                            <baseValue baseType="float">0.0</baseValue>
+		                        </setOutcomeValue>
+		                    </responseIf>
+		                    <responseElseIf>
+		                        <variable identifier="seenHint"/>
+		                        <setOutcomeValue identifier="FEEDBACK">
+		                            <multiple>
+		                                <variable identifier="FEEDBACK"/>
+		                                <baseValue baseType="identifier">SEEN-HINT</baseValue>
+		                            </multiple>
+		                        </setOutcomeValue>
+		                        <setOutcomeValue identifier="SCORE">
+		                            <divide>
+		                                <variable identifier="SCORE"/>
+		                                <baseValue baseType="float">2.0</baseValue>
+		                            </divide>
+		                        </setOutcomeValue>
+		                    </responseElseIf>
+		                </responseCondition>
+		                <responseCondition>
+		                    <responseIf>
+		                        <gt>
+		                            <variable identifier="numAttempts"/>
+		                            <baseValue baseType="integer">3</baseValue>
+		                        </gt>
+		                        <setOutcomeValue identifier="FEEDBACK">
+		                            <multiple>
+		                                <baseValue baseType="identifier">THREETRIES</baseValue>
+		                                <baseValue baseType="identifier">SOLUTION</baseValue>
+		                            </multiple>
+		                        </setOutcomeValue>
+		                        <setOutcomeValue identifier="completionStatus">
+		                            <baseValue baseType="identifier">completed</baseValue>
+		                        </setOutcomeValue>
+		                        <setOutcomeValue identifier="ASKHINT">
+		                            <baseValue baseType="identifier">null</baseValue>
+		                        </setOutcomeValue>
+		                        <setOutcomeValue identifier="ASKSOLUTION">
+		                            <baseValue baseType="identifier">null</baseValue>
+		                        </setOutcomeValue>
+		                    </responseIf>
+		                </responseCondition>
+		            </responseElse>
+		        </responseCondition>
+		    </responseElse>
+		</responseCondition>
+	</responseProcessing>
+</assessmentItem>

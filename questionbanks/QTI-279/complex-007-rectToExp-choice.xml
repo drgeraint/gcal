@@ -1,0 +1,680 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p1"
+    xmlns:m="http://www.w3.org/1998/Math/MathML"
+    xmlns:ma="http://mathassess.qtitools.org/xsd/mathassess"
+    xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" adaptive="true"
+    identifier="complex-007-rectToExp-choice" timeDependent="false"
+    title="Find the exponential form of a complex number given the rectangular form (j) - choice"
+    toolName="Mathqurate" toolVersion="1.0" xml:lang="en"
+    xsi:schemaLocation="http://www.imsglobal.org/xsd/imsqti_v2p1 imsqti_v2p1.xsd http://mathassess.qtitools.org/xsd/mathassess mathassess.xsd">
+    <responseDeclaration baseType="identifier" cardinality="single" identifier="RESPONSE">
+        <correctResponse>
+            <value>ChoiceA</value>
+        </correctResponse>
+    </responseDeclaration>
+    <responseDeclaration baseType="string" cardinality="single" identifier="pInput"/>
+    <responseDeclaration baseType="boolean" cardinality="single" identifier="HINTREQUEST"/>
+    <responseDeclaration baseType="boolean" cardinality="single" identifier="SOLREQUEST"/>
+    <outcomeDeclaration baseType="float" cardinality="single" identifier="SCORE" normalMaximum="2.0">
+        <defaultValue>
+            <value>0.0</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="seenSolution">
+        <defaultValue>
+            <value>false</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="seenHint">
+        <defaultValue>
+            <value>false</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="identifier" cardinality="single" identifier="ASKHINT">
+        <defaultValue>
+            <value>askhint</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="identifier" cardinality="single" identifier="ASKSOLUTION">
+        <defaultValue>
+            <value>asksolution</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="identifier" cardinality="multiple" identifier="FEEDBACK"/>
+    <outcomeDeclaration baseType="identifier" cardinality="single" identifier="EMPTY"/>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="oDummy"/>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="isOrig"/>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="isOK"/>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="rOK"/>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="iOK"/>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="rSign"/>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="iSign"/>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="isSimp"/>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="notSimp"/>
+    <outcomeDeclaration baseType="float" cardinality="single" identifier="ans1"/>
+    <outcomeDeclaration baseType="float" cardinality="single" identifier="ans2"/>
+    <outcomeDeclaration cardinality="record" identifier="sans1"/>
+    <outcomeDeclaration cardinality="record" identifier="sansr"/>
+    <outcomeDeclaration cardinality="record" identifier="sansi"/>
+    <outcomeDeclaration cardinality="record" identifier="sansi2"/>
+    <outcomeDeclaration cardinality="record" identifier="oInput"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="a" mathVariable="true"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="b" mathVariable="true"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iRsq"
+        mathVariable="true"/>
+    <templateDeclaration baseType="float" cardinality="single" identifier="fR" mathVariable="true"/>
+    <templateDeclaration baseType="float" cardinality="single" identifier="fRefAng"
+        mathVariable="true"/>
+    <templateDeclaration baseType="float" cardinality="single" identifier="fTheta"
+        mathVariable="true"/>
+    <templateDeclaration baseType="float" cardinality="single" identifier="fPhi" mathVariable="true"/>
+    <templateDeclaration baseType="float" cardinality="single" identifier="fRr" mathVariable="true"/>
+    <templateDeclaration baseType="float" cardinality="single" identifier="fRefAngr"
+        mathVariable="true"/>
+    <templateDeclaration baseType="float" cardinality="single" identifier="fThetar"
+        mathVariable="true"/>
+    <templateDeclaration baseType="float" cardinality="single" identifier="fPhir"
+        mathVariable="true"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="absa"
+        mathVariable="true"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="absb"
+        mathVariable="true"/>
+    <templateDeclaration cardinality="record" identifier="signa" mathVariable="true"/>
+    <templateDeclaration cardinality="record" identifier="signb" mathVariable="true"/>
+    <templateDeclaration baseType="float" cardinality="single" identifier="ansr" mathVariable="true"/>
+    <templateDeclaration baseType="float" cardinality="single" identifier="anstheta"
+        mathVariable="true"/>
+    <templateDeclaration cardinality="record" identifier="mImagi" mathVariable="true"/>
+    <templateDeclaration cardinality="record" identifier="c1" mathVariable="true"/>
+    <templateDeclaration cardinality="record" identifier="c2" mathVariable="true"/>
+    <templateDeclaration cardinality="record" identifier="ans" mathVariable="true"/>
+    <templateDeclaration baseType="boolean" cardinality="single" identifier="tDummy"
+        mathVariable="false"/>
+    <templateDeclaration baseType="identifier" cardinality="single" identifier="tExpr1"/>
+    <templateDeclaration baseType="identifier" cardinality="single" identifier="tExpr2"/>
+    <templateDeclaration baseType="identifier" cardinality="single" identifier="tExpr3"/>
+    <templateProcessing>
+        <setTemplateValue identifier="tDummy">
+            <customOperator class="org.qtitools.mathassess.ScriptRule" ma:syntax="text/x-maxima">
+                <baseValue baseType="string"><![CDATA[
+
+ a : ev(random(19)-9,simp);
+
+ b : ev(random(19)-9,simp);
+ iRsq: ev(a^2+b^2,simp);
+
+ fR : ev(sqrt(iRsq),numer,simp);
+
+ fTheta: ev(atan2(b,a),numer,simp);
+
+ fPhi: ev(atan2(a,b),numer,simp);
+
+ absa: ev(abs(a),simp);
+
+ absb: ev(abs(b),simp);
+
+ if a>=0 then signa:maOperator("+") else signa:maOperator("-");
+
+ if b>=0 then signb:maOperator("+") else signb:maOperator("-");
+
+ ansr : ev(fR,simp);
+
+ anstheta : ev(fTheta,simp);
+
+ c1 : ev(a+b*%i,simp);
+ mImagi: ev(sqrt(-1),simp);
+
+ 
+
+]]></baseValue>
+            </customOperator>
+        </setTemplateValue>
+        <setTemplateValue identifier="fRr">
+            <divide>
+                <round>
+                    <product>
+                        <variable identifier="fR"/>
+                        <baseValue baseType="integer">100</baseValue>
+                    </product>
+                </round>
+                <baseValue baseType="integer">100</baseValue>
+            </divide>
+        </setTemplateValue>
+        <setTemplateValue identifier="fThetar">
+            <divide>
+                <round>
+                    <product>
+                        <variable identifier="fTheta"/>
+                        <baseValue baseType="integer">100</baseValue>
+                    </product>
+                </round>
+                <baseValue baseType="integer">100</baseValue>
+            </divide>
+        </setTemplateValue>
+        <setTemplateValue identifier="fPhir">
+            <divide>
+                <round>
+                    <product>
+                        <variable identifier="fPhi"/>
+                        <baseValue baseType="integer">100</baseValue>
+                    </product>
+                </round>
+                <baseValue baseType="integer">100</baseValue>
+            </divide>
+        </setTemplateValue>
+        <templateCondition>
+            <templateIf>
+                <or>
+                    <equal toleranceMode="exact">
+                        <variable identifier="a"/>
+                        <baseValue baseType="integer">0</baseValue>
+                    </equal>
+                    <equal toleranceMode="exact">
+                        <variable identifier="b"/>
+                        <baseValue baseType="integer">0</baseValue>
+                    </equal>
+                </or>
+                <setTemplateValue identifier="tExpr1">
+                    <baseValue baseType="identifier">PV1</baseValue>
+                </setTemplateValue>
+            </templateIf>
+            <templateElseIf>
+                <or>
+                    <equal toleranceMode="exact">
+                        <variable identifier="b"/>
+                        <baseValue baseType="integer">1</baseValue>
+                    </equal>
+                    <equal toleranceMode="exact">
+                        <variable identifier="b"/>
+                        <baseValue baseType="integer">-1</baseValue>
+                    </equal>
+                </or>
+                <setTemplateValue identifier="tExpr1">
+                    <baseValue baseType="identifier">MML1a</baseValue>
+                </setTemplateValue>
+            </templateElseIf>
+            <templateElse>
+                <setTemplateValue identifier="tExpr1">
+                    <baseValue baseType="identifier">MML1b</baseValue>
+                </setTemplateValue>
+            </templateElse>
+        </templateCondition>
+        <templateCondition>
+            <templateIf>
+                <equal toleranceMode="exact">
+                    <variable identifier="b"/>
+                    <baseValue baseType="integer">0</baseValue>
+                </equal>
+                <setTemplateValue identifier="tExpr2">
+                    <baseValue baseType="identifier">TI2</baseValue>
+                </setTemplateValue>
+            </templateIf>
+        </templateCondition>
+    </templateProcessing>
+    <itemBody>
+        <div>
+            <p>Find the exponential form of the complex number&#160;<templateInline
+                    id="templateInline0" identifier="PV1" showHide="show"
+                    templateIdentifier="tExpr1">
+                    <printedVariable id="printedVariable0" identifier="c1"/>
+                </templateInline>
+                <templateInline templateIdentifier="tExpr1" showHide="show" identifier="MML1a">
+                    <m:math id="mathML01a">
+                        <m:semantics>
+                            <m:mrow>
+                                <m:mi>a</m:mi>
+                                <m:mi>signb</m:mi>
+                                <m:mi>j</m:mi>
+                            </m:mrow>
+                            <m:annotation encoding="SnuggleTeX">\[\qv{a}\qv{signb}j\]</m:annotation>
+                        </m:semantics>
+                    </m:math>
+                </templateInline>
+                <templateInline templateIdentifier="tExpr1" showHide="show" identifier="MML1b">
+                    <m:math id="mathML01b">
+                        <m:semantics>
+                            <m:mrow>
+                                <m:mi>a</m:mi>
+                                <m:mi>signb</m:mi>
+                                <m:mi>absb</m:mi>
+                                <m:mi>j</m:mi>
+                            </m:mrow>
+                            <m:annotation encoding="SnuggleTeX"
+                                >\[\qv{a}\qv{signb}\qv{absb}j\]</m:annotation>
+                        </m:semantics>
+                    </m:math>
+                </templateInline>
+            </p>
+            <div>
+                <div class="">
+                    <choiceInteraction responseIdentifier="RESPONSE" maxChoices="1" shuffle="true">
+                        <simpleChoice identifier="ChoiceA">
+                            <m:math id="mathML02a" display="block">
+                                <m:semantics>
+                                    <m:mrow>
+                                        <m:mi>fRr</m:mi>
+                                        <m:msup>
+                                            <m:mi>e</m:mi>
+                                            <m:mrow>
+                                                <m:mi>fThetar</m:mi>
+                                                <m:mi>j</m:mi>
+                                            </m:mrow>
+                                        </m:msup>
+                                    </m:mrow>
+                                    <m:annotation encoding="SnuggleTeX"
+                                        >\[\qv{fRr}e^{\qv{fThetar}j}\]</m:annotation>
+                                </m:semantics>
+                            </m:math>
+                        </simpleChoice>
+                        <simpleChoice identifier="ChoiceB">
+                            <m:math id="mathML02b" display="block">
+                                <m:semantics>
+                                    <m:mrow>
+                                        <m:mi>fThetar</m:mi>
+                                        <m:msup>
+                                            <m:mi>e</m:mi>
+                                            <m:mrow>
+                                                <m:mi>fRr</m:mi>
+                                                <m:mi>j</m:mi>
+                                            </m:mrow>
+                                        </m:msup>
+                                    </m:mrow>
+                                    <m:annotation encoding="SnuggleTeX"
+                                        >\[\qv{fThetar}e^{\qv{fRr}j}\]</m:annotation>
+                                </m:semantics>
+                            </m:math>
+                        </simpleChoice>
+                        <simpleChoice identifier="ChoiceC">
+                            <m:math id="mathML02c" display="block">
+                                <m:semantics>
+                                    <m:mrow>
+                                        <m:mi>fRr</m:mi>
+                                        <m:msup>
+                                            <m:mi>e</m:mi>
+                                            <m:mrow>
+                                                <m:mi>fPhir</m:mi>
+                                                <m:mi>j</m:mi>
+                                            </m:mrow>
+                                        </m:msup>
+                                    </m:mrow>
+                                    <m:annotation encoding="SnuggleTeX"
+                                        >\[\qv{fRr}e^{\qv{fPhir}j}\]</m:annotation>
+                                </m:semantics>
+                            </m:math>
+                        </simpleChoice>
+                        <simpleChoice identifier="ChoiceD">
+                            <m:math id="mathML02d" display="block">
+                                <m:semantics>
+                                    <m:mrow>
+                                        <m:mi>fPhir</m:mi>
+                                        <m:msup>
+                                            <m:mi>e</m:mi>
+                                            <m:mrow>
+                                                <m:mi>fRr</m:mi>
+                                                <m:mi>j</m:mi>
+                                            </m:mrow>
+                                        </m:msup>
+                                    </m:mrow>
+                                    <m:annotation encoding="SnuggleTeX"
+                                        >\[\qv{fPhir}e^{\qv{fRr}j}\]</m:annotation>
+                                </m:semantics>
+                            </m:math>
+                        </simpleChoice>
+                        <simpleChoice identifier="ChoiceE" fixed="true"> None of these. 
+                        </simpleChoice>
+                    </choiceInteraction>
+                </div>
+                <p>&#160;</p>
+                <p>
+                    <feedbackInline id="feedbackInline0a" identifier="ChoiceA"
+                        outcomeIdentifier="FEEDBACK" showHide="show">Well done - you got the
+                        correct answer. </feedbackInline>
+                    <feedbackInline id="feedbackInline0b" identifier="ChoiceB"
+                        outcomeIdentifier="FEEDBACK" showHide="show">These are the correct
+                        values, but they are interchanged them in this option.</feedbackInline>
+                    <feedbackInline id="feedbackInline0c" identifier="ChoiceC"
+                        outcomeIdentifier="FEEDBACK" showHide="show"> In this option, the modulus is correct, but the angle is incorrect. </feedbackInline>
+                    <feedbackInline id="feedbackInline0d" identifier="ChoiceD"
+                        outcomeIdentifier="FEEDBACK" showHide="show">No, this option has incorrect values for both the modulus and the angle.</feedbackInline>
+                    <feedbackInline id="feedbackInline0d" identifier="ChoiceD"
+                        outcomeIdentifier="FEEDBACK" showHide="show">No, the correct answer is
+                        <m:math id="mathML02e" display="block">
+                            <m:semantics>
+                                <m:mrow>
+                                    <m:mi>fRr</m:mi>
+                                    <m:msup>
+                                        <m:mi>e</m:mi>
+                                        <m:mrow>
+                                            <m:mi>fThetar</m:mi>
+                                            <m:mi>j</m:mi>
+                                        </m:mrow>
+                                    </m:msup>
+                                </m:mrow>
+                                <m:annotation encoding="SnuggleTeX"
+                                    >\[\qv{fRr}e^{\qv{fThetar}j}\]</m:annotation>
+                            </m:semantics>
+                        </m:math>
+                    </feedbackInline>
+                </p>
+            </div>
+            <p>&#160;</p>
+            <feedbackBlock id="feedbackBlock12" identifier="THREETRIES" outcomeIdentifier="FEEDBACK"
+                showHide="show">
+                <p> You have had three attempts at answering this question, so here is the solution:
+                </p>
+            </feedbackBlock>
+            <feedbackBlock class="" id="feedbackBlock13" identifier="SOLUTION"
+                outcomeIdentifier="FEEDBACK" showHide="show">
+                <div class="">
+                    <p class="">To find the exponential form of the number, we first find its
+                            modulus:<m:math display="block" id="mathML2">
+                            <m:semantics>
+                                <m:mtable>
+                                    <m:mtr>
+                                        <m:mtd columnalign="right">
+                                            <m:mi>r</m:mi>
+                                        </m:mtd>
+                                        <m:mtd columnalign="center">
+                                            <m:mo>=</m:mo>
+                                        </m:mtd>
+                                        <m:mtd columnalign="left">
+                                            <m:msqrt>
+                                                <m:mrow>
+                                                  <m:msup>
+                                                  <m:mfenced close=")" open="(">
+                                                  <m:mi>a</m:mi>
+                                                  </m:mfenced>
+                                                  <m:mn>2</m:mn>
+                                                  </m:msup>
+                                                  <m:mo>+</m:mo>
+                                                  <m:msup>
+                                                  <m:mfenced close=")" open="(">
+                                                  <m:mi>b</m:mi>
+                                                  </m:mfenced>
+                                                  <m:mn>2</m:mn>
+                                                  </m:msup>
+                                                </m:mrow>
+                                            </m:msqrt>
+                                        </m:mtd>
+                                    </m:mtr>
+                                    <m:mtr>
+                                        <m:mtd columnalign="right"/>
+                                        <m:mtd columnalign="center">
+                                            <m:mo>=</m:mo>
+                                        </m:mtd>
+                                        <m:mtd columnalign="left">
+                                            <m:msqrt>
+                                                <m:mi>iRsq</m:mi>
+                                            </m:msqrt>
+                                        </m:mtd>
+                                    </m:mtr>
+                                    <m:mtr>
+                                        <m:mtd columnalign="right"/>
+                                        <m:mtd columnalign="center">
+                                            <m:mo>=</m:mo>
+                                        </m:mtd>
+                                        <m:mtd columnalign="left">
+                                            <m:mi>fRr</m:mi>
+                                        </m:mtd>
+                                    </m:mtr>
+                                </m:mtable>
+                                <m:annotation encoding="SnuggleTeX"
+                                    >\begin{eqnarray*}r&amp;=&amp;\sqrt{(\qv{a})^2+(\qv{b})^2}\\&amp;=&amp;\sqrt{\qv{iRsq}}\\&amp;=&amp;\qv{fRr}\end{eqnarray*}</m:annotation>
+                            </m:semantics>
+                        </m:math>
+                    </p>
+                    <p class="">Now we need to find the argument:<m:math display="block"
+                            id="mathML3">
+                            <m:semantics>
+                                <m:mtable>
+                                    <m:mtr>
+                                        <m:mtd columnalign="right">
+                                            <m:mi>&#x3B8;</m:mi>
+                                        </m:mtd>
+                                        <m:mtd columnalign="center">
+                                            <m:mo>=</m:mo>
+                                        </m:mtd>
+                                        <m:mtd columnalign="left">
+                                            <m:msup>
+                                                <m:mi>tan</m:mi>
+                                                <m:mn>-1</m:mn>
+                                            </m:msup>
+                                            <m:mfenced close=")" open="(">
+                                                <m:mfrac>
+                                                  <m:mi>b</m:mi>
+                                                  <m:mi>a</m:mi>
+                                                </m:mfrac>
+                                            </m:mfenced>
+                                        </m:mtd>
+                                    </m:mtr>
+                                    <m:mtr>
+                                        <m:mtd columnalign="right"/>
+                                        <m:mtd columnalign="center">
+                                            <m:mo>=</m:mo>
+                                        </m:mtd>
+                                        <m:mtd columnalign="left">
+                                            <m:mi>fThetar</m:mi>
+                                        </m:mtd>
+                                    </m:mtr>
+                                </m:mtable>
+                                <m:annotation encoding="SnuggleTeX"
+                                    >\begin{eqnarray*}\theta &amp;=&amp;\tan^{-1}(\frac{\qv{b}}{\qv{a}})\\&amp;=&amp;\qv{fThetar}\end{eqnarray*}</m:annotation>
+                            </m:semantics>
+                        </m:math>
+                    </p>
+                    <p class="">So the answer is&#160;<m:math id="mathML4">
+                            <m:semantics>
+                                <m:mrow>
+                                    <m:mi>fRr</m:mi>
+                                    <m:msup>
+                                        <m:mi>e</m:mi>
+                                        <m:mrow>
+                                            <m:mi>fThetar</m:mi>
+                                            <m:mi>j</m:mi>
+                                        </m:mrow>
+                                    </m:msup>
+                                </m:mrow>
+                                <m:annotation encoding="SnuggleTeX"
+                                    >\[\qv{fRr}e^{\qv{fThetar}j}\]</m:annotation>
+                            </m:semantics>
+                        </m:math>
+                    </p>
+                    <p>Remember that the angle is in radians.</p>
+                </div>
+            </feedbackBlock>
+            <feedbackBlock id="feedbackBlock14" identifier="HINT" outcomeIdentifier="FEEDBACK"
+                showHide="show">
+                <p>The exponential form is <m:math id="mathML40" display="block">
+                        <m:semantics>
+                            <m:mrow>
+                                <m:mi>r</m:mi>
+                                <m:msup>
+                                    <m:mi>e</m:mi>
+                                    <m:mrow>
+                                        <m:mi>&#x3b8;</m:mi>
+                                        <m:mi>j</m:mi>
+                                    </m:mrow>
+                                </m:msup>
+                            </m:mrow>
+                            <m:annotation encoding="SnuggleTeX">\[\qv{r}e^{\theta j}\]</m:annotation>
+                        </m:semantics>
+                    </m:math>
+                </p>
+                <p>where <i>r</i> is the modulus (length) of the number and <i>&#x3b8;</i> is the
+                    angle it makes with the positive real axis in the argand diagram, in radians.
+                </p>
+            </feedbackBlock>
+            <feedbackBlock id="feedbackBlock15" identifier="SEEN-SOLUTION"
+                outcomeIdentifier="FEEDBACK" showHide="show">
+                <p> Since you have viewed the solution, your score for this question will be 0. </p>
+            </feedbackBlock>
+            <feedbackBlock id="feedbackBlock16" identifier="SEEN-HINT" outcomeIdentifier="FEEDBACK"
+                showHide="show">
+                <p> Viewing the Hint does not affect your score for this question. </p>
+            </feedbackBlock>
+            <feedbackBlock id="feedbackBlock17" identifier="askhint" outcomeIdentifier="ASKHINT"
+                showHide="show">
+                <p>
+                    <endAttemptInteraction id="endAttemptInteraction2"
+                        responseIdentifier="HINTREQUEST" title="Show Hint"/>
+                </p>
+            </feedbackBlock>
+            <feedbackBlock id="feedbackBlock18" identifier="asksolution"
+                outcomeIdentifier="ASKSOLUTION" showHide="show">
+                <p>
+                    <endAttemptInteraction id="endAttemptInteraction3"
+                        responseIdentifier="SOLREQUEST" title="Show Solution"/>
+                </p>
+            </feedbackBlock>
+        </div>
+    </itemBody>
+    <responseProcessing>
+        <setOutcomeValue identifier="FEEDBACK">
+            <multiple>
+                <variable identifier="EMPTY"/>
+            </multiple>
+        </setOutcomeValue>
+        <responseCondition>
+            <responseIf>
+                <variable identifier="HINTREQUEST"/>
+                <setOutcomeValue identifier="FEEDBACK">
+                    <multiple>
+                        <baseValue baseType="identifier"> HINT                            </baseValue>
+                    </multiple>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="seenHint">
+                    <baseValue baseType="boolean"> true                        </baseValue>
+                </setOutcomeValue>
+            </responseIf>
+            <responseElseIf>
+                <variable identifier="SOLREQUEST"/>
+                <setOutcomeValue identifier="FEEDBACK">
+                    <multiple>
+                        <baseValue baseType="identifier"> SOLUTION</baseValue>
+                    </multiple>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="seenSolution">
+                    <baseValue baseType="boolean"> true                        </baseValue>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="completionStatus">
+                    <baseValue baseType="identifier"> completed                        </baseValue>
+                </setOutcomeValue>
+            </responseElseIf>
+            <responseElse>
+                <responseCondition>
+                    <responseIf>
+                        <isNull>
+                            <variable identifier="RESPONSE"/>
+                        </isNull>
+                        <setOutcomeValue identifier="SCORE">
+                            <baseValue baseType="float"> 0.0                                </baseValue>
+                        </setOutcomeValue>
+                    </responseIf>
+                    <responseElse>
+                        <responseCondition>
+                            <responseIf>
+                                <match>
+                                    <variable identifier="RESPONSE"/>
+                                    <correct identifier="RESPONSE"/>
+                                </match>
+                                <setOutcomeValue identifier="SCORE">
+                                    <baseValue baseType="float">2</baseValue>
+                                </setOutcomeValue>
+                            </responseIf>
+                            <responseElseIf>
+                                <match>
+                                    <variable identifier="RESPONSE"/>
+                                    <baseValue baseType="identifier">ChoiceB</baseValue>
+                                </match>
+                                <setOutcomeValue identifier="SCORE">
+                                    <baseValue baseType="float">1</baseValue>
+                                </setOutcomeValue>
+                            </responseElseIf>
+                            <responseElseIf>
+                                <match>
+                                    <variable identifier="RESPONSE"/>
+                                    <baseValue baseType="identifier">ChoiceC</baseValue>
+                                </match>
+                                <setOutcomeValue identifier="SCORE">
+                                    <baseValue baseType="float">1</baseValue>
+                                </setOutcomeValue>
+                            </responseElseIf>
+                            <responseElseIf>
+                                <match>
+                                    <variable identifier="RESPONSE"/>
+                                    <baseValue baseType="identifier">ChoiceD</baseValue>
+                                </match>
+                                <setOutcomeValue identifier="SCORE">
+                                    <baseValue baseType="float">0</baseValue>
+                                </setOutcomeValue>
+                            </responseElseIf>
+                            <responseElse>
+                                <setOutcomeValue identifier="SCORE">
+                                    <baseValue baseType="float">0</baseValue>
+                                </setOutcomeValue>
+                            </responseElse>
+                        </responseCondition>
+                        <setOutcomeValue identifier="FEEDBACK">
+                            <multiple>
+                                <variable identifier="RESPONSE"/>
+                            </multiple>
+                        </setOutcomeValue>
+                        <responseCondition>
+                            <responseIf>
+                                <variable identifier="seenSolution"/>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <variable identifier="FEEDBACK"/>
+                                        <baseValue baseType="identifier"> SEEN-SOLUTION                                            </baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="SCORE">
+                                    <baseValue baseType="float"> 0.0                                        </baseValue>
+                                </setOutcomeValue>
+                            </responseIf>
+                            <responseElseIf>
+                                <variable identifier="seenHint"/>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <variable identifier="FEEDBACK"/>
+                                        <baseValue baseType="identifier"> SEEN-HINT                                            </baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="SCORE">
+                                    <divide>
+                                        <variable identifier="SCORE"/>
+                                        <baseValue baseType="float">                                                1.0 </baseValue>
+                                    </divide>
+                                </setOutcomeValue>
+                            </responseElseIf>
+                        </responseCondition>
+                        <responseCondition>
+                            <responseIf>
+                                <gt>
+                                    <variable identifier="numAttempts"/>
+                                    <baseValue baseType="integer"> 3                                        </baseValue>
+                                </gt>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <baseValue baseType="identifier"> THREETRIES </baseValue>
+                                        <baseValue baseType="identifier"> SOLUTION                                            </baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="completionStatus">
+                                    <baseValue baseType="identifier"> completed </baseValue>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="ASKHINT">
+                                    <baseValue baseType="identifier"> null </baseValue>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="ASKSOLUTION">
+                                    <baseValue baseType="identifier"> null </baseValue>
+                                </setOutcomeValue>
+                            </responseIf>
+                        </responseCondition>
+                    </responseElse>
+                </responseCondition>
+            </responseElse>
+        </responseCondition>
+    </responseProcessing>
+</assessmentItem>

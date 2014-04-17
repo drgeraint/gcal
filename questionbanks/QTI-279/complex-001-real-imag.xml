@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p1"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:m="http://www.w3.org/1998/Math/MathML"
+    xmlns:ma="http://mathassess.qtitools.org/xsd/mathassess"
+    xsi:schemaLocation="http://www.imsglobal.org/xsd/imsqti_v2p1 imsqti_v2p1.xsd http://mathassess.qtitools.org/xsd/mathassess mathassess.xsd"
+    toolName="Mathqurate" toolVersion="1.0" xml:lang="en" adaptive="true" timeDependent="false"
+    identifier="complex-001-real-imag" title="Find the real and imaginary parts of a complex number (j)">
+    <responseDeclaration identifier="ans1" cardinality="single" baseType="integer"/>
+    <responseDeclaration identifier="sInput1" cardinality="single" baseType="string"/>
+    <responseDeclaration identifier="sInput2" cardinality="single" baseType="string"/>
+    <responseDeclaration identifier="HINTREQUEST" cardinality="single" baseType="boolean"/>
+    <responseDeclaration identifier="SOLREQUEST" cardinality="single" baseType="boolean"/>
+    <outcomeDeclaration identifier="SCORE" baseType="float" cardinality="single" normalMaximum="2.0">
+        <defaultValue>
+            <value>0.0</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration identifier="seenSolution" baseType="boolean" cardinality="single">
+        <defaultValue>
+            <value>false</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration identifier="seenHint" baseType="boolean" cardinality="single">
+        <defaultValue>
+            <value>false</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration identifier="ASKHINT" baseType="identifier" cardinality="single">
+        <defaultValue>
+            <value>askhint</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration identifier="ASKSOLUTION" baseType="identifier" cardinality="single">
+        <defaultValue>
+            <value>asksolution</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration identifier="FEEDBACK" baseType="identifier" cardinality="multiple"/>
+    <outcomeDeclaration identifier="EMPTY" baseType="identifier" cardinality="single"/>
+    <outcomeDeclaration identifier="oDummy" baseType="boolean" cardinality="single"/>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="isOrig"/>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="isOK"/>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="rOK"/>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="iOK"/>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="rSign"/>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="iSign"/>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="isSimp"/>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="notSimp"/>
+    <outcomeDeclaration cardinality="record" identifier="sans1"/>
+    <outcomeDeclaration cardinality="record" identifier="sansr"/>
+    <outcomeDeclaration cardinality="record" identifier="sansi"/>
+    <outcomeDeclaration cardinality="record" identifier="sansi2"/>
+    <templateDeclaration identifier="a" cardinality="single" baseType="integer" mathVariable="true"/>
+    <templateDeclaration identifier="b" cardinality="single" baseType="integer" mathVariable="true"/>
+    <templateDeclaration identifier="c" cardinality="single" baseType="integer" mathVariable="true"/>
+    <templateDeclaration identifier="d" cardinality="single" baseType="integer" mathVariable="true"/>
+    <templateDeclaration identifier="absa" cardinality="single" baseType="integer"
+        mathVariable="true"/>
+    <templateDeclaration identifier="absb" cardinality="single" baseType="integer"
+        mathVariable="true"/>
+    <templateDeclaration identifier="absc" cardinality="single" baseType="integer"
+        mathVariable="true"/>
+    <templateDeclaration identifier="absd" cardinality="single" baseType="integer"
+        mathVariable="true"/>
+    <templateDeclaration identifier="signa" cardinality="record" mathVariable="true"/>
+    <templateDeclaration identifier="signb" cardinality="record" mathVariable="true"/>
+    <templateDeclaration identifier="signc" cardinality="record" mathVariable="true"/>
+    <templateDeclaration identifier="signd" cardinality="record" mathVariable="true"/>
+    <templateDeclaration identifier="ansr" cardinality="single" baseType="integer"
+        mathVariable="true"/>
+    <templateDeclaration identifier="ansi" cardinality="single" baseType="integer"
+        mathVariable="true"/>
+    <templateDeclaration identifier="iAns" cardinality="single" baseType="integer"
+        mathVariable="true"/>
+    <templateDeclaration identifier="iType" cardinality="single" baseType="integer"
+        mathVariable="true"/>
+    <templateDeclaration identifier="sJ" cardinality="single" baseType="string"
+        mathVariable="false"/>
+    <templateDeclaration identifier="sRealIm" cardinality="single" baseType="string"
+        mathVariable="false"/>
+    <templateDeclaration identifier="absansi" cardinality="single" baseType="integer" mathVariable="true"/>
+    <templateDeclaration identifier="signansi" cardinality="record" mathVariable="true"/>
+    <templateDeclaration identifier="c1" cardinality="record" mathVariable="true"/>
+    <templateDeclaration identifier="c2" cardinality="record" mathVariable="true"/>
+    <templateDeclaration identifier="ans" cardinality="record" mathVariable="true"/>
+    <templateDeclaration identifier="tDummy" baseType="boolean" cardinality="single"
+        mathVariable="false"/>
+    <templateDeclaration identifier="tExpr1" cardinality="single" baseType="identifier"/>
+    <templateDeclaration identifier="tExpr2" cardinality="single" baseType="identifier"/>
+    <templateDeclaration identifier="tExpr3" cardinality="single" baseType="identifier"/>
+    <templateProcessing>
+        <setTemplateValue identifier="iType">
+            <randomInteger max="1" min="-1" step="2"/>
+        </setTemplateValue>
+        <!--<setTemplateValue identifier="a">
+            <randomInteger max="9" min="-9"/>
+        </setTemplateValue>
+        <setTemplateValue identifier="b">
+            <randomInteger max="9" min="-9"/>
+        </setTemplateValue>
+        <setTemplateValue identifier="d">
+            <variable identifier="b"/>
+        </setTemplateValue>
+        <setTemplateValue identifier="ansr">
+            <variable identifier="a"/>
+        </setTemplateValue>
+        <setTemplateValue identifier="ansi">
+            <variable identifier="b"/>
+        </setTemplateValue>
+        <setTemplateValue identifier="absa">
+            <round>
+                <mathOperator name="abs">
+                    <variable identifier="a"/>
+                </mathOperator>
+            </round>
+        </setTemplateValue>
+        <setTemplateValue identifier="absb">
+            <round>
+                <mathOperator name="abs">
+                    <variable identifier="b"/>
+                </mathOperator>
+            </round>
+        </setTemplateValue>
+        <setTemplateValue identifier="absansi">
+            <round>
+                <mathOperator name="abs">
+                   <variable identifier="ansi"/>
+               </mathOperator>
+            </round>
+        </setTemplateValue>-->
+        <setTemplateValue identifier="tDummy">
+            <customOperator xmlns:ma="http://mathassess.qtitools.org/xsd/mathassess"
+                class="org.qtitools.mathassess.ScriptRule" ma:syntax="text/x-maxima">
+                <baseValue baseType="string"><![CDATA[
+                    a : ev(random(19)-9,simp);
+                    b : ev(random(19)-9,simp);
+                    d : ev(random(19)-9,simp);
+                    absa: ev(abs(a),simp);
+                    absb: ev(abs(b),simp);
+                    absd: ev(abs(d),simp);
+                    if a>=0 then signa:maOperator("+") else signa:maOperator("-");
+                    if b>=0 then signb:maOperator("+") else signb:maOperator("-");
+                    if b>0 then signd:maOperator("-") else signd:maOperator("+");
+                    ansr : ev(a,simp);
+                    ansi : ev(b,simp);
+                    absansi: ev(abs(ansi),simp);
+                    if ansi>=0 then signansi:maOperator("+") else signansi:maOperator("-");
+                    c1 : ev(a+b*j,simp);
+                    c2 : ev(a+d*j,simp);
+                    ans : ev(c1,simp); 
+                    ]]>
+                </baseValue>
+            </customOperator>
+        </setTemplateValue>
+        <templateCondition>
+            <templateIf>
+                <or>
+                    <equal toleranceMode="exact">
+                        <variable identifier="a"/>
+                        <baseValue baseType="integer">0</baseValue>
+                    </equal>
+                    <equal toleranceMode="exact">
+                        <variable identifier="b"/>
+                        <baseValue baseType="integer">0</baseValue>
+                    </equal>
+                </or>
+                <setTemplateValue identifier="tExpr1">
+                    <baseValue baseType="identifier">PV1</baseValue>
+                </setTemplateValue>
+            </templateIf>
+            <templateElseIf>
+                <or>
+                    <equal toleranceMode="exact">
+                        <variable identifier="b"/>
+                        <baseValue baseType="integer">1</baseValue>
+                    </equal>
+                    <equal toleranceMode="exact">
+                        <variable identifier="b"/>
+                        <baseValue baseType="integer">-1</baseValue>
+                    </equal>
+                </or>
+                <setTemplateValue identifier="tExpr1">
+                    <baseValue baseType="identifier">MML1a</baseValue>
+                </setTemplateValue>
+            </templateElseIf>
+            <templateElse>
+                <setTemplateValue identifier="tExpr1">
+                    <baseValue baseType="identifier">MML1b</baseValue>
+                </setTemplateValue>
+            </templateElse>
+        </templateCondition>
+        <templateCondition>
+            <templateIf>
+                <equal toleranceMode="exact">
+                    <variable identifier="b"/>
+                    <baseValue baseType="integer">0</baseValue>
+                </equal>
+                <setTemplateValue identifier="tExpr2">
+                    <baseValue baseType="identifier">TI2</baseValue>
+                </setTemplateValue>
+            </templateIf>
+        </templateCondition>
+        <templateCondition>
+            <templateIf>
+                <or>
+                    <equal toleranceMode="exact">
+                        <variable identifier="ansr"/>
+                        <baseValue baseType="integer">0</baseValue>
+                    </equal>
+                    <equal toleranceMode="exact">
+                        <variable identifier="ansi"/>
+                        <baseValue baseType="integer">0</baseValue>
+                    </equal>
+                </or>
+                <setTemplateValue identifier="tExpr3">
+                    <baseValue baseType="identifier">PV3</baseValue>
+                </setTemplateValue>
+            </templateIf>
+            <templateElse>
+                <setTemplateValue identifier="tExpr3">
+                    <baseValue baseType="identifier">MML3</baseValue>
+                </setTemplateValue>
+            </templateElse>
+        </templateCondition>
+        <templateCondition>
+            <templateIf>
+                <equal toleranceMode="exact">
+                    <variable identifier="iType"/>
+                    <baseValue baseType="integer">1</baseValue>
+                </equal>
+                <setTemplateValue identifier="sJ">
+                    <baseValue baseType="string">&#160;</baseValue>
+                </setTemplateValue>
+                <setTemplateValue identifier="sRealIm">
+                    <baseValue baseType="string"> real </baseValue>
+                </setTemplateValue>
+                <setTemplateValue identifier="iAns">
+                    <variable identifier="ansr"/>
+                </setTemplateValue>
+            </templateIf>
+            <templateElse>
+                <setTemplateValue identifier="sJ">
+                    <baseValue baseType="string">j</baseValue>
+                </setTemplateValue>
+                <setTemplateValue identifier="sRealIm">
+                    <baseValue baseType="string"> imaginary </baseValue>
+                </setTemplateValue>
+                <setTemplateValue identifier="iAns">
+                    <variable identifier="ansi"/>
+                </setTemplateValue>
+            </templateElse>
+        </templateCondition>
+    </templateProcessing>
+    <itemBody>
+        <div>
+            <p>Find the <printedVariable identifier="sRealIm"/> part of <templateInline templateIdentifier="tExpr1"
+                    showHide="show" identifier="PV1">
+                    <printedVariable identifier="c1"/>
+                </templateInline>
+                <templateInline templateIdentifier="tExpr1" showHide="show" identifier="MML1a">
+                    <m:math id="mathML01a">
+                        <m:semantics>
+                            <m:mrow>
+                                <m:mi>a</m:mi>
+                                <m:mi>signb</m:mi>
+                                <m:mi>j</m:mi>
+                            </m:mrow>
+                            <m:annotation encoding="SnuggleTeX">\[\qv{a}\qv{signb}j\]</m:annotation>
+                        </m:semantics>
+                    </m:math>
+                </templateInline>
+                <templateInline templateIdentifier="tExpr1" showHide="show" identifier="MML1b">
+                    <m:math id="mathML01b">
+                        <m:semantics>
+                            <m:mrow>
+                                <m:mi>a</m:mi>
+                                <m:mi>signb</m:mi>
+                                <m:mi>absb</m:mi>
+                                <m:mi>j</m:mi>
+                            </m:mrow>
+                            <m:annotation encoding="SnuggleTeX"
+                                >\[\qv{a}\qv{signb}\qv{absb}j\]</m:annotation>
+                        </m:semantics>
+                    </m:math>
+                </templateInline>
+            </p>
+            <div>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td class="">
+                                <textEntryInteraction responseIdentifier="ans1" expectedLength="15"
+                                    stringIdentifier="sInput2"/><!--  -->
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p>&#160;</p>
+                <p>
+                    <feedbackInline identifier="CORRECT" outcomeIdentifier="FEEDBACK" showHide="show"> Correct </feedbackInline>
+                    <feedbackInline identifier="INCORRECT" outcomeIdentifier="FEEDBACK" showHide="show"> Incorrect </feedbackInline>
+                    <feedbackInline identifier="Sign1" outcomeIdentifier="FEEDBACK" showHide="show">The sign of your answer is incorrect.</feedbackInline>
+                </p>
+            </div>
+            <p>&#160;</p>
+            <feedbackBlock identifier="THREETRIES" outcomeIdentifier="FEEDBACK" showHide="show">
+                <p> You have had three attempts at answering this question, so here is the solution:
+                </p>
+            </feedbackBlock><feedbackBlock identifier="SOLUTION" outcomeIdentifier="FEEDBACK"
+                showHide="show">
+                <div>
+                    <p>The <printedVariable identifier="sRealIm"/> part is <printedVariable identifier="iAns"/>
+                    </p></div>
+            </feedbackBlock><feedbackBlock identifier="HINT" outcomeIdentifier="FEEDBACK"
+                showHide="show">
+                <p>In a complex number <em>a + jb</em> the real part is <em>a</em> and the imaginary part is <em>b</em>. </p>
+            </feedbackBlock><feedbackBlock identifier="SEEN-SOLUTION" outcomeIdentifier="FEEDBACK"
+                showHide="show">
+                <p> Since you have viewed the solution, your score for this question will be 0. </p>
+            </feedbackBlock><feedbackBlock identifier="SEEN-HINT" outcomeIdentifier="FEEDBACK"
+                showHide="show">
+                <p> Viewing the Hint does not affect your score for this question. </p>
+            </feedbackBlock><feedbackBlock identifier="askhint" outcomeIdentifier="ASKHINT"
+                showHide="show">
+                <p><endAttemptInteraction responseIdentifier="HINTREQUEST" title="Show Hint"/></p>
+            </feedbackBlock><feedbackBlock identifier="asksolution" outcomeIdentifier="ASKSOLUTION"
+                showHide="show">
+                <p><endAttemptInteraction responseIdentifier="SOLREQUEST" title="Show Solution"
+                    /></p>
+            </feedbackBlock></div>
+    </itemBody>
+    <responseProcessing>
+        <setOutcomeValue identifier="FEEDBACK">
+            <multiple>
+                <variable identifier="EMPTY"/>
+            </multiple>
+        </setOutcomeValue>
+        <responseCondition>
+            <responseIf>
+                <variable identifier="HINTREQUEST"/>
+                <setOutcomeValue identifier="FEEDBACK">
+                    <multiple>
+                        <baseValue baseType="identifier"> HINT
+                            </baseValue>
+                    </multiple>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="seenHint">
+                    <baseValue baseType="boolean"> true
+                        </baseValue>
+                </setOutcomeValue>
+            </responseIf>
+            <responseElseIf>
+                <variable identifier="SOLREQUEST"/>
+                <setOutcomeValue identifier="FEEDBACK">
+                    <multiple>
+                        <baseValue baseType="identifier"> SOLUTION
+                            </baseValue>
+                    </multiple>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="seenSolution">
+                    <baseValue baseType="boolean"> true
+                        </baseValue>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="completionStatus">
+                    <baseValue baseType="identifier"> completed
+                        </baseValue>
+                </setOutcomeValue>
+            </responseElseIf>
+            <responseElse>
+                <responseCondition>
+                    <responseIf>
+                        <isNull>
+                            <variable identifier="ans1"/>
+                        </isNull>
+                        <setOutcomeValue identifier="SCORE">
+                            <baseValue baseType="float"> 0.0
+                                </baseValue>
+                        </setOutcomeValue>
+                    </responseIf>
+                    <responseElse>
+                        <setOutcomeValue identifier="oDummy">
+                            <customOperator xmlns:ma="http://mathassess.qtitools.org/xsd/mathassess"
+                                class="org.qtitools.mathassess.ScriptRule" ma:syntax="text/x-maxima">
+                                <baseValue baseType="string"><![CDATA[
+
+ isOK: if (is(equal(iAns,ans1))=true) then true else false;
+ rSign: if (is(equal(ev(iAns+ans1,simp),0))=true) then true else false;
+
+]]></baseValue>
+                            </customOperator>
+                        </setOutcomeValue>
+                        <responseCondition>
+                            <responseIf>
+                                <variable identifier="isOK"/>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <baseValue baseType="identifier">CORRECT</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="SCORE">
+                                    <baseValue baseType="float">                                            
+                                        2.0                                        
+                                    </baseValue>
+                                </setOutcomeValue>
+                            </responseIf>
+                            <responseElseIf>
+                                <variable identifier="rSign"/>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <baseValue baseType="identifier">Sign1</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="SCORE">
+                                    <baseValue baseType="float">1.0</baseValue>
+                                </setOutcomeValue>
+                            </responseElseIf>
+                            <responseElse>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <baseValue baseType="identifier">INCORRECT</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="SCORE">
+                                    <baseValue baseType="float">1.0</baseValue>
+                                </setOutcomeValue>
+                            </responseElse>
+                        </responseCondition>
+                        <responseCondition>
+                            <responseIf>
+                                <variable identifier="seenSolution"/>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <variable identifier="FEEDBACK"/>
+                                        <baseValue baseType="identifier"> SEEN-SOLUTION
+                                            </baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="SCORE">
+                                    <baseValue baseType="float"> 0.0
+                                        </baseValue>
+                                </setOutcomeValue>
+                            </responseIf>
+                            <responseElseIf>
+                                <variable identifier="seenHint"/>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <variable identifier="FEEDBACK"/>
+                                        <baseValue baseType="identifier"> SEEN-HINT
+                                            </baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="SCORE">
+                                    <divide>
+                                        <variable identifier="SCORE"/>
+                                        <baseValue baseType="float">
+                                                1.0 </baseValue>
+                                    </divide>
+                                </setOutcomeValue>
+                            </responseElseIf>
+                        </responseCondition>
+                        <responseCondition>
+                            <responseIf>
+                                <gt>
+                                    <variable identifier="numAttempts"/>
+                                    <baseValue baseType="integer"> 3
+                                        </baseValue>
+                                </gt>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <baseValue baseType="identifier"> THREETRIES </baseValue>
+                                        <baseValue baseType="identifier"> SOLUTION
+                                            </baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="completionStatus">
+                                    <baseValue baseType="identifier"> completed </baseValue>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="ASKHINT">
+                                    <baseValue baseType="identifier"> null </baseValue>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="ASKSOLUTION">
+                                    <baseValue baseType="identifier"> null </baseValue>
+                                </setOutcomeValue>
+                            </responseIf>
+                        </responseCondition>
+                    </responseElse>
+                </responseCondition>
+            </responseElse>
+        </responseCondition>
+    </responseProcessing>
+</assessmentItem>

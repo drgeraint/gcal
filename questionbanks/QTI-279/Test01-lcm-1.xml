@@ -1,0 +1,1694 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p1"
+    xmlns:m="http://www.w3.org/1998/Math/MathML"
+    xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" adaptive="true" identifier="Test01-lcm-1"
+    timeDependent="false" title="Find the LCM of two numbers" toolName="Mathqurate"
+    toolVersion="1.0" xml:lang="en"
+    xsi:schemaLocation="http://www.imsglobal.org/xsd/imsqti_v2p1 imsqti_v2p1.xsd">
+    <responseDeclaration cardinality="single" baseType="integer" identifier="RESPONSE"/>
+    <responseDeclaration baseType="string" cardinality="single" identifier="printMath"/>
+    <responseDeclaration baseType="boolean" cardinality="single" identifier="HINTREQUEST"/>
+    <responseDeclaration baseType="boolean" cardinality="single" identifier="SOLREQUEST"/>
+    <outcomeDeclaration baseType="identifier" cardinality="multiple" identifier="FEEDBACK"/>
+    <outcomeDeclaration baseType="identifier" cardinality="single" identifier="EMPTY"/>
+    <outcomeDeclaration baseType="float" cardinality="single" identifier="SCORE" normalMaximum="2.0"
+        normalMinimum="0.0">
+        <defaultValue>
+            <value>0.0</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="seenSolution">
+        <defaultValue>
+            <value>false</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="seenHint">
+        <defaultValue>
+            <value>false</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="identifier" cardinality="single" identifier="ASKHINT">
+        <defaultValue>
+            <value>askhint</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="identifier" cardinality="single" identifier="ASKSOLUTION">
+        <defaultValue>
+            <value>asksolution</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iA" mathVariable="true"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iB" mathVariable="true"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iA2" mathVariable="true"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iA3" mathVariable="true"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iA5" mathVariable="true"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iA7" mathVariable="true"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iA11" mathVariable="true"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iB2" mathVariable="true"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iB3" mathVariable="true"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iB5" mathVariable="true"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iB7" mathVariable="true"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iB11" mathVariable="true"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iG2" mathVariable="true"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iG3" mathVariable="true"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iG5" mathVariable="true"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iG7" mathVariable="true"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iG11" mathVariable="true"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iSumPowA" mathVariable="true"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iSumPowB" mathVariable="true"/>
+    <templateDeclaration identifier="expandA" cardinality="multiple" baseType="identifier"/>
+    <templateDeclaration identifier="expandB" cardinality="multiple" baseType="identifier"/>
+    <templateDeclaration identifier="expandG" cardinality="multiple" baseType="identifier"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iLCM"
+        mathVariable="true"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iGCD"
+        mathVariable="true"/>
+    <templateProcessing>
+        <setTemplateValue identifier="iA2">
+            <randomInteger min="0" max="3"/>
+        </setTemplateValue>
+        <setTemplateValue identifier="iB2">
+            <randomInteger min="0" max="3"/>
+        </setTemplateValue>
+        <setTemplateValue identifier="iSumPowA">
+            <variable identifier="iA2"/>
+        </setTemplateValue>
+        <setTemplateValue identifier="iA">
+            <round>
+                <power>
+                    <baseValue baseType="integer">2</baseValue>
+                    <variable identifier="iA2"/>
+                </power>
+            </round>
+        </setTemplateValue>
+        <setTemplateValue identifier="iSumPowB">
+            <variable identifier="iB2"/>
+        </setTemplateValue>
+        <setTemplateValue identifier="iB">
+            <round>
+                <power>
+                    <baseValue baseType="integer">2</baseValue>
+                    <variable identifier="iB2"/>
+                </power>
+            </round>
+        </setTemplateValue>
+        <templateCondition>
+            <templateIf>
+                <gt>
+                    <variable identifier="iSumPowA"/>
+                    <baseValue baseType="integer">2</baseValue>
+                </gt>
+                <setTemplateValue identifier="iA3">
+                    <randomInteger min="0" max="2"/>
+                </setTemplateValue>
+            </templateIf>
+            <templateElse>
+                <setTemplateValue identifier="iA3">
+                    <randomInteger min="0" max="3"/>
+                </setTemplateValue>
+            </templateElse>
+        </templateCondition>
+        <templateCondition>
+            <templateIf>
+                <gt>
+                    <variable identifier="iSumPowB"/>
+                    <baseValue baseType="integer">2</baseValue>
+                </gt>
+                <setTemplateValue identifier="iB3">
+                    <randomInteger min="0" max="2"/>
+                </setTemplateValue>
+            </templateIf>
+            <templateElse>
+                <setTemplateValue identifier="iB3">
+                    <randomInteger min="0" max="3"/>
+                </setTemplateValue>
+            </templateElse>
+        </templateCondition>
+        <setTemplateValue identifier="iSumPowA">
+            <sum>
+                <variable identifier="iSumPowA"/>
+                <variable identifier="iA3"/>
+            </sum>
+        </setTemplateValue>
+        <setTemplateValue identifier="iSumPowB">
+            <sum>
+                <variable identifier="iSumPowB"/>
+                <variable identifier="iB3"/>
+            </sum>
+        </setTemplateValue>
+        <setTemplateValue identifier="iA">
+            <round>
+                <product>
+                    <variable identifier="iA"/>
+                    <power>
+                        <baseValue baseType="integer">3</baseValue>
+                        <variable identifier="iA3"/>
+                    </power>
+                </product>
+            </round>
+        </setTemplateValue>
+        <setTemplateValue identifier="iB">
+            <round>
+                <product>
+                    <variable identifier="iB"/>
+                    <power>
+                        <baseValue baseType="integer">3</baseValue>
+                        <variable identifier="iB3"/>
+                    </power>
+                </product>
+            </round>
+        </setTemplateValue>
+        <templateCondition>
+            <templateIf>
+                <gt>
+                    <variable identifier="iA"/>
+                    <baseValue baseType="integer">200</baseValue>
+                </gt>
+                <setTemplateValue identifier="iA5">
+                    <randomInteger min="0" max="1"/>
+                </setTemplateValue>
+            </templateIf>
+            <templateElseIf>
+                <gt>
+                    <variable identifier="iSumPowA"/>
+                    <baseValue baseType="integer">3</baseValue>
+                </gt>
+                <setTemplateValue identifier="iA5">
+                    <randomInteger min="0" max="2"/>
+                </setTemplateValue>
+            </templateElseIf>
+            <templateElse>
+                <setTemplateValue identifier="iA5">
+                    <randomInteger min="0" max="3"/>
+                </setTemplateValue>
+            </templateElse>
+        </templateCondition>
+        <templateCondition>
+            <templateIf>
+                <gt>
+                    <variable identifier="iB"/>
+                    <baseValue baseType="integer">200</baseValue>
+                </gt>
+                <setTemplateValue identifier="iB5">
+                    <randomInteger min="0" max="1"/>
+                </setTemplateValue>
+            </templateIf>
+            <templateElseIf>
+                <gt>
+                    <variable identifier="iSumPowB"/>
+                    <baseValue baseType="integer">3</baseValue>
+                </gt>
+                <setTemplateValue identifier="iB5">
+                    <randomInteger min="0" max="2"/>
+                </setTemplateValue>
+            </templateElseIf>
+            <templateElse>
+                <setTemplateValue identifier="iB5">
+                    <randomInteger min="0" max="3"/>
+                </setTemplateValue>
+            </templateElse>
+        </templateCondition>
+        <setTemplateValue identifier="iSumPowA">
+            <sum>
+                <variable identifier="iSumPowA"/>
+                <variable identifier="iA5"/>
+            </sum>
+        </setTemplateValue>
+        <setTemplateValue identifier="iSumPowB">
+            <sum>
+                <variable identifier="iSumPowB"/>
+                <variable identifier="iB5"/>
+            </sum>
+        </setTemplateValue>
+        <setTemplateValue identifier="iA">
+            <round>
+                <product>
+                    <variable identifier="iA"/>
+                    <power>
+                        <baseValue baseType="integer">5</baseValue>
+                        <variable identifier="iA5"/>
+                    </power>
+                </product>
+            </round>
+        </setTemplateValue>
+        <setTemplateValue identifier="iB">
+            <round>
+                <product>
+                    <variable identifier="iB"/>
+                    <power>
+                        <baseValue baseType="integer">5</baseValue>
+                        <variable identifier="iB5"/>
+                    </power>
+                </product>
+            </round>
+        </setTemplateValue>
+        <templateCondition>
+            <templateIf>
+                <gt>
+                    <variable identifier="iA"/>
+                    <baseValue baseType="integer">500</baseValue>
+                </gt>
+                <setTemplateValue identifier="iA7">
+                    <baseValue baseType="integer">0</baseValue>
+                </setTemplateValue>
+            </templateIf>
+            <templateElseIf>
+                <gt>
+                    <variable identifier="iSumPowA"/>
+                    <baseValue baseType="integer">4</baseValue>
+                </gt>
+                <setTemplateValue identifier="iA7">
+                    <randomInteger min="0" max="1"/>
+                </setTemplateValue>
+            </templateElseIf>
+            <templateElse>
+                <setTemplateValue identifier="iA7">
+                    <randomInteger min="0" max="2"/>
+                </setTemplateValue>
+            </templateElse>
+        </templateCondition>
+        <templateCondition>
+            <templateIf>
+                <gt>
+                    <variable identifier="iB"/>
+                    <baseValue baseType="integer">500</baseValue>
+                </gt>
+                <setTemplateValue identifier="iB7">
+                    <baseValue baseType="integer">0</baseValue>
+                </setTemplateValue>
+            </templateIf>
+            <templateElseIf>
+                <gt>
+                    <variable identifier="iSumPowB"/>
+                    <baseValue baseType="integer">4</baseValue>
+                </gt>
+                <setTemplateValue identifier="iB7">
+                    <randomInteger min="0" max="1"/>
+                </setTemplateValue>
+            </templateElseIf>
+            <templateElse>
+                <setTemplateValue identifier="iB7">
+                    <randomInteger min="0" max="2"/>
+                </setTemplateValue>
+            </templateElse>
+        </templateCondition>
+        <setTemplateValue identifier="iSumPowA">
+            <sum>
+                <variable identifier="iSumPowA"/>
+                <variable identifier="iA7"/>
+            </sum>
+        </setTemplateValue>
+        <setTemplateValue identifier="iSumPowB">
+            <sum>
+                <variable identifier="iSumPowB"/>
+                <variable identifier="iB7"/>
+            </sum>
+        </setTemplateValue>
+        <setTemplateValue identifier="iA">
+            <round>
+                <product>
+                    <variable identifier="iA"/>
+                    <power>
+                        <baseValue baseType="integer">7</baseValue>
+                        <variable identifier="iA7"/>
+                    </power>
+                </product>
+            </round>
+        </setTemplateValue>
+        <setTemplateValue identifier="iB">
+            <round>
+                <product>
+                    <variable identifier="iB"/>
+                    <power>
+                        <baseValue baseType="integer">7</baseValue>
+                        <variable identifier="iB7"/>
+                    </power>
+                </product>
+            </round>
+        </setTemplateValue>
+        <templateCondition>
+            <templateIf>
+                <gt>
+                    <variable identifier="iA"/>
+                    <baseValue baseType="integer">600</baseValue>
+                </gt>
+                <setTemplateValue identifier="iA11">
+                    <baseValue baseType="integer">0</baseValue>
+                </setTemplateValue>
+            </templateIf>
+            <templateElseIf>
+                <gt>
+                    <variable identifier="iSumPowA"/>
+                    <baseValue baseType="integer">6</baseValue>
+                </gt>
+                <setTemplateValue identifier="iA11">
+                    <baseValue baseType="integer">0</baseValue>
+                </setTemplateValue>
+            </templateElseIf>
+            <templateElse>
+                <setTemplateValue identifier="iA11">
+                    <randomInteger min="0" max="1"/>
+                </setTemplateValue>
+            </templateElse>
+        </templateCondition>
+        <templateCondition>
+            <templateIf>
+                <gt>
+                    <variable identifier="iB"/>
+                    <baseValue baseType="integer">600</baseValue>
+                </gt>
+                <setTemplateValue identifier="iB11">
+                    <baseValue baseType="integer">0</baseValue>
+                </setTemplateValue>
+            </templateIf>
+            <templateElseIf>
+                <gt>
+                    <variable identifier="iSumPowB"/>
+                    <baseValue baseType="integer">6</baseValue>
+                </gt>
+                <setTemplateValue identifier="iB11">
+                    <baseValue baseType="integer">0</baseValue>
+                </setTemplateValue>
+            </templateElseIf>
+            <templateElse>
+                <setTemplateValue identifier="iB11">
+                    <randomInteger min="0" max="1"/>
+                </setTemplateValue>
+            </templateElse>
+        </templateCondition>
+        <setTemplateValue identifier="iA">
+            <round>
+                <product>
+                    <variable identifier="iA"/>
+                    <power>
+                        <baseValue baseType="integer">11</baseValue>
+                        <variable identifier="iA11"/>
+                    </power>
+                </product>
+            </round>
+        </setTemplateValue>
+        <setTemplateValue identifier="iB">
+            <round>
+                <product>
+                    <variable identifier="iB"/>
+                    <power>
+                        <baseValue baseType="integer">11</baseValue>
+                        <variable identifier="iB11"/>
+                    </power>
+                </product>
+            </round>
+        </setTemplateValue>
+        <templateCondition>
+            <templateIf>
+                <gte>
+                    <variable identifier="iA2"/>
+                    <variable identifier="iB2"/>
+                </gte>
+                <setTemplateValue identifier="iG2">
+                    <variable identifier="iB2"/>
+                </setTemplateValue>
+            </templateIf>
+            <templateElse>
+                <setTemplateValue identifier="iG2">
+                    <variable identifier="iA2"/>
+                </setTemplateValue>
+            </templateElse>
+        </templateCondition>
+        <templateCondition>
+            <templateIf>
+                <gte>
+                    <variable identifier="iA3"/>
+                    <variable identifier="iB3"/>
+                </gte>
+                <setTemplateValue identifier="iG3">
+                    <variable identifier="iB3"/>
+                </setTemplateValue>
+            </templateIf>
+            <templateElse>
+                <setTemplateValue identifier="iG3">
+                    <variable identifier="iA3"/>
+                </setTemplateValue>
+            </templateElse>
+        </templateCondition>
+        <templateCondition>
+            <templateIf>
+                <gte>
+                    <variable identifier="iA5"/>
+                    <variable identifier="iB5"/>
+                </gte>
+                <setTemplateValue identifier="iG5">
+                    <variable identifier="iB5"/>
+                </setTemplateValue>
+            </templateIf>
+            <templateElse>
+                <setTemplateValue identifier="iG5">
+                    <variable identifier="iA5"/>
+                </setTemplateValue>
+            </templateElse>
+        </templateCondition>
+        <templateCondition>
+            <templateIf>
+                <gte>
+                    <variable identifier="iA7"/>
+                    <variable identifier="iB7"/>
+                </gte>
+                <setTemplateValue identifier="iG7">
+                    <variable identifier="iB7"/>
+                </setTemplateValue>
+            </templateIf>
+            <templateElse>
+                <setTemplateValue identifier="iG7">
+                    <variable identifier="iA7"/>
+                </setTemplateValue>
+            </templateElse>
+        </templateCondition>
+        <templateCondition>
+            <templateIf>
+                <gte>
+                    <variable identifier="iA11"/>
+                    <variable identifier="iB11"/>
+                </gte>
+                <setTemplateValue identifier="iG11">
+                    <variable identifier="iB11"/>
+                </setTemplateValue>
+            </templateIf>
+            <templateElse>
+                <setTemplateValue identifier="iG11">
+                    <variable identifier="iA11"/>
+                </setTemplateValue>
+            </templateElse>
+        </templateCondition>
+        <setTemplateValue identifier="iGCD">
+            <round><product>
+                <power>
+                    <baseValue baseType="integer">2</baseValue>
+                    <variable identifier="iG2"/>
+                </power>
+                <power>
+                    <baseValue baseType="integer">3</baseValue>
+                    <variable identifier="iG3"/>
+                </power>
+                <power>
+                    <baseValue baseType="integer">5</baseValue>
+                    <variable identifier="iG5"/>
+                </power>
+                <power>
+                    <baseValue baseType="integer">7</baseValue>
+                    <variable identifier="iG7"/>
+                </power>
+                <power>
+                    <baseValue baseType="integer">11</baseValue>
+                    <variable identifier="iG11"/>
+                </power>
+            </product>
+            </round>
+        </setTemplateValue>
+        <setTemplateValue identifier="iLCM">
+            <round>
+                <divide>
+                    <product>
+                        <variable identifier="iA"/>
+                        <variable identifier="iB"/>
+                    </product>
+                    <variable identifier="iGCD"/>
+                </divide>
+            </round>
+        </setTemplateValue>
+        <templateCondition>
+            <templateIf>
+                <and>
+                    <equal toleranceMode="exact">
+                        <variable identifier="iA2"/>
+                        <baseValue baseType="integer">0</baseValue>
+                    </equal>
+                    <equal toleranceMode="exact">
+                        <variable identifier="iA3"/>
+                        <baseValue baseType="integer">0</baseValue>
+                    </equal>
+                    <equal toleranceMode="exact">
+                        <variable identifier="iA5"/>
+                        <baseValue baseType="integer">0</baseValue>
+                    </equal>
+                    <equal toleranceMode="exact">
+                        <variable identifier="iA7"/>
+                        <baseValue baseType="integer">0</baseValue>
+                    </equal>
+                    <equal toleranceMode="exact">
+                        <variable identifier="iA11"/>
+                        <baseValue baseType="integer">0</baseValue>
+                    </equal>
+                </and>
+                <setTemplateValue identifier="expandA">
+                    <multiple>
+                        <baseValue baseType="identifier">A1</baseValue>
+                    </multiple>
+                </setTemplateValue>
+            </templateIf>
+            <templateElse>
+                <templateCondition>
+                    <templateIf>
+                        <gt>
+                            <variable identifier="iA2"/>
+                            <baseValue baseType="integer">2</baseValue>
+                        </gt>
+                        <setTemplateValue identifier="expandA">
+                            <multiple>
+                                <baseValue baseType="identifier">A21</baseValue>
+                                <baseValue baseType="identifier">A22</baseValue>
+                                <baseValue baseType="identifier">A23</baseValue>
+                            </multiple>
+                        </setTemplateValue>
+                    </templateIf>
+                    <templateElseIf>
+                        <gt>
+                            <variable identifier="iA2"/>
+                            <baseValue baseType="integer">1</baseValue>
+                        </gt>
+                        <setTemplateValue identifier="expandA">
+                            <multiple>
+                                <baseValue baseType="identifier">A21</baseValue>
+                                <baseValue baseType="identifier">A22</baseValue>
+                            </multiple>
+                        </setTemplateValue>
+                    </templateElseIf>
+                    <templateElseIf>
+                        <gt>
+                            <variable identifier="iA2"/>
+                            <baseValue baseType="integer">0</baseValue>
+                        </gt>
+                        <setTemplateValue identifier="expandA">
+                            <multiple>
+                                <baseValue baseType="identifier">A21</baseValue>
+                            </multiple>
+                        </setTemplateValue>
+                    </templateElseIf>
+                </templateCondition>
+                <templateCondition>
+                    <templateIf>
+                        <and>
+                            <not>
+                                <isNull>
+                                    <variable identifier="expandA"/>
+                                </isNull>
+                            </not>
+                            <gt>
+                                <variable identifier="iA3"/>
+                                <baseValue baseType="integer">0</baseValue>
+                            </gt>
+                        </and>
+                        <setTemplateValue identifier="expandA">
+                            <multiple>
+                                <variable identifier="expandA"/>
+                                <baseValue baseType="identifier">Atimes3</baseValue>
+                            </multiple>
+                        </setTemplateValue>
+                    </templateIf>
+                </templateCondition>
+                <templateCondition>
+                    <templateIf>
+                        <gt>
+                            <variable identifier="iA3"/>
+                            <baseValue baseType="integer">2</baseValue>
+                        </gt>
+                        <setTemplateValue identifier="expandA">
+                            <multiple>
+                                <variable identifier="expandA"/>
+                                <baseValue baseType="identifier">A31</baseValue>
+                                <baseValue baseType="identifier">A32</baseValue>
+                                <baseValue baseType="identifier">A33</baseValue>
+                            </multiple>
+                        </setTemplateValue>
+                    </templateIf>
+                    <templateElseIf>
+                        <gt>
+                            <variable identifier="iA3"/>
+                            <baseValue baseType="integer">1</baseValue>
+                        </gt>
+                        <setTemplateValue identifier="expandA">
+                            <multiple>
+                                <variable identifier="expandA"/>
+                                <baseValue baseType="identifier">A31</baseValue>
+                                <baseValue baseType="identifier">A32</baseValue>
+                            </multiple>
+                        </setTemplateValue>
+                    </templateElseIf>
+                    <templateElseIf>
+                        <gt>
+                            <variable identifier="iA3"/>
+                            <baseValue baseType="integer">0</baseValue>
+                        </gt>
+                        <setTemplateValue identifier="expandA">
+                            <multiple>
+                                <variable identifier="expandA"/>
+                                <baseValue baseType="identifier">A31</baseValue>
+                            </multiple>
+                        </setTemplateValue>
+                    </templateElseIf>
+                </templateCondition>
+                <templateCondition>
+                    <templateIf>
+                        <and>
+                            <not>
+                                <isNull>
+                                    <variable identifier="expandA"/>
+                                </isNull>
+                            </not>
+                            <gt>
+                                <variable identifier="iA5"/>
+                                <baseValue baseType="integer">0</baseValue>
+                            </gt>
+                        </and>
+                        <setTemplateValue identifier="expandA">
+                            <multiple>
+                                <variable identifier="expandA"/>
+                                <baseValue baseType="identifier">Atimes5</baseValue>
+                            </multiple>
+                        </setTemplateValue>
+                    </templateIf>
+                </templateCondition>
+                <templateCondition>
+                    <templateIf>
+                        <gt>
+                            <variable identifier="iA5"/>
+                            <baseValue baseType="integer">2</baseValue>
+                        </gt>
+                        <setTemplateValue identifier="expandA">
+                            <multiple>
+                                <variable identifier="expandA"/>
+                                <baseValue baseType="identifier">A51</baseValue>
+                                <baseValue baseType="identifier">A52</baseValue>
+                                <baseValue baseType="identifier">A53</baseValue>
+                            </multiple>
+                        </setTemplateValue>
+                    </templateIf>
+                    <templateElseIf>
+                        <gt>
+                            <variable identifier="iA5"/>
+                            <baseValue baseType="integer">1</baseValue>
+                        </gt>
+                        <setTemplateValue identifier="expandA">
+                            <multiple>
+                                <variable identifier="expandA"/>
+                                <baseValue baseType="identifier">A51</baseValue>
+                                <baseValue baseType="identifier">A52</baseValue>
+                            </multiple>
+                        </setTemplateValue>
+                    </templateElseIf>
+                    <templateElseIf>
+                        <gt>
+                            <variable identifier="iA5"/>
+                            <baseValue baseType="integer">0</baseValue>
+                        </gt>
+                        <setTemplateValue identifier="expandA">
+                            <multiple>
+                                <variable identifier="expandA"/>
+                                <baseValue baseType="identifier">A51</baseValue>
+                            </multiple>
+                        </setTemplateValue>
+                    </templateElseIf>
+                </templateCondition>
+                <templateCondition>
+                    <templateIf>
+                        <and>
+                            <not>
+                                <isNull>
+                                    <variable identifier="expandA"/>
+                                </isNull>
+                            </not>
+                            <gt>
+                                <variable identifier="iA7"/>
+                                <baseValue baseType="integer">0</baseValue>
+                            </gt>
+                        </and>
+                        <setTemplateValue identifier="expandA">
+                            <multiple>
+                                <variable identifier="expandA"/>
+                                <baseValue baseType="identifier">Atimes7</baseValue>
+                            </multiple>
+                        </setTemplateValue>
+                    </templateIf>
+                </templateCondition>
+                <templateCondition>
+                    <templateIf>
+                        <gt>
+                            <variable identifier="iA7"/>
+                            <baseValue baseType="integer">1</baseValue>
+                        </gt>
+                        <setTemplateValue identifier="expandA">
+                            <multiple>
+                                <variable identifier="expandA"/>
+                                <baseValue baseType="identifier">A71</baseValue>
+                                <baseValue baseType="identifier">A72</baseValue>
+                            </multiple>
+                        </setTemplateValue>
+                    </templateIf>
+                    <templateElseIf>
+                        <gt>
+                            <variable identifier="iA7"/>
+                            <baseValue baseType="integer">0</baseValue>
+                        </gt>
+                        <setTemplateValue identifier="expandA">
+                            <multiple>
+                                <variable identifier="expandA"/>
+                                <baseValue baseType="identifier">A71</baseValue>
+                            </multiple>
+                        </setTemplateValue>
+                    </templateElseIf>
+                </templateCondition>
+                <templateCondition>
+                    <templateIf>
+                        <and>
+                            <not>
+                                <isNull>
+                                    <variable identifier="expandA"/>
+                                </isNull>
+                            </not>
+                            <gt>
+                                <variable identifier="iA11"/>
+                                <baseValue baseType="integer">0</baseValue>
+                            </gt>
+                        </and>
+                        <setTemplateValue identifier="expandA">
+                            <multiple>
+                                <variable identifier="expandA"/>
+                                <baseValue baseType="identifier">Atimes11</baseValue>
+                            </multiple>
+                        </setTemplateValue>
+                    </templateIf>
+                </templateCondition>
+                <templateCondition>
+                    <templateIf>
+                        <gt>
+                            <variable identifier="iA11"/>
+                            <baseValue baseType="integer">0</baseValue>
+                        </gt>
+                        <setTemplateValue identifier="expandA">
+                            <multiple>
+                                <variable identifier="expandA"/>
+                                <baseValue baseType="identifier">A111</baseValue>
+                            </multiple>
+                        </setTemplateValue>
+                    </templateIf>
+                </templateCondition>
+            </templateElse>
+        </templateCondition>
+        <templateCondition>
+            <templateIf>
+                <and>
+                    <equal toleranceMode="exact">
+                        <variable identifier="iB2"/>
+                        <baseValue baseType="integer">0</baseValue>
+                    </equal>
+                    <equal toleranceMode="exact">
+                        <variable identifier="iB3"/>
+                        <baseValue baseType="integer">0</baseValue>
+                    </equal>
+                    <equal toleranceMode="exact">
+                        <variable identifier="iB5"/>
+                        <baseValue baseType="integer">0</baseValue>
+                    </equal>
+                    <equal toleranceMode="exact">
+                        <variable identifier="iB7"/>
+                        <baseValue baseType="integer">0</baseValue>
+                    </equal>
+                    <equal toleranceMode="exact">
+                        <variable identifier="iB11"/>
+                        <baseValue baseType="integer">0</baseValue>
+                    </equal>
+                </and>
+                <setTemplateValue identifier="expandB">
+                    <multiple>
+                        <baseValue baseType="identifier">B1</baseValue>
+                    </multiple>
+                </setTemplateValue>
+            </templateIf>
+            <templateElse>
+                <templateCondition>
+                    <templateIf>
+                        <gt>
+                            <variable identifier="iB2"/>
+                            <baseValue baseType="integer">2</baseValue>
+                        </gt>
+                        <setTemplateValue identifier="expandB">
+                            <multiple>
+                                <baseValue baseType="identifier">B21</baseValue>
+                                <baseValue baseType="identifier">B22</baseValue>
+                                <baseValue baseType="identifier">B23</baseValue>
+                            </multiple>
+                        </setTemplateValue>
+                    </templateIf>
+                    <templateElseIf>
+                        <gt>
+                            <variable identifier="iB2"/>
+                            <baseValue baseType="integer">1</baseValue>
+                        </gt>
+                        <setTemplateValue identifier="expandB">
+                            <multiple>
+                                <baseValue baseType="identifier">B21</baseValue>
+                                <baseValue baseType="identifier">B22</baseValue>
+                            </multiple>
+                        </setTemplateValue>
+                    </templateElseIf>
+                    <templateElseIf>
+                        <gt>
+                            <variable identifier="iB2"/>
+                            <baseValue baseType="integer">0</baseValue>
+                        </gt>
+                        <setTemplateValue identifier="expandB">
+                            <multiple>
+                                <baseValue baseType="identifier">B21</baseValue>
+                            </multiple>
+                        </setTemplateValue>
+                    </templateElseIf>
+                </templateCondition>
+                <templateCondition>
+                    <templateIf>
+                        <and>
+                            <not>
+                                <isNull>
+                                    <variable identifier="expandB"/>
+                                </isNull>
+                            </not>
+                            <gt>
+                                <variable identifier="iB3"/>
+                                <baseValue baseType="integer">0</baseValue>
+                            </gt>
+                        </and>
+                        <setTemplateValue identifier="expandB">
+                            <multiple>
+                                <variable identifier="expandB"/>
+                                <baseValue baseType="identifier">Btimes3</baseValue>
+                            </multiple>
+                        </setTemplateValue>
+                    </templateIf>
+                </templateCondition>
+                <templateCondition>
+                    <templateIf>
+                        <gt>
+                            <variable identifier="iB3"/>
+                            <baseValue baseType="integer">2</baseValue>
+                        </gt>
+                        <setTemplateValue identifier="expandB">
+                            <multiple>
+                                <variable identifier="expandB"/>
+                                <baseValue baseType="identifier">B31</baseValue>
+                                <baseValue baseType="identifier">B32</baseValue>
+                                <baseValue baseType="identifier">B33</baseValue>
+                            </multiple>
+                        </setTemplateValue>
+                    </templateIf>
+                    <templateElseIf>
+                        <gt>
+                            <variable identifier="iB3"/>
+                            <baseValue baseType="integer">1</baseValue>
+                        </gt>
+                        <setTemplateValue identifier="expandB">
+                            <multiple>
+                                <variable identifier="expandB"/>
+                                <baseValue baseType="identifier">B31</baseValue>
+                                <baseValue baseType="identifier">B32</baseValue>
+                            </multiple>
+                        </setTemplateValue>
+                    </templateElseIf>
+                    <templateElseIf>
+                        <gt>
+                            <variable identifier="iB3"/>
+                            <baseValue baseType="integer">0</baseValue>
+                        </gt>
+                        <setTemplateValue identifier="expandB">
+                            <multiple>
+                                <variable identifier="expandB"/>
+                                <baseValue baseType="identifier">B31</baseValue>
+                            </multiple>
+                        </setTemplateValue>
+                    </templateElseIf>
+                </templateCondition>
+                <templateCondition>
+                    <templateIf>
+                        <and>
+                            <not>
+                                <isNull>
+                                    <variable identifier="expandB"/>
+                                </isNull>
+                            </not>
+                            <gt>
+                                <variable identifier="iB5"/>
+                                <baseValue baseType="integer">0</baseValue>
+                            </gt>
+                        </and>
+                        <setTemplateValue identifier="expandB">
+                            <multiple>
+                                <variable identifier="expandB"/>
+                                <baseValue baseType="identifier">Btimes5</baseValue>
+                            </multiple>
+                        </setTemplateValue>
+                    </templateIf>
+                </templateCondition>
+                <templateCondition>
+                    <templateIf>
+                        <gt>
+                            <variable identifier="iB5"/>
+                            <baseValue baseType="integer">2</baseValue>
+                        </gt>
+                        <setTemplateValue identifier="expandB">
+                            <multiple>
+                                <variable identifier="expandB"/>
+                                <baseValue baseType="identifier">B51</baseValue>
+                                <baseValue baseType="identifier">B52</baseValue>
+                                <baseValue baseType="identifier">B53</baseValue>
+                            </multiple>
+                        </setTemplateValue>
+                    </templateIf>
+                    <templateElseIf>
+                        <gt>
+                            <variable identifier="iB5"/>
+                            <baseValue baseType="integer">1</baseValue>
+                        </gt>
+                        <setTemplateValue identifier="expandB">
+                            <multiple>
+                                <variable identifier="expandB"/>
+                                <baseValue baseType="identifier">B51</baseValue>
+                                <baseValue baseType="identifier">B52</baseValue>
+                            </multiple>
+                        </setTemplateValue>
+                    </templateElseIf>
+                    <templateElseIf>
+                        <gt>
+                            <variable identifier="iB5"/>
+                            <baseValue baseType="integer">0</baseValue>
+                        </gt>
+                        <setTemplateValue identifier="expandB">
+                            <multiple>
+                                <variable identifier="expandB"/>
+                                <baseValue baseType="identifier">B51</baseValue>
+                            </multiple>
+                        </setTemplateValue>
+                    </templateElseIf>
+                </templateCondition>
+                <templateCondition>
+                    <templateIf>
+                        <and>
+                            <not>
+                                <isNull>
+                                    <variable identifier="expandB"/>
+                                </isNull>
+                            </not>
+                            <gt>
+                                <variable identifier="iB7"/>
+                                <baseValue baseType="integer">0</baseValue>
+                            </gt>
+                        </and>
+                        <setTemplateValue identifier="expandB">
+                            <multiple>
+                                <variable identifier="expandB"/>
+                                <baseValue baseType="identifier">Btimes7</baseValue>
+                            </multiple>
+                        </setTemplateValue>
+                    </templateIf>
+                </templateCondition>
+                <templateCondition>
+                    <templateIf>
+                        <gt>
+                            <variable identifier="iB7"/>
+                            <baseValue baseType="integer">2</baseValue>
+                        </gt>
+                        <setTemplateValue identifier="expandB">
+                            <multiple>
+                                <variable identifier="expandB"/>
+                                <baseValue baseType="identifier">B71</baseValue>
+                                <baseValue baseType="identifier">B72</baseValue>
+                                <baseValue baseType="identifier">B73</baseValue>
+                            </multiple>
+                        </setTemplateValue>
+                    </templateIf>
+                    <templateElseIf>
+                        <gt>
+                            <variable identifier="iB7"/>
+                            <baseValue baseType="integer">1</baseValue>
+                        </gt>
+                        <setTemplateValue identifier="expandB">
+                            <multiple>
+                                <variable identifier="expandB"/>
+                                <baseValue baseType="identifier">B71</baseValue>
+                                <baseValue baseType="identifier">B72</baseValue>
+                            </multiple>
+                        </setTemplateValue>
+                    </templateElseIf>
+                    <templateElseIf>
+                        <gt>
+                            <variable identifier="iB7"/>
+                            <baseValue baseType="integer">0</baseValue>
+                        </gt>
+                        <setTemplateValue identifier="expandB">
+                            <multiple>
+                                <variable identifier="expandB"/>
+                                <baseValue baseType="identifier">B71</baseValue>
+                            </multiple>
+                        </setTemplateValue>
+                    </templateElseIf>
+                </templateCondition>
+                <templateCondition>
+                    <templateIf>
+                        <and>
+                            <not>
+                                <isNull>
+                                    <variable identifier="expandB"/>
+                                </isNull>
+                            </not>
+                            <gt>
+                                <variable identifier="iB11"/>
+                                <baseValue baseType="integer">0</baseValue>
+                            </gt>
+                        </and>
+                        <setTemplateValue identifier="expandB">
+                            <multiple>
+                                <variable identifier="expandB"/>
+                                <baseValue baseType="identifier">Btimes11</baseValue>
+                            </multiple>
+                        </setTemplateValue>
+                    </templateIf>
+                </templateCondition>
+                <templateCondition>
+                    <templateIf>
+                        <gt>
+                            <variable identifier="iB11"/>
+                            <baseValue baseType="integer">0</baseValue>
+                        </gt>
+                        <setTemplateValue identifier="expandB">
+                            <multiple>
+                                <variable identifier="expandB"/>
+                                <baseValue baseType="identifier">B111</baseValue>
+                            </multiple>
+                        </setTemplateValue>
+                    </templateIf>
+                </templateCondition>
+            </templateElse>
+        </templateCondition>
+        <templateCondition>
+            <templateIf>
+                <and>
+                    <equal toleranceMode="exact">
+                        <variable identifier="iG2"/>
+                        <baseValue baseType="integer">0</baseValue>
+                    </equal>
+                    <equal toleranceMode="exact">
+                        <variable identifier="iG3"/>
+                        <baseValue baseType="integer">0</baseValue>
+                    </equal>
+                    <equal toleranceMode="exact">
+                        <variable identifier="iG5"/>
+                        <baseValue baseType="integer">0</baseValue>
+                    </equal>
+                    <equal toleranceMode="exact">
+                        <variable identifier="iG7"/>
+                        <baseValue baseType="integer">0</baseValue>
+                    </equal>
+                    <equal toleranceMode="exact">
+                        <variable identifier="iG11"/>
+                        <baseValue baseType="integer">0</baseValue>
+                    </equal>
+                </and>
+                <setTemplateValue identifier="expandG">
+                    <multiple>
+                        <baseValue baseType="identifier">G1</baseValue>
+                    </multiple>
+                </setTemplateValue>
+            </templateIf>
+            <templateElse>
+                <templateCondition>
+                    <templateIf>
+                        <gt>
+                            <variable identifier="iG2"/>
+                            <baseValue baseType="integer">2</baseValue>
+                        </gt>
+                        <setTemplateValue identifier="expandG">
+                            <multiple>
+                                <baseValue baseType="identifier">G21</baseValue>
+                                <baseValue baseType="identifier">G22</baseValue>
+                                <baseValue baseType="identifier">G23</baseValue>
+                            </multiple>
+                        </setTemplateValue>
+                    </templateIf>
+                    <templateElseIf>
+                        <gt>
+                            <variable identifier="iG2"/>
+                            <baseValue baseType="integer">1</baseValue>
+                        </gt>
+                        <setTemplateValue identifier="expandG">
+                            <multiple>
+                                <baseValue baseType="identifier">G21</baseValue>
+                                <baseValue baseType="identifier">G22</baseValue>
+                            </multiple>
+                        </setTemplateValue>
+                    </templateElseIf>
+                    <templateElseIf>
+                        <gt>
+                            <variable identifier="iG2"/>
+                            <baseValue baseType="integer">0</baseValue>
+                        </gt>
+                        <setTemplateValue identifier="expandG">
+                            <multiple>
+                                <baseValue baseType="identifier">G21</baseValue>
+                            </multiple>
+                        </setTemplateValue>
+                    </templateElseIf>
+                </templateCondition>
+                <templateCondition>
+                    <templateIf>
+                        <and>
+                            <not>
+                                <isNull>
+                                    <variable identifier="expandG"/>
+                                </isNull>
+                            </not>
+                            <gt>
+                                <variable identifier="iG3"/>
+                                <baseValue baseType="integer">0</baseValue>
+                            </gt>
+                        </and>
+                        <setTemplateValue identifier="expandG">
+                            <multiple>
+                                <variable identifier="expandG"/>
+                                <baseValue baseType="identifier">Gtimes3</baseValue>
+                            </multiple>
+                        </setTemplateValue>
+                    </templateIf>
+                </templateCondition>
+                <templateCondition>
+                    <templateIf>
+                        <gt>
+                            <variable identifier="iG3"/>
+                            <baseValue baseType="integer">2</baseValue>
+                        </gt>
+                        <setTemplateValue identifier="expandG">
+                            <multiple>
+                                <variable identifier="expandG"/>
+                                <baseValue baseType="identifier">G31</baseValue>
+                                <baseValue baseType="identifier">G32</baseValue>
+                                <baseValue baseType="identifier">G33</baseValue>
+                            </multiple>
+                        </setTemplateValue>
+                    </templateIf>
+                    <templateElseIf>
+                        <gt>
+                            <variable identifier="iG3"/>
+                            <baseValue baseType="integer">1</baseValue>
+                        </gt>
+                        <setTemplateValue identifier="expandG">
+                            <multiple>
+                                <variable identifier="expandG"/>
+                                <baseValue baseType="identifier">G31</baseValue>
+                                <baseValue baseType="identifier">G32</baseValue>
+                            </multiple>
+                        </setTemplateValue>
+                    </templateElseIf>
+                    <templateElseIf>
+                        <gt>
+                            <variable identifier="iG3"/>
+                            <baseValue baseType="integer">0</baseValue>
+                        </gt>
+                        <setTemplateValue identifier="expandG">
+                            <multiple>
+                                <variable identifier="expandG"/>
+                                <baseValue baseType="identifier">G31</baseValue>
+                            </multiple>
+                        </setTemplateValue>
+                    </templateElseIf>
+                </templateCondition>
+                <templateCondition>
+                    <templateIf>
+                        <and>
+                            <not>
+                                <isNull>
+                                    <variable identifier="expandG"/>
+                                </isNull>
+                            </not>
+                            <gt>
+                                <variable identifier="iG5"/>
+                                <baseValue baseType="integer">0</baseValue>
+                            </gt>
+                        </and>
+                        <setTemplateValue identifier="expandG">
+                            <multiple>
+                                <variable identifier="expandG"/>
+                                <baseValue baseType="identifier">Gtimes5</baseValue>
+                            </multiple>
+                        </setTemplateValue>
+                    </templateIf>
+                </templateCondition>
+                <templateCondition>
+                    <templateIf>
+                        <gt>
+                            <variable identifier="iG5"/>
+                            <baseValue baseType="integer">2</baseValue>
+                        </gt>
+                        <setTemplateValue identifier="expandG">
+                            <multiple>
+                                <variable identifier="expandG"/>
+                                <baseValue baseType="identifier">G51</baseValue>
+                                <baseValue baseType="identifier">G52</baseValue>
+                                <baseValue baseType="identifier">G53</baseValue>
+                            </multiple>
+                        </setTemplateValue>
+                    </templateIf>
+                    <templateElseIf>
+                        <gt>
+                            <variable identifier="iG5"/>
+                            <baseValue baseType="integer">1</baseValue>
+                        </gt>
+                        <setTemplateValue identifier="expandG">
+                            <multiple>
+                                <variable identifier="expandG"/>
+                                <baseValue baseType="identifier">G51</baseValue>
+                                <baseValue baseType="identifier">G52</baseValue>
+                            </multiple>
+                        </setTemplateValue>
+                    </templateElseIf>
+                    <templateElseIf>
+                        <gt>
+                            <variable identifier="iG5"/>
+                            <baseValue baseType="integer">0</baseValue>
+                        </gt>
+                        <setTemplateValue identifier="expandG">
+                            <multiple>
+                                <variable identifier="expandG"/>
+                                <baseValue baseType="identifier">G51</baseValue>
+                            </multiple>
+                        </setTemplateValue>
+                    </templateElseIf>
+                </templateCondition>
+                <templateCondition>
+                    <templateIf>
+                        <and>
+                            <not>
+                                <isNull>
+                                    <variable identifier="expandG"/>
+                                </isNull>
+                            </not>
+                            <gt>
+                                <variable identifier="iG7"/>
+                                <baseValue baseType="integer">0</baseValue>
+                            </gt>
+                        </and>
+                        <setTemplateValue identifier="expandG">
+                            <multiple>
+                                <variable identifier="expandG"/>
+                                <baseValue baseType="identifier">Gtimes7</baseValue>
+                            </multiple>
+                        </setTemplateValue>
+                    </templateIf>
+                </templateCondition>
+                <templateCondition>
+                    <templateIf>
+                        <gt>
+                            <variable identifier="iG7"/>
+                            <baseValue baseType="integer">1</baseValue>
+                        </gt>
+                        <setTemplateValue identifier="expandG">
+                            <multiple>
+                                <variable identifier="expandG"/>
+                                <baseValue baseType="identifier">G71</baseValue>
+                                <baseValue baseType="identifier">G72</baseValue>
+                            </multiple>
+                        </setTemplateValue>
+                    </templateIf>
+                    <templateElseIf>
+                        <gt>
+                            <variable identifier="iG7"/>
+                            <baseValue baseType="integer">0</baseValue>
+                        </gt>
+                        <setTemplateValue identifier="expandG">
+                            <multiple>
+                                <variable identifier="expandG"/>
+                                <baseValue baseType="identifier">G71</baseValue>
+                            </multiple>
+                        </setTemplateValue>
+                    </templateElseIf>
+                </templateCondition>
+                <templateCondition>
+                    <templateIf>
+                        <and>
+                            <not>
+                                <isNull>
+                                    <variable identifier="expandG"/>
+                                </isNull>
+                            </not>
+                            <gt>
+                                <variable identifier="iG11"/>
+                                <baseValue baseType="integer">0</baseValue>
+                            </gt>
+                        </and>
+                        <setTemplateValue identifier="expandG">
+                            <multiple>
+                                <variable identifier="expandG"/>
+                                <baseValue baseType="identifier">Gtimes11</baseValue>
+                            </multiple>
+                        </setTemplateValue>
+                    </templateIf>
+                </templateCondition>
+                <templateCondition>
+                    <templateIf>
+                        <gt>
+                            <variable identifier="iG11"/>
+                            <baseValue baseType="integer">0</baseValue>
+                        </gt>
+                        <setTemplateValue identifier="expandG">
+                            <multiple>
+                                <variable identifier="expandG"/>
+                                <baseValue baseType="identifier">G111</baseValue>
+                            </multiple>
+                        </setTemplateValue>
+                    </templateIf>
+                </templateCondition>
+            </templateElse>
+        </templateCondition>
+    </templateProcessing>
+    <itemBody class="">
+        <div class="">Find the Lowest Common Multiple (LCM) of <printedVariable identifier="iA"/> and <printedVariable identifier="iB"/></div>
+        <div class="">
+            <textEntryInteraction responseIdentifier="RESPONSE" expectedLength="25" />
+        </div>
+        <div class="">
+            <feedbackInline id="feedbackInline0" identifier="CORRECT" outcomeIdentifier="FEEDBACK"
+                showHide="show"> Correct </feedbackInline>
+        </div>
+        <div class="">
+            <feedbackInline id="feedbackInline1" identifier="INCORRECT" outcomeIdentifier="FEEDBACK"
+                showHide="show"> Incorrect </feedbackInline>
+        </div>
+        <div class="">
+            <feedbackInline id="feedbackInline2" identifier="GCD" outcomeIdentifier="FEEDBACK"
+                showHide="show"> You have entered the GCD of <printedVariable identifier="iA"/> and <printedVariable identifier="iB"/>, but the question asks for the LCM (lowest common multiple). </feedbackInline>
+        </div>
+        <div class="">
+            <feedbackBlock id="feedbackBlock4" identifier="THREETRIES" outcomeIdentifier="FEEDBACK"
+                showHide="show">
+                <p>You have had three attempts at answering this question, so here is the
+                    solution:</p>
+            </feedbackBlock>
+            <feedbackBlock class="" id="feedbackBlock5" identifier="SOLUTION"
+                outcomeIdentifier="FEEDBACK" showHide="show">
+                <p class="">We find the prime factors of the numbers: </p>
+                <p>
+                    <printedVariable identifier="iA"/> = &#160;
+                    <templateInline templateIdentifier="expandA" showHide="show" identifier="A21">2</templateInline>
+                    <templateInline templateIdentifier="expandA" showHide="show" identifier="A22">&#xd7;2</templateInline>
+                    <templateInline templateIdentifier="expandA" showHide="show" identifier="A23">&#xd7;2</templateInline>
+                    <templateInline templateIdentifier="expandA" showHide="show" identifier="Atimes3">&#xd7;</templateInline>
+                    <templateInline templateIdentifier="expandA" showHide="show" identifier="A31">3</templateInline>
+                    <templateInline templateIdentifier="expandA" showHide="show" identifier="A32">&#xd7;3</templateInline>
+                    <templateInline templateIdentifier="expandA" showHide="show" identifier="A33">&#xd7;3</templateInline>
+                    <templateInline templateIdentifier="expandA" showHide="show" identifier="Atimes5">&#xd7;</templateInline>
+                    <templateInline templateIdentifier="expandA" showHide="show" identifier="A51">5</templateInline>
+                    <templateInline templateIdentifier="expandA" showHide="show" identifier="A52">&#xd7;5</templateInline>
+                    <templateInline templateIdentifier="expandA" showHide="show" identifier="A53">&#xd7;5</templateInline>
+                    <templateInline templateIdentifier="expandA" showHide="show" identifier="Atimes7">&#xd7;</templateInline>
+                    <templateInline templateIdentifier="expandA" showHide="show" identifier="A71">7</templateInline>
+                    <templateInline templateIdentifier="expandA" showHide="show" identifier="A72">&#xd7;7</templateInline>
+                    <templateInline templateIdentifier="expandA" showHide="show" identifier="Atimes11">&#xd7;</templateInline>
+                    <templateInline templateIdentifier="expandA" showHide="show" identifier="A111">11</templateInline>
+                </p>
+                <p>
+                    <printedVariable identifier="iB"/> = &#160;
+                    <templateInline templateIdentifier="expandB" showHide="show" identifier="B21">2</templateInline>
+                    <templateInline templateIdentifier="expandB" showHide="show" identifier="B22">&#xd7;2</templateInline>
+                    <templateInline templateIdentifier="expandB" showHide="show" identifier="B23">&#xd7;2</templateInline>
+                    <templateInline templateIdentifier="expandB" showHide="show" identifier="Btimes3">&#xd7;</templateInline>
+                    <templateInline templateIdentifier="expandB" showHide="show" identifier="B31">3</templateInline>
+                    <templateInline templateIdentifier="expandB" showHide="show" identifier="B32">&#xd7;3</templateInline>
+                    <templateInline templateIdentifier="expandB" showHide="show" identifier="B33">&#xd7;3</templateInline>
+                    <templateInline templateIdentifier="expandB" showHide="show" identifier="Btimes5">&#xd7;</templateInline>
+                    <templateInline templateIdentifier="expandB" showHide="show" identifier="B51">5</templateInline>
+                    <templateInline templateIdentifier="expandB" showHide="show" identifier="B52">&#xd7;5</templateInline>
+                    <templateInline templateIdentifier="expandB" showHide="show" identifier="B53">&#xd7;5</templateInline>
+                    <templateInline templateIdentifier="expandB" showHide="show" identifier="Btimes7">&#xd7;</templateInline>
+                    <templateInline templateIdentifier="expandB" showHide="show" identifier="B71">7</templateInline>
+                    <templateInline templateIdentifier="expandB" showHide="show" identifier="B72">&#xd7;7</templateInline>
+                    <templateInline templateIdentifier="expandB" showHide="show" identifier="Btimes11">&#xd7;</templateInline>
+                    <templateInline templateIdentifier="expandB" showHide="show" identifier="B111">11</templateInline>
+                </p>
+                <p>The Greatest Common Divisor has all the factors that occur in both <printedVariable identifier="iA"/> and <printedVariable identifier="iB"/>:</p>
+            </feedbackBlock>
+            <feedbackBlock outcomeIdentifier="FEEDBACK" showHide="show" identifier="SOL1">
+                <p>Since there are no factors which occur in both numbers, the GCD is 1.</p>
+                <p>The Lowest Common Multiple must be divisible by both <printedVariable identifier="iA"/> and <printedVariable identifier="iB"/>.</p>
+                <p>So we need all the factors that are in <printedVariable identifier="iA"/> and all the factors that are in <printedVariable identifier="iB"/>.</p>
+                <p>Since the GCD is 1, there are no factors shared by <printedVariable identifier="iA"/> and <printedVariable identifier="iB"/>.</p>
+                <p>So we can find the LCM by multiplying <printedVariable identifier="iA"/> by <printedVariable identifier="iB"/>.</p>
+                <p>Hence the LCM of <printedVariable identifier="iA"/> and <printedVariable identifier="iB"/> is <printedVariable identifier="iLCM"/></p>
+            </feedbackBlock>
+            <feedbackBlock outcomeIdentifier="FEEDBACK" showHide="show" identifier="SOL2">
+                <p>
+                    <printedVariable identifier="iGCD"/> = &#160;
+                    <templateInline templateIdentifier="expandG" showHide="show" identifier="G21">2</templateInline>
+                    <templateInline templateIdentifier="expandG" showHide="show" identifier="G22">&#xd7;2</templateInline>
+                    <templateInline templateIdentifier="expandG" showHide="show" identifier="G23">&#xd7;2</templateInline>
+                    <templateInline templateIdentifier="expandG" showHide="show" identifier="Gtimes3">&#xd7;</templateInline>
+                    <templateInline templateIdentifier="expandG" showHide="show" identifier="G31">3</templateInline>
+                    <templateInline templateIdentifier="expandG" showHide="show" identifier="G32">&#xd7;3</templateInline>
+                    <templateInline templateIdentifier="expandG" showHide="show" identifier="G33">&#xd7;3</templateInline>
+                    <templateInline templateIdentifier="expandG" showHide="show" identifier="Gtimes5">&#xd7;</templateInline>
+                    <templateInline templateIdentifier="expandG" showHide="show" identifier="G51">5</templateInline>
+                    <templateInline templateIdentifier="expandG" showHide="show" identifier="G52">&#xd7;5</templateInline>
+                    <templateInline templateIdentifier="expandG" showHide="show" identifier="G53">&#xd7;5</templateInline>
+                    <templateInline templateIdentifier="expandG" showHide="show" identifier="Gtimes7">&#xd7;</templateInline>
+                    <templateInline templateIdentifier="expandG" showHide="show" identifier="G71">7</templateInline>
+                    <templateInline templateIdentifier="expandG" showHide="show" identifier="G72">&#xd7;7</templateInline>
+                    <templateInline templateIdentifier="expandG" showHide="show" identifier="Gtimes11">&#xd7;</templateInline>
+                    <templateInline templateIdentifier="expandG" showHide="show" identifier="G111">11</templateInline>
+                </p>
+                <p>The Lowest Common Multiple must be divisible by both <printedVariable identifier="iA"/> and <printedVariable identifier="iB"/>.</p>
+                <p>So we need all the factors that are in <printedVariable identifier="iA"/> and all the factors that are in <printedVariable identifier="iB"/>.</p>
+                <p>In this case, though, <printedVariable identifier="iGCD"/> divides <printedVariable identifier="iLCM"/>, so the LCM is <printedVariable identifier="iLCM"/>.</p>
+            </feedbackBlock>
+            <feedbackBlock outcomeIdentifier="FEEDBACK" showHide="show" identifier="SOL3">
+                <p>
+                    <printedVariable identifier="iGCD"/> = &#160;
+                    <templateInline templateIdentifier="expandG" showHide="show" identifier="G21">2</templateInline>
+                    <templateInline templateIdentifier="expandG" showHide="show" identifier="G22">&#xd7;2</templateInline>
+                    <templateInline templateIdentifier="expandG" showHide="show" identifier="G23">&#xd7;2</templateInline>
+                    <templateInline templateIdentifier="expandG" showHide="show" identifier="Gtimes3">&#xd7;</templateInline>
+                    <templateInline templateIdentifier="expandG" showHide="show" identifier="G31">3</templateInline>
+                    <templateInline templateIdentifier="expandG" showHide="show" identifier="G32">&#xd7;3</templateInline>
+                    <templateInline templateIdentifier="expandG" showHide="show" identifier="G33">&#xd7;3</templateInline>
+                    <templateInline templateIdentifier="expandG" showHide="show" identifier="Gtimes5">&#xd7;</templateInline>
+                    <templateInline templateIdentifier="expandG" showHide="show" identifier="G51">5</templateInline>
+                    <templateInline templateIdentifier="expandG" showHide="show" identifier="G52">&#xd7;5</templateInline>
+                    <templateInline templateIdentifier="expandG" showHide="show" identifier="G53">&#xd7;5</templateInline>
+                    <templateInline templateIdentifier="expandG" showHide="show" identifier="Gtimes7">&#xd7;</templateInline>
+                    <templateInline templateIdentifier="expandG" showHide="show" identifier="G71">7</templateInline>
+                    <templateInline templateIdentifier="expandG" showHide="show" identifier="G72">&#xd7;7</templateInline>
+                    <templateInline templateIdentifier="expandG" showHide="show" identifier="Gtimes11">&#xd7;</templateInline>
+                    <templateInline templateIdentifier="expandG" showHide="show" identifier="G111">11</templateInline>
+                </p>
+                <p>The Lowest Common Multiple must be divisible by both <printedVariable identifier="iA"/> and <printedVariable identifier="iB"/>.</p>
+                <p>So we need all the factors that are in <printedVariable identifier="iA"/> and all the factors that are in <printedVariable identifier="iB"/>.</p>
+                <p>The factors that are in the GCD are in both <printedVariable identifier="iA"/> and <printedVariable identifier="iB"/>, so if we multiply <printedVariable identifier="iA"/> by <printedVariable identifier="iB"/> those factors are repeated.</p>
+                <p>So we can find the LCM by either multiplying <printedVariable identifier="iA"/> by <printedVariable identifier="iB"/> and dividing by the GCD <printedVariable identifier="iGCD"/></p>
+                <p>or by multiplying <printedVariable identifier="iA"/> by the factors of <printedVariable identifier="iB"/> which are not in the GCD.</p>
+                <p>Either way, the LCM of <printedVariable identifier="iA"/> and <printedVariable identifier="iB"/> is <printedVariable identifier="iLCM"/></p>
+            </feedbackBlock>
+            <feedbackBlock id="feedbackBlock8" identifier="HINT" outcomeIdentifier="FEEDBACK"
+                showHide="show">
+                <div>
+                    <p>Findthe prime factors of <printedVariable identifier="iA"/> and <printedVariable identifier="iB"/></p>
+                </div>
+            </feedbackBlock>
+            <feedbackBlock id="feedbackBlock9" identifier="SEEN-SOLUTION"
+                outcomeIdentifier="FEEDBACK" showHide="show">
+                <p> Since you have viewed the solution, your score for this question will be 0. </p>
+            </feedbackBlock>
+            <feedbackBlock id="feedbackBlock10" identifier="SEEN-HINT" outcomeIdentifier="FEEDBACK"
+                showHide="show">
+                <p> Since you have viewed the hint, your score for this question will be halved.
+                </p>
+            </feedbackBlock>
+            <feedbackBlock id="feedbackBlock11" identifier="askhint" outcomeIdentifier="ASKHINT"
+                showHide="show">
+                <p>
+                    <endAttemptInteraction id="endAttemptInteraction1"
+                        responseIdentifier="HINTREQUEST" title="Show Hint"/>
+                </p>
+            </feedbackBlock>
+            <feedbackBlock id="feedbackBlock12" identifier="asksolution"
+                outcomeIdentifier="ASKSOLUTION" showHide="show">
+                <p>
+                    <endAttemptInteraction id="endAttemptInteraction2"
+                        responseIdentifier="SOLREQUEST" title="Show Solution"/>
+                </p>
+            </feedbackBlock>
+        </div>
+    </itemBody>
+    <responseProcessing>
+        <setOutcomeValue identifier="FEEDBACK">
+            <multiple>
+                <variable identifier="EMPTY"/>
+            </multiple>
+        </setOutcomeValue>
+        <responseCondition>
+            <responseIf>
+                <variable identifier="HINTREQUEST"/>
+                <setOutcomeValue identifier="FEEDBACK">
+                    <multiple>
+                        <baseValue baseType="identifier">HINT</baseValue>
+                    </multiple>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="seenHint">
+                    <baseValue baseType="boolean">true</baseValue>
+                </setOutcomeValue>
+            </responseIf>
+            <responseElseIf>
+                <variable identifier="SOLREQUEST"/>
+                <responseCondition>
+                    <responseIf>
+                        <equal toleranceMode="exact">
+                            <variable identifier="iGCD"/>
+                            <baseValue baseType="integer">1</baseValue>
+                        </equal>
+                        <setOutcomeValue identifier="FEEDBACK">
+                            <multiple>
+                                <baseValue baseType="identifier">SOLUTION</baseValue>
+                                <baseValue baseType="identifier">SOL1</baseValue>
+                            </multiple>
+                        </setOutcomeValue>
+                    </responseIf>
+                    <responseElseIf>
+                        <or>
+                            <equal toleranceMode="exact">
+                                <variable identifier="iGCD"/>
+                                <variable identifier="iA"/>
+                            </equal>
+                            <equal toleranceMode="exact">
+                                <variable identifier="iGCD"/>
+                                <variable identifier="iB"/>
+                            </equal>
+                        </or>
+                        <setOutcomeValue identifier="FEEDBACK">
+                            <multiple>
+                                <baseValue baseType="identifier">SOLUTION</baseValue>
+                                <baseValue baseType="identifier">SOL2</baseValue>
+                            </multiple>
+                        </setOutcomeValue>
+                    </responseElseIf>
+                    <responseElse>
+                        <setOutcomeValue identifier="FEEDBACK">
+                            <multiple>
+                                <baseValue baseType="identifier">SOLUTION</baseValue>
+                                <baseValue baseType="identifier">SOL3</baseValue>
+                            </multiple>
+                        </setOutcomeValue>
+                    </responseElse>
+                </responseCondition>
+                <setOutcomeValue identifier="seenSolution">
+                    <baseValue baseType="boolean">true</baseValue>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="completionStatus">
+                    <baseValue baseType="identifier">completed</baseValue>
+                </setOutcomeValue>
+            </responseElseIf>
+            <responseElse>
+                <responseCondition>
+                    <responseIf>
+                        <isNull>
+                            <variable identifier="RESPONSE"/>
+                        </isNull>
+                        <setOutcomeValue identifier="SCORE">
+                            <baseValue baseType="float">0.0</baseValue>
+                        </setOutcomeValue>
+                    </responseIf>
+                    <responseElseIf>
+                        <equal toleranceMode="exact">
+                            <variable identifier="RESPONSE"/>
+                            <variable identifier="iLCM"/>
+                        </equal>
+                        <setOutcomeValue identifier="FEEDBACK">
+                            <multiple>
+                                <baseValue baseType="identifier">CORRECT</baseValue>
+                            </multiple>
+                        </setOutcomeValue>
+                        <setOutcomeValue identifier="SCORE">
+                            <baseValue baseType="float">2.0</baseValue>
+                        </setOutcomeValue>
+                    </responseElseIf>
+                    <responseElseIf>
+                        <equal toleranceMode="exact">
+                            <variable identifier="RESPONSE"/>
+                            <variable identifier="iGCD"/>
+                        </equal>
+                        <setOutcomeValue identifier="FEEDBACK">
+                            <multiple>
+                                <baseValue baseType="identifier">GCD</baseValue>
+                            </multiple>
+                        </setOutcomeValue>
+                        <setOutcomeValue identifier="SCORE">
+                            <baseValue baseType="float">0.0</baseValue>
+                        </setOutcomeValue>
+                    </responseElseIf>
+                    <responseElse>
+                        <setOutcomeValue identifier="FEEDBACK">
+                            <multiple>
+                                <baseValue baseType="identifier">INCORRECT</baseValue>
+                            </multiple>
+                        </setOutcomeValue>
+                        <setOutcomeValue identifier="SCORE">
+                            <baseValue baseType="float">0.0</baseValue>
+                        </setOutcomeValue>
+                    </responseElse>
+                </responseCondition>
+                <responseCondition>
+                    <responseIf>
+                        <variable identifier="seenSolution"/>
+                        <setOutcomeValue identifier="FEEDBACK">
+                            <multiple>
+                                <variable identifier="FEEDBACK"/>
+                                <baseValue baseType="identifier">SEEN-SOLUTION</baseValue>
+                            </multiple>
+                        </setOutcomeValue>
+                        <setOutcomeValue identifier="SCORE">
+                            <baseValue baseType="float">0.0</baseValue>
+                        </setOutcomeValue>
+                    </responseIf>
+                    <responseElseIf>
+                        <variable identifier="seenHint"/>
+                        <setOutcomeValue identifier="FEEDBACK">
+                            <multiple>
+                                <variable identifier="FEEDBACK"/>
+                                <baseValue baseType="identifier">SEEN-HINT</baseValue>
+                            </multiple>
+                        </setOutcomeValue>
+                        <setOutcomeValue identifier="SCORE">
+                            <divide>
+                                <variable identifier="SCORE"/>
+                                <baseValue baseType="float">2.0</baseValue>
+                            </divide>
+                        </setOutcomeValue>
+                    </responseElseIf>
+                </responseCondition>
+                <responseCondition>
+                    <responseIf>
+                        <gt>
+                            <variable identifier="numAttempts"/>
+                            <baseValue baseType="integer">3</baseValue>
+                        </gt>
+                        <setOutcomeValue identifier="FEEDBACK">
+                            <multiple>
+                                <baseValue baseType="identifier">THREETRIES</baseValue>
+                                <baseValue baseType="identifier">SOLUTION</baseValue>
+                            </multiple>
+                        </setOutcomeValue>
+                        <setOutcomeValue identifier="completionStatus">
+                            <baseValue baseType="identifier">completed</baseValue>
+                        </setOutcomeValue>
+                        <setOutcomeValue identifier="ASKHINT">
+                            <baseValue baseType="identifier">null</baseValue>
+                        </setOutcomeValue>
+                        <setOutcomeValue identifier="ASKSOLUTION">
+                            <baseValue baseType="identifier">null</baseValue>
+                        </setOutcomeValue>
+                    </responseIf>
+                </responseCondition>
+            </responseElse>
+        </responseCondition>
+    </responseProcessing>
+</assessmentItem>

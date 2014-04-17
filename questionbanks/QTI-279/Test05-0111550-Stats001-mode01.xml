@@ -1,0 +1,707 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p1"    
+    xmlns:m="http://www.w3.org/1998/Math/MathML"
+    xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" adaptive="true" 
+    identifier="Test05-0111550-Stats001-mode01"
+    timeDependent="false" title="Find the mode of a list of values in context" toolName="Mathqurate" toolVersion="1.0"
+    xml:lang="en"
+    xsi:schemaLocation="http://www.imsglobal.org/xsd/imsqti_v2p1 imsqti_v2p1.xsd">
+    <responseDeclaration baseType="string" cardinality="single" identifier="RESPONSE"/>
+    <responseDeclaration baseType="string" cardinality="single" identifier="sInput"/>
+    <responseDeclaration baseType="boolean" cardinality="single" identifier="HINTREQUEST"/>
+    <responseDeclaration baseType="boolean" cardinality="single" identifier="SOLREQUEST"/>
+    <outcomeDeclaration baseType="float" cardinality="single" identifier="SCORE" normalMaximum="2.0"
+        normalMinimum="0.0">
+        <defaultValue>
+            <value>0.0</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="seenSolution">
+        <defaultValue>
+            <value>false</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="seenHint">
+        <defaultValue>
+            <value>false</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="identifier" cardinality="single" identifier="ASKHINT">
+        <defaultValue>
+            <value>askhint</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="identifier" cardinality="single" identifier="ASKSOLUTION">
+        <defaultValue>
+            <value>asksolution</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="identifier" cardinality="multiple" identifier="FEEDBACK"/>
+    <outcomeDeclaration baseType="identifier" cardinality="single" identifier="EMPTY"/>
+    <templateDeclaration baseType="integer" cardinality="ordered" identifier="iOrder" mathVariable="false" paramVariable="false"/>
+    <templateDeclaration baseType="string" cardinality="ordered" identifier="sSample" mathVariable="false" paramVariable="false"/>
+    <templateDeclaration baseType="string" cardinality="ordered" identifier="sKeepSample" mathVariable="false" paramVariable="false"/>
+    <templateDeclaration baseType="string" cardinality="multiple" identifier="sOptions" mathVariable="false" paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iType"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="string" cardinality="single" identifier="sOption01" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="string" cardinality="single" identifier="sOption02" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="string" cardinality="single" identifier="sOption03" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="string" cardinality="single" identifier="sOption04" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="string" cardinality="single" identifier="sOption05" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="string" cardinality="single" identifier="sIntro" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iFreq01"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iFreq02"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iFreq03"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iFreq04"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iFreq05"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="string" cardinality="single" identifier="sShowOption01" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="string" cardinality="single" identifier="sShowOption02" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="string" cardinality="single" identifier="sShowOption03" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="string" cardinality="single" identifier="sShowOption04" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="string" cardinality="single" identifier="sShowOption05" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="string" cardinality="single" identifier="sShowOption06" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="string" cardinality="single" identifier="sShowOption07" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="string" cardinality="single" identifier="sShowOption08" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="string" cardinality="single" identifier="sShowOption09" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="string" cardinality="single" identifier="sShowOption10" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iShowOption01" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iShowOption02" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iShowOption03" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iShowOption04" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iShowOption05" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iShowOption06" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iShowOption07" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iShowOption08" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iShowOption09" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iShowOption10" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="string" cardinality="single" identifier="sAns" mathVariable="true"
+        paramVariable="false"/>
+    <templateProcessing>
+        <!-- 
+if tqa=1 then
+  tqr:="[\"Baked Potato\", \"Toasted Sandwich\", \"Filled Croissant\", \"Bacon Roll\", \"Salad Baguette\"]"
+  tqs:="One lunch time a small cafe records the order of its first ten customers."
+else if tqa:=2 then
+  tqr:="[\"Maths\", \"English\", \"Geography\", \"History\", \"Art\"]"
+  tqs:="The top ten students in their final year at school were asked their favourite subject."
+end if
+        -->
+        <setTemplateValue identifier="iType">
+            <randomInteger min="1" max="2"/>
+        </setTemplateValue>
+        <templateCondition>
+            <templateIf>
+                <equal toleranceMode="exact">
+                    <variable identifier="iType"/>
+                    <baseValue baseType="integer">1</baseValue>
+                </equal>
+                <setTemplateValue identifier="sOptions">
+                    <multiple>
+                        <baseValue baseType="string">Baked Potato</baseValue>
+                        <baseValue baseType="string">Toasted Sandwich</baseValue>
+                        <baseValue baseType="string">Filled Croissant</baseValue>
+                        <baseValue baseType="string">Bacon Roll</baseValue>
+                        <baseValue baseType="string">Salad Baguette</baseValue>
+                    </multiple>
+                </setTemplateValue>
+            </templateIf>
+            <templateElse>
+                <setTemplateValue identifier="sOptions">
+                    <multiple>
+                        <baseValue baseType="string">Maths</baseValue>
+                        <baseValue baseType="string">English</baseValue>
+                        <baseValue baseType="string">Geography</baseValue>
+                        <baseValue baseType="string">History</baseValue>
+                        <baseValue baseType="string">Art</baseValue>
+                    </multiple>
+                </setTemplateValue>
+            </templateElse>
+        </templateCondition>
+        <setTemplateValue identifier="sOption01">
+            <random>
+                <variable identifier="sOptions"/>
+            </random>
+        </setTemplateValue>
+        <setTemplateValue identifier="sOptions">
+            <delete>
+                <variable identifier="sOption01"/>
+                <variable identifier="sOptions"/>
+            </delete>
+        </setTemplateValue>
+        <setTemplateValue identifier="sOption02">
+            <random>
+                <variable identifier="sOptions"/>
+            </random>
+        </setTemplateValue>
+        <setTemplateValue identifier="sOptions">
+            <delete>
+                <variable identifier="sOption02"/>
+                <variable identifier="sOptions"/>
+            </delete>
+        </setTemplateValue>
+        <setTemplateValue identifier="sOption03">
+            <random>
+                <variable identifier="sOptions"/>
+            </random>
+        </setTemplateValue>
+        <setTemplateValue identifier="sOptions">
+            <delete>
+                <variable identifier="sOption03"/>
+                <variable identifier="sOptions"/>
+            </delete>
+        </setTemplateValue>
+        <setTemplateValue identifier="sOption04">
+            <random>
+                <variable identifier="sOptions"/>
+            </random>
+        </setTemplateValue>
+        <setTemplateValue identifier="sOptions">
+            <delete>
+                <variable identifier="sOption04"/>
+                <variable identifier="sOptions"/>
+            </delete>
+        </setTemplateValue>
+        <setTemplateValue identifier="sOption05">
+            <random>
+                <variable identifier="sOptions"/>
+            </random>
+        </setTemplateValue>
+        <setTemplateValue identifier="sIntro">
+            <index n="iType">
+                <ordered>
+                    <baseValue baseType="string">One lunch time a small cafe records the order of its first ten customers.</baseValue>
+                    <baseValue baseType="string">The top ten students in their final year at school were asked their favourite subject.</baseValue>
+                </ordered>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="iFreq01">
+            <randomInteger min="3" max="4"/>
+        </setTemplateValue>
+        <templateCondition>
+            <templateIf>
+                <equal toleranceMode="exact">
+                    <variable identifier="iFreq01"/>
+                    <baseValue baseType="integer">3</baseValue>
+                </equal>
+                <setTemplateValue identifier="iFreq02">
+                    <baseValue baseType="integer">2</baseValue>
+                </setTemplateValue>
+                <setTemplateValue identifier="iFreq03">
+                    <baseValue baseType="integer">2</baseValue>
+                </setTemplateValue>
+                <setTemplateValue identifier="iFreq04">
+                    <baseValue baseType="integer">2</baseValue>
+                </setTemplateValue>
+                <setTemplateValue identifier="iFreq05">
+                    <baseValue baseType="integer">1</baseValue>
+                </setTemplateValue>
+            </templateIf>
+            <templateElseIf>
+                <equal toleranceMode="exact">
+                    <variable identifier="iFreq01"/>
+                    <baseValue baseType="integer">4</baseValue>
+                </equal>
+                <templateCondition>
+                    <templateIf>
+                        <equal toleranceMode="exact">
+                            <randomInteger min="1" max="2"/>
+                            <baseValue baseType="integer">1</baseValue>
+                        </equal>
+                        <setTemplateValue identifier="iFreq02">
+                            <baseValue baseType="integer">3</baseValue>
+                        </setTemplateValue>
+                        <setTemplateValue identifier="iFreq03">
+                            <baseValue baseType="integer">3</baseValue>
+                        </setTemplateValue>
+                        <setTemplateValue identifier="iFreq04">
+                            <baseValue baseType="integer">0</baseValue>
+                        </setTemplateValue>
+                        <setTemplateValue identifier="iFreq05">
+                            <baseValue baseType="integer">0</baseValue>
+                        </setTemplateValue>
+                    </templateIf>
+                    <templateElse>
+                        <setTemplateValue identifier="iFreq02">
+                            <baseValue baseType="integer">3</baseValue>
+                        </setTemplateValue>
+                        <setTemplateValue identifier="iFreq03">
+                            <baseValue baseType="integer">2</baseValue>
+                        </setTemplateValue>
+                        <setTemplateValue identifier="iFreq04">
+                            <baseValue baseType="integer">1</baseValue>
+                        </setTemplateValue>
+                        <setTemplateValue identifier="iFreq05">
+                            <baseValue baseType="integer">0</baseValue>
+                        </setTemplateValue>
+                    </templateElse>
+                </templateCondition>
+            </templateElseIf>
+        </templateCondition>
+        <setTemplateValue identifier="sSample">
+            <ordered>
+                <repeat numberRepeats="iFreq01">
+                    <variable identifier="sOption01"/>
+                </repeat>
+                <repeat numberRepeats="iFreq02">
+                    <variable identifier="sOption02"/>
+                </repeat>
+                <repeat numberRepeats="iFreq03">
+                    <variable identifier="sOption03"/>
+                </repeat>
+                <repeat numberRepeats="iFreq04">
+                    <variable identifier="sOption04"/>
+                </repeat>
+                <repeat numberRepeats="iFreq05">
+                    <variable identifier="sOption05"/>
+                </repeat>
+            </ordered>
+        </setTemplateValue>
+        <setTemplateValue identifier="sKeepSample">
+            <variable identifier="sSample"/>
+        </setTemplateValue>
+        <!-- now display the ordered container in random order! -->
+        <setTemplateValue identifier="iOrder">
+            <ordered>
+                <baseValue baseType="integer">1</baseValue>
+                <baseValue baseType="integer">2</baseValue>
+                <baseValue baseType="integer">3</baseValue>
+                <baseValue baseType="integer">4</baseValue>
+                <baseValue baseType="integer">5</baseValue>
+                <baseValue baseType="integer">6</baseValue>
+                <baseValue baseType="integer">7</baseValue>
+                <baseValue baseType="integer">8</baseValue>
+                <baseValue baseType="integer">9</baseValue>
+                <baseValue baseType="integer">10</baseValue>
+            </ordered>
+        </setTemplateValue>
+        <setTemplateValue identifier="iShowOption01">
+            <random>
+                <variable identifier="iOrder"/>
+            </random>
+        </setTemplateValue>
+        <setTemplateValue identifier="iOrder">
+            <delete>
+                <variable identifier="iShowOption01"/>
+                <variable identifier="iOrder"/>
+            </delete>
+        </setTemplateValue>
+        <setTemplateValue identifier="iShowOption02">
+            <random>
+                <variable identifier="iOrder"/>
+            </random>
+        </setTemplateValue>
+        <setTemplateValue identifier="iOrder">
+            <delete>
+                <variable identifier="iShowOption02"/>
+                <variable identifier="iOrder"/>
+            </delete>
+        </setTemplateValue>
+        <setTemplateValue identifier="iShowOption03">
+            <random>
+                <variable identifier="iOrder"/>
+            </random>
+        </setTemplateValue>
+        <setTemplateValue identifier="iOrder">
+            <delete>
+                <variable identifier="iShowOption03"/>
+                <variable identifier="iOrder"/>
+            </delete>
+        </setTemplateValue>
+        <setTemplateValue identifier="iShowOption04">
+            <random>
+                <variable identifier="iOrder"/>
+            </random>
+        </setTemplateValue>
+        <setTemplateValue identifier="iOrder">
+            <delete>
+                <variable identifier="iShowOption04"/>
+                <variable identifier="iOrder"/>
+            </delete>
+        </setTemplateValue>
+        <setTemplateValue identifier="iShowOption05">
+            <random>
+                <variable identifier="iOrder"/>
+            </random>
+        </setTemplateValue>
+        <setTemplateValue identifier="iOrder">
+            <delete>
+                <variable identifier="iShowOption05"/>
+                <variable identifier="iOrder"/>
+            </delete>
+        </setTemplateValue>
+        <setTemplateValue identifier="iShowOption06">
+            <random>
+                <variable identifier="iOrder"/>
+            </random>
+        </setTemplateValue>
+        <setTemplateValue identifier="iOrder">
+            <delete>
+                <variable identifier="iShowOption06"/>
+                <variable identifier="iOrder"/>
+            </delete>
+        </setTemplateValue>
+        <setTemplateValue identifier="iShowOption07">
+            <random>
+                <variable identifier="iOrder"/>
+            </random>
+        </setTemplateValue>
+        <setTemplateValue identifier="iOrder">
+            <delete>
+                <variable identifier="iShowOption07"/>
+                <variable identifier="iOrder"/>
+            </delete>
+        </setTemplateValue>
+        <setTemplateValue identifier="iShowOption08">
+            <random>
+                <variable identifier="iOrder"/>
+            </random>
+        </setTemplateValue>
+        <setTemplateValue identifier="iOrder">
+            <delete>
+                <variable identifier="iShowOption08"/>
+                <variable identifier="iOrder"/>
+            </delete>
+        </setTemplateValue>
+        <setTemplateValue identifier="iShowOption09">
+            <random>
+                <variable identifier="iOrder"/>
+            </random>
+        </setTemplateValue>
+        <setTemplateValue identifier="iOrder">
+            <delete>
+                <variable identifier="iShowOption09"/>
+                <variable identifier="iOrder"/>
+            </delete>
+        </setTemplateValue>
+        <setTemplateValue identifier="iShowOption10">
+            <random>
+                <variable identifier="iOrder"/>
+            </random>
+        </setTemplateValue>
+        <setTemplateValue identifier="sShowOption01">
+            <index n="iShowOption01">
+                <variable identifier="sSample"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="sShowOption02">
+            <index n="iShowOption02">
+                <variable identifier="sSample"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="sShowOption03">
+            <index n="iShowOption03">
+                <variable identifier="sSample"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="sShowOption04">
+            <index n="iShowOption04">
+                <variable identifier="sSample"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="sShowOption05">
+            <index n="iShowOption05">
+                <variable identifier="sSample"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="sShowOption06">
+            <index n="iShowOption06">
+                <variable identifier="sSample"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="sShowOption07">
+            <index n="iShowOption07">
+                <variable identifier="sSample"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="sShowOption08">
+            <index n="iShowOption08">
+                <variable identifier="sSample"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="sShowOption09">
+            <index n="iShowOption09">
+                <variable identifier="sSample"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="sShowOption10">
+            <index n="iShowOption10">
+                <variable identifier="sSample"/>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="sAns">
+            <variable identifier="sOption01"/>
+        </setTemplateValue>
+        <setCorrectResponse identifier="RESPONSE">
+            <variable identifier="sAns"/>
+        </setCorrectResponse>
+    </templateProcessing>
+    <itemBody class="">
+        <div class="">
+            <p class=""><printedVariable identifier="sIntro"/></p>
+            <div>
+                <table>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <printedVariable id="printedVariable0" identifier="sShowOption01"/>&#160;&#160;&#160;&#160;
+                            </td>
+                            <td>
+                                <printedVariable id="printedVariable0" identifier="sShowOption02"/>&#160;&#160;&#160;&#160; 
+                            </td>
+                            <td>
+                                <printedVariable id="printedVariable0" identifier="sShowOption03"/>&#160;&#160;&#160;&#160; 
+                            </td>
+                            <td>
+                                <printedVariable id="printedVariable0" identifier="sShowOption04"/>&#160;&#160;&#160;&#160; 
+                            </td>
+                            <td>
+                                <printedVariable id="printedVariable0" identifier="sShowOption05"/>&#160;&#160;&#160;&#160;
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <printedVariable id="printedVariable0" identifier="sShowOption06"/>&#160;&#160;&#160;&#160;
+                            </td>
+                            <td>
+                                <printedVariable id="printedVariable0" identifier="sShowOption07"/>&#160;&#160;&#160;&#160; 
+                            </td>
+                            <td>
+                                <printedVariable id="printedVariable0" identifier="sShowOption08"/>&#160;&#160;&#160;&#160; 
+                            </td>
+                            <td>
+                                <printedVariable id="printedVariable0" identifier="sShowOption09"/>&#160;&#160;&#160;&#160; 
+                            </td>
+                            <td>
+                                <printedVariable id="printedVariable0" identifier="sShowOption10"/>&#160;&#160;&#160;&#160; 
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                 
+            </div>
+            <p>Find the mode.</p>
+            <div class="">
+                <table class="">
+                    <tbody class="">
+                        <tr class="">
+                            <td>The mode is&#160;</td>
+                            <td class="">
+                                <textEntryInteraction expectedLength="20" id="textEntryInteraction0"
+                                    responseIdentifier="RESPONSE"/>
+                            </td>
+                            <td class="">
+                                <feedbackInline id="feedbackInline0" identifier="CORRECT"
+                                    outcomeIdentifier="FEEDBACK" showHide="show"> Correct </feedbackInline>
+                                <feedbackInline id="feedbackInline1" identifier="INCORRECT"
+                                    outcomeIdentifier="FEEDBACK" showHide="show"> Incorrect
+                                </feedbackInline>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <feedbackBlock id="feedbackBlock2" identifier="THREETRIES" outcomeIdentifier="FEEDBACK"
+                showHide="show">
+                <p>You have had three attempts at answering this question, so here is the
+                    solution:</p>
+            </feedbackBlock>
+            <feedbackBlock class="" id="feedbackBlock3" identifier="SOLUTION"
+                outcomeIdentifier="FEEDBACK" showHide="show">
+                <p class=""><printedVariable identifier="sOption01"/>&#160;appears most often.
+                </p>
+                <p>Hence the mode is&#160;<printedVariable identifier="sAns"/>.</p>
+            </feedbackBlock>
+            <feedbackBlock id="feedbackBlock6" identifier="HINT" outcomeIdentifier="FEEDBACK"
+                showHide="show">
+                <p class="">Which item appears most often?</p>
+            </feedbackBlock>
+            <feedbackBlock id="feedbackBlock7" identifier="SEEN-SOLUTION"
+                outcomeIdentifier="FEEDBACK" showHide="show">
+                <p>Since you have viewed the solution, your score for this question will be 0.</p>
+            </feedbackBlock>
+            <feedbackBlock id="feedbackBlock8" identifier="SEEN-HINT" outcomeIdentifier="FEEDBACK"
+                showHide="show">
+                <p>Since you have viewed the hint, your score for this question will be halved.</p>
+            </feedbackBlock>
+            <feedbackBlock id="feedbackBlock9" identifier="askhint" outcomeIdentifier="ASKHINT"
+                showHide="show">
+                <p>
+                    <endAttemptInteraction id="endAttemptInteraction1"
+                        responseIdentifier="HINTREQUEST" title="Show Hint"/>
+                </p>
+            </feedbackBlock>
+            <feedbackBlock id="feedbackBlock10" identifier="asksolution"
+                outcomeIdentifier="ASKSOLUTION" showHide="show">
+                <p>
+                    <endAttemptInteraction id="endAttemptInteraction2"
+                        responseIdentifier="SOLREQUEST" title="Show Solution"/>
+                </p>
+            </feedbackBlock>
+        </div>
+    </itemBody>
+    <responseProcessing>
+        <setOutcomeValue identifier="FEEDBACK">
+            <multiple>
+                <variable identifier="EMPTY"/>
+            </multiple>
+        </setOutcomeValue>
+        <responseCondition>
+            <responseIf>
+                <variable identifier="HINTREQUEST"/>
+                <setOutcomeValue identifier="FEEDBACK">
+                    <multiple>
+                        <baseValue baseType="identifier">HINT</baseValue>
+                    </multiple>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="seenHint">
+                    <baseValue baseType="boolean">true</baseValue>
+                </setOutcomeValue>
+            </responseIf>
+            <responseElseIf>
+                <variable identifier="SOLREQUEST"/>
+                <setOutcomeValue identifier="FEEDBACK">
+                    <multiple>
+                        <baseValue baseType="identifier">SOLUTION</baseValue>
+                    </multiple>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="seenSolution">
+                    <baseValue baseType="boolean">true</baseValue>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="completionStatus">
+                    <baseValue baseType="identifier">completed</baseValue>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="ASKHINT">
+                    <baseValue baseType="identifier">null</baseValue>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="ASKSOLUTION">
+                    <baseValue baseType="identifier">null</baseValue>
+                </setOutcomeValue>
+            </responseElseIf>
+            <responseElse>
+                <responseCondition>
+                    <responseIf>
+                        <isNull>
+                            <variable identifier="RESPONSE"/>
+                        </isNull>
+                        <setOutcomeValue identifier="SCORE">
+                            <baseValue baseType="float">0</baseValue>
+                        </setOutcomeValue>
+                    </responseIf>
+                    <responseElse>
+                        <responseCondition>
+                            <responseIf>
+                                <stringMatch caseSensitive="false">
+                                    <variable identifier="RESPONSE"/>
+                                    <correct identifier="RESPONSE"/>
+                                </stringMatch>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <baseValue baseType="identifier">CORRECT</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="SCORE">
+                                    <baseValue baseType="float">2</baseValue>
+                                </setOutcomeValue>
+                                <responseCondition>
+                                    <responseIf>
+                                        <variable identifier="seenSolution"/>
+                                        <setOutcomeValue identifier="FEEDBACK">
+                                            <multiple>
+                                                <variable identifier="FEEDBACK"/>
+                                                <baseValue baseType="identifier">SEEN-SOLUTION</baseValue>
+                                            </multiple>
+                                        </setOutcomeValue>
+                                        <setOutcomeValue identifier="SCORE">
+                                            <baseValue baseType="float">0.0</baseValue>
+                                        </setOutcomeValue>
+                                    </responseIf>
+                                    <responseElseIf>
+                                        <variable identifier="seenHint"/>
+                                        <setOutcomeValue identifier="FEEDBACK">
+                                            <multiple>
+                                                <variable identifier="FEEDBACK"/>
+                                                <baseValue baseType="identifier">SEEN-HINT</baseValue>
+                                            </multiple>
+                                        </setOutcomeValue>
+                                        <setOutcomeValue identifier="SCORE">
+                                            <divide>
+                                                <variable identifier="SCORE"/>
+                                                <baseValue baseType="float">2.0</baseValue>
+                                            </divide>
+                                        </setOutcomeValue>
+                                    </responseElseIf>
+                                </responseCondition>
+                            </responseIf>
+                            <responseElse>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <baseValue baseType="identifier">INCORRECT</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="SCORE">
+                                    <baseValue baseType="float">0</baseValue>
+                                </setOutcomeValue>
+                            </responseElse>
+                        </responseCondition>
+                        <responseCondition>
+                            <responseIf>
+                                <gt>
+                                    <variable identifier="numAttempts"/>
+                                    <baseValue baseType="integer">3</baseValue>
+                                </gt>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <baseValue baseType="identifier">THREETRIES</baseValue>
+                                        <baseValue baseType="identifier">SOLUTION</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="completionStatus">
+                                    <baseValue baseType="identifier">completed</baseValue>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="ASKHINT">
+                                    <baseValue baseType="identifier">null</baseValue>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="ASKSOLUTION">
+                                    <baseValue baseType="identifier">null</baseValue>
+                                </setOutcomeValue>
+                            </responseIf>
+                        </responseCondition>
+                    </responseElse>
+                </responseCondition>
+            </responseElse>
+        </responseCondition>
+    </responseProcessing>
+</assessmentItem>

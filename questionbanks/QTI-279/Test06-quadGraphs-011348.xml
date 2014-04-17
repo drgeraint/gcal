@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p1"
+    xmlns:m="http://www.w3.org/1998/Math/MathML"
+    xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" adaptive="true"
+    identifier="Test06-quadGraphs-011348" timeDependent="false"
+    title="Identify the type of roots of a quadratic from its graph" toolName="Uniqurate"
+    toolVersion="1.0" xml:lang=""
+    xsi:schemaLocation="http://www.imsglobal.org/xsd/imsqti_v2p1 imsqti_v2p1.xsd">
+    <responseDeclaration baseType="identifier" cardinality="single" identifier="RESPONSE"/>
+    <responseDeclaration baseType="boolean" cardinality="single" identifier="HINTREQUEST"/>
+    <responseDeclaration baseType="boolean" cardinality="single" identifier="SOLREQUEST"/>
+    <outcomeDeclaration baseType="float" cardinality="single" identifier="SCORE" normalMaximum="2.0"
+        normalMinimum="0.0">
+        <defaultValue>
+            <value>0.0</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="seenSolution">
+        <defaultValue>
+            <value>false</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="seenHint">
+        <defaultValue>
+            <value>false</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="identifier" cardinality="single" identifier="ASKHINT">
+        <defaultValue>
+            <value>askhint</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="identifier" cardinality="single" identifier="ASKSOLUTION">
+        <defaultValue>
+            <value>asksolution</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="identifier" cardinality="multiple" identifier="FEEDBACK"/>
+    <outcomeDeclaration baseType="identifier" cardinality="single" identifier="EMPTY"/>
+    <templateDeclaration baseType="boolean" cardinality="single" identifier="inTest">
+        <defaultValue>
+            <value>false</value>
+        </defaultValue>
+    </templateDeclaration>
+    <templateDeclaration baseType="identifier" cardinality="multiple" identifier="tHide"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="nTries"
+        mathVariable="false" paramVariable="false">
+        <defaultValue>
+            <value>3</value>
+        </defaultValue>
+    </templateDeclaration>
+    <templateDeclaration baseType="identifier" cardinality="single" identifier="tImage"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="string" cardinality="single" identifier="sCrosses"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="string" cardinality="single" identifier="sRoots"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="multiple" identifier="indXs"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iA" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration cardinality="record" identifier="mAns" mathVariable="true"
+        paramVariable="false"/>
+    <templateProcessing>
+        <templateCondition>
+            <templateIf>
+                <variable identifier="inTest"/>
+                <setTemplateValue identifier="tHide">
+                    <multiple>
+                        <baseValue baseType="identifier">InputFeedback</baseValue>
+                        <baseValue baseType="identifier">TriesMessage</baseValue>
+                        <baseValue baseType="identifier">SolHintFeedback</baseValue>
+                        <baseValue baseType="identifier">SolHintButtons</baseValue>
+                    </multiple>
+                </setTemplateValue>
+            </templateIf>
+        </templateCondition>
+        
+        <setTemplateValue identifier="iA">
+            <randomInteger max="12" min="1"/>
+        </setTemplateValue>
+        <templateCondition>
+            <templateIf>
+                <lt>
+                    <variable identifier="iA"/>
+                    <baseValue baseType="integer">5</baseValue>
+                </lt>
+                <setTemplateValue identifier="sCrosses">
+                    <baseValue baseType="string"> does not touch or cross the x axis for any value of x, </baseValue>
+                </setTemplateValue>
+                <setTemplateValue identifier="sRoots">
+                    <baseValue baseType="string"> has no real roots.</baseValue>
+                </setTemplateValue>
+                <setCorrectResponse identifier="RESPONSE">
+                    <baseValue baseType="identifier">C</baseValue>
+                </setCorrectResponse>
+            </templateIf>
+            <templateElseIf>
+                <and>
+                    <gt>
+                        <variable identifier="iA"/>
+                        <baseValue baseType="integer">4</baseValue>
+                    </gt>
+                    <lt>
+                        <variable identifier="iA"/>
+                        <baseValue baseType="integer">9</baseValue>
+                    </lt>
+                </and>
+                <setTemplateValue identifier="sCrosses">
+                    <baseValue baseType="string"> touches the x axis at one point, </baseValue>
+                </setTemplateValue>
+                <setTemplateValue identifier="sRoots">
+                    <baseValue baseType="string"> has one repeated real root.</baseValue>
+                </setTemplateValue>
+                <setCorrectResponse identifier="RESPONSE">
+                    <baseValue baseType="identifier">B</baseValue>
+                </setCorrectResponse>
+            </templateElseIf>
+            <templateElseIf>
+                <gt>
+                    <variable identifier="iA"/>
+                    <baseValue baseType="integer">8</baseValue>
+                </gt>
+                <setTemplateValue identifier="sCrosses">
+                    <baseValue baseType="string"> crosses the x axis at two different values of x, </baseValue>
+                </setTemplateValue>
+                <setTemplateValue identifier="sRoots">
+                    <baseValue baseType="string"> has two distinct real roots.</baseValue>
+                </setTemplateValue>
+                <setCorrectResponse identifier="RESPONSE">
+                    <baseValue baseType="identifier">A</baseValue>
+                </setCorrectResponse>
+            </templateElseIf>
+        </templateCondition>
+        <setTemplateValue identifier="tImage">
+            <index n="iA">
+                <ordered>
+                    <baseValue baseType="identifier">image01</baseValue>
+                    <baseValue baseType="identifier">image02</baseValue>
+                    <baseValue baseType="identifier">image03</baseValue>
+                    <baseValue baseType="identifier">image04</baseValue>
+                    <baseValue baseType="identifier">image05</baseValue>
+                    <baseValue baseType="identifier">image06</baseValue>
+                    <baseValue baseType="identifier">image07</baseValue>
+                    <baseValue baseType="identifier">image08</baseValue>
+                    <baseValue baseType="identifier">image09</baseValue>
+                    <baseValue baseType="identifier">image10</baseValue>
+                    <baseValue baseType="identifier">image11</baseValue>
+                    <baseValue baseType="identifier">image12</baseValue>
+                </ordered>
+            </index>
+        </setTemplateValue>
+    </templateProcessing>
+    <itemBody class="">
+        <div class="">
+            <templateBlock identifier="image01" showHide="show"
+                templateIdentifier="tImage">
+                <p>
+                    <img alt="Graphs-011348 graph01" height="520" src="images/0rootsPosGt0.png" width="500"
+                    />
+                </p>
+            </templateBlock>
+            <templateBlock identifier="image02" showHide="show"
+                templateIdentifier="tImage">
+                <p>
+                    <img alt="Graphs-011348 graph02" height="520" src="images/0rootsPosLt0.png"
+                        width="500"/>
+                </p>
+            </templateBlock>
+            <templateBlock identifier="image03" showHide="show"
+                templateIdentifier="tImage">
+                <p>
+                    <img alt="Graphs-011348 graph03" height="520" src="images/0rootsNegGt0.png"
+                        width="500"/>
+                </p>
+            </templateBlock>
+            <templateBlock identifier="image04" showHide="show"
+                templateIdentifier="tImage">
+                <p>
+                    <img alt="Graphs-011348 graph04" height="520" src="images/0rootsNegLt0.png"
+                        width="500"/>
+                </p>
+            </templateBlock>
+            <templateBlock identifier="image05" showHide="show"
+                templateIdentifier="tImage">
+                <p>
+                    <img alt="Graphs-011348 graph05" height="520" src="images/1rootPosGt0.png"
+                        width="500"/>
+                </p>
+            </templateBlock>
+            <templateBlock identifier="image06" showHide="show"
+                templateIdentifier="tImage">
+                <p>
+                    <img alt="Graphs-011348 graph06" height="520" src="images/1rootPosLt0.png"
+                        width="500"/>
+                </p>
+            </templateBlock>
+            <templateBlock identifier="image07" showHide="show"
+                templateIdentifier="tImage">
+                <p>
+                    <img alt="Graphs-011348 graph07" height="520" src="images/1rootNegGt0.png" width="500"
+                    />
+                </p>
+            </templateBlock>
+            <templateBlock identifier="image08" showHide="show"
+                templateIdentifier="tImage">
+                <p>
+                    <img alt="Graphs-011348 graph08" height="520" src="images/1rootNegLt0.png"
+                        width="500"/>
+                </p>
+            </templateBlock>
+            <templateBlock identifier="image09" showHide="show"
+                templateIdentifier="tImage">
+                <p>
+                    <img alt="Graphs-011348 graph09" height="520" src="images/2rootsPosGt0.png"
+                        width="500"/>
+                </p>
+            </templateBlock>
+            <templateBlock identifier="image10" showHide="show"
+                templateIdentifier="tImage">
+                <p>
+                    <img alt="Graphs-011348 graph10" height="520" src="images/2rootsPosLt0.png"
+                        width="500"/>
+                </p>
+            </templateBlock>
+            <templateBlock identifier="image11" showHide="show"
+                templateIdentifier="tImage">
+                <p>
+                    <img alt="Graphs-011348 graph11" height="520" src="images/2rootsNegGt0.png"
+                        width="500"/>
+                </p>
+            </templateBlock>
+            <templateBlock identifier="image12" showHide="show"
+                templateIdentifier="tImage">
+                <p>
+                    <img alt="Graphs-011348 graph12" height="520" src="images/2rootsNegLt0.png"
+                        width="500"/>
+                </p>
+            </templateBlock>
+        </div>
+        <choiceInteraction maxChoices="1" responseIdentifier="RESPONSE"
+            shuffle="true">
+            <prompt>Which of the following statements is true for the function&#160;<m:math>
+                <m:mi>f</m:mi>
+                <m:mfenced open="(" close=")">
+                    <m:mi>x</m:mi>
+                </m:mfenced>
+            </m:math>&#160;shown in the
+                graph?</prompt>
+            <simpleChoice identifier="A">
+                <div>
+                    <p>The equation&#160;<m:math>
+                        <m:mi>f</m:mi>
+                        <m:mfenced open="(" close=")">
+                            <m:mi>x</m:mi>
+                        </m:mfenced>
+                        <m:mo>=</m:mo>
+                        <m:mn>0</m:mn>
+                    </m:math>&#160;has two distinct real roots.</p>
+                </div>
+            </simpleChoice>
+            <simpleChoice identifier="B">
+                <div>
+                    <p>The equation&#160;<m:math>
+                        <m:mi>f</m:mi>
+                        <m:mfenced open="(" close=")">
+                            <m:mi>x</m:mi>
+                        </m:mfenced>
+                        <m:mo>=</m:mo>
+                        <m:mn>0</m:mn>
+                    </m:math>&#160;has one repeated real root.</p>
+                </div>
+            </simpleChoice>
+            <simpleChoice identifier="C">
+                <div>
+                    <p>The equation&#160;<m:math>
+                        <m:mi>f</m:mi>
+                        <m:mfenced open="(" close=")">
+                            <m:mi>x</m:mi>
+                        </m:mfenced>
+                        <m:mo>=</m:mo>
+                        <m:mn>0</m:mn>
+                    </m:math>&#160;has no real roots.</p>
+                </div>
+            </simpleChoice>
+            <simpleChoice identifier="D" fixed="true">
+                <div>
+                    <p>None of the above statements is true.</p>
+                </div>
+            </simpleChoice>
+        </choiceInteraction>
+        <templateBlock templateIdentifier="tHide" identifier="InputFeedback"
+            showHide="hide">
+            <feedbackBlock id="feedbackBlock4" identifier="Correct" outcomeIdentifier="FEEDBACK"
+            showHide="show">
+            <p>Correct</p>
+        </feedbackBlock>
+        <feedbackBlock id="feedbackBlock5" identifier="Incorrect" outcomeIdentifier="FEEDBACK"
+            showHide="show">
+            <p>Incorrect</p>
+        </feedbackBlock>
+        </templateBlock>
+        <templateBlock templateIdentifier="tHide" identifier="TriesMessage" showHide="show">
+            <p>You may attempt this question up to <printedVariable identifier="nTries"/> times
+                during the test.</p>
+        </templateBlock>
+        <templateBlock templateIdentifier="tHide" identifier="SolHintFeedback" showHide="hide">
+            <feedbackBlock id="feedbackBlock3" identifier="NoMoreTries"
+                outcomeIdentifier="FEEDBACK" showHide="show">
+                <p>You have had <printedVariable identifier="nTries"/> attempts at answering this question, so here is the
+                    solution:</p>
+            </feedbackBlock>
+            <feedbackBlock id="feedbackBlock59" identifier="SOLUTION" outcomeIdentifier="FEEDBACK"
+            showHide="show">
+                <p>The graph <printedVariable identifier="sCrosses"/>  so the equation&#160;<m:math>
+                    <m:mi>f</m:mi>
+                    <m:mfenced open="(" close=")">
+                        <m:mi>x</m:mi>
+                    </m:mfenced>
+                    <m:mo>=</m:mo>
+                    <m:mn>0</m:mn>
+                </m:math>&#160;<printedVariable identifier="sRoots"/></p>
+        </feedbackBlock>
+        <feedbackBlock id="feedbackBlock11" identifier="HINT" outcomeIdentifier="FEEDBACK"
+            showHide="show">
+            <p>How many times does the graph cross the x axis? </p>
+        </feedbackBlock>
+            <feedbackBlock id="feedbackBlock7" identifier="SEEN-SOLUTION"
+                outcomeIdentifier="FEEDBACK" showHide="show">
+                <p>Since you have viewed the solution, your score for this question will be 0.</p>
+            </feedbackBlock>
+            <feedbackBlock id="feedbackBlock8" identifier="SEEN-HINT" outcomeIdentifier="FEEDBACK"
+                showHide="show">
+                <p>Since you have viewed the hint, your score for this question will be halved.</p>
+            </feedbackBlock>
+        </templateBlock>
+        <templateBlock templateIdentifier="tHide" identifier="SolHintButtons" showHide="hide">
+            <feedbackBlock id="feedbackBlock14" identifier="askhint" outcomeIdentifier="ASKHINT"
+            showHide="show">
+            <p>
+                <endAttemptInteraction id="endAttemptInteraction1" responseIdentifier="HINTREQUEST"
+                    title="Show Hint"/>
+            </p>
+        </feedbackBlock>
+        <feedbackBlock id="feedbackBlock15" identifier="asksolution" outcomeIdentifier="ASKSOLUTION"
+            showHide="show">
+            <p>
+                <endAttemptInteraction id="endAttemptInteraction2" responseIdentifier="SOLREQUEST"
+                    title="Show Solution"/>
+            </p>
+        </feedbackBlock>
+        </templateBlock>
+    </itemBody>
+    <responseProcessing>
+        <setOutcomeValue identifier="FEEDBACK">
+            <multiple>
+                <variable identifier="EMPTY"/>
+            </multiple>
+        </setOutcomeValue>
+        <responseCondition>
+            <responseIf>
+                <variable identifier="HINTREQUEST"/>
+                <setOutcomeValue identifier="FEEDBACK">
+                    <multiple>
+                        <baseValue baseType="identifier">HINT</baseValue>
+                    </multiple>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="seenHint">
+                    <baseValue baseType="boolean">true</baseValue>
+                </setOutcomeValue>
+            </responseIf>
+            <responseElseIf>
+                <variable identifier="SOLREQUEST"/>
+                <setOutcomeValue identifier="seenSolution">
+                    <baseValue baseType="boolean">true</baseValue>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="FEEDBACK">
+                    <multiple>
+                        <baseValue baseType="identifier">SOLUTION</baseValue>
+                    </multiple>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="completionStatus">
+                    <baseValue baseType="identifier">completed</baseValue>
+                </setOutcomeValue>
+            </responseElseIf>
+            <responseElse>
+                <responseCondition>
+                    <responseIf>
+                        <match>
+                            <variable identifier="RESPONSE"/>
+                            <correct identifier="RESPONSE"/>
+                        </match>
+                        <setOutcomeValue identifier="SCORE">
+                            <baseValue baseType="float">2.0</baseValue>
+                        </setOutcomeValue>
+                        <setOutcomeValue identifier="FEEDBACK">
+                            <multiple>
+                                <baseValue baseType="identifier">Correct</baseValue>
+                            </multiple>
+                        </setOutcomeValue>
+                    </responseIf>
+                    <responseElse>
+                        <setOutcomeValue identifier="SCORE">
+                            <baseValue baseType="float">0.0</baseValue>
+                        </setOutcomeValue>
+                        <setOutcomeValue identifier="FEEDBACK">
+                            <multiple>
+                                <baseValue baseType="identifier">Incorrect</baseValue>
+                            </multiple>
+                        </setOutcomeValue>
+                    </responseElse>
+                </responseCondition>
+                <responseCondition>
+                    <responseIf>
+                        <variable identifier="seenSolution"/>
+                        <setOutcomeValue identifier="FEEDBACK">
+                            <multiple>
+                                <variable identifier="FEEDBACK"/>
+                                <baseValue baseType="identifier">SEEN-SOLUTION</baseValue>
+                            </multiple>
+                        </setOutcomeValue>
+                        <setOutcomeValue identifier="SCORE">
+                            <baseValue baseType="float">0.0</baseValue>
+                        </setOutcomeValue>
+                    </responseIf>
+                    <responseElseIf>
+                        <variable identifier="seenHint"/>
+                        <setOutcomeValue identifier="FEEDBACK">
+                            <multiple>
+                                <variable identifier="FEEDBACK"/>
+                                <baseValue baseType="identifier">SEEN-HINT</baseValue>
+                            </multiple>
+                        </setOutcomeValue>
+                        <setOutcomeValue identifier="SCORE">
+                            <divide>
+                                <variable identifier="SCORE"/>
+                                <baseValue baseType="float">2.0</baseValue>
+                            </divide>
+                        </setOutcomeValue>
+                    </responseElseIf>
+                </responseCondition>
+                <responseCondition>
+                    <responseIf>
+                        <gte>
+                            <variable identifier="numAttempts"/>
+                            <variable identifier="nTries"/>
+                        </gte>
+                        <setOutcomeValue identifier="FEEDBACK">
+                            <multiple>
+                                <baseValue baseType="identifier">NoMoreTries</baseValue>
+                                <baseValue baseType="identifier">SOLUTION</baseValue>
+                            </multiple>
+                        </setOutcomeValue>
+                        <setOutcomeValue identifier="completionStatus">
+                            <baseValue baseType="identifier">completed</baseValue>
+                        </setOutcomeValue>
+                        <setOutcomeValue identifier="ASKHINT">
+                            <baseValue baseType="identifier">null</baseValue>
+                        </setOutcomeValue>
+                        <setOutcomeValue identifier="ASKSOLUTION">
+                            <baseValue baseType="identifier">null</baseValue>
+                        </setOutcomeValue>
+                    </responseIf>
+                </responseCondition>
+            </responseElse>
+        </responseCondition>
+    </responseProcessing>
+</assessmentItem>

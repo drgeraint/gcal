@@ -1,0 +1,982 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p1"
+    xmlns:m="http://www.w3.org/1998/Math/MathML"
+    xmlns:ma="http://mathassess.qtitools.org/xsd/mathassess"
+    xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" adaptive="true" identifier="Test06-425"
+    timeDependent="false" title="Simplify surds to the form a^p b^q c^r" toolName="Mathqurate"
+    toolVersion="1.0" xsi:schemaLocation="http://www.imsglobal.org/xsd/imsqti_v2p1 imsqti_v2p1.xsd http://mathassess.qtitools.org/xsd/mathassess mathassess.xsd">
+    <responseDeclaration cardinality="record" identifier="RESPONSEp"/>
+    <responseDeclaration cardinality="record" identifier="RESPONSEq"/>
+    <responseDeclaration cardinality="record" identifier="RESPONSEr"/>
+    <responseDeclaration baseType="string" cardinality="single" identifier="printMath"/>
+    <responseDeclaration baseType="boolean" cardinality="single" identifier="HINTREQUEST"/>
+    <responseDeclaration baseType="boolean" cardinality="single" identifier="SOLREQUEST"/>
+    <outcomeDeclaration baseType="identifier" cardinality="multiple" identifier="FEEDBACK"/>
+    <outcomeDeclaration baseType="identifier" cardinality="single" identifier="EMPTY"/>
+    <outcomeDeclaration baseType="float" cardinality="single" identifier="SCORE" normalMaximum="3.0"
+        normalMinimum="0.0">
+        <defaultValue>
+            <value>0.0</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="float" cardinality="single" identifier="SCOREp"
+        normalMaximum="1.0" normalMinimum="0.0">
+        <defaultValue>
+            <value>0.0</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="float" cardinality="single" identifier="SCOREq"
+        normalMaximum="1.0" normalMinimum="0.0">
+        <defaultValue>
+            <value>0.0</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="float" cardinality="single" identifier="SCOREr"
+        normalMaximum="1.0" normalMinimum="0.0">
+        <defaultValue>
+            <value>0.0</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="seenSolution">
+        <defaultValue>
+            <value>false</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="seenHint">
+        <defaultValue>
+            <value>false</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="identifier" cardinality="single" identifier="ASKHINT">
+        <defaultValue>
+            <value>askhint</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="identifier" cardinality="single" identifier="ASKSOLUTION">
+        <defaultValue>
+            <value>asksolution</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <templateDeclaration baseType="boolean" cardinality="single" identifier="tDummy"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iA" mathVariable="true"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iB" mathVariable="true"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iC" mathVariable="true"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iD" mathVariable="true"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iE" mathVariable="true"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iF" mathVariable="true"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iAr"
+        mathVariable="true"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iCr"
+        mathVariable="true"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iEr"
+        mathVariable="true"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iFAr"
+        mathVariable="true"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iFCr"
+        mathVariable="true"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iFEr"
+        mathVariable="true"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iL" mathVariable="true"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iM" mathVariable="true"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iN" mathVariable="true"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iL0"
+        mathVariable="true"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iM0"
+        mathVariable="true"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iN0"
+        mathVariable="true"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iLA"
+        mathVariable="true"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iMC"
+        mathVariable="true"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iNE"
+        mathVariable="true"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iNumL"
+        mathVariable="true"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iNumM"
+        mathVariable="true"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iNumN"
+        mathVariable="true"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iDenL"
+        mathVariable="true"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iDenM"
+        mathVariable="true"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iDenN"
+        mathVariable="true"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iLM"
+        mathVariable="true"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iMN"
+        mathVariable="true"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iLMN"
+        mathVariable="true"/>
+    <templateDeclaration cardinality="record" identifier="mFracL" mathVariable="true"/>
+    <templateDeclaration cardinality="record" identifier="mFracM" mathVariable="true"/>
+    <templateDeclaration cardinality="record" identifier="mFracN" mathVariable="true"/>
+    <templateDeclaration cardinality="record" identifier="mL" mathVariable="true"/>
+    <templateDeclaration cardinality="record" identifier="mM" mathVariable="true"/>
+    <templateDeclaration cardinality="record" identifier="mN0" mathVariable="true"/>
+    <templateDeclaration cardinality="record" identifier="mL0" mathVariable="true"/>
+    <templateDeclaration cardinality="record" identifier="mM0" mathVariable="true"/>
+    <templateDeclaration cardinality="record" identifier="mN" mathVariable="true"/>
+    <templateDeclaration cardinality="record" identifier="mNumL" mathVariable="true"/>
+    <templateDeclaration cardinality="record" identifier="mNumM" mathVariable="true"/>
+    <templateDeclaration cardinality="record" identifier="mNumN" mathVariable="true"/>
+    <templateDeclaration cardinality="record" identifier="mAns" mathVariable="true"/>
+    <templateProcessing>
+        <setTemplateValue identifier="iA">
+            <baseValue baseType="integer">0</baseValue>
+        </setTemplateValue>
+        <setTemplateValue identifier="tDummy">
+            <customOperator class="org.qtitools.mathassess.ScriptRule" ma:syntax="text/x-maxima">
+                <baseValue baseType="string"><![CDATA[
+
+ s1 : make_random_state(true)$ set_random_state(s1);
+
+ load("functs");
+
+ iA: ev(random(2)+1,simp);
+
+ iB: ev(random(4)+2,simp);
+
+ iC: ev(random(2)+1,simp);
+
+ iD: ev(random(4)+2,simp);
+
+ iE: ev(random(2)+1,simp);
+
+ iF: ev(random(3)+3,simp);
+
+ for iI: 0 step 1 while iB=iD do (iD: ev(random(4)+2,simp));
+
+ for iI: 0 step 1 while iB=iF or iD=iF do (iF: ev(random(3)+3,simp));
+
+ iGA: ev(gcd(iA,iF),simp);
+
+ iGC: ev(gcd(iC,iF),simp);
+
+ iGE: ev(gcd(iE,iF),simp);
+
+ iAr: ev(iA/iGA,simp);
+
+ iFAr: ev(iF/iGA,simp);
+
+ iCr: ev(iC/iGC,simp);
+
+ iFCr: ev(iF/iGC,simp);
+
+ iEr: ev(iE/iGE,simp);
+
+ iFEr: ev(iF/iGE,simp);
+
+ iBF: ev(lcm(iB,iFAr),simp);
+
+ choose(list) := list[1+random(length(list))];
+
+ iL: ev(random(2)+2,simp);
+
+ if iL=2 then iM: ev(random(2)*2+3,simp) else iM:5;
+
+ if iM=3 then iN: ev(random(2)*2+5,simp) else iN:7;
+
+ iLM:ev(iL*iM, simp);
+
+ iMN:ev(iM*iN, simp);
+
+ iLA:ev(iL^iA, simp);
+
+ iMC:ev(iM^iC, simp);
+
+ iNE:ev(iN^iE, simp);
+
+ iLMN:ev(iLA*iMC*iNE, simp);
+
+ iDenL:ev(lcm(iB,iFAr),simp);
+
+ iDenM:ev(lcm(iB,iD,iFCr),simp);
+
+ iDenN:ev(lcm(iD,iFEr),simp);
+
+ mNumL:iFAr-ev(iAr*iB,simp);
+
+ mNumM:ev(iDenM/iB,simp)+ev(iDenM/iD,simp)-ev(iCr*iDenM/iFCr,simp);
+
+ mNumN:iFEr-ev(iEr*iD,simp);
+
+ iNumL:ev(mNumL,simp);
+
+ iNumM:ev(mNumM,simp);
+
+ iNumN:ev(mNumN,simp);
+
+ mFracL: ev(iNumL/iDenL,simp);
+
+ mFracM: ev(iNumM/iDenM,simp);
+
+ mFracN: ev(iNumN/iDenN,simp);
+
+ mAns: iL^mFracL*iM^mFracM*iN^mFracN;
+
+ 
+
+]]></baseValue>
+            </customOperator>
+        </setTemplateValue>
+    </templateProcessing>
+    <itemBody class="">
+        <div class="">Express</div>
+        <div class="">
+            <m:math display="block" id="mathML0">
+                <m:semantics>
+                    <m:mfrac>
+                        <m:mrow>
+                            <m:mroot>
+                                <m:mi>iLM</m:mi>
+                                <m:mi>iB</m:mi>
+                            </m:mroot>
+                            <m:mroot>
+                                <m:mi>iMN</m:mi>
+                                <m:mi>iD</m:mi>
+                            </m:mroot>
+                        </m:mrow>
+                        <m:mroot>
+                            <m:mi>iLMN</m:mi>
+                            <m:mi>iF</m:mi>
+                        </m:mroot>
+                    </m:mfrac>
+                    <m:annotation encoding="SnuggleTeX"
+                        >\[\frac{\sqrt[\qv{iB}]{\qv{iLM}}\sqrt[\qv{iD}]{\qv{iMN}}}{\sqrt[\qv{iF}]{\qv{iLMN}}}\]</m:annotation>
+                </m:semantics>
+            </m:math>
+        </div>
+        <div class="">in the form&#160;&#160;<m:math display="block" id="mathML1">
+                <m:semantics>
+                    <m:mrow>
+                        <m:msup>
+                            <m:mi>iL</m:mi>
+                            <m:mi>p</m:mi>
+                        </m:msup>
+                        <m:msup>
+                            <m:mi>iM</m:mi>
+                            <m:mi>q</m:mi>
+                        </m:msup>
+                        <m:msup>
+                            <m:mi>iN</m:mi>
+                            <m:mi>r</m:mi>
+                        </m:msup>
+                    </m:mrow>
+                    <m:annotation encoding="SnuggleTeX"
+                        >\[\qv{iL}^p\qv{iM}^q\qv{iN}^r\]</m:annotation>
+                </m:semantics>
+        </m:math>&#160;&#160;where p, q and r are fractions in their lowest terms.</div>
+        <table class="">
+            <tbody class="">
+                <tr class="">
+                    <td class="">
+                        <m:math id="mathML2">
+                            <m:semantics>
+                                <m:mrow>
+                                    <m:mi>p</m:mi>
+                                    <m:mo>=</m:mo>
+                                </m:mrow>
+                                <m:annotation encoding="SnuggleTeX">\[p=\]</m:annotation>
+                            </m:semantics>
+                        </m:math>
+                    </td>
+                    <td class="">
+                        <customInteraction class="org.qtitools.mathassess.MathEntryInteraction"
+                            id="customInteraction0" ma:syntax="text/x-maxima"
+                            responseIdentifier="RESPONSEp"/>
+                    </td>
+                    <td class="">
+                        <div class="">
+                            <feedbackInline id="feedbackInline0" identifier="CORRECTp"
+                                outcomeIdentifier="FEEDBACK" showHide="show"> Your first input is
+                                correct. </feedbackInline>
+                        </div>
+                        <div class="">
+                            <feedbackInline id="feedbackInline1" identifier="INCORRECTp"
+                                outcomeIdentifier="FEEDBACK" showHide="show"> Your first input is
+                                incorrect. </feedbackInline>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="">
+                    <td class="">
+                        <m:math id="mathML3">
+                            <m:semantics>
+                                <m:mrow>
+                                    <m:mi>q</m:mi>
+                                    <m:mo>=</m:mo>
+                                </m:mrow>
+                                <m:annotation encoding="SnuggleTeX">\[q=\]</m:annotation>
+                            </m:semantics>
+                        </m:math>
+                    </td>
+                    <td class="">
+                        <customInteraction class="org.qtitools.mathassess.MathEntryInteraction"
+                            id="customInteraction1" ma:syntax="text/x-maxima"
+                            responseIdentifier="RESPONSEq"/>
+                    </td>
+                    <td class="">
+                        <div class="">
+                            <feedbackInline id="feedbackInline2" identifier="CORRECTq"
+                                outcomeIdentifier="FEEDBACK" showHide="show"> Your second input is
+                                correct. </feedbackInline>
+                        </div>
+                        <div class="">
+                            <feedbackInline id="feedbackInline3" identifier="INCORRECTq"
+                                outcomeIdentifier="FEEDBACK" showHide="show"> Your second input is
+                                incorrect. </feedbackInline>
+                        </div>
+                    </td>
+                </tr>
+                <tr class="">
+                    <td class="">
+                        <m:math id="mathML4">
+                            <m:semantics>
+                                <m:mrow>
+                                    <m:mi>r</m:mi>
+                                    <m:mo>=</m:mo>
+                                </m:mrow>
+                                <m:annotation encoding="SnuggleTeX">\[r=\]</m:annotation>
+                            </m:semantics>
+                        </m:math>
+                    </td>
+                    <td class="">
+                        <customInteraction class="org.qtitools.mathassess.MathEntryInteraction"
+                            id="customInteraction2" ma:syntax="text/x-maxima"
+                            responseIdentifier="RESPONSEr"/>
+                    </td>
+                    <td class="">
+                        <div class="">
+                            <feedbackInline id="feedbackInline4" identifier="CORRECTr"
+                                outcomeIdentifier="FEEDBACK" showHide="show"> Your third input is
+                                correct. </feedbackInline>
+                        </div>
+                        <div class="">
+                            <feedbackInline id="feedbackInline5" identifier="INCORRECTr"
+                                outcomeIdentifier="FEEDBACK" showHide="show"> Your third input is
+                                incorrect. </feedbackInline>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="">
+            <feedbackBlock id="feedbackBlock6" identifier="THREETRIES" outcomeIdentifier="FEEDBACK"
+                showHide="show">
+                <p>You have had three attempts at answering this question, so here is the
+                    solution:</p>
+            </feedbackBlock>
+            <feedbackBlock class="" id="feedbackBlock7" identifier="SOLUTION"
+                outcomeIdentifier="FEEDBACK" showHide="show">
+                <div class="">Roots can be expressed as fractional indices, and we can apply the
+                    rules for combining powers:</div>
+                <div class="">
+                    <m:math display="block" id="mathML5">
+                        <m:semantics>
+                            <m:mtable>
+                                <m:mtr>
+                                    <m:mtd columnalign="right">
+                                        <m:mfrac>
+                                            <m:mrow>
+                                                <m:mroot>
+                                                  <m:mi>iLM</m:mi>
+                                                  <m:mi>iB</m:mi>
+                                                </m:mroot>
+                                                <m:mroot>
+                                                  <m:mi>iMN</m:mi>
+                                                  <m:mi>iD</m:mi>
+                                                </m:mroot>
+                                            </m:mrow>
+                                            <m:mroot>
+                                                <m:mi>iLMN</m:mi>
+                                                <m:mi>iF</m:mi>
+                                            </m:mroot>
+                                        </m:mfrac>
+                                    </m:mtd>
+                                    <m:mtd columnalign="center">
+                                        <m:mo>=</m:mo>
+                                    </m:mtd>
+                                    <m:mtd columnalign="left">
+                                        <m:mfrac>
+                                            <m:mrow>
+                                                <m:mroot>
+                                                  <m:mi>iL</m:mi>
+                                                  <m:mi>iB</m:mi>
+                                                </m:mroot>
+                                                <m:mroot>
+                                                  <m:mi>iM</m:mi>
+                                                  <m:mi>iB</m:mi>
+                                                </m:mroot>
+                                                <m:mroot>
+                                                  <m:mi>iM</m:mi>
+                                                  <m:mi>iD</m:mi>
+                                                </m:mroot>
+                                                <m:mroot>
+                                                  <m:mi>iN</m:mi>
+                                                  <m:mi>iD</m:mi>
+                                                </m:mroot>
+                                            </m:mrow>
+                                            <m:mrow>
+                                                <m:mroot>
+                                                  <m:mi>iLA</m:mi>
+                                                  <m:mi>iF</m:mi>
+                                                </m:mroot>
+                                                <m:mroot>
+                                                  <m:mi>iMC</m:mi>
+                                                  <m:mi>iF</m:mi>
+                                                </m:mroot>
+                                                <m:mroot>
+                                                  <m:mi>iNE</m:mi>
+                                                  <m:mi>iF</m:mi>
+                                                </m:mroot>
+                                            </m:mrow>
+                                        </m:mfrac>
+                                    </m:mtd>
+                                </m:mtr>
+                                <m:mtr>
+                                    <m:mtd columnalign="right"/>
+                                    <m:mtd columnalign="center">
+                                        <m:mo>=</m:mo>
+                                    </m:mtd>
+                                    <m:mtd columnalign="left">
+                                        <m:mfrac>
+                                            <m:mrow>
+                                                <m:msup>
+                                                  <m:mi>iL</m:mi>
+                                                  <m:mfrac>
+                                                  <m:mn>1</m:mn>
+                                                  <m:mi>iB</m:mi>
+                                                  </m:mfrac>
+                                                </m:msup>
+                                                <m:mo>×</m:mo>
+                                                <m:msup>
+                                                  <m:mi>iM</m:mi>
+                                                  <m:mfrac>
+                                                  <m:mn>1</m:mn>
+                                                  <m:mi>iB</m:mi>
+                                                  </m:mfrac>
+                                                </m:msup>
+                                                <m:mo>×</m:mo>
+                                                <m:msup>
+                                                  <m:mi>iM</m:mi>
+                                                  <m:mfrac>
+                                                  <m:mn>1</m:mn>
+                                                  <m:mi>iD</m:mi>
+                                                  </m:mfrac>
+                                                </m:msup>
+                                                <m:mo>×</m:mo>
+                                                <m:msup>
+                                                  <m:mi>iN</m:mi>
+                                                  <m:mfrac>
+                                                  <m:mn>1</m:mn>
+                                                  <m:mi>iD</m:mi>
+                                                  </m:mfrac>
+                                                </m:msup>
+                                            </m:mrow>
+                                            <m:mrow>
+                                                <m:msup>
+                                                  <m:mi>iL</m:mi>
+                                                  <m:mfrac>
+                                                  <m:mi>iA</m:mi>
+                                                  <m:mi>iF</m:mi>
+                                                  </m:mfrac>
+                                                </m:msup>
+                                                <m:mo>×</m:mo>
+                                                <m:msup>
+                                                  <m:mi>iM</m:mi>
+                                                  <m:mfrac>
+                                                  <m:mi>iC</m:mi>
+                                                  <m:mi>iF</m:mi>
+                                                  </m:mfrac>
+                                                </m:msup>
+                                                <m:mo>×</m:mo>
+                                                <m:msup>
+                                                  <m:mi>iN</m:mi>
+                                                  <m:mfrac>
+                                                  <m:mi>iE</m:mi>
+                                                  <m:mi>iF</m:mi>
+                                                  </m:mfrac>
+                                                </m:msup>
+                                            </m:mrow>
+                                        </m:mfrac>
+                                    </m:mtd>
+                                </m:mtr>
+                                <m:mtr>
+                                    <m:mtd columnalign="right"/>
+                                    <m:mtd columnalign="center">
+                                        <m:mo>=</m:mo>
+                                    </m:mtd>
+                                    <m:mtd columnalign="left">
+                                        <m:mfrac>
+                                            <m:mrow>
+                                                <m:msup>
+                                                  <m:mi>iL</m:mi>
+                                                  <m:mfrac>
+                                                  <m:mn>1</m:mn>
+                                                  <m:mi>iB</m:mi>
+                                                  </m:mfrac>
+                                                </m:msup>
+                                                <m:mo>×</m:mo>
+                                                <m:msup>
+                                                  <m:mi>iM</m:mi>
+                                                  <m:mfrac>
+                                                  <m:mn>1</m:mn>
+                                                  <m:mi>iB</m:mi>
+                                                  </m:mfrac>
+                                                </m:msup>
+                                                <m:mo>×</m:mo>
+                                                <m:msup>
+                                                  <m:mi>iM</m:mi>
+                                                  <m:mfrac>
+                                                  <m:mn>1</m:mn>
+                                                  <m:mi>iD</m:mi>
+                                                  </m:mfrac>
+                                                </m:msup>
+                                                <m:mo>×</m:mo>
+                                                <m:msup>
+                                                  <m:mi>iN</m:mi>
+                                                  <m:mfrac>
+                                                  <m:mn>1</m:mn>
+                                                  <m:mi>iD</m:mi>
+                                                  </m:mfrac>
+                                                </m:msup>
+                                            </m:mrow>
+                                            <m:mrow>
+                                                <m:msup>
+                                                  <m:mi>iL</m:mi>
+                                                  <m:mfrac>
+                                                  <m:mi>iAr</m:mi>
+                                                  <m:mi>iFAr</m:mi>
+                                                  </m:mfrac>
+                                                </m:msup>
+                                                <m:mo>×</m:mo>
+                                                <m:msup>
+                                                  <m:mi>iM</m:mi>
+                                                  <m:mfrac>
+                                                  <m:mi>iCr</m:mi>
+                                                  <m:mi>iFCr</m:mi>
+                                                  </m:mfrac>
+                                                </m:msup>
+                                                <m:mo>×</m:mo>
+                                                <m:msup>
+                                                  <m:mi>iN</m:mi>
+                                                  <m:mfrac>
+                                                  <m:mi>iEr</m:mi>
+                                                  <m:mi>iFEr</m:mi>
+                                                  </m:mfrac>
+                                                </m:msup>
+                                            </m:mrow>
+                                        </m:mfrac>
+                                    </m:mtd>
+                                </m:mtr>
+                                <m:mtr>
+                                    <m:mtd columnalign="right"/>
+                                    <m:mtd columnalign="center">
+                                        <m:mo>=</m:mo>
+                                    </m:mtd>
+                                    <m:mtd columnalign="left">
+                                        <m:msup>
+                                            <m:mi>iL</m:mi>
+                                            <m:mrow>
+                                                <m:mfrac>
+                                                  <m:mn>1</m:mn>
+                                                  <m:mi>iB</m:mi>
+                                                </m:mfrac>
+                                                <m:mo>-</m:mo>
+                                                <m:mfrac>
+                                                  <m:mi>iAr</m:mi>
+                                                  <m:mi>iFAr</m:mi>
+                                                </m:mfrac>
+                                            </m:mrow>
+                                        </m:msup>
+                                        <m:mo>×</m:mo>
+                                        <m:msup>
+                                            <m:mi>iM</m:mi>
+                                            <m:mrow>
+                                                <m:mfrac>
+                                                  <m:mn>1</m:mn>
+                                                  <m:mi>iB</m:mi>
+                                                </m:mfrac>
+                                                <m:mo>+</m:mo>
+                                                <m:mfrac>
+                                                  <m:mn>1</m:mn>
+                                                  <m:mi>iD</m:mi>
+                                                </m:mfrac>
+                                                <m:mo>-</m:mo>
+                                                <m:mfrac>
+                                                  <m:mi>iCr</m:mi>
+                                                  <m:mi>iFCr</m:mi>
+                                                </m:mfrac>
+                                            </m:mrow>
+                                        </m:msup>
+                                        <m:mo>×</m:mo>
+                                        <m:msup>
+                                            <m:mi>iN</m:mi>
+                                            <m:mrow>
+                                                <m:mfrac>
+                                                  <m:mn>1</m:mn>
+                                                  <m:mi>iD</m:mi>
+                                                </m:mfrac>
+                                                <m:mo>-</m:mo>
+                                                <m:mfrac>
+                                                  <m:mi>iEr</m:mi>
+                                                  <m:mi>iFEr</m:mi>
+                                                </m:mfrac>
+                                            </m:mrow>
+                                        </m:msup>
+                                    </m:mtd>
+                                </m:mtr>
+                                <m:mtr>
+                                    <m:mtd columnalign="right"/>
+                                    <m:mtd columnalign="center">
+                                        <m:mo>=</m:mo>
+                                    </m:mtd>
+                                    <m:mtd columnalign="left">
+                                        <m:msup>
+                                            <m:mi>iL</m:mi>
+                                            <m:mfrac>
+                                                <m:mi>mNumL</m:mi>
+                                                <m:mi>iDenL</m:mi>
+                                            </m:mfrac>
+                                        </m:msup>
+                                        <m:mo>×</m:mo>
+                                        <m:msup>
+                                            <m:mi>iM</m:mi>
+                                            <m:mfrac>
+                                                <m:mi>mNumM</m:mi>
+                                                <m:mi>iDenM</m:mi>
+                                            </m:mfrac>
+                                        </m:msup>
+                                        <m:mo>×</m:mo>
+                                        <m:msup>
+                                            <m:mi>iN</m:mi>
+                                            <m:mfrac>
+                                                <m:mi>mNumN</m:mi>
+                                                <m:mi>iDenN</m:mi>
+                                            </m:mfrac>
+                                        </m:msup>
+                                    </m:mtd>
+                                </m:mtr>
+                                <m:mtr>
+                                    <m:mtd columnalign="right"/>
+                                    <m:mtd columnalign="center">
+                                        <m:mo>=</m:mo>
+                                    </m:mtd>
+                                    <m:mtd columnalign="left">
+                                        <m:msup>
+                                            <m:mi>iL</m:mi>
+                                            <m:mfrac>
+                                                <m:mi>iNumL</m:mi>
+                                                <m:mi>iDenL</m:mi>
+                                            </m:mfrac>
+                                        </m:msup>
+                                        <m:mo>×</m:mo>
+                                        <m:msup>
+                                            <m:mi>iM</m:mi>
+                                            <m:mfrac>
+                                                <m:mi>iNumM</m:mi>
+                                                <m:mi>iDenM</m:mi>
+                                            </m:mfrac>
+                                        </m:msup>
+                                        <m:mo>×</m:mo>
+                                        <m:msup>
+                                            <m:mi>iN</m:mi>
+                                            <m:mfrac>
+                                                <m:mi>iNumN</m:mi>
+                                                <m:mi>iDenN</m:mi>
+                                            </m:mfrac>
+                                        </m:msup>
+                                    </m:mtd>
+                                </m:mtr>
+                                <m:mtr>
+                                    <m:mtd columnalign="right"/>
+                                    <m:mtd columnalign="center">
+                                        <m:mo>=</m:mo>
+                                    </m:mtd>
+                                    <m:mtd columnalign="left">
+                                        <m:mi>mAns</m:mi>
+                                    </m:mtd>
+                                </m:mtr>
+                            </m:mtable>
+                            <m:annotation encoding="SnuggleTeX"
+                                >\begin{eqnarray*}\frac{\sqrt[\qv{iB}]{\qv{iLM}}\sqrt[\qv{iD}]{\qv{iMN}}}{\sqrt[\qv{iF}]{\qv{iLMN}}}
+                                &amp;=&amp;\frac{\sqrt[\qv{iB}]{\qv{iL}}\sqrt[\qv{iB}]{\qv{iM}}\sqrt[\qv{iD}]{\qv{iM}}\sqrt[\qv{iD}]{\qv{iN}}}{\sqrt[\qv{iF}]{\qv{iLA}}\sqrt[\qv{iF}]{\qv{iMC}}\sqrt[\qv{iF}]{\qv{iNE}}}\\
+                                &amp;=&amp;\frac{\qv{iL}^{\frac{1}{\qv{iB}}}\times\qv{iM}^{\frac{1}{\qv{iB}}}\times\qv{iM}^{\frac{1}{\qv{iD}}}\times\qv{iN}^{\frac{1}{\qv{iD}}}}{\qv{iL}^{\frac{\qv{iA}}{\qv{iF}}}\times\qv{iM}^{\frac{\qv{iC}}{\qv{iF}}}\times\qv{iN}^{\frac{\qv{iE}}{\qv{iF}}}}\\
+                                &amp;=&amp;\frac{\qv{iL}^{\frac{1}{\qv{iB}}}\times\qv{iM}^{\frac{1}{\qv{iB}}}\times\qv{iM}^{\frac{1}{\qv{iD}}}\times\qv{iN}^{\frac{1}{\qv{iD}}}}{\qv{iL}^{\frac{\qv{iAr}}{\qv{iFAr}}}\times\qv{iM}^{\frac{\qv{iCr}}{\qv{iFCr}}}\times\qv{iN}^{\frac{\qv{iEr}}{\qv{iFEr}}}}\\
+                                &amp;=&amp;\qv{iL}^{\frac{1}{\qv{iB}}-\frac{\qv{iAr}}{\qv{iFAr}}}\times\qv{iM}^{\frac{1}{\qv{iB}}+\frac{1}{\qv{iD}}-\frac{\qv{iCr}}{\qv{iFCr}}}\times\qv{iN}^{\frac{1}{\qv{iD}}-\frac{\qv{iEr}}{\qv{iFEr}}}\\
+                                &amp;=&amp;\qv{iL}^{\frac{\qv{mNumL}}{\qv{iDenL}}}\times\qv{iM}^{\frac{\qv{mNumM}}{\qv{iDenM}}}\times\qv{iN}^{\frac{\qv{mNumN}}{\qv{iDenN}}}\\
+                                &amp;=&amp;\qv{iL}^{\frac{\qv{iNumL}}{\qv{iDenL}}}\times\qv{iM}^{\frac{\qv{iNumM}}{\qv{iDenM}}}\times\qv{iN}^{\frac{\qv{iNumN}}{\qv{iDenN}}}\\
+                                &amp;=&amp;\qv{mAns} \end{eqnarray*}</m:annotation>
+                        </m:semantics>
+                    </m:math>
+                </div>
+                <div class="">So&#160;&#160;<m:math id="mathML6">
+                        <m:semantics>
+                            <m:mrow>
+                                <m:mi>p</m:mi>
+                                <m:mo>=</m:mo>
+                                <m:mi>mFracL</m:mi>
+                            </m:mrow>
+                            <m:annotation encoding="SnuggleTeX">\[p=\qv{mFracL}\]</m:annotation>
+                        </m:semantics>
+                </m:math>,&#160;&#160;<m:math id="mathML7">
+                        <m:semantics>
+                            <m:mrow>
+                                <m:mi>q</m:mi>
+                                <m:mo>=</m:mo>
+                                <m:mi>mFracM</m:mi>
+                            </m:mrow>
+                            <m:annotation encoding="SnuggleTeX">\[q=\qv{mFracM}\]</m:annotation>
+                        </m:semantics>
+                </m:math>&#160;&#160;and&#160;&#160;<m:math id="mathML8">
+                        <m:semantics>
+                            <m:mrow>
+                                <m:mi>r</m:mi>
+                                <m:mo>=</m:mo>
+                                <m:mi>mFracN</m:mi>
+                            </m:mrow>
+                            <m:annotation encoding="SnuggleTeX">\[r=\qv{mFracN}\]</m:annotation>
+                        </m:semantics>
+                    </m:math>
+                </div>
+            </feedbackBlock>
+            <feedbackBlock id="feedbackBlock8" identifier="HINT" outcomeIdentifier="FEEDBACK"
+                showHide="show">
+                <div>
+                    <p>Remember that roots correspond to fractional indices and apply the rules for
+                        combining powers. </p>
+                </div>
+            </feedbackBlock>
+            <feedbackBlock id="feedbackBlock9" identifier="SEEN-SOLUTION"
+                outcomeIdentifier="FEEDBACK" showHide="show">
+                <p> Since you have viewed the solution, your score for this question will be 0. </p>
+            </feedbackBlock>
+            <feedbackBlock id="feedbackBlock10" identifier="SEEN-HINT" outcomeIdentifier="FEEDBACK"
+                showHide="show">
+                <p> Since you have viewed the hint, your score for this question will be halved.
+                </p>
+            </feedbackBlock>
+            <feedbackBlock id="feedbackBlock11" identifier="askhint" outcomeIdentifier="ASKHINT"
+                showHide="show">
+                <p>
+                    <endAttemptInteraction id="endAttemptInteraction3"
+                        responseIdentifier="HINTREQUEST" title="Show Hint"/>
+                </p>
+            </feedbackBlock>
+            <feedbackBlock id="feedbackBlock12" identifier="asksolution"
+                outcomeIdentifier="ASKSOLUTION" showHide="show">
+                <p>
+                    <endAttemptInteraction id="endAttemptInteraction4"
+                        responseIdentifier="SOLREQUEST" title="Show Solution"/>
+                </p>
+            </feedbackBlock>
+        </div>
+    </itemBody>
+    <responseProcessing>
+        <setOutcomeValue identifier="FEEDBACK">
+            <multiple>
+                <variable identifier="EMPTY"/>
+            </multiple>
+        </setOutcomeValue>
+        <responseCondition>
+            <responseIf>
+                <variable identifier="HINTREQUEST"/>
+                <setOutcomeValue identifier="FEEDBACK">
+                    <multiple>
+                        <baseValue baseType="identifier">HINT</baseValue>
+                    </multiple>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="seenHint">
+                    <baseValue baseType="boolean">true</baseValue>
+                </setOutcomeValue>
+            </responseIf>
+            <responseElseIf>
+                <variable identifier="SOLREQUEST"/>
+                <setOutcomeValue identifier="FEEDBACK">
+                    <multiple>
+                        <baseValue baseType="identifier">SOLUTION</baseValue>
+                    </multiple>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="seenSolution">
+                    <baseValue baseType="boolean">true</baseValue>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="completionStatus">
+                    <baseValue baseType="identifier">completed</baseValue>
+                </setOutcomeValue>
+            </responseElseIf>
+            <responseElse>
+                <responseCondition>
+                    <responseIf>
+                        <isNull>
+                            <variable identifier="RESPONSEp"/>
+                        </isNull>
+                        <setOutcomeValue identifier="SCOREp">
+                            <baseValue baseType="float">0.0</baseValue>
+                        </setOutcomeValue>
+                    </responseIf>
+                    <responseElseIf>
+                        <customOperator class="org.qtitools.mathassess.CasCompare"
+                            ma:action="syntequal" ma:syntax="text/x-maxima">
+                            <variable identifier="RESPONSEp"/>
+                            <variable identifier="mFracL"/>
+                        </customOperator>
+                        <setOutcomeValue identifier="FEEDBACK">
+                            <multiple>
+                                <baseValue baseType="identifier">CORRECTp</baseValue>
+                            </multiple>
+                        </setOutcomeValue>
+                        <setOutcomeValue identifier="SCOREp">
+                            <baseValue baseType="float">1.0</baseValue>
+                        </setOutcomeValue>
+                    </responseElseIf>
+                    <responseElse>
+                        <setOutcomeValue identifier="FEEDBACK">
+                            <multiple>
+                                <baseValue baseType="identifier">INCORRECTp</baseValue>
+                            </multiple>
+                        </setOutcomeValue>
+                        <setOutcomeValue identifier="SCOREp">
+                            <baseValue baseType="float">0.0</baseValue>
+                        </setOutcomeValue>
+                    </responseElse>
+                </responseCondition>
+                <responseCondition>
+                    <responseIf>
+                        <isNull>
+                            <variable identifier="RESPONSEq"/>
+                        </isNull>
+                        <setOutcomeValue identifier="SCOREq">
+                            <baseValue baseType="float">0.0</baseValue>
+                        </setOutcomeValue>
+                    </responseIf>
+                    <responseElseIf>
+                        <customOperator class="org.qtitools.mathassess.CasCompare"
+                            ma:action="syntequal" ma:syntax="text/x-maxima">
+                            <variable identifier="RESPONSEq"/>
+                            <variable identifier="mFracM"/>
+                        </customOperator>
+                        <setOutcomeValue identifier="FEEDBACK">
+                            <multiple>
+                                <variable identifier="FEEDBACK"/>
+                                <baseValue baseType="identifier">CORRECTq</baseValue>
+                            </multiple>
+                        </setOutcomeValue>
+                        <setOutcomeValue identifier="SCOREq">
+                            <baseValue baseType="float">1.0</baseValue>
+                        </setOutcomeValue>
+                    </responseElseIf>
+                    <responseElse>
+                        <setOutcomeValue identifier="FEEDBACK">
+                            <multiple>
+                                <variable identifier="FEEDBACK"/>
+                                <baseValue baseType="identifier">INCORRECTq</baseValue>
+                            </multiple>
+                        </setOutcomeValue>
+                        <setOutcomeValue identifier="SCOREq">
+                            <baseValue baseType="float">0.0</baseValue>
+                        </setOutcomeValue>
+                    </responseElse>
+                </responseCondition>
+                <responseCondition>
+                    <responseIf>
+                        <isNull>
+                            <variable identifier="RESPONSEr"/>
+                        </isNull>
+                        <setOutcomeValue identifier="SCOREr">
+                            <baseValue baseType="float">0.0</baseValue>
+                        </setOutcomeValue>
+                    </responseIf>
+                    <responseElseIf>
+                        <customOperator class="org.qtitools.mathassess.CasCompare"
+                            ma:action="syntequal" ma:syntax="text/x-maxima">
+                            <variable identifier="RESPONSEr"/>
+                            <variable identifier="mFracN"/>
+                        </customOperator>
+                        <setOutcomeValue identifier="FEEDBACK">
+                            <multiple>
+                                <variable identifier="FEEDBACK"/>
+                                <baseValue baseType="identifier">CORRECTr</baseValue>
+                            </multiple>
+                        </setOutcomeValue>
+                        <setOutcomeValue identifier="SCOREr">
+                            <baseValue baseType="float">1.0</baseValue>
+                        </setOutcomeValue>
+                    </responseElseIf>
+                    <responseElse>
+                        <setOutcomeValue identifier="FEEDBACK">
+                            <multiple>
+                                <variable identifier="FEEDBACK"/>
+                                <baseValue baseType="identifier">INCORRECTr</baseValue>
+                            </multiple>
+                        </setOutcomeValue>
+                        <setOutcomeValue identifier="SCOREr">
+                            <baseValue baseType="float">0.0</baseValue>
+                        </setOutcomeValue>
+                    </responseElse>
+                </responseCondition>
+                <setOutcomeValue identifier="SCORE">
+                    <sum>
+                        <variable identifier="SCOREp"/>
+                        <variable identifier="SCOREq"/>
+                        <variable identifier="SCOREr"/>
+                    </sum>
+                </setOutcomeValue>
+                <responseCondition>
+                    <responseIf>
+                        <variable identifier="seenSolution"/>
+                        <setOutcomeValue identifier="FEEDBACK">
+                            <multiple>
+                                <variable identifier="FEEDBACK"/>
+                                <baseValue baseType="identifier">SEEN-SOLUTION</baseValue>
+                            </multiple>
+                        </setOutcomeValue>
+                        <setOutcomeValue identifier="SCORE">
+                            <baseValue baseType="float">0.0</baseValue>
+                        </setOutcomeValue>
+                    </responseIf>
+                    <responseElseIf>
+                        <variable identifier="seenHint"/>
+                        <setOutcomeValue identifier="FEEDBACK">
+                            <multiple>
+                                <variable identifier="FEEDBACK"/>
+                                <baseValue baseType="identifier">SEEN-HINT</baseValue>
+                            </multiple>
+                        </setOutcomeValue>
+                        <setOutcomeValue identifier="SCORE">
+                            <divide>
+                                <variable identifier="SCORE"/>
+                                <baseValue baseType="float">2.0</baseValue>
+                            </divide>
+                        </setOutcomeValue>
+                    </responseElseIf>
+                </responseCondition>
+                <responseCondition>
+                    <responseIf>
+                        <gt>
+                            <variable identifier="numAttempts"/>
+                            <baseValue baseType="integer">3</baseValue>
+                        </gt>
+                        <setOutcomeValue identifier="FEEDBACK">
+                            <multiple>
+                                <baseValue baseType="identifier">THREETRIES</baseValue>
+                                <baseValue baseType="identifier">SOLUTION</baseValue>
+                            </multiple>
+                        </setOutcomeValue>
+                        <setOutcomeValue identifier="completionStatus">
+                            <baseValue baseType="identifier">completed</baseValue>
+                        </setOutcomeValue>
+                        <setOutcomeValue identifier="ASKHINT">
+                            <baseValue baseType="identifier">null</baseValue>
+                        </setOutcomeValue>
+                        <setOutcomeValue identifier="ASKSOLUTION">
+                            <baseValue baseType="identifier">null</baseValue>
+                        </setOutcomeValue>
+                    </responseIf>
+                </responseCondition>
+            </responseElse>
+        </responseCondition>
+    </responseProcessing>
+</assessmentItem>

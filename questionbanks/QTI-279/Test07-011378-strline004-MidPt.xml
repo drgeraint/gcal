@@ -1,0 +1,609 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p1"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.imsglobal.org/xsd/imsqti_v2p1 imsqti_v2p1.xsd"
+	identifier="Test07-011378-strline004-MidPt" title="Find the mid-point of a line through two points" adaptive="true"
+	timeDependent="false" xmlns:m="http://www.w3.org/1998/Math/MathML">
+    <responseDeclaration identifier="RESPONSE1" cardinality="record"/>
+    <responseDeclaration identifier="RESPONSE21" baseType="float" cardinality="single"/>
+    <responseDeclaration identifier="RESPONSE22" baseType="float" cardinality="single"/>
+    <responseDeclaration identifier="RESPONSE3" baseType="float" cardinality="single"/>
+    <responseDeclaration identifier="RESPONSE" cardinality="record"/>
+    <responseDeclaration identifier="pInput" cardinality="single" baseType="string"/>
+    <responseDeclaration identifier="HINTREQUEST" cardinality="single" baseType="boolean"/>
+	<responseDeclaration identifier="SOLREQUEST" cardinality="single" baseType="boolean"/>
+	<outcomeDeclaration baseType="identifier" cardinality="multiple" identifier="FEEDBACK"/>
+	<outcomeDeclaration baseType="identifier" cardinality="single" identifier="EMPTY"/>
+	<outcomeDeclaration baseType="float" cardinality="single" identifier="SCORE" normalMaximum="2.0"
+		normalMinimum="0.0">
+		<defaultValue>
+			<value>0.0</value>
+		</defaultValue>
+	</outcomeDeclaration>
+	<outcomeDeclaration baseType="boolean" cardinality="single" identifier="seenSolution">
+		<defaultValue>
+			<value>false</value>
+		</defaultValue>
+	</outcomeDeclaration>
+	<outcomeDeclaration baseType="boolean" cardinality="single" identifier="seenHint">
+		<defaultValue>
+			<value>false</value>
+		</defaultValue>
+	</outcomeDeclaration>
+	<outcomeDeclaration baseType="identifier" cardinality="single" identifier="ASKHINT">
+		<defaultValue>
+			<value>askhint</value>
+		</defaultValue>
+	</outcomeDeclaration>
+	<outcomeDeclaration baseType="identifier" cardinality="single" identifier="ASKSOLUTION">
+		<defaultValue>
+			<value>asksolution</value>
+		</defaultValue>
+	</outcomeDeclaration>
+    <outcomeDeclaration identifier="oInput1" cardinality="record"/>
+    <outcomeDeclaration baseType="string" cardinality="single" identifier="oPInput1"/>
+    <outcomeDeclaration identifier="oInput" cardinality="record"/>
+    <outcomeDeclaration baseType="string" cardinality="single" identifier="oPInput"/>
+    <outcomeDeclaration identifier="oEq" cardinality="record"/>
+    <outcomeDeclaration identifier="oCoeffx" cardinality="record"/>
+	<outcomeDeclaration identifier="oSubst" cardinality="record"/>
+	<outcomeDeclaration identifier="oDummy" cardinality="single" baseType="boolean"/>
+    <outcomeDeclaration identifier="ob0" cardinality="single" baseType="boolean"/>
+    <outcomeDeclaration identifier="ob1" cardinality="single" baseType="boolean"/>
+    <outcomeDeclaration identifier="ob2" cardinality="single" baseType="boolean"/>
+    <outcomeDeclaration identifier="ob3" cardinality="single" baseType="boolean"/>
+    <outcomeDeclaration identifier="ob4" cardinality="single" baseType="boolean"/>
+    <outcomeDeclaration identifier="ob5" cardinality="single" baseType="boolean"/>
+    <outcomeDeclaration identifier="ob10" cardinality="single" baseType="boolean"/>
+    <outcomeDeclaration identifier="ob11" cardinality="single" baseType="boolean"/>
+    <outcomeDeclaration identifier="ob12" cardinality="single" baseType="boolean"/>
+    <outcomeDeclaration identifier="ob13" cardinality="single" baseType="boolean"/>
+    <outcomeDeclaration identifier="ob14" cardinality="single" baseType="boolean"/>
+    <outcomeDeclaration identifier="ob15" cardinality="single" baseType="boolean"/>
+    <templateDeclaration identifier="tDummy" cardinality="single" baseType="boolean"/>
+    <templateDeclaration identifier="tParts" cardinality="multiple" baseType="identifier"/>
+    <templateDeclaration identifier="sType" cardinality="single" baseType="string" mathVariable="true"/>
+    <templateDeclaration identifier="iA" cardinality="single" baseType="integer" mathVariable="true"/>
+    <templateDeclaration identifier="iB" cardinality="single" baseType="integer" mathVariable="true"/>
+    <templateDeclaration identifier="iC" cardinality="single" baseType="integer" mathVariable="true"/>
+    <templateDeclaration identifier="iPx" cardinality="single" baseType="integer" mathVariable="true"/>
+    <templateDeclaration identifier="iPy" cardinality="single" baseType="integer" mathVariable="true"/>
+    <templateDeclaration identifier="iQx" cardinality="single" baseType="integer" mathVariable="true"/>
+    <templateDeclaration identifier="iQy" cardinality="single" baseType="integer" mathVariable="true"/>
+    <templateDeclaration identifier="iLengthSq" cardinality="single" baseType="integer" mathVariable="true"/>
+    <templateDeclaration identifier="iType" cardinality="single" baseType="integer" mathVariable="false"/>
+    <templateDeclaration identifier="fMx" cardinality="single" baseType="float" mathVariable="true"/>
+    <templateDeclaration identifier="fMy" cardinality="single" baseType="float" mathVariable="true"/>
+    <templateDeclaration identifier="fLength" cardinality="single" baseType="float" mathVariable="true"/>
+    <templateDeclaration identifier="fScorePara" cardinality="single" baseType="float" mathVariable="false"/>
+    <templateDeclaration identifier="fScorePerp" cardinality="single" baseType="float" mathVariable="false"/>
+    <templateDeclaration identifier="mX" cardinality="record" mathVariable="true"/>
+    <templateDeclaration identifier="mPara" cardinality="record" mathVariable="true"/>
+    <templateDeclaration identifier="mY" cardinality="record" mathVariable="true"/>
+    <templateDeclaration identifier="mPerp" cardinality="record" mathVariable="true"/>
+    <templateDeclaration identifier="mGdt" cardinality="record" mathVariable="true"/>
+    <templateDeclaration identifier="mMx" cardinality="record" mathVariable="true"/>
+    <templateDeclaration identifier="mC" cardinality="record" mathVariable="true"/>
+    <templateDeclaration identifier="mSignC" cardinality="record" mathVariable="true"/>
+    <templateDeclaration identifier="mQues" cardinality="record" mathVariable="true"/>
+    <templateDeclaration identifier="mRHS" cardinality="record" mathVariable="true"/>
+    <templateDeclaration identifier="mAns" cardinality="record" mathVariable="true"/>
+    <templateProcessing>
+	    <setTemplateValue identifier="iQx">
+	        <product>
+	            <randomInteger min="1" max="5"/>
+	            <randomInteger min="-1" max="1" step="2"/>
+	        </product>
+	    </setTemplateValue>
+	    <setTemplateValue identifier="iQy">
+	        <product>
+	            <randomInteger min="1" max="5"/>
+	            <randomInteger min="-1" max="1" step="2"/>
+	        </product>
+	    </setTemplateValue>
+	    <setTemplateValue identifier="iPx">
+	        <product>
+	            <randomInteger min="1" max="5"/>
+	            <randomInteger min="-1" max="1" step="2"/>
+	        </product>
+	    </setTemplateValue>
+	    <setTemplateValue identifier="iPy">
+	        <product>
+	            <randomInteger min="1" max="5"/>
+	            <randomInteger min="-1" max="1" step="2"/>
+	        </product>
+	    </setTemplateValue>
+        <templateConstraint>
+            <and>
+                <not>
+                    <equal toleranceMode="exact">
+                        <variable identifier="iPx"/>
+                        <variable identifier="iQx"/>
+                    </equal>
+                </not>
+                <not>
+                    <equal toleranceMode="exact">
+                        <variable identifier="iPy"/>
+                        <variable identifier="iQy"/>
+                    </equal>
+                </not>
+            </and>
+        </templateConstraint>
+        <setTemplateValue identifier="fMx">
+            <roundTo roundingMode="decimalPlaces" figures="1">
+                <divide>
+                    <sum>
+                        <variable identifier="iPx"/>
+                        <variable identifier="iQx"/>
+                    </sum>
+                    <baseValue baseType="integer">2</baseValue>
+                </divide>
+            </roundTo>
+        </setTemplateValue>
+        <setTemplateValue identifier="fMy">
+            <roundTo roundingMode="decimalPlaces" figures="1">
+                <divide>
+                    <sum>
+                        <variable identifier="iPy"/>
+                        <variable identifier="iQy"/>
+                    </sum>
+                    <baseValue baseType="integer">2</baseValue>
+                </divide>
+            </roundTo>
+        </setTemplateValue>
+        <setCorrectResponse identifier="RESPONSE21">
+            <variable identifier="fMx"/>
+        </setCorrectResponse>
+        <setCorrectResponse identifier="RESPONSE22">
+            <variable identifier="fMy"/>
+        </setCorrectResponse>
+    </templateProcessing>
+	<itemBody>
+	    <div>
+	        <p>A line passes through the points P&#160;(<printedVariable identifier="iPx"/>, <printedVariable identifier="iPy"/>)&#160;and Q&#160;(<printedVariable identifier="iQx"/>, <printedVariable identifier="iQy"/>).</p>
+	        <p>Find the coordinates of the mid-point of PQ (to 1 decimal place)</p>
+	    </div>
+	        <div class="">
+	            <table class="">
+	                <tbody class="">
+	                    <tr class="">
+	                        <td class="">
+	                            Mid-point&#160;=&#160;
+	                        </td>
+	                        <td class="">
+	                            (<textEntryInteraction responseIdentifier="RESPONSE21" expectedLength="10"/>,<textEntryInteraction responseIdentifier="RESPONSE22" expectedLength="10"/>)
+	                        </td>
+	                        <td class="">
+	                            <div class="">
+	                                <feedbackInline id="feedbackInline2" identifier="INCORRECT21"
+	                                    outcomeIdentifier="FEEDBACK" showHide="show"> Your value for the x-coordinate of the mid-point is incorrect. </feedbackInline>
+	                            </div>
+	                            <div class="">
+	                                <feedbackInline id="feedbackInline2" identifier="SIGN21"
+	                                    outcomeIdentifier="FEEDBACK" showHide="show"> No, the value you entered for the x-coordinate of the mid-point has the wrong sign. </feedbackInline>
+	                            </div>
+	                            <div class="">
+	                                <feedbackInline id="feedbackInline3" identifier="CORRECT21"
+	                                    outcomeIdentifier="FEEDBACK" showHide="show"> Well done, that's the correct x-coordinate of the mid-point.
+	                                </feedbackInline>
+	                            </div>
+	                            <div class="">
+	                                <feedbackInline id="feedbackInline2" identifier="INCORRECT22"
+	                                    outcomeIdentifier="FEEDBACK" showHide="show"> Your value for the y-coordinate of the mid-point is incorrect. </feedbackInline>
+	                            </div>
+	                            <div class="">
+	                                <feedbackInline id="feedbackInline2" identifier="SIGN22"
+	                                    outcomeIdentifier="FEEDBACK" showHide="show"> No, the value you entered for the y-coordinate of the mid-point has the wrong sign. </feedbackInline>
+	                            </div>
+	                            <div class="">
+	                                <feedbackInline id="feedbackInline3" identifier="CORRECT22"
+	                                    outcomeIdentifier="FEEDBACK" showHide="show"> Well done, that's the correct y-coordinate of the mid-point.
+	                                </feedbackInline>
+	                            </div>
+	                        </td>
+	                    </tr>
+	                </tbody>
+	            </table>
+	        </div>
+	    <div class="">
+	        <feedbackInline id="feedbackInline3" identifier="NullInput"
+	            outcomeIdentifier="FEEDBACK" showHide="show"> Please enter a value in each box, then submit your answer.
+	        </feedbackInline>
+	    </div>
+	    
+	    <feedbackBlock id="feedbackBlock4" identifier="THREETRIES"
+	        outcomeIdentifier="FEEDBACK" showHide="show">
+	        <p> You have had three attempts at answering this question, so here is the
+	            solution: </p>
+	    </feedbackBlock>
+	    <feedbackBlock showHide="show" outcomeIdentifier="FEEDBACK" identifier="SOLUTION">
+	        <div>
+	            <m:math display="block" id="mathML22">
+	                <m:semantics>
+	                    <m:mtable>
+	                        <m:mtr>
+	                            <m:mtd columnalign="right">
+	                                <m:mtext>Mid-point </m:mtext>
+	                            </m:mtd>
+	                            <m:mtd columnalign="center">
+	                                <m:mo>=</m:mo>
+	                            </m:mtd>
+	                            <m:mtd columnalign="left">
+	                                <m:mo>(</m:mo>
+	                                <m:mfrac>
+	                                    <m:mrow>
+	                                        <m:msub>
+	                                            <m:mi>x</m:mi>
+	                                            <m:mn>2</m:mn>
+	                                        </m:msub>
+	                                        <m:mo>+</m:mo>
+	                                        <m:msub>
+	                                            <m:mi>x</m:mi>
+	                                            <m:mn>1</m:mn>
+	                                        </m:msub>
+	                                    </m:mrow>
+	                                    <m:mn>2</m:mn>
+	                                </m:mfrac>
+	                                <m:mo>,</m:mo>
+	                                <m:mfrac>
+	                                    <m:mrow>
+	                                        <m:msub>
+	                                            <m:mi>y</m:mi>
+	                                            <m:mn>2</m:mn>
+	                                        </m:msub>
+	                                        <m:mo>+</m:mo>
+	                                        <m:msub>
+	                                            <m:mi>y</m:mi>
+	                                            <m:mn>1</m:mn>
+	                                        </m:msub>
+	                                    </m:mrow>
+	                                    <m:mn>2</m:mn>
+	                                </m:mfrac>
+	                                <m:mo>)</m:mo>
+	                            </m:mtd>
+	                        </m:mtr>
+	                        <m:mtr>
+	                            <m:mtd columnalign="right"/>
+	                            <m:mtd columnalign="center">
+	                                <m:mo>=</m:mo>
+	                            </m:mtd>
+	                            <m:mtd columnalign="left">
+	                                <m:mo>(</m:mo>
+	                                <m:mfrac>
+	                                    <m:mrow>
+	                                        <m:mi>iQx</m:mi>
+	                                        <m:mo>+</m:mo>
+	                                        <m:mo>(</m:mo>
+	                                        <m:mi>iPx</m:mi>
+	                                        <m:mo>)</m:mo>
+	                                    </m:mrow>
+	                                    <m:mn>2</m:mn>
+	                                </m:mfrac>
+	                                <m:mo>,</m:mo>
+	                                <m:mfrac>
+	                                    <m:mrow>
+	                                        <m:mi>iQy</m:mi>
+	                                        <m:mo>+</m:mo>
+	                                        <m:mo>(</m:mo>
+	                                        <m:mi>iPy</m:mi>
+	                                        <m:mo>)</m:mo>
+	                                    </m:mrow>
+	                                    <m:mn>2</m:mn>
+	                                </m:mfrac>
+	                                <m:mo>)</m:mo>
+	                            </m:mtd>
+	                        </m:mtr>
+	                        <m:mtr>
+	                            <m:mtd columnalign="right"/>
+	                            <m:mtd columnalign="center">
+	                                <m:mo>=</m:mo>
+	                            </m:mtd>
+	                            <m:mtd columnalign="left">
+	                                <m:mo>(</m:mo>
+	                                <m:mi>fMx</m:mi>
+	                                <m:mo>,</m:mo>
+	                                <m:mi>fMy</m:mi>
+	                                <m:mo>)</m:mo>
+	                            </m:mtd>
+	                        </m:mtr>
+	                    </m:mtable>
+	                    <m:annotation encoding="SnuggleTeX">\begin{eqnarray*}
+	                        \mbox{Mid-point } &amp;=&amp;(\frac{x_2+x_1}{2},\frac{y_2+y_1}{2})\\
+	                        &amp;=&amp; (\frac{\qv{iQx}+(\qv{iPx})}{2},\frac{\qv{iQy})+(\qv{iPy}}{2})\\
+	                        &amp;=&amp; (\qv{fMx},\qv{fMy})
+	                        \end{eqnarray*}</m:annotation>
+	                </m:semantics>
+	            </m:math>
+	        </div>
+	    </feedbackBlock>
+		<feedbackBlock showHide="show" outcomeIdentifier="FEEDBACK" identifier="HINT">
+		    <div>
+		        <m:math display="block" id="mathML221">
+		            <m:semantics>
+		                <m:mrow>
+		                    <m:mtext>Mid-point </m:mtext>
+		                    <m:mo>=</m:mo>
+		                    <m:mo>(</m:mo>
+		                    <m:mfrac>
+		                        <m:mrow>
+		                            <m:msub>
+		                                <m:mi>x</m:mi>
+		                                <m:mn>2</m:mn>
+		                            </m:msub>
+		                            <m:mo>+</m:mo>
+		                            <m:msub>
+		                                <m:mi>x</m:mi>
+		                                <m:mn>1</m:mn>
+		                            </m:msub>
+		                        </m:mrow>
+		                        <m:mn>2</m:mn>
+		                    </m:mfrac>
+		                    <m:mo>,</m:mo>
+		                    <m:mfrac>
+		                        <m:mrow>
+		                            <m:msub>
+		                                <m:mi>y</m:mi>
+		                                <m:mn>2</m:mn>
+		                            </m:msub>
+		                            <m:mo>+</m:mo>
+		                            <m:msub>
+		                                <m:mi>y</m:mi>
+		                                <m:mn>1</m:mn>
+		                            </m:msub>
+		                        </m:mrow>
+		                        <m:mn>2</m:mn>
+		                    </m:mfrac>
+		                    <m:mo>)</m:mo>
+		                </m:mrow>
+		                <m:annotation encoding="SnuggleTeX">\[\mbox{Mid-point } = (\frac{x_2+x_1}{2},\frac{y_2+y_1}{2})\]</m:annotation>
+		            </m:semantics>
+		        </m:math>
+		    </div>
+		</feedbackBlock>
+		<feedbackBlock identifier="SEEN-SOLUTION" outcomeIdentifier="FEEDBACK" showHide="show">
+			<p> Since you have viewed the solution, your score for this question will be 0. </p>
+		</feedbackBlock>
+		<feedbackBlock identifier="SEEN-HINT" outcomeIdentifier="FEEDBACK" showHide="show">
+			<p> Since you have viewed the hint, your score for this question will be halved. </p>
+		</feedbackBlock>
+		<feedbackBlock identifier="askhint" outcomeIdentifier="ASKHINT" showHide="show">
+			<p>
+				<endAttemptInteraction id="endAttemptInteraction1" responseIdentifier="HINTREQUEST"
+					title="Show Hint"/>
+			</p>
+		</feedbackBlock>
+		<feedbackBlock identifier="asksolution" outcomeIdentifier="ASKSOLUTION" showHide="show">
+			<p>
+				<endAttemptInteraction id="endAttemptInteraction2" responseIdentifier="SOLREQUEST"
+					title="Show Solution"/>
+			</p>
+		</feedbackBlock>
+	</itemBody>
+	<responseProcessing>
+		<setOutcomeValue identifier="FEEDBACK">
+			<multiple>
+				<variable identifier="EMPTY"/>
+			</multiple>
+		</setOutcomeValue>
+		<responseCondition>
+			<responseIf>
+				<variable identifier="HINTREQUEST"/>
+				<setOutcomeValue identifier="FEEDBACK">
+					<multiple>
+						<baseValue baseType="identifier">HINT</baseValue>
+					</multiple>
+				</setOutcomeValue>
+				<setOutcomeValue identifier="seenHint">
+					<baseValue baseType="boolean">true</baseValue>
+				</setOutcomeValue>
+			</responseIf>
+			<responseElseIf>
+				<variable identifier="SOLREQUEST"/>
+				<setOutcomeValue identifier="FEEDBACK">
+					<multiple>
+						<baseValue baseType="identifier">SOLUTION</baseValue>
+					</multiple>
+				</setOutcomeValue>
+				<setOutcomeValue identifier="seenSolution">
+					<baseValue baseType="boolean">true</baseValue>
+				</setOutcomeValue>
+				<setOutcomeValue identifier="completionStatus">
+					<baseValue baseType="identifier">completed</baseValue>
+				</setOutcomeValue>
+				<setOutcomeValue identifier="ASKHINT">
+					<baseValue baseType="identifier">null</baseValue>
+				</setOutcomeValue>
+				<setOutcomeValue identifier="ASKSOLUTION">
+					<baseValue baseType="identifier">null</baseValue>
+				</setOutcomeValue>
+			</responseElseIf>
+		    <responseElse>
+		        <responseCondition>
+		            <responseIf>
+		                <or>
+		                    <isNull>
+		                        <variable identifier="RESPONSE21"/>
+		                    </isNull>
+		                    <isNull>
+		                        <variable identifier="RESPONSE22"/>
+		                    </isNull>
+		                </or>
+		                <setOutcomeValue identifier="FEEDBACK">
+		                    <multiple>
+		                        <baseValue baseType="identifier">NullInput</baseValue>
+		                    </multiple>
+		                </setOutcomeValue>
+		                <setOutcomeValue identifier="SCORE">
+		                    <baseValue baseType="float">0.0</baseValue>
+		                </setOutcomeValue>
+		            </responseIf>
+		            <responseElse>
+		                <!-- Mid-point -->
+		                <responseCondition>
+		                    <responseIf>
+		                        <equalRounded figures="1" roundingMode="decimalPlaces">
+		                            <variable identifier="RESPONSE21"/>
+		                            <variable identifier="fMx"/>
+		                        </equalRounded>
+		                        <setOutcomeValue identifier="FEEDBACK">
+		                            <multiple>
+		                                <variable identifier="FEEDBACK"/>
+		                                <baseValue baseType="identifier">CORRECT21</baseValue>
+		                            </multiple>
+		                        </setOutcomeValue>
+		                        <setOutcomeValue identifier="SCORE">
+		                            <sum>
+		                                <variable identifier="SCORE"/>
+		                                <baseValue baseType="float">1.0</baseValue>
+		                            </sum>
+		                        </setOutcomeValue>
+		                    </responseIf>
+		                    <responseElseIf>
+		                        <equalRounded figures="1" roundingMode="decimalPlaces">
+		                            <sum>
+		                                <variable identifier="RESPONSE21"/>
+		                                <variable identifier="fMx"/>
+		                            </sum>
+		                            <baseValue baseType="float">0.0</baseValue>
+		                        </equalRounded>
+		                        <setOutcomeValue identifier="FEEDBACK">
+		                            <multiple>
+		                                <variable identifier="FEEDBACK"/>
+		                                <baseValue baseType="identifier">SIGN21</baseValue>
+		                            </multiple>
+		                        </setOutcomeValue>
+		                        <setOutcomeValue identifier="SCORE">
+		                            <sum>
+		                                <variable identifier="SCORE"/>
+		                                <baseValue baseType="float">0.5</baseValue>
+		                            </sum>
+		                        </setOutcomeValue>
+		                    </responseElseIf>
+		                    <responseElse>
+		                        <setOutcomeValue identifier="FEEDBACK">
+		                            <multiple>
+		                                <variable identifier="FEEDBACK"/>
+		                                <baseValue baseType="identifier">INCORRECT21</baseValue>
+		                            </multiple>
+		                        </setOutcomeValue>
+		                        <setOutcomeValue identifier="SCORE">
+		                            <sum>
+		                                <variable identifier="SCORE"/>
+		                                <baseValue baseType="float">0.0</baseValue>
+		                            </sum>
+		                        </setOutcomeValue>
+		                    </responseElse>
+		                </responseCondition>
+		                <responseCondition>
+		                    <responseIf>
+		                        <equalRounded figures="1" roundingMode="decimalPlaces">
+		                            <variable identifier="RESPONSE22"/>
+		                            <variable identifier="fMy"/>
+		                        </equalRounded>
+		                        <setOutcomeValue identifier="FEEDBACK">
+		                            <multiple>
+		                                <variable identifier="FEEDBACK"/>
+		                                <baseValue baseType="identifier">CORRECT22</baseValue>
+		                            </multiple>
+		                        </setOutcomeValue>
+		                        <setOutcomeValue identifier="SCORE">
+		                            <sum>
+		                                <variable identifier="SCORE"/>
+		                                <baseValue baseType="float">1.0</baseValue>
+		                            </sum>
+		                        </setOutcomeValue>
+		                    </responseIf>
+		                    <responseElseIf>
+		                        <equalRounded figures="1" roundingMode="decimalPlaces">
+		                            <sum>
+		                                <variable identifier="RESPONSE22"/>
+		                                <variable identifier="fMy"/>
+		                            </sum>
+		                            <baseValue baseType="float">0.0</baseValue>
+		                        </equalRounded>
+		                        <setOutcomeValue identifier="FEEDBACK">
+		                            <multiple>
+		                                <variable identifier="FEEDBACK"/>
+		                                <baseValue baseType="identifier">SIGN22</baseValue>
+		                            </multiple>
+		                        </setOutcomeValue>
+		                        <setOutcomeValue identifier="SCORE">
+		                            <sum>
+		                                <variable identifier="SCORE"/>
+		                                <baseValue baseType="float">0.5</baseValue>
+		                            </sum>
+		                        </setOutcomeValue>
+		                    </responseElseIf>
+		                    <responseElse>
+		                        <setOutcomeValue identifier="FEEDBACK">
+		                            <multiple>
+		                                <variable identifier="FEEDBACK"/>
+		                                <baseValue baseType="identifier">INCORRECT22</baseValue>
+		                            </multiple>
+		                        </setOutcomeValue>
+		                        <setOutcomeValue identifier="SCORE">
+		                            <sum>
+		                                <variable identifier="SCORE"/>
+		                                <baseValue baseType="float">0.0</baseValue>
+		                            </sum>
+		                        </setOutcomeValue>
+		                    </responseElse>
+		                </responseCondition>
+		                <responseCondition>
+		                    <responseIf>
+		                        <variable identifier="seenSolution"/>
+		                        <setOutcomeValue identifier="FEEDBACK">
+		                            <multiple>
+		                                <variable identifier="FEEDBACK"/>
+		                                <baseValue baseType="identifier">SEEN-SOLUTION</baseValue>
+		                            </multiple>
+		                        </setOutcomeValue>
+		                        <setOutcomeValue identifier="SCORE">
+		                            <baseValue baseType="float">0.0</baseValue>
+		                        </setOutcomeValue>
+		                    </responseIf>
+		                    <responseElseIf>
+		                        <variable identifier="seenHint"/>
+		                        <setOutcomeValue identifier="FEEDBACK">
+		                            <multiple>
+		                                <variable identifier="FEEDBACK"/>
+		                                <baseValue baseType="identifier">SEEN-HINT</baseValue>
+		                            </multiple>
+		                        </setOutcomeValue>
+		                        <setOutcomeValue identifier="SCORE">
+		                            <divide>
+		                                <variable identifier="SCORE"/>
+		                                <baseValue baseType="float">2.0</baseValue>
+		                            </divide>
+		                        </setOutcomeValue>
+		                    </responseElseIf>
+		                </responseCondition>
+		                <responseCondition>
+		                    <responseIf>
+		                        <gt>
+		                            <variable identifier="numAttempts"/>
+		                            <baseValue baseType="integer">3</baseValue>
+		                        </gt>
+		                        <setOutcomeValue identifier="FEEDBACK">
+		                            <multiple>
+		                                <baseValue baseType="identifier">THREETRIES</baseValue>
+		                                <baseValue baseType="identifier">SOLUTION</baseValue>
+		                            </multiple>
+		                        </setOutcomeValue>
+		                        <setOutcomeValue identifier="completionStatus">
+		                            <baseValue baseType="identifier">completed</baseValue>
+		                        </setOutcomeValue>
+		                        <setOutcomeValue identifier="ASKHINT">
+		                            <baseValue baseType="identifier">null</baseValue>
+		                        </setOutcomeValue>
+		                        <setOutcomeValue identifier="ASKSOLUTION">
+		                            <baseValue baseType="identifier">null</baseValue>
+		                        </setOutcomeValue>
+		                    </responseIf>
+		                </responseCondition>
+		            </responseElse>
+		        </responseCondition>
+		    </responseElse>
+		</responseCondition>
+	</responseProcessing>
+</assessmentItem>

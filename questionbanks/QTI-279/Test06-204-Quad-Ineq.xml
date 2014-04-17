@@ -1,0 +1,926 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p1"
+    xmlns:m="http://www.w3.org/1998/Math/MathML"
+    xmlns:ma="http://mathassess.qtitools.org/xsd/mathassess"
+    xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" adaptive="true" identifier="Test06-204-Quad-Ineq"
+    timeDependent="false" title="Solve a quadratic inequation (1)" toolName="Mathqurate"
+    toolVersion="1.0"
+    xsi:schemaLocation="http://www.imsglobal.org/xsd/imsqti_v2p1 imsqti_v2p1.xsd http://mathassess.qtitools.org/xsd/mathassess mathassess.xsd">
+    <responseDeclaration baseType="identifier" cardinality="single" identifier="RESPONSE"/>
+    <responseDeclaration baseType="integer" cardinality="single" identifier="RESPONSE1"/>
+    <responseDeclaration baseType="integer" cardinality="single" identifier="RESPONSE2"/>
+    <responseDeclaration baseType="boolean" cardinality="single" identifier="HINTREQUEST"/>
+    <responseDeclaration baseType="boolean" cardinality="single" identifier="SOLREQUEST"/>
+    <outcomeDeclaration baseType="float" cardinality="single" identifier="SCORE" normalMaximum="2.0">
+        <defaultValue>
+            <value>0.0</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="float" cardinality="single" identifier="SCORE1">
+        <defaultValue>
+            <value>0.0</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="float" cardinality="single" identifier="SCORE21">
+        <defaultValue>
+            <value>0.0</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="float" cardinality="single" identifier="SCORE22">
+        <defaultValue>
+            <value>0.0</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="identifier" cardinality="multiple" identifier="FEEDBACK"/>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="seenSolution">
+        <defaultValue>
+            <value>false</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="seenHint">
+        <defaultValue>
+            <value>false</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="identifier" cardinality="multiple" identifier="BODY">
+        <defaultValue>
+            <value>part1</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="identifier" cardinality="single" identifier="EMPTY"/>
+    <outcomeDeclaration baseType="identifier" cardinality="single" identifier="ASKHINT">
+        <defaultValue>
+            <value>askhint</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="identifier" cardinality="single" identifier="ASKSOLUTION">
+        <defaultValue>
+            <value>asksolution</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="identifier" cardinality="multiple" identifier="SOLPARTS"/>
+    <templateDeclaration baseType="boolean" cardinality="single" identifier="keepRandomSeed"
+        mathVariable="false" paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iRandomSeed"
+        mathVariable="false" paramVariable="false"/>
+    <templateDeclaration baseType="boolean" cardinality="single" identifier="tdummy"
+        mathVariable="false" paramVariable="false"/>
+    <templateDeclaration baseType="identifier" cardinality="multiple" identifier="showSolParts"
+        mathVariable="false" paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iA" mathVariable="true"
+        paramVariable="false">
+        <defaultValue>
+            <value>0</value>
+        </defaultValue>
+    </templateDeclaration>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iB" mathVariable="true"
+        paramVariable="false">
+        <defaultValue>
+            <value>0</value>
+        </defaultValue>
+    </templateDeclaration>
+    <templateDeclaration cardinality="record" identifier="mQuad" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration cardinality="record" identifier="mF" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration cardinality="record" identifier="mF1" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration cardinality="record" identifier="mF2" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="ordered" identifier="iRandomState"
+        mathVariable="false" paramVariable="false"/>
+    <templateProcessing>
+        <setTemplateValue identifier="iA">
+            <randomInteger max="5" min="-5"/>
+        </setTemplateValue>
+        <templateCondition>
+            <templateIf>
+                <equal toleranceMode="exact">
+                    <variable identifier="iA"/>
+                    <baseValue baseType="integer">-5</baseValue>
+                </equal>
+                <setTemplateValue identifier="iB">
+                    <randomInteger max="5" min="-5"/>
+                </setTemplateValue>
+            </templateIf>
+            <templateElseIf>
+                <equal toleranceMode="exact">
+                    <variable identifier="iA"/>
+                    <baseValue baseType="integer">-4</baseValue>
+                </equal>
+                <setTemplateValue identifier="iB">
+                    <randomInteger max="5" min="-4"/>
+                </setTemplateValue>
+            </templateElseIf>
+            <templateElseIf>
+                <equal toleranceMode="exact">
+                    <variable identifier="iA"/>
+                    <baseValue baseType="integer">-3</baseValue>
+                </equal>
+                <setTemplateValue identifier="iB">
+                    <randomInteger max="5" min="-3"/>
+                </setTemplateValue>
+            </templateElseIf>
+            <templateElseIf>
+                <equal toleranceMode="exact">
+                    <variable identifier="iA"/>
+                    <baseValue baseType="integer">-2</baseValue>
+                </equal>
+                <setTemplateValue identifier="iB">
+                    <randomInteger max="5" min="-2"/>
+                </setTemplateValue>
+            </templateElseIf>
+            <templateElseIf>
+                <equal toleranceMode="exact">
+                    <variable identifier="iA"/>
+                    <baseValue baseType="integer">-1</baseValue>
+                </equal>
+                <setTemplateValue identifier="iB">
+                    <randomInteger max="5" min="-1"/>
+                </setTemplateValue>
+            </templateElseIf>
+            <templateElseIf>
+                <equal toleranceMode="exact">
+                    <variable identifier="iA"/>
+                    <baseValue baseType="integer">0</baseValue>
+                </equal>
+                <setTemplateValue identifier="iB">
+                    <randomInteger max="5" min="0"/>
+                </setTemplateValue>
+            </templateElseIf>
+            <templateElseIf>
+                <equal toleranceMode="exact">
+                    <variable identifier="iA"/>
+                    <baseValue baseType="integer">1</baseValue>
+                </equal>
+                <setTemplateValue identifier="iB">
+                    <randomInteger max="5" min="1"/>
+                </setTemplateValue>
+            </templateElseIf>
+            <templateElseIf>
+                <equal toleranceMode="exact">
+                    <variable identifier="iA"/>
+                    <baseValue baseType="integer">2</baseValue>
+                </equal>
+                <setTemplateValue identifier="iB">
+                    <randomInteger max="5" min="2"/>
+                </setTemplateValue>
+            </templateElseIf>
+            <templateElseIf>
+                <equal toleranceMode="exact">
+                    <variable identifier="iA"/>
+                    <baseValue baseType="integer">3</baseValue>
+                </equal>
+                <setTemplateValue identifier="iB">
+                    <randomInteger max="5" min="3"/>
+                </setTemplateValue>
+            </templateElseIf>
+            <templateElseIf>
+                <equal toleranceMode="exact">
+                    <variable identifier="iA"/>
+                    <baseValue baseType="integer">4</baseValue>
+                </equal>
+                <setTemplateValue identifier="iB">
+                    <randomInteger max="5" min="4"/>
+                </setTemplateValue>
+            </templateElseIf>
+            <templateElseIf>
+                <equal toleranceMode="exact">
+                    <variable identifier="iA"/>
+                    <baseValue baseType="integer">5</baseValue>
+                </equal>
+                <setTemplateValue identifier="iB">
+                    <baseValue baseType="integer">5</baseValue>
+                </setTemplateValue>
+            </templateElseIf>
+        </templateCondition>
+        <setTemplateValue identifier="tdummy">
+            <customOperator class="org.qtitools.mathassess.ScriptRule" ma:syntax="text/x-maxima">
+                <baseValue baseType="string"><![CDATA[
+
+ simp:true;
+
+ mF1:ev((x-iA),simp);
+
+ mF2:ev((x-iB),simp);
+
+ mF:ev(mF1*mF2,simp);
+
+ mQuad:ev(expand(mF),simp);
+
+ 
+
+]]></baseValue>
+            </customOperator>
+        </setTemplateValue>
+        <templateCondition>
+            <templateIf>
+                <equal toleranceMode="exact">
+                    <variable identifier="iA"/>
+                    <variable identifier="iB"/>
+                </equal>
+                <setCorrectResponse identifier="RESPONSE">
+                    <baseValue baseType="identifier">OPTION5</baseValue>
+                </setCorrectResponse>
+            </templateIf>
+            <templateElse>
+                <setCorrectResponse identifier="RESPONSE">
+                    <baseValue baseType="identifier">OPTION1</baseValue>
+                </setCorrectResponse>
+            </templateElse>
+        </templateCondition>
+        <setCorrectResponse identifier="RESPONSE1">
+            <variable identifier="iA"/>
+        </setCorrectResponse>
+        <setCorrectResponse identifier="RESPONSE2">
+            <variable identifier="iB"/>
+        </setCorrectResponse>
+    </templateProcessing>
+    <itemBody class="">
+        <div class="">
+            <p class="">Find the interval(s) of&#160;<m:math id="mathML0">
+                    <m:semantics>
+                        <m:mi>x</m:mi>
+                        <m:annotation encoding="SnuggleTeX">\[x\]</m:annotation>
+                    </m:semantics>
+            </m:math>&#160;for which&#160;<m:math id="mathML1">
+                    <m:semantics>
+                        <m:mrow>
+                            <m:mi>mQuad</m:mi>
+                            <m:mo>&lt;</m:mo>
+                            <m:mn>0</m:mn>
+                        </m:mrow>
+                        <m:annotation encoding="SnuggleTeX">\[\qv{mQuad}&lt;0\]</m:annotation>
+                    </m:semantics>
+                </m:math>
+            </p>
+            <feedbackBlock class="" id="feedbackBlock0" identifier="part1" outcomeIdentifier="BODY"
+                showHide="show">
+                <div class="">
+                    <p class=""/>
+                    <p class="">First, select the form of your answer.</p>
+                    <p class="">If the expression is true for all&#160;<m:math id="mathML2">
+                            <m:semantics>
+                                <m:mi>x</m:mi>
+                                <m:annotation encoding="SnuggleTeX">\[x\]</m:annotation>
+                            </m:semantics>
+                        </m:math>, the answer is ALL. If there are no solutions, the answer is
+                        NONE.</p>
+                    <choiceInteraction responseIdentifier="RESPONSE" shuffle="true" maxChoices="1">
+                        <simpleChoice identifier="OPTION1">
+                            <m:math id="mathML3">
+                                <m:semantics>
+                                    <m:mrow>
+                                        <m:mi>a</m:mi>
+                                        <m:mo>&lt;</m:mo>
+                                        <m:mi>x</m:mi>
+                                        <m:mo>&lt;</m:mo>
+                                        <m:mi>b</m:mi>
+                                    </m:mrow>
+                                    <m:annotation encoding="SnuggleTeX"
+                                        >\[a&lt;x&lt;b\]</m:annotation>
+                                </m:semantics>
+                            </m:math>
+                        </simpleChoice>
+                        <simpleChoice identifier="OPTION2">
+                            <m:math id="mathML4">
+                                <m:semantics>
+                                    <m:mrow>
+                                        <m:mi>x</m:mi>
+                                        <m:mo>&lt;</m:mo>
+                                        <m:mi>a</m:mi>
+                                    </m:mrow>
+                                    <m:annotation encoding="SnuggleTeX">\[x&lt;a\]</m:annotation>
+                                </m:semantics>
+                            </m:math> , <m:math id="mathML5">
+                                <m:semantics>
+                                    <m:mrow>
+                                        <m:mi>x</m:mi>
+                                        <m:mo>&gt;</m:mo>
+                                        <m:mi>b</m:mi>
+                                    </m:mrow>
+                                    <m:annotation encoding="SnuggleTeX">\[x&gt;b\]</m:annotation>
+                                </m:semantics>
+                            </m:math>
+                        </simpleChoice>
+                        <simpleChoice identifier="OPTION3">
+                            <m:math id="mathML6">
+                                <m:semantics>
+                                    <m:mrow>
+                                        <m:mi>x</m:mi>
+                                        <m:mo>=</m:mo>
+                                        <m:mi>a</m:mi>
+                                    </m:mrow>
+                                    <m:annotation encoding="SnuggleTeX">\[x=a\]</m:annotation>
+                                </m:semantics>
+                            </m:math>, <m:math id="mathML7">
+                                <m:semantics>
+                                    <m:mrow>
+                                        <m:mi>x</m:mi>
+                                        <m:mo>=</m:mo>
+                                        <m:mi>b</m:mi>
+                                    </m:mrow>
+                                    <m:annotation encoding="SnuggleTeX">\[x=b\]</m:annotation>
+                                </m:semantics>
+                            </m:math>
+                        </simpleChoice>
+                        <simpleChoice identifier="OPTION4" fixed="true"> ALL </simpleChoice>
+                        <simpleChoice identifier="OPTION5" fixed="true"> NONE </simpleChoice>
+                    </choiceInteraction>
+                </div>
+            </feedbackBlock>
+            <feedbackBlock id="feedbackBlock1" identifier="part2" outcomeIdentifier="BODY"
+                showHide="show">
+                <p class=""> </p>
+            </feedbackBlock>
+            <feedbackBlock id="feedbackBlock1" identifier="instructions2" outcomeIdentifier="BODY"
+                showHide="show">
+                <p class="">Complete the expression:</p>
+            </feedbackBlock>
+            <feedbackBlock id="feedbackBlock2" identifier="option1" outcomeIdentifier="BODY"
+                showHide="show">
+                <p class="">
+                    <textEntryInteraction expectedLength="20" id="textEntryInteraction0"
+                        label="mathInput" responseIdentifier="RESPONSE1"/>
+                    <m:math id="mathML03">
+                        <m:semantics>
+                            <m:mrow>
+                                <m:mo>&lt;</m:mo>
+                                <m:mi>x</m:mi>
+                                <m:mo>&lt;</m:mo>
+                            </m:mrow>
+                            <m:annotation encoding="SnuggleTeX">\[&lt;x&lt;\]</m:annotation>
+                        </m:semantics>
+                    </m:math>
+                    <textEntryInteraction expectedLength="20" id="textEntryInteraction1"
+                        label="mathInput" responseIdentifier="RESPONSE2"/>
+                </p>
+            </feedbackBlock>
+            <feedbackBlock id="feedbackBlock3" identifier="option2" outcomeIdentifier="BODY"
+                showHide="show">
+                <p class="">
+                    <m:math id="mathML04">
+                        <m:semantics>
+                            <m:mrow>
+                                <m:mi>x</m:mi>
+                                <m:mo>&lt;</m:mo>
+                            </m:mrow>
+                            <m:annotation encoding="SnuggleTeX">\[x&lt;\]</m:annotation>
+                        </m:semantics>
+                    </m:math>
+                    <textEntryInteraction expectedLength="20" id="textEntryInteraction2"
+                        label="mathInput" responseIdentifier="RESPONSE1"/> , <m:math id="mathML05">
+                        <m:semantics>
+                            <m:mrow>
+                                <m:mi>x</m:mi>
+                                <m:mo>&gt;</m:mo>
+                            </m:mrow>
+                            <m:annotation encoding="SnuggleTeX">\[x&gt;\]</m:annotation>
+                        </m:semantics>
+                    </m:math>
+                    <textEntryInteraction expectedLength="20" id="textEntryInteraction3"
+                        label="mathInput" responseIdentifier="RESPONSE2"/>
+                </p>
+            </feedbackBlock>
+            <feedbackBlock id="feedbackBlock4" identifier="option3" outcomeIdentifier="BODY"
+                showHide="show">
+                <p class="">
+                    <m:math id="mathML06">
+                        <m:semantics>
+                            <m:mrow>
+                                <m:mi>x</m:mi>
+                                <m:mo>=</m:mo>
+                            </m:mrow>
+                            <m:annotation encoding="SnuggleTeX">\[x=\]</m:annotation>
+                        </m:semantics>
+                    </m:math>
+                    <textEntryInteraction expectedLength="20" id="textEntryInteraction4"
+                        label="mathInput" responseIdentifier="RESPONSE1"/> , <m:math id="mathML07">
+                        <m:semantics>
+                            <m:mrow>
+                                <m:mi>x</m:mi>
+                                <m:mo>=</m:mo>
+                            </m:mrow>
+                            <m:annotation encoding="SnuggleTeX">\[x=\]</m:annotation>
+                        </m:semantics>
+                    </m:math><textEntryInteraction expectedLength="20" id="textEntryInteraction5"
+                        label="mathInput" responseIdentifier="RESPONSE2"/>
+                </p>
+            </feedbackBlock>
+            <feedbackBlock id="feedbackBlock5" identifier="option4" outcomeIdentifier="BODY"
+                showHide="show">
+                <p class="">You chose ALL. </p>
+            </feedbackBlock>
+            <feedbackBlock id="feedbackBlock05" identifier="option5" outcomeIdentifier="BODY"
+                showHide="show">
+                <p class="">You chose NONE. </p>
+            </feedbackBlock>
+            <feedbackBlock id="feedbackBlock005" identifier="option0" outcomeIdentifier="BODY"
+                showHide="show">
+                <p class="">Which choice???? </p>
+            </feedbackBlock>
+            <p class="">
+                <feedbackInline id="feedbackInline6" identifier="CORRECT0"
+                    outcomeIdentifier="FEEDBACK" showHide="show"> You chose the correct form of
+                    answer in Part 1. </feedbackInline>
+                <feedbackInline id="feedbackInline7" identifier="INCORRECT0"
+                    outcomeIdentifier="FEEDBACK" showHide="show"> You chose the wrong form of answer
+                    in Part 1. </feedbackInline>
+            </p>
+            <p class="">
+                <feedbackInline id="feedbackInline8" identifier="CORRECT1"
+                    outcomeIdentifier="FEEDBACK" showHide="show"> You have the first value
+                    correct.</feedbackInline>
+                <feedbackInline id="feedbackInline9" identifier="OTHER1"
+                    outcomeIdentifier="FEEDBACK" showHide="show"> Your first value is the correct
+                    second value.</feedbackInline>
+                <feedbackInline id="feedbackInline11" identifier="INCORRECT1"
+                    outcomeIdentifier="FEEDBACK" showHide="show"> Your first value is
+                    incorrect.</feedbackInline>
+            </p>
+            <p class="">
+                <feedbackInline id="feedbackInline12" identifier="CORRECT2"
+                    outcomeIdentifier="FEEDBACK" showHide="show"> You have the second value
+                    correct.</feedbackInline>
+                <feedbackInline id="feedbackInline13" identifier="OTHER2"
+                    outcomeIdentifier="FEEDBACK" showHide="show"> Your second value is the correct
+                    first value.</feedbackInline>
+                <feedbackInline id="feedbackInline14" identifier="INCORRECT1"
+                    outcomeIdentifier="FEEDBACK" showHide="show"> Your second value is
+                    incorrect.</feedbackInline>
+            </p>
+            <feedbackBlock id="feedbackBlock05" identifier="totalScore" outcomeIdentifier="FEEDBACK"
+                showHide="show">
+                <p>Your total score is <printedVariable identifier="SCORE"/>.</p>
+            </feedbackBlock>
+            <feedbackBlock id="feedbackBlock15" identifier="THREETRIES" outcomeIdentifier="FEEDBACK"
+                showHide="show">
+                <p>You have had three attempts at answering this question, so here is the
+                    solution:</p>
+            </feedbackBlock>
+            <feedbackBlock class="" id="feedbackBlock16" identifier="SOLUTION"
+                outcomeIdentifier="FEEDBACK" showHide="show">
+                <div class="">
+                    <m:math display="block" id="mathML8">
+                        <m:semantics>
+                            <m:mrow>
+                                <m:mi>mQuad</m:mi>
+                                <m:mo>=</m:mo>
+                                <m:mi>mF</m:mi>
+                            </m:mrow>
+                            <m:annotation encoding="SnuggleTeX"
+                                >\[\qv{mQuad}=\qv{mF}\]</m:annotation>
+                        </m:semantics>
+                    </m:math>
+                </div>
+                <div class="">so&#160;<m:math id="mathML9">
+                        <m:semantics>
+                            <m:mrow>
+                                <m:mi>mQuad</m:mi>
+                                <m:mo>=</m:mo>
+                                <m:mn>0</m:mn>
+                            </m:mrow>
+                            <m:annotation encoding="SnuggleTeX">\[\qv{mQuad}=0\]</m:annotation>
+                        </m:semantics>
+                </m:math>&#160;when&#160;<m:math id="mathML10">
+                        <m:semantics>
+                            <m:mrow>
+                                <m:mi>x</m:mi>
+                                <m:mo>=</m:mo>
+                                <m:mi>iA</m:mi>
+                            </m:mrow>
+                            <m:annotation encoding="SnuggleTeX">\[x=\qv{iA}\]</m:annotation>
+                        </m:semantics>
+                </m:math>&#160;and&#160;<m:math id="mathML11">
+                        <m:semantics>
+                            <m:mrow>
+                                <m:mi>x</m:mi>
+                                <m:mo>=</m:mo>
+                                <m:mi>iB</m:mi>
+                            </m:mrow>
+                            <m:annotation encoding="SnuggleTeX">\[x=\qv{iB}\]</m:annotation>
+                        </m:semantics>
+                    </m:math>.</div>
+                <div class="">Since the coefficient of&#160;<m:math id="mathML12">
+                        <m:semantics>
+                            <m:msup>
+                                <m:mi>x</m:mi>
+                                <m:mn>2</m:mn>
+                            </m:msup>
+                            <m:annotation encoding="SnuggleTeX">\[x^2\]</m:annotation>
+                        </m:semantics>
+                </m:math>&#160;is positive,&#160;<m:math id="mathML13">
+                        <m:semantics>
+                            <m:mrow>
+                                <m:mi>mQuad</m:mi>
+                                <m:mo>&lt;</m:mo>
+                                <m:mn>0</m:mn>
+                            </m:mrow>
+                            <m:annotation encoding="SnuggleTeX">\[\qv{mQuad}&lt;0\]</m:annotation>
+                        </m:semantics>
+                </m:math>&#160;between&#160;<m:math id="mathML14">
+                        <m:semantics>
+                            <m:mrow>
+                                <m:mi>x</m:mi>
+                                <m:mo>=</m:mo>
+                                <m:mi>iA</m:mi>
+                            </m:mrow>
+                            <m:annotation encoding="SnuggleTeX">\[x=\qv{iA}\]</m:annotation>
+                        </m:semantics>
+                </m:math>&#160;and&#160;<m:math id="mathML15">
+                        <m:semantics>
+                            <m:mrow>
+                                <m:mi>x</m:mi>
+                                <m:mo>=</m:mo>
+                                <m:mi>iB</m:mi>
+                            </m:mrow>
+                            <m:annotation encoding="SnuggleTeX">\[x=\qv{iB}\]</m:annotation>
+                        </m:semantics>
+                </m:math>, so the required interval is&#160;<m:math display="block" id="mathML16">
+                        <m:semantics>
+                            <m:mrow>
+                                <m:mi>iA</m:mi>
+                                <m:mo>&lt;</m:mo>
+                                <m:mi>x</m:mi>
+                                <m:mo>&lt;</m:mo>
+                                <m:mi>iB</m:mi>
+                            </m:mrow>
+                            <m:annotation encoding="SnuggleTeX"
+                                >\[\qv{iA}&lt;x&lt;\qv{iB}\]</m:annotation>
+                        </m:semantics>
+                    </m:math>
+                </div>
+            </feedbackBlock>
+            <feedbackBlock class="" id="feedbackBlock17" identifier="HINT"
+                outcomeIdentifier="FEEDBACK" showHide="show">
+                <div class="">
+                    <p class="">Sketch the graph of&#160;<m:math id="mathML17">
+                            <m:semantics>
+                                <m:mrow>
+                                    <m:mi>y</m:mi>
+                                    <m:mo>=</m:mo>
+                                    <m:mi>mQuad</m:mi>
+                                </m:mrow>
+                                <m:annotation encoding="SnuggleTeX">\[y=\qv{mQuad}\]</m:annotation>
+                            </m:semantics>
+                        </m:math>. Where is the graph above the x-axis and where is it below? Now
+                        find the required intervals</p>
+                </div>
+            </feedbackBlock>
+            <feedbackBlock id="feedbackBlock18" identifier="SEEN-SOLUTION"
+                outcomeIdentifier="FEEDBACK" showHide="show">
+                <p> Since you have viewed the solution, your score for this question will be 0. </p>
+            </feedbackBlock>
+            <feedbackBlock id="feedbackBlock19" identifier="SEEN-HINT" outcomeIdentifier="FEEDBACK"
+                showHide="show">
+                <p> Since you have viewed the hint, your score for this question will be halved.
+                </p>
+            </feedbackBlock>
+            <feedbackBlock id="feedbackBlock20" identifier="askhint" outcomeIdentifier="ASKHINT"
+                showHide="show">
+                <p>
+                    <endAttemptInteraction id="endAttemptInteraction6"
+                        responseIdentifier="HINTREQUEST" title="Show Hint"/>
+                </p>
+            </feedbackBlock>
+            <feedbackBlock id="feedbackBlock21" identifier="asksolution"
+                outcomeIdentifier="ASKSOLUTION" showHide="show">
+                <p>
+                    <endAttemptInteraction id="endAttemptInteraction7"
+                        responseIdentifier="SOLREQUEST" title="Show Solution"/>
+                </p>
+            </feedbackBlock>
+        </div>
+    </itemBody>
+    <responseProcessing>
+        <setOutcomeValue identifier="FEEDBACK">
+            <multiple>
+                <variable identifier="EMPTY"/>
+            </multiple>
+        </setOutcomeValue>
+        <responseCondition>
+            <responseIf>
+                <variable identifier="HINTREQUEST"/>
+                <setOutcomeValue identifier="FEEDBACK">
+                    <multiple>
+                        <baseValue baseType="identifier">HINT</baseValue>
+                    </multiple>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="seenHint">
+                    <baseValue baseType="boolean">true</baseValue>
+                </setOutcomeValue>
+            </responseIf>
+            <responseElseIf>
+                <variable identifier="SOLREQUEST"/>
+                <setOutcomeValue identifier="FEEDBACK">
+                    <multiple>
+                        <baseValue baseType="identifier">SOLUTION</baseValue>
+                    </multiple>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="seenSolution">
+                    <baseValue baseType="boolean">true</baseValue>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="completionStatus">
+                    <baseValue baseType="identifier">completed</baseValue>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="ASKHINT">
+                    <baseValue baseType="identifier">null</baseValue>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="ASKSOLUTION">
+                    <baseValue baseType="identifier">null</baseValue>
+                </setOutcomeValue>
+            </responseElseIf>
+            <responseElse>
+                <responseCondition>
+                    <responseIf>
+                        <member>
+                            <baseValue baseType="identifier">part1</baseValue>
+                            <variable identifier="BODY"/>
+                        </member>
+                        <responseCondition>
+                            <responseIf>
+                                <isNull>
+                                    <variable identifier="RESPONSE"/>
+                                </isNull>
+                                <setOutcomeValue identifier="SCORE1">
+                                    <baseValue baseType="float">0.0</baseValue>
+                                </setOutcomeValue>
+                            </responseIf>
+                            <responseElse>
+                                <setOutcomeValue identifier="BODY">
+                                    <multiple>
+                                        <baseValue baseType="identifier">part2</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <responseCondition>
+                                    <responseIf>
+                                        <match>
+                                            <variable identifier="RESPONSE"/>
+                                            <baseValue baseType="identifier">OPTION1</baseValue>
+                                        </match>
+                                        <setOutcomeValue identifier="BODY">
+                                            <multiple>
+                                                <variable identifier="BODY"/>
+                                                <baseValue baseType="identifier">instructions2</baseValue>
+                                                <baseValue baseType="identifier">option1</baseValue>
+                                            </multiple>
+                                        </setOutcomeValue>
+                                    </responseIf>
+                                    <responseElseIf>
+                                        <match>
+                                            <variable identifier="RESPONSE"/>
+                                            <baseValue baseType="identifier">OPTION2</baseValue>
+                                        </match>
+                                        <setOutcomeValue identifier="BODY">
+                                            <multiple>
+                                                <variable identifier="BODY"/>
+                                                <baseValue baseType="identifier">instructions2</baseValue>
+                                                <baseValue baseType="identifier">option2</baseValue>
+                                            </multiple>
+                                        </setOutcomeValue>
+                                    </responseElseIf>
+                                    <responseElseIf>
+                                        <match>
+                                            <variable identifier="RESPONSE"/>
+                                            <baseValue baseType="identifier">OPTION3</baseValue>
+                                        </match>
+                                        <setOutcomeValue identifier="BODY">
+                                            <multiple>
+                                                <variable identifier="BODY"/>
+                                                <baseValue baseType="identifier">instructions2</baseValue>
+                                                <baseValue baseType="identifier">option3</baseValue>
+                                            </multiple>
+                                        </setOutcomeValue>
+                                    </responseElseIf>
+                                    <responseElseIf>
+                                        <match>
+                                            <variable identifier="RESPONSE"/>
+                                            <baseValue baseType="identifier">OPTION4</baseValue>
+                                        </match>
+                                        <setOutcomeValue identifier="BODY">
+                                            <multiple>
+                                                <variable identifier="BODY"/>
+                                                <baseValue baseType="identifier">option4</baseValue>
+                                            </multiple>
+                                        </setOutcomeValue>
+                                    </responseElseIf>
+                                    <responseElseIf>
+                                        <match>
+                                            <variable identifier="RESPONSE"/>
+                                            <baseValue baseType="identifier">OPTION5</baseValue>
+                                        </match>
+                                        <setOutcomeValue identifier="BODY">
+                                            <multiple>
+                                                <variable identifier="BODY"/>
+                                                <baseValue baseType="identifier">option5</baseValue>
+                                            </multiple>
+                                        </setOutcomeValue>
+                                    </responseElseIf>
+                                    <responseElse>
+                                        <setOutcomeValue identifier="BODY">
+                                            <multiple>
+                                                <baseValue baseType="identifier">option0</baseValue>
+                                            </multiple>
+                                        </setOutcomeValue>
+                                    </responseElse>
+                                </responseCondition>
+                            </responseElse>
+                        </responseCondition>
+                    </responseIf>
+                    <responseElseIf>
+                        <member>
+                            <baseValue baseType="identifier">part2</baseValue>
+                            <variable identifier="BODY"/>
+                        </member>
+                        <responseCondition>
+                            <responseIf>
+                                <match>
+                                    <variable identifier="RESPONSE"/>
+                                    <correct identifier="RESPONSE"/>
+                                </match>
+                                <setOutcomeValue identifier="SCORE1">
+                                    <baseValue baseType="float">1.0</baseValue>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <baseValue baseType="identifier">CORRECT0</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <responseCondition>
+                                    <responseIf>
+                                        <match>
+                                            <variable identifier="RESPONSE"/>
+                                            <baseValue baseType="identifier">OPTION5</baseValue>
+                                        </match>
+                                        <setOutcomeValue identifier="SCORE21">
+                                            <baseValue baseType="float">0.5</baseValue>
+                                        </setOutcomeValue>
+                                        <setOutcomeValue identifier="SCORE22">
+                                            <baseValue baseType="float">0.5</baseValue>
+                                        </setOutcomeValue>
+                                    </responseIf>
+                                </responseCondition>
+                            </responseIf>
+                            <responseElse>
+                                <setOutcomeValue identifier="SCORE1">
+                                    <baseValue baseType="float">0.0</baseValue>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <baseValue baseType="identifier">INCORRECT0</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                            </responseElse>
+                        </responseCondition>
+                        <responseCondition>
+                            <responseIf>
+                                <isNull>
+                                    <variable identifier="RESPONSE1"/>
+                                </isNull>
+                                <setOutcomeValue identifier="SCORE21">
+                                    <baseValue baseType="float">0</baseValue>
+                                </setOutcomeValue>
+                            </responseIf>
+                            <responseElse>
+                                <responseCondition>
+                                    <responseIf>
+                                        <match>
+                                            <variable identifier="RESPONSE1"/>
+                                            <correct identifier="RESPONSE1"/>
+                                        </match>
+                                        <setOutcomeValue identifier="SCORE21">
+                                            <baseValue baseType="float">0.5</baseValue>
+                                        </setOutcomeValue>
+                                        <setOutcomeValue identifier="FEEDBACK">
+                                            <multiple>
+                                                <variable identifier="FEEDBACK"/>
+                                                <baseValue baseType="identifier">CORRECT1</baseValue>
+                                            </multiple>
+                                        </setOutcomeValue>
+                                    </responseIf>
+                                    <responseElse>
+                                        <setOutcomeValue identifier="SCORE21">
+                                            <baseValue baseType="float">0.0</baseValue>
+                                        </setOutcomeValue>
+                                        <setOutcomeValue identifier="FEEDBACK">
+                                            <multiple>
+                                                <variable identifier="FEEDBACK"/>
+                                                <baseValue baseType="identifier">INCORRECT1</baseValue>
+                                            </multiple>
+                                        </setOutcomeValue>
+                                    </responseElse>
+                                </responseCondition>
+                            </responseElse>
+                        </responseCondition>
+                        <responseCondition>
+                            <responseIf>
+                                <isNull>
+                                    <variable identifier="RESPONSE2"/>
+                                </isNull>
+                                <setOutcomeValue identifier="SCORE22">
+                                    <baseValue baseType="float">0</baseValue>
+                                </setOutcomeValue>
+                            </responseIf>
+                            <responseElse>
+                                <responseCondition>
+                                    <responseIf>
+                                        <match>
+                                            <variable identifier="RESPONSE2"/>
+                                            <correct identifier="RESPONSE2"/>
+                                        </match>
+                                        <setOutcomeValue identifier="SCORE22">
+                                            <baseValue baseType="float">0.5</baseValue>
+                                        </setOutcomeValue>
+                                        <setOutcomeValue identifier="FEEDBACK">
+                                            <multiple>
+                                                <variable identifier="FEEDBACK"/>
+                                                <baseValue baseType="identifier">CORRECT2</baseValue>
+                                            </multiple>
+                                        </setOutcomeValue>
+                                    </responseIf>
+                                    <responseElse>
+                                        <setOutcomeValue identifier="SCORE22">
+                                            <baseValue baseType="float">0.0</baseValue>
+                                        </setOutcomeValue>
+                                        <setOutcomeValue identifier="FEEDBACK">
+                                            <multiple>
+                                                <variable identifier="FEEDBACK"/>
+                                                <baseValue baseType="identifier">INCORRECT2</baseValue>
+                                            </multiple>
+                                        </setOutcomeValue>
+                                    </responseElse>
+                                </responseCondition>
+                            </responseElse>
+                        </responseCondition>
+                        <setOutcomeValue identifier="SCORE">
+                            <sum>
+                                <variable identifier="SCORE1"/>
+                                <variable identifier="SCORE21"/>
+                                <variable identifier="SCORE22"/>
+                            </sum>
+                        </setOutcomeValue>
+                        <setOutcomeValue identifier="FEEDBACK">
+                            <multiple>
+                                <variable identifier="FEEDBACK"/>
+                                <baseValue baseType="identifier">totalScore</baseValue>
+                            </multiple>
+                        </setOutcomeValue>
+                    </responseElseIf>
+                </responseCondition>
+                <responseCondition>
+                    <responseIf>
+                        <variable identifier="seenSolution"/>
+                        <setOutcomeValue identifier="FEEDBACK">
+                            <multiple>
+                                <variable identifier="FEEDBACK"/>
+                                <baseValue baseType="identifier">SEEN-SOLUTION</baseValue>
+                            </multiple>
+                        </setOutcomeValue>
+                        <setOutcomeValue identifier="SCORE">
+                            <baseValue baseType="float">0.0</baseValue>
+                        </setOutcomeValue>
+                    </responseIf>
+                    <responseElseIf>
+                        <variable identifier="seenHint"/>
+                        <setOutcomeValue identifier="FEEDBACK">
+                            <multiple>
+                                <variable identifier="FEEDBACK"/>
+                                <baseValue baseType="identifier">SEEN-HINT</baseValue>
+                            </multiple>
+                        </setOutcomeValue>
+                        <setOutcomeValue identifier="SCORE">
+                            <divide>
+                                <variable identifier="SCORE"/>
+                                <baseValue baseType="float">2.0</baseValue>
+                            </divide>
+                        </setOutcomeValue>
+                    </responseElseIf>
+                </responseCondition>
+                <responseCondition>
+                    <responseIf>
+                        <gt>
+                            <variable identifier="numAttempts"/>
+                            <baseValue baseType="integer">3</baseValue>
+                        </gt>
+                        <setOutcomeValue identifier="FEEDBACK">
+                            <multiple>
+                                <baseValue baseType="identifier">THREETRIES</baseValue>
+                                <baseValue baseType="identifier">SOLUTION</baseValue>
+                            </multiple>
+                        </setOutcomeValue>
+                        <setOutcomeValue identifier="completionStatus">
+                            <baseValue baseType="identifier">completed</baseValue>
+                        </setOutcomeValue>
+                        <setOutcomeValue identifier="ASKHINT">
+                            <baseValue baseType="identifier">null</baseValue>
+                        </setOutcomeValue>
+                        <setOutcomeValue identifier="ASKSOLUTION">
+                            <baseValue baseType="identifier">null</baseValue>
+                        </setOutcomeValue>
+                    </responseIf>
+                </responseCondition>
+            </responseElse>
+        </responseCondition>
+    </responseProcessing>
+</assessmentItem>

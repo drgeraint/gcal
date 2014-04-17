@@ -1,0 +1,511 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Element! --><!-- assessmentItem element! --><assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p1"
+                xmlns:m="http://www.w3.org/1998/Math/MathML"
+                xmlns:xi="http://www.w3.org/2001/XInclude"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                toolName="Uniqurate"
+                toolVersion="1.0"
+                xml:lang="en"
+                adaptive="true"
+                timeDependent="false"
+                identifier="mela012028"
+                title="Calculate golfer's score"
+                xsi:schemaLocation="http://www.imsglobal.org/xsd/imsqti_v2p1 imsqti_v2p1.xsd">
+    <responseDeclaration identifier="RESPONSE" baseType="integer" cardinality="single"/>
+    <responseDeclaration identifier="HINTREQUEST" baseType="boolean" cardinality="single"/>
+    <responseDeclaration identifier="SOLREQUEST" baseType="boolean" cardinality="single"/>
+    <outcomeDeclaration identifier="seenSolution" baseType="boolean" cardinality="single">
+      <defaultValue>
+         <value>false</value>
+      </defaultValue>
+   </outcomeDeclaration>
+   <outcomeDeclaration identifier="seenHint" baseType="boolean" cardinality="single">
+      <defaultValue>
+         <value>false</value>
+      </defaultValue>
+   </outcomeDeclaration>
+   <outcomeDeclaration identifier="ASKSOLUTION" baseType="identifier" cardinality="single">
+      <defaultValue>
+         <value>asksolution</value>
+      </defaultValue>
+   </outcomeDeclaration>
+   <outcomeDeclaration identifier="ASKHINT" baseType="identifier" cardinality="single">
+      <defaultValue>
+         <value>askhint</value>
+      </defaultValue>
+   </outcomeDeclaration>
+   <outcomeDeclaration identifier="EMPTY" baseType="identifier" cardinality="single"/>
+   <outcomeDeclaration identifier="FEEDBACK" baseType="identifier" cardinality="multiple"/>
+    <outcomeDeclaration identifier="SOLPARTS" baseType="identifier" cardinality="multiple"/>
+    <outcomeDeclaration identifier="SCORE" baseType="float" cardinality="single" normalMaximum="2.0"
+                       normalMinimum="0">
+        <defaultValue>
+         <value>0</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <templateDeclaration identifier="showSolParts" baseType="identifier" cardinality="multiple"
+                        mathVariable="false"
+                        paramVariable="false">
+        <defaultValue>
+         <value>NONE</value>
+        </defaultValue>
+    </templateDeclaration>
+    <templateDeclaration identifier="fullMarks" baseType="float" cardinality="single"
+                        mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="fMarksOff" baseType="float" cardinality="single"
+                        mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="iQparts" baseType="integer" cardinality="single"
+                        mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="iQrequire" baseType="integer" cardinality="single"
+                        mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="iQtype" baseType="integer" cardinality="single" mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="iQnumnums" baseType="integer" cardinality="single"
+                        mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="iA" baseType="integer" cardinality="single" mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="iB" baseType="integer" cardinality="single" mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="iC" baseType="integer" cardinality="single" mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="iD" baseType="integer" cardinality="single" mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="iSc1" baseType="integer" cardinality="single" mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="iSc2" baseType="integer" cardinality="single" mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="iSc3" baseType="integer" cardinality="single" mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="iSc4" baseType="integer" cardinality="single" mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="iTot" baseType="integer" cardinality="single" mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="sA" baseType="string" cardinality="single" mathVariable="true"
+                        paramVariable="false"/>
+    <!-- add calculation variables here -->
+    <templateDeclaration identifier="sDqbuff" baseType="string" cardinality="single" mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="iAns" baseType="integer" cardinality="single" mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="oQuesL" cardinality="record" mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="oQuesR" cardinality="record" mathVariable="true"
+                        paramVariable="false"/>
+    <templateDeclaration identifier="tSpacers" baseType="identifier" cardinality="multiple" mathVariable="false"
+        paramVariable="false"/>
+    <templateProcessing>
+        <setTemplateValue identifier="fullMarks">
+         <baseValue baseType="float">2.0</baseValue>
+        </setTemplateValue>
+        <setTemplateValue identifier="fMarksOff">
+         <baseValue baseType="float">2.0</baseValue>
+        </setTemplateValue>
+        <setTemplateValue identifier="iQparts">
+         <baseValue baseType="integer">1</baseValue>
+        </setTemplateValue>
+        <setTemplateValue identifier="iQrequire">
+         <baseValue baseType="integer">5</baseValue>
+        </setTemplateValue>
+        <setTemplateValue identifier="iQtype">
+         <baseValue baseType="integer">0</baseValue>
+        </setTemplateValue>
+        <setTemplateValue identifier="iQnumnums">
+         <baseValue baseType="integer">1</baseValue>
+        </setTemplateValue>
+        
+      <!--define  local
+ii,2
+define  end
+**
+1again
+calc    a = randi(-9,9)
+branch  a==0;1again;x
+*
+calc    b = randi(1,9)
+calc    c = a+b
+**
+loop    ii = 1,qparts
+.       setc    ii-2;qansi(QMAXNUMS * (ii-1) + 1) = c
+.       packzc  ii-2;qbuff(ii);;<%#s,c>%#
+endloop
+-->
+
+
+        <!-- randomisation calculation in here -->
+        <setTemplateValue identifier="iA">
+         <randomInteger min="1" max="9"/>
+        </setTemplateValue>
+        <setTemplateValue identifier="iB">
+         <randomInteger min="1" max="9"/>
+        </setTemplateValue>
+        <setTemplateValue identifier="iC">
+         <randomInteger min="1" max="9"/>
+        </setTemplateValue>
+        <setTemplateValue identifier="iD">
+         <randomInteger min="1" max="9"/>
+        </setTemplateValue>
+        <setTemplateValue identifier="iSc1">    
+         <subtract>
+            <variable identifier="iA"/>
+            <baseValue baseType="integer">3</baseValue>
+         </subtract>
+        </setTemplateValue>
+        <setTemplateValue identifier="iSc2">    
+         <subtract>
+            <variable identifier="iB"/>
+            <baseValue baseType="integer">3</baseValue>
+         </subtract>
+        </setTemplateValue>
+        <setTemplateValue identifier="iSc3">    
+         <subtract>
+            <variable identifier="iC"/>
+            <baseValue baseType="integer">3</baseValue>
+         </subtract>
+        </setTemplateValue>
+        <setTemplateValue identifier="iSc4">    
+         <subtract>
+            <variable identifier="iD"/>
+            <baseValue baseType="integer">3</baseValue>
+         </subtract>
+        </setTemplateValue>
+         <setTemplateValue identifier="iTot">    
+         <sum>
+            <variable identifier="iSc1"/>
+            <variable identifier="iSc2"/>
+            <variable identifier="iSc3"/>
+            <variable identifier="iSc4"/>
+         </sum>
+        </setTemplateValue>
+         <!-- randomisation calculation in here -->
+        <templateCondition>
+            <templateIf>
+                <gte>
+                    <variable identifier="iSc1"/>
+                    <baseValue baseType="integer">0</baseValue>
+                </gte>
+                <setTemplateValue identifier="tSpacers">
+                    <multiple>
+                        <baseValue baseType="identifier">col1</baseValue>
+                    </multiple>
+                </setTemplateValue>
+            </templateIf>
+        </templateCondition>
+        <templateCondition>
+            <templateIf>
+                <gte>
+                    <variable identifier="iSc2"/>
+                    <baseValue baseType="integer">0</baseValue>
+                </gte>
+                <setTemplateValue identifier="tSpacers">
+                    <multiple>
+                        <variable identifier="tSpacers"/>
+                        <baseValue baseType="identifier">col2</baseValue>
+                    </multiple>
+                </setTemplateValue>
+            </templateIf>
+        </templateCondition>
+        <templateCondition>
+            <templateIf>
+                <gte>
+                    <variable identifier="iSc3"/>
+                    <baseValue baseType="integer">0</baseValue>
+                </gte>
+                <setTemplateValue identifier="tSpacers">
+                    <multiple>
+                        <variable identifier="tSpacers"/>
+                        <baseValue baseType="identifier">col3</baseValue>
+                    </multiple>
+                </setTemplateValue>
+            </templateIf>
+        </templateCondition>
+        <templateCondition>
+            <templateIf>
+                <gte>
+                    <variable identifier="iSc4"/>
+                    <baseValue baseType="integer">0</baseValue>
+                </gte>
+                <setTemplateValue identifier="tSpacers">
+                    <multiple>
+                        <variable identifier="tSpacers"/>
+                        <baseValue baseType="identifier">col4</baseValue>
+                    </multiple>
+                </setTemplateValue>
+            </templateIf>
+        </templateCondition>
+        
+        
+        <setCorrectResponse identifier="RESPONSE">
+         <variable identifier="iTot"/>	
+        </setCorrectResponse>
+        
+    </templateProcessing>
+    <itemBody>
+        <div class="">
+         <p>A golfer counts his scores over and under for four holes.</p>
+      </div>
+        <table>
+         <tbody>
+            <tr>
+               <td>Hole</td>
+                <td>&#160;1&#160;</td>
+                <td>&#160;2&#160;</td>
+                <td>&#160;3&#160;</td>
+                <td>&#160;4&#160;</td>
+            </tr>
+            <tr>
+               <td>No. of Strokes</td>
+               <td>
+                   &#160;<printedVariable identifier="iA"/>
+               </td>
+               <td>
+                   &#160;<printedVariable identifier="iB"/>
+               </td>
+               <td>
+                   &#160;<printedVariable identifier="iC"/>
+               </td>
+               <td>
+                   &#160;<printedVariable identifier="iD"/>
+               </td>
+            </tr>
+            <tr>
+               <td>Score</td>
+               <td>
+                   <templateInline templateIdentifier="tSpacers" identifier="col1" showHide="show">&#160;</templateInline><printedVariable identifier="iSc1"/>
+               </td>
+               <td>
+                   <templateInline templateIdentifier="tSpacers" identifier="col2" showHide="show">&#160;</templateInline><printedVariable identifier="iSc2"/>
+               </td>
+               <td>
+                   <templateInline templateIdentifier="tSpacers" identifier="col3" showHide="show">&#160;</templateInline><printedVariable identifier="iSc3"/>
+               </td>
+               <td>
+                   <templateInline templateIdentifier="tSpacers" identifier="col4" showHide="show">&#160;</templateInline><printedVariable identifier="iSc4"/>
+               </td>
+            </tr>
+        </tbody>
+      </table>      
+        <div class="">
+         <p>Find the golfer's total score over the four holes.</p>
+      </div>
+        <div class="EQCENTRE">
+         <table>
+            <tbody>    
+               <tr>        
+                  <td>           The golfers score was          </td>        
+                  <td>              =          </td>        
+                  <td>            
+                     <textEntryInteraction expectedLength="10" responseIdentifier="RESPONSE"/>        
+                  </td>        
+                  <td>             
+                     <feedbackInline class="PART_OK" identifier="CORRECT" outcomeIdentifier="FEEDBACK"
+                                     showHide="show"> Correct </feedbackInline>            
+                      <feedbackInline class="PART_NO" identifier="WRONG" outcomeIdentifier="FEEDBACK" showHide="show"> Incorrect </feedbackInline>        
+                  </td>    
+               </tr>
+            </tbody>
+         </table>
+      </div>
+        <feedbackBlock identifier="SOLUTION" outcomeIdentifier="FEEDBACK" showHide="show">
+	        <div class="EQCENTRE">
+            <table>
+               <tbody>         
+                  <tr>            
+                     <td>                The Golfers scores were <printedVariable identifier="iSc1"/>, <printedVariable identifier="iSc2"/>, <printedVariable identifier="iSc3"/> and <printedVariable identifier="iSc4"/>            
+                     </td>         
+                  </tr>         
+                  <tr>            
+                     <td>                    (<printedVariable identifier="iSc1"/>) + (<printedVariable identifier="iSc2"/>) + (<printedVariable identifier="iSc3"/>) + (<printedVariable identifier="iSc4"/>)               </td>                                   
+                     <td>            </td>            
+                     <td>                  =              </td>            
+                     <td>                
+                        <printedVariable identifier="iTot"/>            
+                     </td>        
+                  </tr>         
+               </tbody>
+            </table>
+         </div>
+		    </feedbackBlock>
+        <feedbackBlock identifier="HINT" outcomeIdentifier="FEEDBACK" showHide="show">
+         <p>(Hint not available)</p>
+      </feedbackBlock>
+        <div class="">
+         <feedbackBlock showHide="show" identifier="askhint" outcomeIdentifier="ASKHINT">
+            <p>
+               <endAttemptInteraction responseIdentifier="HINTREQUEST" title="Show Hint"/>
+            </p>
+         </feedbackBlock>
+         <feedbackBlock showHide="show" identifier="asksolution" outcomeIdentifier="ASKSOLUTION">
+            <p>
+               <endAttemptInteraction responseIdentifier="SOLREQUEST" title="Show Solution"/>
+            </p>
+         </feedbackBlock>
+      </div>
+    </itemBody>
+    <!-- Needs these variables:
+    <responseDeclaration baseType="integer" cardinality="single" identifier="RESPONSE" />
+	<responseDeclaration identifier="HINTREQUEST" cardinality="single" baseType="boolean"/>
+	<responseDeclaration identifier="SOLREQUEST" cardinality="single" baseType="boolean"/>
+    
+	<outcomeDeclaration baseType="identifier" cardinality="multiple" identifier="FEEDBACK"/>
+	<outcomeDeclaration baseType="identifier" cardinality="single" identifier="EMPTY"/>
+	<outcomeDeclaration baseType="float" cardinality="single" identifier="SCORE" normalMaximum="2.0"
+		normalMinimum="0.0">
+		<defaultValue>
+			<value>0.0</value>
+		</defaultValue>
+	</outcomeDeclaration>
+	<outcomeDeclaration baseType="boolean" cardinality="single" identifier="seenSolution">
+		<defaultValue>
+			<value>false</value>
+		</defaultValue>
+	</outcomeDeclaration>
+	<outcomeDeclaration baseType="boolean" cardinality="single" identifier="seenHint">
+		<defaultValue>
+			<value>false</value>
+		</defaultValue>
+	</outcomeDeclaration>
+	<outcomeDeclaration baseType="identifier" cardinality="single" identifier="ASKHINT">
+		<defaultValue>
+			<value>askhint</value>
+		</defaultValue>
+	</outcomeDeclaration>
+	<outcomeDeclaration baseType="identifier" cardinality="single" identifier="ASKSOLUTION">
+		<defaultValue>
+			<value>asksolution</value>
+		</defaultValue>
+	</outcomeDeclaration>
+    
+    Feedback for CORRECT and WRONG may be provided, these are associated with the maths input box.
+    Feedback THREETRIES, SEEN-SOLUTION and SEEN-HINT are needed to explain why the question
+    shows the solution after 3 tries and changes SCORE to zero if the Solution was seen 
+    or SCORE/2 if the Hint was used.
+--><responseProcessing xsi:schemaLocation="http://www.imsglobal.org/xsd/imsqti_v2p1 imsqti_v2p1.xsd">
+      <setOutcomeValue identifier="FEEDBACK">
+        <multiple>
+            <variable identifier="EMPTY"/>
+        </multiple>
+      </setOutcomeValue>
+      <responseCondition>
+        <responseIf>
+            <variable identifier="HINTREQUEST"/>
+            <setOutcomeValue identifier="FEEDBACK">
+                <multiple>
+                    <baseValue baseType="identifier">HINT</baseValue>
+                </multiple>
+            </setOutcomeValue>
+            <setOutcomeValue identifier="seenHint">
+                <baseValue baseType="boolean">true</baseValue>
+            </setOutcomeValue>
+        </responseIf>
+        <responseElseIf>
+            <variable identifier="SOLREQUEST"/>
+            <setOutcomeValue identifier="FEEDBACK">
+                <multiple>
+                    <baseValue baseType="identifier">SOLUTION</baseValue>
+                </multiple>
+            </setOutcomeValue>
+            <setOutcomeValue identifier="SOLPARTS">
+                <variable identifier="showSolParts"/>
+            </setOutcomeValue>
+            <setOutcomeValue identifier="seenSolution">
+                <baseValue baseType="boolean">true</baseValue>
+            </setOutcomeValue>
+            <setOutcomeValue identifier="completionStatus">
+                <baseValue baseType="identifier">completed</baseValue>
+            </setOutcomeValue>
+            <setOutcomeValue identifier="ASKHINT">
+                <baseValue baseType="identifier">null</baseValue>
+            </setOutcomeValue>
+            <setOutcomeValue identifier="ASKSOLUTION">
+                <baseValue baseType="identifier">null</baseValue>
+            </setOutcomeValue>
+        </responseElseIf>
+        <responseElse>
+            <responseCondition>
+                <responseIf>
+                    <equal toleranceMode="exact">
+                        <variable identifier="RESPONSE"/>
+                        <correct identifier="RESPONSE"/>
+                    </equal>
+                    <setOutcomeValue identifier="FEEDBACK">
+                        <multiple>
+                            <baseValue baseType="identifier">CORRECT</baseValue>
+                        </multiple>
+                    </setOutcomeValue>
+                    <setOutcomeValue identifier="SCORE">
+                        <variable identifier="fullMarks"/>
+                    </setOutcomeValue>
+                </responseIf>
+                <responseElse>
+                    <setOutcomeValue identifier="FEEDBACK">
+                        <multiple>
+                            <baseValue baseType="identifier">WRONG</baseValue>
+                        </multiple>
+                    </setOutcomeValue>
+                    <setOutcomeValue identifier="SCORE">
+                        <baseValue baseType="float">0</baseValue>
+                    </setOutcomeValue>
+                </responseElse>
+            </responseCondition>
+            <responseCondition>
+                <responseIf>
+                    <gt>
+                        <variable identifier="numAttempts"/>
+                        <baseValue baseType="integer">                                            3                                        </baseValue>
+                    </gt>
+                    <setOutcomeValue identifier="FEEDBACK">
+                        <multiple>
+                            <baseValue baseType="identifier">THREETRIES</baseValue>
+                            <baseValue baseType="identifier">SOLUTION</baseValue>
+                        </multiple>
+                    </setOutcomeValue>
+                    <setOutcomeValue identifier="completionStatus">
+                        <baseValue baseType="identifier">completed</baseValue>
+                    </setOutcomeValue>
+                    <setOutcomeValue identifier="ASKHINT">
+                        <baseValue baseType="identifier">null</baseValue>
+                    </setOutcomeValue>
+                    <setOutcomeValue identifier="ASKSOLUTION">
+                        <baseValue baseType="identifier">null</baseValue>
+                    </setOutcomeValue>
+                </responseIf>
+            </responseCondition>
+            <responseCondition>
+                <responseIf>
+                    <variable identifier="seenSolution"/>
+                    <setOutcomeValue identifier="FEEDBACK">
+                        <multiple>
+                            <variable identifier="FEEDBACK"/>
+                            <baseValue baseType="identifier">SEEN-SOLUTION</baseValue>
+                        </multiple>
+                    </setOutcomeValue>
+                    <setOutcomeValue identifier="SCORE">
+                        <baseValue baseType="float">0.0</baseValue>
+                    </setOutcomeValue>
+                </responseIf>
+                <responseElseIf>
+                    <variable identifier="seenHint"/>
+                    <setOutcomeValue identifier="FEEDBACK">
+                        <multiple>
+                            <variable identifier="FEEDBACK"/>
+                            <baseValue baseType="identifier">SEEN-HINT</baseValue>
+                        </multiple>
+                    </setOutcomeValue>
+                    <setOutcomeValue identifier="SCORE">
+                        <divide>
+                            <variable identifier="SCORE"/>
+                            <baseValue baseType="float">2.0</baseValue>
+                        </divide>
+                    </setOutcomeValue>
+                </responseElseIf>
+            </responseCondition>
+        </responseElse>
+      </responseCondition>
+   </responseProcessing>
+</assessmentItem>

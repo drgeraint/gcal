@@ -1,0 +1,498 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p1"
+    xmlns:lip="http://www.imsglobal.org/xsd/imslip_v1p0"
+    xmlns:m="http://www.w3.org/1998/Math/MathML"
+    xmlns:ma="http://mathassess.qtitools.org/xsd/mathassess"
+    xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" adaptive="true"
+    identifier="Test08-Logs-005-evalChangeBase" timeDependent="false"
+    title="Find log_a(b) using the change of base formula" toolName="Mathqurate"
+    toolVersion="1.0" xml:lang="en"
+    xsi:schemaLocation="http://www.imsglobal.org/xsd/imsqti_v2p1 imsqti_v2p1.xsd http://mathassess.qtitools.org/xsd/mathassess mathassess.xsd">
+    <responseDeclaration baseType="float" cardinality="single" identifier="RESPONSE"/>
+    <responseDeclaration baseType="string" cardinality="single" identifier="sInput"/>
+    <responseDeclaration baseType="boolean" cardinality="single" identifier="HINTREQUEST"/>
+    <responseDeclaration baseType="boolean" cardinality="single" identifier="SOLREQUEST"/>
+    <outcomeDeclaration baseType="float" cardinality="single" identifier="SCORE" normalMaximum="2.0"
+        normalMinimum="0.0">
+        <defaultValue>
+            <value>0.0</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="seenSolution">
+        <defaultValue>
+            <value>false</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="seenHint">
+        <defaultValue>
+            <value>false</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="identifier" cardinality="single" identifier="ASKHINT">
+        <defaultValue>
+            <value>askhint</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="identifier" cardinality="single" identifier="ASKSOLUTION">
+        <defaultValue>
+            <value>asksolution</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="identifier" cardinality="multiple" identifier="FEEDBACK"/>
+    <outcomeDeclaration baseType="identifier" cardinality="single" identifier="EMPTY"/>
+    <templateDeclaration baseType="boolean" cardinality="single" identifier="tDummy"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iA" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="float" cardinality="single" identifier="fB" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="float" cardinality="single" identifier="fB0" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="float" cardinality="single" identifier="fD" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="float" cardinality="single" identifier="fD0" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="float" cardinality="single" identifier="fLogTenA"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="float" cardinality="single" identifier="fLogTenD"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="float" cardinality="single" identifier="fLogTenA0"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="float" cardinality="single" identifier="fLogTenD0"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="float" cardinality="single" identifier="fB1" mathVariable="true"
+        paramVariable="false"/>
+    <templateProcessing>
+        <setTemplateValue identifier="iA">
+            <randomInteger max="7" min="2"/>
+        </setTemplateValue>
+        <setTemplateValue identifier="fB0">
+            <randomFloat max="5" min="0.01"/>
+        </setTemplateValue>
+        <setTemplateValue identifier="fB">
+            <divide>
+                <round>
+                    <product>
+                        <variable identifier="fB0"/>
+                        <baseValue baseType="integer">100</baseValue>
+                    </product>
+                </round>
+                <baseValue baseType="integer">100</baseValue>
+            </divide>
+        </setTemplateValue>
+        <setTemplateValue identifier="fD0">
+            <power>
+                <variable identifier="iA"/>
+                <variable identifier="fB"/>
+            </power>
+        </setTemplateValue>
+        <setTemplateValue identifier="fD">
+            <divide>
+                <round>
+                    <product>
+                        <variable identifier="fD0"/>
+                        <baseValue baseType="integer">100</baseValue>
+                    </product>
+                </round>
+                <baseValue baseType="integer">100</baseValue>
+            </divide>
+        </setTemplateValue>
+        <setTemplateValue identifier="tDummy">
+            <customOperator class="org.qtitools.mathassess.ScriptRule" ma:syntax="text/x-maxima">
+                <baseValue baseType="string"><![CDATA[
+
+ simp:true;
+
+ fLogTenA0:ev(log(iA)/log(10),numer,simp);
+
+ fLogTenD0:ev(log(fD)/log(10),numer,simp);
+
+ 
+
+]]></baseValue>
+            </customOperator>
+        </setTemplateValue>
+        <setTemplateValue identifier="fB">
+            <divide>
+                <round>
+                    <product>
+                        <variable identifier="fB0"/>
+                        <baseValue baseType="integer">100</baseValue>
+                    </product>
+                </round>
+                <baseValue baseType="integer">100</baseValue>
+            </divide>
+        </setTemplateValue>
+        <setTemplateValue identifier="fD">
+            <divide>
+                <round>
+                    <product>
+                        <variable identifier="fD0"/>
+                        <baseValue baseType="integer">100</baseValue>
+                    </product>
+                </round>
+                <baseValue baseType="integer">100</baseValue>
+            </divide>
+        </setTemplateValue>
+        <setTemplateValue identifier="fLogTenA">
+            <divide>
+                <round>
+                    <product>
+                        <variable identifier="fLogTenA0"/>
+                        <baseValue baseType="integer">1000</baseValue>
+                    </product>
+                </round>
+                <baseValue baseType="integer">1000</baseValue>
+            </divide>
+        </setTemplateValue>
+        <setTemplateValue identifier="fLogTenD">
+            <divide>
+                <round>
+                    <product>
+                        <variable identifier="fLogTenD0"/>
+                        <baseValue baseType="integer">1000</baseValue>
+                    </product>
+                </round>
+                <baseValue baseType="integer">1000</baseValue>
+            </divide>
+        </setTemplateValue>
+        <setTemplateValue identifier="fB1">
+            <divide>
+                <variable identifier="fLogTenD"/>
+                <variable identifier="fLogTenA"/>
+            </divide>
+        </setTemplateValue>
+        <setCorrectResponse identifier="RESPONSE">
+            <variable identifier="fB"/>
+        </setCorrectResponse>
+    </templateProcessing>
+    <itemBody class="">
+        <div class="">
+            <p class="">Find the value of<m:math display="block" id="mathML0">
+                    <m:semantics>
+                        <m:mrow>
+                            <m:msub>
+                                <m:mi>log</m:mi>
+                                <m:mi>iA</m:mi>
+                            </m:msub>
+                            <m:mfenced close=")" open="(">
+                                <m:mi>fD</m:mi>
+                            </m:mfenced>
+                        </m:mrow>
+                        <m:annotation encoding="SnuggleTeX"
+                            >\[\log_{\qv{iA}}({\qv{fD}})\]</m:annotation>
+                    </m:semantics>
+                </m:math>
+            </p>
+            <div class="">
+                <table class="">
+                    <tbody class="">
+                        <tr class="">
+                            <td class="">
+                                <textEntryInteraction expectedLength="20" id="textEntryInteraction0"
+                                    label="mathInput" responseIdentifier="RESPONSE"/>
+                                <p>Enter your answer to 2 decimal places.</p>
+                            </td>
+                            <td class="">
+                                <feedbackInline id="feedbackInline0" identifier="CORRECT"
+                                    outcomeIdentifier="FEEDBACK" showHide="show"> Correct </feedbackInline>
+                                <feedbackInline id="feedbackInline1" identifier="INCORRECT"
+                                    outcomeIdentifier="FEEDBACK" showHide="show"> Incorrect
+                                </feedbackInline>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <feedbackBlock id="feedbackBlock2" identifier="THREETRIES" outcomeIdentifier="FEEDBACK"
+                showHide="show">
+                <p>You have had three attempts at answering this question, so here is the
+                    solution:</p>
+            </feedbackBlock>
+            <feedbackBlock class="" id="feedbackBlock3" identifier="SOLUTION"
+                outcomeIdentifier="FEEDBACK" showHide="show">
+                <div class="">
+                    <p class="">Use the change of base formula:<m:math display="block" id="mathML1">
+                            <m:semantics>
+                                <m:mrow>
+                                    <m:msub>
+                                        <m:mi>log</m:mi>
+                                        <m:mi>a</m:mi>
+                                    </m:msub>
+                                    <m:mi>x</m:mi>
+                                    <m:mo>=</m:mo>
+                                    <m:mfrac>
+                                        <m:mrow>
+                                            <m:msub>
+                                                <m:mi>log</m:mi>
+                                                <m:mn>10</m:mn>
+                                            </m:msub>
+                                            <m:mi>x</m:mi>
+                                        </m:mrow>
+                                        <m:mrow>
+                                            <m:msub>
+                                                <m:mi>log</m:mi>
+                                                <m:mn>10</m:mn>
+                                            </m:msub>
+                                            <m:mi>a</m:mi>
+                                        </m:mrow>
+                                    </m:mfrac>
+                                </m:mrow>
+                                <m:annotation encoding="SnuggleTeX"
+                                    >\[\log_ax=\frac{\log_{10}x}{\log_{10}a}\]</m:annotation>
+                            </m:semantics>
+                        </m:math>
+                    </p>
+                    <p class="">Which becomes in this case</p>
+                    <m:math display="block" id="mathML2">
+                        <m:semantics>
+                            <m:mtable>
+                                <m:mtr>
+                                    <m:mtd columnalign="right">
+                                        <m:msub>
+                                            <m:mi>log</m:mi>
+                                            <m:mi>iA</m:mi>
+                                        </m:msub>
+                                        <m:mi>fD</m:mi>
+                                    </m:mtd>
+                                    <m:mtd columnalign="center">
+                                        <m:mo>=</m:mo>
+                                    </m:mtd>
+                                    <m:mtd columnalign="left">
+                                        <m:mfrac>
+                                            <m:mrow>
+                                                <m:msub>
+                                                  <m:mi>log</m:mi>
+                                                  <m:mn>10</m:mn>
+                                                </m:msub>
+                                                <m:mi>fD</m:mi>
+                                            </m:mrow>
+                                            <m:mrow>
+                                                <m:msub>
+                                                  <m:mi>log</m:mi>
+                                                  <m:mn>10</m:mn>
+                                                </m:msub>
+                                                <m:mi>iA</m:mi>
+                                            </m:mrow>
+                                        </m:mfrac>
+                                    </m:mtd>
+                                </m:mtr>
+                                <m:mtr>
+                                    <m:mtd columnalign="right"/>
+                                    <m:mtd columnalign="center">
+                                        <m:mo>=</m:mo>
+                                    </m:mtd>
+                                    <m:mtd columnalign="left">
+                                        <m:mfrac>
+                                            <m:mi>fLogTenD</m:mi>
+                                            <m:mi>fLogTenA</m:mi>
+                                        </m:mfrac>
+                                    </m:mtd>
+                                </m:mtr>
+                                <m:mtr>
+                                    <m:mtd columnalign="right"/>
+                                    <m:mtd columnalign="center">
+                                        <m:mo>=</m:mo>
+                                    </m:mtd>
+                                    <m:mtd columnalign="left">
+                                        <m:mi>fB</m:mi>
+                                    </m:mtd>
+                                </m:mtr>
+                            </m:mtable>
+                            <m:annotation encoding="SnuggleTeX"
+                                >\begin{eqnarray*}\log_{\qv{iA}}\qv{fD}&amp;=&amp;\frac{\log_{10}\qv{fD}}{\log_{10}\qv{iA}}\\&amp;=&amp;\frac{\qv{fLogTenD}}{\qv{fLogTenA}}\\&amp;=&amp;\qv{fB}\end{eqnarray*}</m:annotation>
+                        </m:semantics>
+                    </m:math>
+                </div>
+            </feedbackBlock>
+            <feedbackBlock class="" id="feedbackBlock4" identifier="HINT"
+                outcomeIdentifier="FEEDBACK" showHide="show">
+                <div class="">
+                    <p class="">Use the change of base formula:</p>
+                    <p class="">
+                        <m:math display="block" id="mathML3">
+                            <m:semantics>
+                                <m:mrow>
+                                    <m:msub>
+                                        <m:mi>log</m:mi>
+                                        <m:mi>a</m:mi>
+                                    </m:msub>
+                                    <m:mi>x</m:mi>
+                                    <m:mo>=</m:mo>
+                                    <m:mfrac>
+                                        <m:mrow>
+                                            <m:msub>
+                                                <m:mi>log</m:mi>
+                                                <m:mn>10</m:mn>
+                                            </m:msub>
+                                            <m:mi>x</m:mi>
+                                        </m:mrow>
+                                        <m:mrow>
+                                            <m:msub>
+                                                <m:mi>log</m:mi>
+                                                <m:mn>10</m:mn>
+                                            </m:msub>
+                                            <m:mi>a</m:mi>
+                                        </m:mrow>
+                                    </m:mfrac>
+                                </m:mrow>
+                                <m:annotation encoding="SnuggleTeX"
+                                    >\[\log_ax=\frac{\log_{10}x}{\log_{10}a}\]</m:annotation>
+                            </m:semantics>
+                        </m:math>
+                    </p>
+                </div>
+            </feedbackBlock>
+            <feedbackBlock id="feedbackBlock5" identifier="SEEN-SOLUTION"
+                outcomeIdentifier="FEEDBACK" showHide="show">
+                <p> Since you have viewed the solution, your score for this question will be 0. </p>
+            </feedbackBlock>
+            <feedbackBlock id="feedbackBlock6" identifier="SEEN-HINT" outcomeIdentifier="FEEDBACK"
+                showHide="show">
+                <p> Since you have viewed the hint, your score for this question will be halved.
+                </p>
+            </feedbackBlock>
+            <feedbackBlock id="feedbackBlock7" identifier="askhint" outcomeIdentifier="ASKHINT"
+                showHide="show">
+                <p>
+                    <endAttemptInteraction id="endAttemptInteraction1"
+                        responseIdentifier="HINTREQUEST" title="Show Hint"/>
+                </p>
+            </feedbackBlock>
+            <feedbackBlock id="feedbackBlock8" identifier="asksolution"
+                outcomeIdentifier="ASKSOLUTION" showHide="show">
+                <p>
+                    <endAttemptInteraction id="endAttemptInteraction2"
+                        responseIdentifier="SOLREQUEST" title="Show Solution"/>
+                </p>
+            </feedbackBlock>
+        </div>
+    </itemBody>
+    <responseProcessing>
+        <setOutcomeValue identifier="FEEDBACK">
+            <multiple>
+                <variable identifier="EMPTY"/>
+            </multiple>
+        </setOutcomeValue>
+        <responseCondition>
+            <responseIf>
+                <variable identifier="HINTREQUEST"/>
+                <setOutcomeValue identifier="FEEDBACK">
+                    <multiple>
+                        <baseValue baseType="identifier">HINT</baseValue>
+                    </multiple>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="seenHint">
+                    <baseValue baseType="boolean">true</baseValue>
+                </setOutcomeValue>
+            </responseIf>
+            <responseElseIf>
+                <variable identifier="SOLREQUEST"/>
+                <setOutcomeValue identifier="seenSolution">
+                    <baseValue baseType="boolean">true</baseValue>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="FEEDBACK">
+                    <multiple>
+                        <baseValue baseType="identifier">SOLUTION</baseValue>
+                    </multiple>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="completionStatus">
+                    <baseValue baseType="identifier">completed</baseValue>
+                </setOutcomeValue>
+            </responseElseIf>
+            <responseElse>
+                <responseCondition>
+                    <responseIf>
+                        <isNull>
+                            <variable identifier="RESPONSE"/>
+                        </isNull>
+                        <setOutcomeValue identifier="SCORE">
+                            <baseValue baseType="float">0.0</baseValue>
+                        </setOutcomeValue>
+                    </responseIf>
+                    <responseElse>
+                        <responseCondition>
+                            <responseIf>
+                                <equalRounded figures="2" roundingMode="decimalPlaces">
+                                    <variable identifier="RESPONSE"/>
+                                    <variable identifier="fB"/>
+                                </equalRounded>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <baseValue baseType="identifier">CORRECT</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="SCORE">
+                                    <baseValue baseType="float">2.0</baseValue>
+                                </setOutcomeValue>
+                                <responseCondition>
+                                    <responseIf>
+                                        <variable identifier="seenSolution"/>
+                                        <setOutcomeValue identifier="FEEDBACK">
+                                            <multiple>
+                                                <variable identifier="FEEDBACK"/>
+                                                <baseValue baseType="identifier">SEEN-SOLUTION</baseValue>
+                                            </multiple>
+                                        </setOutcomeValue>
+                                        <setOutcomeValue identifier="SCORE">
+                                            <baseValue baseType="float">0.0</baseValue>
+                                        </setOutcomeValue>
+                                    </responseIf>
+                                    <responseElseIf>
+                                        <variable identifier="seenHint"/>
+                                        <setOutcomeValue identifier="FEEDBACK">
+                                            <multiple>
+                                                <variable identifier="FEEDBACK"/>
+                                                <baseValue baseType="identifier">SEEN-HINT</baseValue>
+                                            </multiple>
+                                        </setOutcomeValue>
+                                        <setOutcomeValue identifier="SCORE">
+                                            <divide>
+                                                <variable identifier="SCORE"/>
+                                                <baseValue baseType="float">2.0</baseValue>
+                                            </divide>
+                                        </setOutcomeValue>
+                                    </responseElseIf>
+                                </responseCondition>
+                            </responseIf>
+                            <responseElse>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <baseValue baseType="identifier">INCORRECT</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="SCORE">
+                                    <baseValue baseType="float">0.0</baseValue>
+                                </setOutcomeValue>
+                            </responseElse>
+                        </responseCondition>
+                        <responseCondition>
+                            <responseIf>
+                                <gt>
+                                    <variable identifier="numAttempts"/>
+                                    <baseValue baseType="integer">3</baseValue>
+                                </gt>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <baseValue baseType="identifier">THREETRIES</baseValue>
+                                        <baseValue baseType="identifier">SOLUTION</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="completionStatus">
+                                    <baseValue baseType="identifier">completed</baseValue>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="ASKHINT">
+                                    <baseValue baseType="identifier">null</baseValue>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="ASKSOLUTION">
+                                    <baseValue baseType="identifier">null</baseValue>
+                                </setOutcomeValue>
+                            </responseIf>
+                        </responseCondition>
+                    </responseElse>
+                </responseCondition>
+            </responseElse>
+        </responseCondition>
+    </responseProcessing>
+</assessmentItem>

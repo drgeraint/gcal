@@ -1,0 +1,687 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p1"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.imsglobal.org/xsd/imsqti_v2p1 imsqti_v2p1.xsd	http://mathassess.qtitools.org/xsd/mathassess mathassess.xsd"
+	identifier="Test07-011127-strline003-line2Pts" title="Find the equation of a line through two points" adaptive="true"
+	timeDependent="false" xmlns:m="http://www.w3.org/1998/Math/MathML"
+	xmlns:ma="http://mathassess.qtitools.org/xsd/mathassess">
+    <responseDeclaration identifier="RESPONSE" cardinality="record"/>
+    <responseDeclaration identifier="pInput" cardinality="single" baseType="string"/>
+    <responseDeclaration identifier="HINTREQUEST" cardinality="single" baseType="boolean"/>
+	<responseDeclaration identifier="SOLREQUEST" cardinality="single" baseType="boolean"/>
+	<outcomeDeclaration baseType="identifier" cardinality="multiple" identifier="FEEDBACK"/>
+	<outcomeDeclaration baseType="identifier" cardinality="single" identifier="EMPTY"/>
+	<outcomeDeclaration baseType="float" cardinality="single" identifier="SCORE" normalMaximum="2.0"
+		normalMinimum="0.0">
+		<defaultValue>
+			<value>0.0</value>
+		</defaultValue>
+	</outcomeDeclaration>
+	<outcomeDeclaration baseType="boolean" cardinality="single" identifier="seenSolution">
+		<defaultValue>
+			<value>false</value>
+		</defaultValue>
+	</outcomeDeclaration>
+	<outcomeDeclaration baseType="boolean" cardinality="single" identifier="seenHint">
+		<defaultValue>
+			<value>false</value>
+		</defaultValue>
+	</outcomeDeclaration>
+	<outcomeDeclaration baseType="identifier" cardinality="single" identifier="ASKHINT">
+		<defaultValue>
+			<value>askhint</value>
+		</defaultValue>
+	</outcomeDeclaration>
+	<outcomeDeclaration baseType="identifier" cardinality="single" identifier="ASKSOLUTION">
+		<defaultValue>
+			<value>asksolution</value>
+		</defaultValue>
+	</outcomeDeclaration>
+    <outcomeDeclaration identifier="oInput1" cardinality="record"/>
+    <outcomeDeclaration baseType="string" cardinality="single" identifier="oPInput1"/>
+    <outcomeDeclaration identifier="oInput2" cardinality="record"/>
+    <outcomeDeclaration baseType="string" cardinality="single" identifier="oPInput2"/>
+    <outcomeDeclaration identifier="oEq" cardinality="record"/>
+    <outcomeDeclaration identifier="oCoeffx" cardinality="record"/>
+	<outcomeDeclaration identifier="oSubst" cardinality="record"/>
+	<outcomeDeclaration identifier="oDummy" cardinality="single" baseType="boolean"/>
+    <outcomeDeclaration identifier="ob20" cardinality="single" baseType="boolean"/>
+    <outcomeDeclaration identifier="ob21" cardinality="single" baseType="boolean"/>
+    <outcomeDeclaration identifier="ob22" cardinality="single" baseType="boolean"/>
+    <outcomeDeclaration identifier="ob23" cardinality="single" baseType="boolean"/>
+    <outcomeDeclaration identifier="ob24" cardinality="single" baseType="boolean"/>
+    <outcomeDeclaration identifier="ob25" cardinality="single" baseType="boolean"/>
+    <outcomeDeclaration identifier="ob10" cardinality="single" baseType="boolean"/>
+    <outcomeDeclaration identifier="ob11" cardinality="single" baseType="boolean"/>
+    <outcomeDeclaration identifier="ob12" cardinality="single" baseType="boolean"/>
+    <outcomeDeclaration identifier="ob13" cardinality="single" baseType="boolean"/>
+    <outcomeDeclaration identifier="ob14" cardinality="single" baseType="boolean"/>
+    <outcomeDeclaration identifier="ob15" cardinality="single" baseType="boolean"/>
+    <templateDeclaration identifier="tDummy" cardinality="single" baseType="boolean"/>
+    <templateDeclaration identifier="tParts" cardinality="multiple" baseType="identifier"/>
+    <templateDeclaration identifier="sType" cardinality="single" baseType="string" mathVariable="true"/>
+    <templateDeclaration identifier="iA" cardinality="single" baseType="integer" mathVariable="true"/>
+    <templateDeclaration identifier="iB" cardinality="single" baseType="integer" mathVariable="true"/>
+    <templateDeclaration identifier="iC" cardinality="single" baseType="integer" mathVariable="true"/>
+    <templateDeclaration identifier="iPx" cardinality="single" baseType="integer" mathVariable="true"/>
+    <templateDeclaration identifier="iPy" cardinality="single" baseType="integer" mathVariable="true"/>
+    <templateDeclaration identifier="iQx" cardinality="single" baseType="integer" mathVariable="true"/>
+    <templateDeclaration identifier="iQy" cardinality="single" baseType="integer" mathVariable="true"/>
+    <templateDeclaration identifier="iType" cardinality="single" baseType="integer" mathVariable="false"/>
+    <templateDeclaration identifier="fScorePara" cardinality="single" baseType="float" mathVariable="false"/>
+    <templateDeclaration identifier="fScorePerp" cardinality="single" baseType="float" mathVariable="false"/>
+    <templateDeclaration identifier="mX" cardinality="record" mathVariable="true"/>
+    <templateDeclaration identifier="mPara" cardinality="record" mathVariable="true"/>
+    <templateDeclaration identifier="mY" cardinality="record" mathVariable="true"/>
+    <templateDeclaration identifier="mPerp" cardinality="record" mathVariable="true"/>
+    <templateDeclaration identifier="mGdt" cardinality="record" mathVariable="true"/>
+    <templateDeclaration identifier="mMx" cardinality="record" mathVariable="true"/>
+    <templateDeclaration identifier="mC" cardinality="record" mathVariable="true"/>
+    <templateDeclaration identifier="mSignC" cardinality="record" mathVariable="true"/>
+    <templateDeclaration identifier="mQues" cardinality="record" mathVariable="true"/>
+    <templateDeclaration identifier="mRHS" cardinality="record" mathVariable="true"/>
+    <templateDeclaration identifier="mAns" cardinality="record" mathVariable="true"/>
+    <templateProcessing>
+	    <setTemplateValue identifier="iQx">
+	        <product>
+	            <randomInteger min="1" max="5"/>
+	            <randomInteger min="-1" max="1" step="2"/>
+	        </product>
+	    </setTemplateValue>
+	    <setTemplateValue identifier="iQy">
+	        <baseValue baseType="integer">1</baseValue>
+	    </setTemplateValue>
+	    <setTemplateValue identifier="iPx">
+	        <product>
+	            <randomInteger min="1" max="5"/>
+	            <randomInteger min="-1" max="1" step="2"/>
+	        </product>
+	    </setTemplateValue>
+	    <setTemplateValue identifier="iPy">
+	        <product>
+	            <randomInteger min="1" max="5"/>
+	            <randomInteger min="-1" max="1" step="2"/>
+	        </product>
+	    </setTemplateValue>
+        <templateConstraint>
+            <and>
+                <not>
+                    <equal toleranceMode="exact">
+                        <variable identifier="iPx"/>
+                        <variable identifier="iQx"/>
+                    </equal>
+                </not>
+                <not>
+                    <equal toleranceMode="exact">
+                        <variable identifier="iPy"/>
+                        <variable identifier="iQy"/>
+                    </equal>
+                </not>
+            </and>
+        </templateConstraint>
+	    <setTemplateValue identifier="iType">
+	        <baseValue baseType="integer">1</baseValue>
+	    </setTemplateValue>
+        <setTemplateValue identifier="sType">
+            <index n="iType">
+                <ordered>
+                    <baseValue baseType="string">parallel</baseValue>
+                    <baseValue baseType="string">perpendicular</baseValue>
+                </ordered>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="fScorePara">
+            <index n="iType">
+                <ordered>
+                    <baseValue baseType="float">1.0</baseValue>
+                    <baseValue baseType="float">0.0</baseValue>
+                </ordered>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="fScorePerp">
+            <index n="iType">
+                <ordered>
+                    <baseValue baseType="float">0.0</baseValue>
+                    <baseValue baseType="float">1.0</baseValue>
+                </ordered>
+            </index>
+        </setTemplateValue>
+        <setTemplateValue identifier="tParts">
+	        <multiple>
+	            <index n="iType">
+	                <ordered>
+	                    <baseValue baseType="identifier">Para1</baseValue>
+	                    <baseValue baseType="identifier">Para2</baseValue>
+	                </ordered>
+	            </index>
+	            <index n="iType">
+	                <ordered>
+	                    <baseValue baseType="identifier">Perp1</baseValue>
+	                    <baseValue baseType="identifier">Perp2</baseValue>
+	                </ordered>
+	            </index>
+	            <index n="iType">
+	                <ordered>
+	                    <baseValue baseType="identifier">Sol1</baseValue>
+	                    <baseValue baseType="identifier">Sol2</baseValue>
+	                </ordered>
+	            </index>
+	            <index n="iType">
+	                <ordered>
+	                    <baseValue baseType="identifier">Hint1</baseValue>
+	                    <baseValue baseType="identifier">Hint2</baseValue>
+	                </ordered>
+	            </index>
+	        </multiple>
+	    </setTemplateValue>
+	    <setTemplateValue identifier="tDummy">
+			<customOperator class="org.qtitools.mathassess.ScriptRule" ma:syntax="text/x-maxima">
+				<baseValue baseType="string">
+					<![CDATA[
+			mPara: ev((iQy-iPy)/(iQx-iPx),simp);
+			mInvPara: ev(1/mPara,simp);
+			mPerp: ev(-mInvPara,simp);
+			mGdt:mPara;
+			mX: x;
+			mY: y;
+			mMx: ev(mGdt*x,simp);
+			mC: ev(-mGdt*iPx+iPy,simp);
+			mAns: ev(mMx+mC,simp);
+			if is(mC>0)=true then mSignC:maOperator("+") else mSignC:maOperator("-");
+			mC: ev(abs(mC),simp);
+			]]>
+				</baseValue>
+			</customOperator>
+		</setTemplateValue>
+	    <setCorrectResponse identifier="RESPONSE">
+	        <variable identifier="mAns"/>
+	    </setCorrectResponse>
+	</templateProcessing>
+	<itemBody>
+	    <div>
+	        <p>Find the equation of the line which passes through the points P&#160;(<printedVariable identifier="iPx"/>, <printedVariable identifier="iPy"/>)&#160;and Q&#160;(<printedVariable identifier="iQx"/>, <printedVariable identifier="iQy"/>).</p>
+	    </div>
+	        <div class="">
+	            <table class="">
+	                <tbody class="">
+	                    <tr class="">
+	                        <td class="">
+	                            <printedVariable identifier="mY"/>&#160;=&#160;
+	                        </td>
+	                        <td class="">
+	                            <customInteraction class="org.qtitools.mathassess.MathEntryInteraction"
+	                                responseIdentifier="RESPONSE" ma:printIdentifier="pInput" ma:syntax="text/x-maxima"
+	                                ma:expectedLength="15" id="customInteraction0"/>
+	                        </td>
+	                        <td class="">
+	                            <div class="">
+	                                <feedbackInline id="feedbackInline3" identifier="CORRECT1"
+	                                    outcomeIdentifier="FEEDBACK" showHide="show"> Well done, that's the correct equation.
+	                                </feedbackInline>
+	                            </div>
+	                            <div class="">
+	                                <feedbackInline id="feedbackInline2" identifier="ThruP"
+	                                    outcomeIdentifier="FEEDBACK" showHide="show"> Your line passes through the point P.</feedbackInline>
+	                                <feedbackInline id="feedbackInline2" identifier="NotThruP"
+	                                    outcomeIdentifier="FEEDBACK" showHide="show"> Your line does not pass through the point P.</feedbackInline>
+	                            </div>
+	                            <div class="">
+	                                <feedbackInline id="feedbackInline2" identifier="SIGN1"
+	                                    outcomeIdentifier="FEEDBACK" showHide="show"> You have the wrong sign for the gradient.</feedbackInline>
+	                                <feedbackInline id="feedbackInline2" identifier="Perp"
+	                                    outcomeIdentifier="FEEDBACK" showHide="show"> 
+	                                    You used the gradient of a perpendicular line.</feedbackInline>
+	                                <feedbackInline id="feedbackInline2" identifier="Para"
+	                                    outcomeIdentifier="FEEDBACK" showHide="show"> 
+	                                    You used the correct gradient.</feedbackInline>
+	                                <feedbackInline id="feedbackInline2" identifier="INCORRECT1"
+	                                    outcomeIdentifier="FEEDBACK" showHide="show"> The gradient is incorrect.</feedbackInline>
+	                            </div>
+	                        </td>
+	                    </tr>
+	                </tbody>
+	            </table>
+	        </div>
+	    
+	    <feedbackBlock id="feedbackBlock4" identifier="THREETRIES"
+	        outcomeIdentifier="FEEDBACK" showHide="show">
+	        <p> You have had three attempts at answering this question, so here is the
+	            solution: </p>
+	    </feedbackBlock>
+	    <feedbackBlock showHide="show" outcomeIdentifier="FEEDBACK" identifier="SOLUTION">
+	            <div>
+	                <p>We use the coordinates of the two given points to find the gradient of the line:</p>
+	                <div>
+	                    <m:math display="block" id="mathML08">
+	                        <m:semantics>
+	                            <m:mrow>
+	                                <m:mi>m</m:mi>
+	                                <m:mo>=</m:mo>
+	                                <m:mfrac>
+	                                    <m:mrow>
+	                                        <m:msub>
+	                                            <m:mi>y</m:mi>
+	                                            <m:mn>2</m:mn>
+	                                        </m:msub>
+	                                        <m:mo>-</m:mo>
+	                                        <m:msub>
+	                                            <m:mi>y</m:mi>
+	                                            <m:mn>1</m:mn>
+	                                        </m:msub>
+	                                    </m:mrow>
+	                                    <m:mrow>
+	                                        <m:msub>
+	                                            <m:mi>x</m:mi>
+	                                            <m:mn>2</m:mn>
+	                                        </m:msub>
+	                                        <m:mo>-</m:mo>
+	                                        <m:msub>
+	                                            <m:mi>x</m:mi>
+	                                            <m:mn>1</m:mn>
+	                                        </m:msub>
+	                                    </m:mrow>
+	                                </m:mfrac>
+	                                <m:mo>=</m:mo>
+	                                <m:mfrac>
+	                                    <m:mrow>
+	                                        <m:mi>iQy</m:mi>
+	                                        <m:mo>-</m:mo>
+	                                        <m:mo>(</m:mo>
+	                                        <m:mi>iPy</m:mi>
+	                                        <m:mo>)</m:mo>
+	                                    </m:mrow>
+	                                    <m:mrow>
+	                                        <m:mi>iQx</m:mi>
+	                                        <m:mo>-</m:mo>
+	                                        <m:mo>(</m:mo>
+	                                        <m:mi>iPx</m:mi>
+	                                        <m:mo>)</m:mo>
+	                                    </m:mrow>
+	                                </m:mfrac>
+	                                <m:mo>=</m:mo>
+	                                <m:mi>mGdt</m:mi>
+	                            </m:mrow>
+	                            <m:annotation encoding="SnuggleTeX">\[m=\frac{y_2-y_1}{x_2-x_1}=\frac{\qv{iQy}-(\qv{iPy})}{\qv{iQx}-(\qv{iPx})}=\qv{mGdt}\]</m:annotation>
+	                        </m:semantics>
+	                    </m:math>
+	                </div>
+	                <p>We use the point-slope form of the equation for the line:</p>
+	                <div>
+	                    <m:math display="block" id="mathML09">
+	                        <m:semantics>
+	                            <m:mrow>
+	                                <m:mi>y</m:mi>
+	                                <m:mo>-</m:mo>
+	                                <m:msub>
+	                                    <m:mi>y</m:mi>
+	                                    <m:mn>1</m:mn>
+	                                </m:msub>
+	                                <m:mo>=</m:mo>
+	                                <m:mi>m</m:mi>
+	                                <m:mo>(</m:mo>
+	                                <m:mi>x</m:mi>
+	                                <m:mo>-</m:mo>
+	                                <m:msub>
+	                                    <m:mi>x</m:mi>
+	                                    <m:mn>1</m:mn>
+	                                </m:msub>
+	                                <m:mo>)</m:mo>
+	                            </m:mrow>
+	                            <m:annotation encoding="SnuggleTeX">\[y-y_1=m(x-x_1)\]</m:annotation>
+	                        </m:semantics>
+	                    </m:math>
+	                </div>
+	            </div>
+	        <p>Substitute the point P&#160;(<printedVariable identifier="iPx"/>, <printedVariable identifier="iPy"/>) and gradient <printedVariable identifier="mGdt"/> into this equation:</p>
+	        <div>
+	            <m:math display="block" id="mathML21">
+	                <m:semantics>
+	                    <m:mtable>
+	                        <m:mtr>
+	                            <m:mtd columnalign="right">
+	                                <m:mi>y</m:mi>
+	                                <m:mo>-</m:mo>
+	                                <m:mo>(</m:mo>
+	                                <m:mi>iPy</m:mi>
+	                                <m:mo>)</m:mo>
+	                            </m:mtd>
+	                            <m:mtd columnalign="center">
+	                                <m:mo>=</m:mo>
+	                            </m:mtd>
+	                            <m:mtd columnalign="left">
+	                                <m:mi>mGdt</m:mi>
+	                                <m:mo>(</m:mo>
+	                                <m:mi>x</m:mi>
+	                                <m:mo>-</m:mo>
+	                                <m:mo>(</m:mo>
+	                                <m:mi>iPx</m:mi>
+	                                <m:mo>)</m:mo>
+	                                <m:mo>)</m:mo>
+	                            </m:mtd>
+	                        </m:mtr>
+	                        <m:mtr>
+	                            <m:mtd columnalign="right">
+	                                <m:mi>y</m:mi>
+	                            </m:mtd>
+	                            <m:mtd columnalign="center">
+	                                <m:mo>=</m:mo>
+	                            </m:mtd>
+	                            <m:mtd columnalign="left">
+	                                <m:mi>mMx</m:mi>
+	                                <m:mo>-</m:mo>
+	                                <m:mo>(</m:mo>
+	                                <m:mi>mGdt</m:mi>
+	                                <m:mo>)</m:mo>
+	                                <m:mo>(</m:mo>
+	                                <m:mi>iPx</m:mi>
+	                                <m:mo>)</m:mo>
+	                                <m:mo>+</m:mo>
+	                                <m:mo>(</m:mo>
+	                                <m:mi>iPy</m:mi>
+	                                <m:mo>)</m:mo>
+	                            </m:mtd>
+	                        </m:mtr>
+	                        <m:mtr>
+	                            <m:mtd columnalign="right">
+	                                <m:mi>y</m:mi>
+	                            </m:mtd>
+	                            <m:mtd columnalign="center">
+	                                <m:mo>=</m:mo>
+	                            </m:mtd>
+	                            <m:mtd columnalign="left">
+	                                <m:mi>mMx</m:mi>
+	                                <m:mi>mSignC</m:mi>
+	                                <m:mi>mC</m:mi>
+	                            </m:mtd>
+	                        </m:mtr>
+	                    </m:mtable>
+	                    <m:annotation encoding="SnuggleTeX">\begin{eqnarray*}
+	                        y-(\qv{iPy}) &amp;=&amp; \qv{mGdt}(x-(\qv{iPx}))\\
+	                        y &amp;=&amp; \qv{mMx}-(\qv{mGdt})(\qv{iPx})+(\qv{iPy})\\
+	                        y&amp;=&amp; \qv{mMx}\qv{mSignC}\qv{mC}
+	                        \end{eqnarray*}</m:annotation>
+	                </m:semantics>
+	            </m:math>
+	        </div>
+	    </feedbackBlock>
+		<feedbackBlock showHide="show" outcomeIdentifier="FEEDBACK" identifier="HINT">
+		    <div>
+		        <m:math display="block" id="mathML10">
+		            <m:semantics>
+		                <m:mrow>
+		                    <m:mi>y</m:mi>
+		                    <m:mo>-</m:mo>
+		                    <m:mi>b</m:mi>
+		                    <m:mo>=</m:mo>
+		                    <m:mi>m</m:mi>
+		                    <m:mo>(</m:mo>
+		                    <m:mi>x</m:mi>
+		                    <m:mo>-</m:mo>
+		                    <m:mi>a</m:mi>
+		                    <m:mo>)</m:mo>
+		                </m:mrow>
+		                <m:annotation encoding="SnuggleTeX">\[y-b=m(x-a)\]</m:annotation>
+		            </m:semantics>
+		        </m:math>
+		    </div>
+		    <p>where m is the gradient and (a,b) is a point on the line</p>
+		    <p>Find the gradient first, or use the two-point form of the line.</p>
+		</feedbackBlock>
+		<feedbackBlock identifier="SEEN-SOLUTION" outcomeIdentifier="FEEDBACK" showHide="show">
+			<p> Since you have viewed the solution, your score for this question will be 0. </p>
+		</feedbackBlock>
+		<feedbackBlock identifier="SEEN-HINT" outcomeIdentifier="FEEDBACK" showHide="show">
+			<p> Since you have viewed the hint, your score for this question will be halved. </p>
+		</feedbackBlock>
+		<feedbackBlock identifier="askhint" outcomeIdentifier="ASKHINT" showHide="show">
+			<p>
+				<endAttemptInteraction id="endAttemptInteraction1" responseIdentifier="HINTREQUEST"
+					title="Show Hint"/>
+			</p>
+		</feedbackBlock>
+		<feedbackBlock identifier="asksolution" outcomeIdentifier="ASKSOLUTION" showHide="show">
+			<p>
+				<endAttemptInteraction id="endAttemptInteraction2" responseIdentifier="SOLREQUEST"
+					title="Show Solution"/>
+			</p>
+		</feedbackBlock>
+	</itemBody>
+	<responseProcessing>
+		<setOutcomeValue identifier="FEEDBACK">
+			<multiple>
+				<variable identifier="EMPTY"/>
+			</multiple>
+		</setOutcomeValue>
+		<responseCondition>
+			<responseIf>
+				<variable identifier="HINTREQUEST"/>
+				<setOutcomeValue identifier="FEEDBACK">
+					<multiple>
+						<baseValue baseType="identifier">HINT</baseValue>
+					</multiple>
+				</setOutcomeValue>
+				<setOutcomeValue identifier="seenHint">
+					<baseValue baseType="boolean">true</baseValue>
+				</setOutcomeValue>
+			</responseIf>
+			<responseElseIf>
+				<variable identifier="SOLREQUEST"/>
+				<setOutcomeValue identifier="FEEDBACK">
+					<multiple>
+						<baseValue baseType="identifier">SOLUTION</baseValue>
+					</multiple>
+				</setOutcomeValue>
+				<setOutcomeValue identifier="seenSolution">
+					<baseValue baseType="boolean">true</baseValue>
+				</setOutcomeValue>
+				<setOutcomeValue identifier="completionStatus">
+					<baseValue baseType="identifier">completed</baseValue>
+				</setOutcomeValue>
+				<setOutcomeValue identifier="ASKHINT">
+					<baseValue baseType="identifier">null</baseValue>
+				</setOutcomeValue>
+				<setOutcomeValue identifier="ASKSOLUTION">
+					<baseValue baseType="identifier">null</baseValue>
+				</setOutcomeValue>
+			</responseElseIf>
+		    <responseElse>
+		        <responseCondition>
+		            <responseIf>
+		                    <isNull>
+		                        <variable identifier="RESPONSE"/>
+		                    </isNull>
+		                <setOutcomeValue identifier="SCORE">
+		                    <baseValue baseType="float">0.0</baseValue>
+		                </setOutcomeValue>
+		            </responseIf>
+		            <responseElse>
+		                <setOutcomeValue identifier="oDummy">
+		                    <customOperator class="org.qtitools.mathassess.ScriptRule" ma:syntax="text/x-maxima">
+		                        <baseValue baseType="string"><![CDATA[
+                                    
+ oInput1: ev(RESPONSE,simp);
+ ob10: is(is(equal(RESPONSE,mAns))=true);
+ oSubst: ev(subst(iPx,x,RESPONSE),simp);
+ ob11: is(is(equal(ev(oSubst-iPy,simp),0))=true);
+ ob12: is(is(ratnump(ev(RESPONSE+mAns,simp)))=true);
+ oCoeffx: ev(coeff(RESPONSE,x),simp);
+ ob13: is(is(equal(ev(oCoeffx-mPerp,simp),0))=true);
+ ob14: is(is(equal(ev(oCoeffx-mPara,simp),0))=true);
+ 
+]]></baseValue>
+		                    </customOperator>
+		                </setOutcomeValue>
+		                <setOutcomeValue identifier="oPInput1">
+		                    <fieldValue fieldIdentifier="PMathML">
+		                        <variable identifier="oInput1"/>
+		                    </fieldValue>
+		                </setOutcomeValue>
+		                <responseCondition>
+		                    <responseIf>
+		                        <variable identifier="ob10"/>
+		                        <setOutcomeValue identifier="FEEDBACK">
+		                            <multiple>
+		                                <variable identifier="FEEDBACK"/>
+		                                <baseValue baseType="identifier">CORRECT1</baseValue>
+		                            </multiple>
+		                        </setOutcomeValue>
+		                        <setOutcomeValue identifier="SCORE">
+		                            <sum>
+		                                <variable identifier="SCORE"/>
+		                                <baseValue baseType="float">2.0</baseValue>
+		                            </sum>
+		                        </setOutcomeValue>
+		                    </responseIf>
+		                    <responseElse>
+		                        <responseCondition>
+		                            <responseIf>
+		                                <variable identifier="ob11"/>
+		                                <setOutcomeValue identifier="FEEDBACK">
+		                                    <multiple>
+		                                        <variable identifier="FEEDBACK"/>
+		                                        <baseValue baseType="identifier">ThruP</baseValue>
+		                                    </multiple>
+		                                </setOutcomeValue>
+		                                <setOutcomeValue identifier="SCORE">
+		                                    <sum>
+		                                        <variable identifier="SCORE"/>
+		                                        <baseValue baseType="float">1.0</baseValue>
+		                                    </sum>
+		                                </setOutcomeValue>
+		                            </responseIf>
+		                            <responseElse>
+		                                <setOutcomeValue identifier="FEEDBACK">
+		                                    <multiple>
+		                                        <variable identifier="FEEDBACK"/>
+		                                        <baseValue baseType="identifier">NotThruP</baseValue>
+		                                    </multiple>
+		                                </setOutcomeValue>
+		                                <setOutcomeValue identifier="SCORE">
+		                                    <sum>
+		                                        <variable identifier="SCORE"/>
+		                                        <baseValue baseType="float">0.0</baseValue>
+		                                    </sum>
+		                                </setOutcomeValue>
+		                            </responseElse>
+		                        </responseCondition>
+		                        <responseCondition>
+		                            <responseIf>
+		                                <variable identifier="ob12"/>
+		                                <setOutcomeValue identifier="FEEDBACK">
+		                                    <multiple>
+		                                        <variable identifier="FEEDBACK"/>
+		                                        <baseValue baseType="identifier">SIGN1</baseValue>
+		                                    </multiple>
+		                                </setOutcomeValue>
+		                                <setOutcomeValue identifier="SCORE">
+		                                    <sum>
+		                                        <variable identifier="SCORE"/>
+		                                        <baseValue baseType="float">1.0</baseValue>
+		                                    </sum>
+		                                </setOutcomeValue>
+		                            </responseIf>
+		                            <responseElseIf>
+		                                <variable identifier="ob13"/>
+		                                <setOutcomeValue identifier="FEEDBACK">
+		                                    <multiple>
+		                                        <variable identifier="FEEDBACK"/>
+		                                        <baseValue baseType="identifier">Perp</baseValue>
+		                                    </multiple>
+		                                </setOutcomeValue>
+		                                <setOutcomeValue identifier="SCORE">
+		                                    <sum>
+		                                        <variable identifier="SCORE"/>
+		                                        <variable identifier="fScorePerp"/>
+		                                    </sum>
+		                                </setOutcomeValue>
+		                            </responseElseIf>
+		                            <responseElseIf>
+		                                <variable identifier="ob14"/>
+		                                <setOutcomeValue identifier="FEEDBACK">
+		                                    <multiple>
+		                                        <variable identifier="FEEDBACK"/>
+		                                        <baseValue baseType="identifier">Para</baseValue>
+		                                    </multiple>
+		                                </setOutcomeValue>
+		                                <setOutcomeValue identifier="SCORE">
+		                                    <sum>
+		                                        <variable identifier="SCORE"/>
+		                                        <variable identifier="fScorePara"/>
+		                                    </sum>
+		                                </setOutcomeValue>
+		                            </responseElseIf>
+		                            <responseElse>
+		                                <setOutcomeValue identifier="FEEDBACK">
+		                                    <multiple>
+		                                        <variable identifier="FEEDBACK"/>
+		                                        <baseValue baseType="identifier">INCORRECT1</baseValue>
+		                                    </multiple>
+		                                </setOutcomeValue>
+		                                <setOutcomeValue identifier="SCORE">
+		                                    <sum>
+		                                        <variable identifier="SCORE"/>
+		                                        <baseValue baseType="float">0.0</baseValue>
+		                                    </sum>
+		                                </setOutcomeValue>
+		                            </responseElse>
+		                        </responseCondition>
+		                    </responseElse>
+		                </responseCondition>
+		                <responseCondition>
+		                    <responseIf>
+		                        <variable identifier="seenSolution"/>
+		                        <setOutcomeValue identifier="FEEDBACK">
+		                            <multiple>
+		                                <variable identifier="FEEDBACK"/>
+		                                <baseValue baseType="identifier">SEEN-SOLUTION</baseValue>
+		                            </multiple>
+		                        </setOutcomeValue>
+		                        <setOutcomeValue identifier="SCORE">
+		                            <baseValue baseType="float">0.0</baseValue>
+		                        </setOutcomeValue>
+		                    </responseIf>
+		                    <responseElseIf>
+		                        <variable identifier="seenHint"/>
+		                        <setOutcomeValue identifier="FEEDBACK">
+		                            <multiple>
+		                                <variable identifier="FEEDBACK"/>
+		                                <baseValue baseType="identifier">SEEN-HINT</baseValue>
+		                            </multiple>
+		                        </setOutcomeValue>
+		                        <setOutcomeValue identifier="SCORE">
+		                            <divide>
+		                                <variable identifier="SCORE"/>
+		                                <baseValue baseType="float">2.0</baseValue>
+		                            </divide>
+		                        </setOutcomeValue>
+		                    </responseElseIf>
+		                </responseCondition>
+		                <responseCondition>
+		                    <responseIf>
+		                        <gt>
+		                            <variable identifier="numAttempts"/>
+		                            <baseValue baseType="integer">3</baseValue>
+		                        </gt>
+		                        <setOutcomeValue identifier="FEEDBACK">
+		                            <multiple>
+		                                <baseValue baseType="identifier">THREETRIES</baseValue>
+		                                <baseValue baseType="identifier">SOLUTION</baseValue>
+		                            </multiple>
+		                        </setOutcomeValue>
+		                        <setOutcomeValue identifier="completionStatus">
+		                            <baseValue baseType="identifier">completed</baseValue>
+		                        </setOutcomeValue>
+		                        <setOutcomeValue identifier="ASKHINT">
+		                            <baseValue baseType="identifier">null</baseValue>
+		                        </setOutcomeValue>
+		                        <setOutcomeValue identifier="ASKSOLUTION">
+		                            <baseValue baseType="identifier">null</baseValue>
+		                        </setOutcomeValue>
+		                    </responseIf>
+		                </responseCondition>
+		            </responseElse>
+		        </responseCondition>
+		    </responseElse>
+		</responseCondition>
+	</responseProcessing>
+</assessmentItem>
