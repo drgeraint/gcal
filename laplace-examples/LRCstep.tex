@@ -1,0 +1,184 @@
+\documentclass[a4paper,12pt]{article}
+
+% Time-stamp: <2014/08/09 00:25:59 geraint>
+
+\usepackage{amsmath,amssymb}
+\usepackage{fullpage}
+\usepackage[UKenglish]{isodate}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{\baselineskip}
+\hyphenpenalty=10000
+\tolerance=500
+
+\isodate
+\title{Laplace example: LRC step}
+\author{Geraint Bevan
+  {\small
+    PhD CEng MIET CSci MInstMC FHEA}
+  \\\ \\
+  geraint.bevan@gcu.ac.uk
+  \\\ \\
+  Department of Engineering\\
+  Glasgow Caledonian University,
+  Glasgow G4 0BA, Scotland}
+
+\begin{document}
+\maketitle
+
+\part{Electrical}
+An electrical LRC circuit is modelled by transfer function $G(s)$:
+\begin{align*}
+  G(s) &= \frac{V_c}{V_{0}}(s) = \frac{1}{L C s^2 + R C s + 1}
+\end{align*}
+where $V_o$ is the applied EMF (volts, V), $V_c$ is the potential difference across the capacitor (volts, V),
+$L$ is the inductance (henries, H), $R$ is the resistance (ohms, $\Omega$) and $C$ is the capacitance (farads, F).
+
+For given values of $L$, $R$ and $C$, determine the potential difference across the capacitor $V_c(t)$ as a function of time in response to a unit step input $V_o(t)$.
+\begin{align*}
+  V_o(t) &= \begin{cases} 0 & \text{if } t \leq 0 \\ 1 & \text{if } t > 0 \end{cases} &
+  V_o(s) &= \frac{1}{s}
+\end{align*}
+
+\newpage
+\section*{Over-damped, $G(s)$ has 2 real roots:\\ $(RC)^2>4LC $}
+Example: $L=0.5$~H, $R=6~\Omega$, $C=0.1$~F. % s=-2,-10
+\begin{align*}
+  V_c(s) &= G(s) \times V_o(s)
+  = \frac{1}{0.05 s^2 + 0.6 s + 1} \times \frac{1}{s}
+  = \frac{20}{s^2 + 12 s + 20} \times \frac{1}{s}
+\end{align*}
+
+\subsection*{Partial fraction expansion}
+Factorise $G(s)$, using $s = \frac{-b\pm\sqrt{b^2-4ac}}{2a}$ if necessary, to find the denominators.
+\begin{align*}
+  s &= \frac{-0.6\pm\sqrt{0.6^2-4\times 0.05}}{2\times 0.05} & s=-2~\text{or }s=-10
+\end{align*}
+Hence
+\begin{align*}
+  V_c(s) &=\frac{1}{0.05 s^2 + 0.6 s + 1} \times \frac{1}{s}
+  = \frac{20}{s(s+2)(s+10)}
+  = \frac{A}{s} + \frac{B}{s+2} + \frac{C}{s+10}
+\end{align*}
+Using Heaviside's Quick Cover-Up method
+\begin{align*}
+  A &= 1 & B &= -\frac{5}{4} = -1.25 & C &= \frac{1}{4} = 0.25
+\end{align*}
+\begin{align*}
+  V_c(s) &= \frac{1}{s} - \frac{1.25}{s+2} + \frac{0.25}{s+10} &\implies
+  V_c(t) &= 1 - 1.25 e^{-2t} + 0.25 e^{-10t}
+\end{align*}
+
+\newpage
+\section*{Critically-damped, $G(s)$ has repeated real root:\\$(RC)^2=4LC $}
+Example: $L=1$~H, $R=20~\Omega$, $C=0.01$~F. % s=-10
+\begin{align*}
+  V_c(s) &= G(s) \times V_o(s)
+  = \frac{1}{0.01 s^2 + 0.2 s + 1} \times \frac{1}{s}
+  = \frac{100}{s^2 + 20 s + 100} \times \frac{1}{s}
+\end{align*}
+Factorise $G(s)$, using $s = \frac{-b\pm\sqrt{b^2-4ac}}{2a}$ if necessary, to find the denominators.
+\begin{align*}
+  s &= -10~\text{(repeated)}
+\end{align*}
+\begin{align*}
+  V_c(s) &= \frac{100}{s^2 + 20 s + 100} \times \frac{1}{s}
+  = \frac{100}{s(s+10)(s+10)}
+  = \frac{A}{s} + \frac{B}{s+10} + \frac{C}{(s+10)^2}
+\end{align*}
+Cross-multiplying and equating coefficients of $s^n$
+\begin{align*}
+  100 &= A(s+10)^2 + Bs(s+10) + Cs = (A+B)s^2 + (20A+10B+C)s + 100A
+\end{align*}
+\begin{align*}
+  s^2: && 0 &= A+B  &&\implies B = -A\\
+  s^1: && 0 &= 20A+10B+C &&\implies C = -10A\\
+  s^0: && 100 &= 100 A && \implies A = 1
+\end{align*}
+Hence
+\begin{align*}
+  A &= 1 & B &= -1 & C &= -10
+\end{align*}
+\begin{align*}
+  V_c(s) &= \frac{1}{s} - \frac{1}{s+10} - \frac{10}{(s+10)^2} &\implies
+  V_c(t) &= 1 - e^{-10t} -10te^{-10t}
+\end{align*}
+\newpage
+\section*{Under-damped, $G(s)$ has complex pair of roots:\\$(RC)^2<4LC $}
+Example: $L=1$~H, $R=6~\Omega$, $C=0.1$~F. % s=-3+/-j
+\begin{align*}
+  V_c(s) &= G(s) \times V_o(s)
+  = \frac{1}{0.1 s^2 + 0.6 s + 1} \times \frac{1}{s}
+  = \frac{10}{s^2 + 6 s + 10} \times \frac{1}{s}
+\end{align*}
+Factorising would yield complex roots, so it is better to keep the quadratic whole when generating partial fractions.
+\begin{align*}
+  V_c(s) &= \frac{10}{s^2+6 s + 10} \times \frac{1}{s} = \frac{A s + B}{s^2 + 6 s + 10} + \frac{C}{s}
+\end{align*}
+Cross-multiplying and equating coefficients of $s^n$
+\begin{align*}
+  10 &= (As + B)s + C(s^2+6s+10) = (A+C) s^2 + (B+6C) s + 10 C
+\end{align*}
+\begin{align*}
+  s^2: && 0 &= A+C  &&\implies A = -C\\
+  s^1: && 0 &= B+6C &&\implies B = -6C\\
+  s^0: && 10 &= 10 C && \implies C = 1
+\end{align*}
+Hence
+\begin{align*}
+  A &= -1 & B &= -6 & C &= 1
+\end{align*}
+\begin{align*}
+  V_c(s) &= \frac{1}{s} - \frac{s+6}{s^2+6s+10}
+\end{align*}
+
+
+The inverse transform of the quadratic term can be found using
+the ``difference of two squares'' and frequency shift theorem
+($F(s+a)=e^{-at}F(s)$).
+
+After studying a standard table of transforms,o which should
+include the transforms $\frac{\omega}{s^2+\omega^2}$ and
+$\frac{s}{s^2+\omega^2}$, we wish to express the quadratic in the
+denominator ($s^2+6s+10$) in the form $(s+a)^2+\omega^2$. Using
+the difference of two squares, we choose $a=6/2=3$, i.e. half the
+coefficient of $s^1$ and then solve for $\omega$.
+\begin{align*}
+  s^2+6s+10 &= \left(s+\frac{6}{2}\right)^2 + \omega^2 \\
+  &= s^2 + 6s + 9 + \omega^2 
+  &\implies \omega^2 = 1 \\
+  \therefore G(s) = \frac{10}{s^2+6s+10} &= 10 \times \frac{1}{(s+3)^2+1^2}
+\end{align*}
+
+Returning then to $V_c(s)$,
+\begin{align*}
+  V_c(s) &= G(s)\times V_0(s) = \frac{1}{s} - \frac{s+6}{(s+3)^2+1^2}
+  & = \frac{1}{s} - \frac{s+3}{(s+3)^2+1^2} - 3\times \frac{1}{(s+3)^2+1^2} \\
+  V_c(t) &= 1 - e^{-3t} \sin t - 3 e^{-3t} \cos t
+\end{align*}
+
+\newpage
+
+\part{Mechanical}
+A mechanical mass-damper-spring system is modelled by the transfer function $G(s)$:
+\begin{align*}
+  G(s) &= \frac{X}{F}(s) = \frac{1}{ms^2 + f_v s + K}
+\end{align*}
+where $F$ is the applied force (newtons, N), $X$ is the displacement (metres, m),
+$m$ is the mass (kilograms, kg), $f_v$ is the damping force (newton seconds per metre, N$\cdot$s/m) and $K$ is the spring stiffness (newtons per metre, N/m).
+
+For given values of $m$, $f_v$, $K$, determine the displacement $X(s)$ as a function of time in response to a unit step input $F(t)$.
+\begin{align*}
+  F(t) &= \begin{cases} 0 & \text{if } t \leq 0 \\ 1 & \text{if } t > 0 \end{cases} &
+  F(s) &= \frac{1}{s}
+\end{align*}
+
+\section*{Over-damped, $G(S)$ has 2 real roots:\\ $f_v^2>4mK$}
+Example: $m=1$~kg, $f_v=3$~N$\cdot$s/m, $K=2$~N/m. % s=-1,-2
+\section*{Critically-damped, $G(s)$ has repeated real root:\\$f_v^2=4mK$}
+Example: $m=1$~kg, $f_v=2$~N$\cdot$s/m, $K=1$~N/m. % s=-1
+\section*{Under-damped, $G(s)$ has complex pair of roots:\\$f_v^2<4mK$}
+Example: $m=1$~kg, $f_v=2$~N$\cdot$s/m, $K=2$~N/m. % s=-1+/-j
+
+Numbers differ, but the method for each case is identical to the electrical examples.
+
+\end{document}
