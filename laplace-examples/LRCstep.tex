@@ -1,6 +1,6 @@
 \documentclass[a4paper,12pt]{article}
 
-% Time-stamp: <2014/08/09 15:28:18 geraint>
+% Time-stamp: <2014/08/09 15:44:36 geraint>
 
 \usepackage{amsmath,amssymb}
 \usepackage{fullpage}
@@ -30,20 +30,20 @@ An electrical LRC circuit is modelled by transfer function $G(s)$:
 \begin{align*}
   G(s) &= \frac{V_c}{V_{0}}(s) = \frac{1}{L C s^2 + R C s + 1}
 \end{align*}
-where $V_o$ is the applied EMF (volts, V), $V_c$ is the potential difference across the capacitor (volts, V),
+where $V_0$ is the applied EMF (volts, V), $V_c$ is the potential difference across the capacitor (volts, V),
 $L$ is the inductance (henries, H), $R$ is the resistance (ohms, $\Omega$) and $C$ is the capacitance (farads, F).
 
-For given values of $L$, $R$ and $C$, determine the potential difference across the capacitor $V_c(t)$ as a function of time in response to a unit step input $V_o(t)$.
+For given values of $L$, $R$ and $C$, determine the potential difference across the capacitor $V_c(t)$ as a function of time in response to a unit step input $V_0(t)$.
 \begin{align*}
-  V_o(t) &= \begin{cases} 0 & \text{if } t \leq 0 \\ 1 & \text{if } t > 0 \end{cases} &
-  V_o(s) &= \frac{1}{s}
+  V_0(t) &= \begin{cases} 0 & \text{if } t \leq 0 \\ 1 & \text{if } t > 0 \end{cases} &
+  V_0(s) &= \frac{1}{s}
 \end{align*}
 
 \newpage
 \section*{Over-damped, $G(s)$ has 2 real roots:\\ $(RC)^2>4LC $}
 Example: $L=0.5$~H, $R=6~\Omega$, $C=0.1$~F. % s=-2,-10
 \begin{align*}
-  V_c(s) &= G(s) \times V_o(s)
+  V_c(s) &= G(s) \times V_0(s)
   = \frac{1}{0.05 s^2 + 0.6 s + 1} \times \frac{1}{s}
   = \frac{20}{s^2 + 12 s + 20} \times \frac{1}{s}
 \end{align*}
@@ -72,7 +72,7 @@ Using Heaviside's Quick Cover-Up method
 \section*{Critically-damped, $G(s)$ has repeated real root:\\$(RC)^2=4LC $}
 Example: $L=1$~H, $R=20~\Omega$, $C=0.01$~F. % s=-10
 \begin{align*}
-  V_c(s) &= G(s) \times V_o(s)
+  V_c(s) &= G(s) \times V_0(s)
   = \frac{1}{0.01 s^2 + 0.2 s + 1} \times \frac{1}{s}
   = \frac{100}{s^2 + 20 s + 100} \times \frac{1}{s}
 \end{align*}
@@ -106,7 +106,7 @@ Hence
 \section*{Under-damped, $G(s)$ has complex pair of roots:\\$(RC)^2<4LC $}
 Example: $L=1$~H, $R=6~\Omega$, $C=0.1$~F. % s=-3+/-j
 \begin{align*}
-  V_c(s) &= G(s) \times V_o(s)
+  V_c(s) &= G(s) \times V_0(s)
   = \frac{1}{0.1 s^2 + 0.6 s + 1} \times \frac{1}{s}
   = \frac{10}{s^2 + 6 s + 10} \times \frac{1}{s}
 \end{align*}
