@@ -1,6 +1,6 @@
 \documentclass[a4paper,12pt]{article}
 
-% Time-stamp: <2014/08/09 15:44:36 geraint>
+% Time-stamp: <2014/08/09 18:00:55 geraint>
 
 \usepackage{amsmath,amssymb}
 \usepackage{fullpage}
@@ -132,15 +132,15 @@ Hence
 \end{align*}
 
 
-The inverse transform of the quadratic term can be found using
-the ``difference of two squares'' and frequency shift theorem
+The inverse transform of the quadratic term can be found by
+``completing the square'' and using the frequency shift theorem
 ($F(s+a)=e^{-at}F(s)$).
 
 After studying a standard table of transforms,o which should
 include the transforms $\frac{\omega}{s^2+\omega^2}$ and
 $\frac{s}{s^2+\omega^2}$, we wish to express the quadratic in the
-denominator ($s^2+6s+10$) in the form $(s+a)^2+\omega^2$. Using
-the difference of two squares, we choose $a=6/2=3$, i.e. half the
+denominator ($s^2+6s+10$) in the form $(s+a)^2+\omega^2$. To
+complete the square, we choose $a=6/2=3$, i.e. half the
 coefficient of $s^1$ and then solve for $\omega$.
 \begin{align*}
   s^2+6s+10 &= \left(s+\frac{6}{2}\right)^2 + \omega^2 \\
