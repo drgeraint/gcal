@@ -62,6 +62,47 @@ cd moodle
 git branch -a
 git branch --track MOODLE_26_STABLE origin/MOODLE_26_STABLE
 git checkout MOODLE_26_STABLE
+chown -R www-data /var/www/moodle
+chmod -R 0755 /var/www/moodle
+mkdir /var/moodledata
+cat <<EOF > /var/moodledata/.htaccess
+order deny,allow
+deny from all
+EOF
+chown -R www-data /var/moodledata
+cat <<EOF > /var/www/moodle/config.php
+<?php  // Moodle configuration file
+
+unset($CFG);
+global $CFG;
+$CFG = new stdClass();
+
+$CFG->dbtype    = 'mysqli';
+$CFG->dblibrary = 'native';
+$CFG->dbhost    = 'localhost';
+$CFG->dbname    = 'moodle';
+$CFG->dbuser    = 'moodleuser';
+$CFG->dbpass    = 'password';
+$CFG->prefix    = 'mdl_';
+$CFG->dboptions = array (
+  'dbpersist' => 0,
+  'dbport' => '',
+  'dbsocket' => '',
+);
+
+$CFG->wwwroot   = 'http://127.0.0.1/moodle';
+$CFG->dataroot  = '/var/moodledata';
+$CFG->admin     = 'admin';
+
+$CFG->directorypermissions = 0777;
+
+require_once(dirname(__FILE__) . '/lib/setup.php');
+
+// There is no php closing tag in this file,
+// it is intentional because it prevents trailing whitespace problems!
+EOF
+chown -R root /var/www/moodle
+
 
 # Configure STACK
 # echo *** Configuring STACK ***
