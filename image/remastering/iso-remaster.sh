@@ -6,7 +6,7 @@
 # Dependencies can be obtained with: apt-get install uck
 
 SOURCE_ISO=/home/geraint/iso/lubuntu-14.04.1-desktop-i386.iso
-OUTPUT_ISO=../lubuntu-14.04.1-desktop-i386-stripped.iso
+OUTPUT_ISO=../lubuntu-14.04.1-desktop-i386-moodle.iso
 DATE=$(date --iso)
 VOLUME_TAG="14.04.1 Remastered ${DATE}"
 TEMP_DIR=$(mktemp -d tmp-remaster-${DATE}.XXX)
@@ -26,14 +26,23 @@ nameserver 8.8.8.8 # Google DNS
 nameserver 8.8.4.4 # Google DNS
 EOF
 
-cp /etc/hosts edit/etc/hosts
+cat <<EOF > edit/etc/hosts
+127.0.0.1	localhost
+
+# The following lines are desirable for IPv6 capable hosts
+::1     ip6-localhost ip6-loopback
+fe00::0 ip6-localnet
+ff00::0 ip6-mcastprefix
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+EOF
 
 mount --bind /dev/ edit/dev
 
 cp /usr/local/bin/iso-remaster.sh /usr/local/bin/iso-remaster-chroot.sh edit/usr/local/bin/
 chroot edit /bin/sh -c /usr/local/bin/iso-remaster-chroot.sh
 
-umount edit/dev
+umount -l edit/dev
 
 chmod +x extract-cd/casper/filesystem.manifest
 chroot edit dpkg-query -W --showformat='${Package} ${Version}\n' > extract-cd/casper/filesystem.manifest
