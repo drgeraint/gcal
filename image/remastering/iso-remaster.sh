@@ -5,8 +5,8 @@
 
 # Dependencies can be obtained with: apt-get install uck
 
-SOURCE_ISO=/home/geraint/iso/lubuntu-14.04.1-desktop-i386.iso
-OUTPUT_ISO=../lubuntu-14.04.1-desktop-i386-moodle.iso
+SOURCE_ISO=~/iso/lubuntu-14.04.1-desktop-i386.iso
+OUTPUT_ISO=~/iso/lubuntu-14.04.1-desktop-i386-moodle.iso
 DATE=$(date --iso)
 VOLUME_TAG="14.04.1 Remastered ${DATE}"
 TEMP_DIR=$(mktemp -d tmp-remaster-${DATE}.XXX)

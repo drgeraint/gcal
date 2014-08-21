@@ -1,7 +1,6 @@
 #! /bin/sh
 
 # This should be run in chroot edit
-echo *** Configuring chroot filesystem ***
 
 mount -t proc none /proc
 mount -t sysfs none /sys
@@ -17,7 +16,6 @@ ln -s /bin/true /sbin/initctl
 alias packages='dpkg-query -W --showformat="\${Installed-Size}\t\${Package}\n" | sort -nr'
 
 # Unwanted packages
-echo *** Removing unwanted packages ***
 removes="abiword* gnumeric* goffice* guvcview* leafpad pidgin* sylpheed* transmission* xpad"
 for lang in de es fr ru ; do \
     removes="$removes language-pack-${lang}"
@@ -31,23 +29,22 @@ echo $removes
 apt-get -y purge ${removes}
 apt-get -y clean
 
-echo *** Adding new packages ***
 # Build tools
-tmp_additions="build-essential git"
+tmp_additions="git"
 # LAMP
-additions="apache2 apache2-utils ssl-cert"
-additions="$additions mysql-server mysql-client"
+additions="apache2 mysql-server mysql-client"
 additions="$additions libapache2-mod-php5 php5-common php5-mysql php5-curl php5-gd php5-xmlrpc php5-intl"
+# apache2-utils ssl-cert
 # STACK
 # additions="$additions gnuplot maxima libjs-mathjax"
 
 echo 'mysql-server mysql-server/root_password password password' | debconf-set-selections
 echo 'mysql-server mysql-server/root_password_again password password' | debconf-set-selections
-apt-get -y install ${tmp_additions} ${additions}
-apachectl -k stop
+apt-get -y install $tmp_additions $additions
+service apache2 stop
+echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
 # Configure MySQL
-echo *** Configuring MySQL ***
 mysql -u root --password=password <<EOF
 CREATE DATABASE moodle DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,CREATE TEMPORARY TABLES,DROP,INDEX,ALTER ON moodle.* TO moodleuser@localhost IDENTIFIED BY 'password';
@@ -55,14 +52,13 @@ EOF
 service mysql stop
 
 # Configure Moodle
-echo *** Configuring Moodle ***
 mkdir -p /var/www/html
 cd /var/www/html
 git clone git://git.moodle.org/moodle.git
 cd moodle
 git branch -a
-git branch --track MOODLE_26_STABLE origin/MOODLE_26_STABLE
-git checkout MOODLE_26_STABLE
+git branch --track MOODLE_27_STABLE origin/MOODLE_27_STABLE
+git checkout MOODLE_27_STABLE
 chown -R www-data /var/www/html/moodle
 chmod -R 0755 /var/www/html/moodle
 mkdir /var/moodledata
@@ -74,28 +70,28 @@ chown -R www-data /var/moodledata
 cat <<EOF > /var/www/html/moodle/config.php
 <?php  // Moodle configuration file
 
-unset($CFG);
-global $CFG;
-$CFG = new stdClass();
+unset(\$CFG);
+global \$CFG;
+\$CFG = new stdClass();
 
-$CFG->dbtype    = 'mysqli';
-$CFG->dblibrary = 'native';
-$CFG->dbhost    = 'localhost';
-$CFG->dbname    = 'moodle';
-$CFG->dbuser    = 'moodleuser';
-$CFG->dbpass    = 'password';
-$CFG->prefix    = 'mdl_';
-$CFG->dboptions = array (
+\$CFG->dbtype    = 'mysqli';
+\$CFG->dblibrary = 'native';
+\$CFG->dbhost    = 'localhost';
+\$CFG->dbname    = 'moodle';
+\$CFG->dbuser    = 'moodleuser';
+\$CFG->dbpass    = 'password';
+\$CFG->prefix    = 'mdl_';
+\$CFG->dboptions = array (
   'dbpersist' => 0,
   'dbport' => '',
   'dbsocket' => '',
 );
 
-$CFG->wwwroot   = 'http://127.0.0.1/moodle';
-$CFG->dataroot  = '/var/moodledata';
-$CFG->admin     = 'admin';
+\$CFG->wwwroot   = 'http://127.0.0.1/moodle';
+\$CFG->dataroot  = '/var/moodledata';
+\$CFG->admin     = 'admin';
 
-$CFG->directorypermissions = 0777;
+\$CFG->directorypermissions = 0777;
 
 require_once(dirname(__FILE__) . '/lib/setup.php');
 
@@ -120,7 +116,6 @@ chown -R root /var/www/html/moodle
 # echo Then run the healthcheck from Plugins | Question types | STACK
 
 # Configure MathJax
-# echo *** Configuring MathJax ***
 # cd /var/www/html/moodle/lib
 # git clone git://github.com/mathjax/MathJax.git MathJax
 # mv MathJax mathjax
@@ -141,7 +136,6 @@ chown -R root /var/www/html/moodle
 # EOF
 
 # Optimise maxima -- FIXME
-# echo *** Optimising Maxima ***
 # apt-get install gcl
 # echo Start maxima and enter the following commands:
 # echo load("/var/moodledata/stack/maximalocal.mac");
@@ -154,13 +148,25 @@ chown -R root /var/www/html/moodle
 # echo /var/moodledata/stack/maxima-optimised -eval '(cl-user::run)'
 
 # Configure Firefox
-echo *** Configuring Firefox ***
 cat <<EOF >> /etc/firefox/syspref.js
-user_pref("browser.startup.homepage", "127.0.0.1/moodle|www.mathcentre.ac.uk|www.mathtutor.ac.uk|www.gcu.ac.uk");
+user_pref("browser.startup.homepage", "127.0.0.1/moodle|www.mathcentre.ac.uk);
+EOF
+#user_pref("browser.startup.homepage", "127.0.0.1/moodle|www.mathcentre.ac.uk|www.mathtutor.ac.uk|www.gcu.ac.uk");
+
+# Locale
+cat <<EOF > /etc/default/locale
+LANG="en_GB.UTF-8"
+LANGUAGE="en_GB:en"
 EOF
 
-echo *** Removing unnecessary files ***
-apt-get -y purge ${tmp_additions} 
+cat <<EOF > /etc/default/keyboard
+XKBMODEL="pc105"
+XKBLAYOUT="gb"
+XKBVARIANT=""
+XKBOPTIONS=""
+EOF
+
+apt-get -y purge $tmp_additions 
 apt-get -y --purge autoremove
 apt-get clean
 for d in $(find / -type d -name .git); do rm -rf $d ; done
@@ -169,10 +175,7 @@ rm -f /var/lib/dbus/machine-id
 rm -f /etc/hosts
 rm -f /sbin/initctl
 
-echo *** Preparing to exit chroot ***
 dpkg-divert --rename --remove /sbin/initctl
 umount /proc || umount -lf /proc
 umount /sys
 umount /dev/pts
-
-echo *** End of chroot ***
