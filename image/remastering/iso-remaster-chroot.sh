@@ -56,21 +56,22 @@ service mysql stop
 
 # Configure Moodle
 echo *** Configuring Moodle ***
-cd /var/www
+mkdir -p /var/www/html
+cd /var/www/html
 git clone git://git.moodle.org/moodle.git
 cd moodle
 git branch -a
 git branch --track MOODLE_26_STABLE origin/MOODLE_26_STABLE
 git checkout MOODLE_26_STABLE
-chown -R www-data /var/www/moodle
-chmod -R 0755 /var/www/moodle
+chown -R www-data /var/www/html/moodle
+chmod -R 0755 /var/www/html/moodle
 mkdir /var/moodledata
 cat <<EOF > /var/moodledata/.htaccess
 order deny,allow
 deny from all
 EOF
 chown -R www-data /var/moodledata
-cat <<EOF > /var/www/moodle/config.php
+cat <<EOF > /var/www/html/moodle/config.php
 <?php  // Moodle configuration file
 
 unset($CFG);
@@ -101,17 +102,17 @@ require_once(dirname(__FILE__) . '/lib/setup.php');
 // There is no php closing tag in this file,
 // it is intentional because it prevents trailing whitespace problems!
 EOF
-chown -R root /var/www/moodle
+chown -R root /var/www/html/moodle
 
 
 # Configure STACK
 # echo *** Configuring STACK ***
-# cd /var/www/moodle/
+# cd /var/www/html/moodle/
 # git clone git://github.com/maths/moodle-qbehaviour_dfexplicitvaildate.git question/behaviour/dfexplicitvaildate
 # git clone git://github.com/maths/moodle-qbehaviour_dfcbmexplicitvaildate.git question/behaviour/dfcbmexplicitvaildate
 # git clone git://github.com/maths/moodle-qbehaviour_adaptivemultipart.git question/behaviour/adaptivemultipart
 # echo "Log into Moodle as admin and click on notifications"
-# cd /var/www/moodle
+# cd /var/www/html/moodle
 # git clone git://github.com/maths/moodle-qtype_stack.git question/type/stack
 # git clone git://github.com/maths/quiz_stack.git mod/quiz/report/stack
 # git clone git://github.com/maths/moodle-qformat_stack.git question/format/stack
@@ -120,7 +121,7 @@ chown -R root /var/www/moodle
 
 # Configure MathJax
 # echo *** Configuring MathJax ***
-# cd /var/www/moodle/lib
+# cd /var/www/html/moodle/lib
 # git clone git://github.com/mathjax/MathJax.git MathJax
 # mv MathJax mathjax
 # echo Set the Additional HTML section in the Appearance on Moodle:
