@@ -7,31 +7,45 @@ mount -t sysfs none /sys
 mount -t devpts none /dev/pts
 
 export HOME=/root
-export LC_ALL=C
+export LC_ALL=en_GB.utf8
+export LANG=en_GB:utf8
+export LANGUAGE=en_GB:en
+export LC_CTYPE=en_GB.utf8
+export LC_NUMERIC=en_GB.utf8
+export LC_TIME=en_GB.utf8
+export LC_COLLATE=en_GB.utf8
+export LC_MONETARY=en_GB.utf8
+export LC_MESSAGES=en_GB.utf8
+export LC_PAPER=en_GB.utf8
+export LC_NAME=en_GB.utf8
+export LC_ADDRESS=en_GB.utf8
+export LC_TELEPHONE=en_GB.utf8
+export LC_MEASUREMENT=en_GB.utf8
+export LC_IDENTIFICATION=en_GB.utf8
 
 dbus-uuidgen > /var/lib/dbus/machine-id
 dpkg-divert --local --rename --add /sbin/initctl
 ln -s /bin/true /sbin/initctl
 
-alias packages='dpkg-query -W --showformat="\${Installed-Size}\t\${Package}\n" | sort -nr'
+# alias packages='dpkg-query -W --showformat="\${Installed-Size}\t\${Package}\n" | sort -nr'
 
-# Unwanted packages
-removes="abiword* gnumeric* goffice* guvcview* leafpad pidgin* sylpheed* transmission* xpad"
-for lang in de es fr ru ; do \
+doc_removes=$(dpkg-query -W --showformat="\${Package}\n" | grep doc$)
+removes="$doc_removes"
+for f in abiword gnumeric goffice guvcview leafpad mtpaint pidgin sylpheed transmission xpad; do
+    r=$(dpkg-query -W --showformat="\${Package}\n" | grep $f);
+    removes="$removes $r";
+done
+for lang in de es fr ru ; do
     removes="$removes language-pack-${lang}"
     removes="$removes language-pack-${lang}-base"
     removes="$removes language-pack-gnome-${lang}"
     removes="$removes language-pack-gnome-${lang}-base"
     removes="$removes firefox-locale-${lang}"
 done
-echo $removes
 
 apt-get -y purge ${removes}
 apt-get -y clean
 
-# Build tools
-tmp_additions="git"
-# LAMP
 additions="apache2 mysql-server mysql-client"
 additions="$additions libapache2-mod-php5 php5-common php5-mysql php5-curl php5-gd php5-xmlrpc php5-intl"
 # apache2-utils ssl-cert
@@ -40,141 +54,19 @@ additions="$additions libapache2-mod-php5 php5-common php5-mysql php5-curl php5-
 
 echo 'mysql-server mysql-server/root_password password password' | debconf-set-selections
 echo 'mysql-server mysql-server/root_password_again password password' | debconf-set-selections
-apt-get -y install $tmp_additions $additions
-service apache2 stop
-echo "ServerName localhost" >> /etc/apache2/apache2.conf
+apt-get -y install $additions
 
 # Configure MySQL
 mysql -u root --password=password <<EOF
 CREATE DATABASE moodle DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
+CREATE USER 'moodleuser'@'localhost' IDENTIFIED BY 'password';
 GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,CREATE TEMPORARY TABLES,DROP,INDEX,ALTER ON moodle.* TO moodleuser@localhost IDENTIFIED BY 'password';
 EOF
-service mysql stop
 
-# Configure Moodle
-mkdir -p /var/www/html
-cd /var/www/html
-git clone git://git.moodle.org/moodle.git
-cd moodle
-git branch -a
-git branch --track MOODLE_27_STABLE origin/MOODLE_27_STABLE
-git checkout MOODLE_27_STABLE
-chown -R www-data /var/www/html/moodle
-chmod -R 0755 /var/www/html/moodle
-mkdir /var/moodledata
-cat <<EOF > /var/moodledata/.htaccess
-order deny,allow
-deny from all
-EOF
-chown -R www-data /var/moodledata
-cat <<EOF > /var/www/html/moodle/config.php
-<?php  // Moodle configuration file
-
-unset(\$CFG);
-global \$CFG;
-\$CFG = new stdClass();
-
-\$CFG->dbtype    = 'mysqli';
-\$CFG->dblibrary = 'native';
-\$CFG->dbhost    = 'localhost';
-\$CFG->dbname    = 'moodle';
-\$CFG->dbuser    = 'moodleuser';
-\$CFG->dbpass    = 'password';
-\$CFG->prefix    = 'mdl_';
-\$CFG->dboptions = array (
-  'dbpersist' => 0,
-  'dbport' => '',
-  'dbsocket' => '',
-);
-
-\$CFG->wwwroot   = 'http://127.0.0.1/moodle';
-\$CFG->dataroot  = '/var/moodledata';
-\$CFG->admin     = 'admin';
-
-\$CFG->directorypermissions = 0777;
-
-require_once(dirname(__FILE__) . '/lib/setup.php');
-
-// There is no php closing tag in this file,
-// it is intentional because it prevents trailing whitespace problems!
-EOF
-chown -R root /var/www/html/moodle
-
-
-# Configure STACK
-# echo *** Configuring STACK ***
-# cd /var/www/html/moodle/
-# git clone git://github.com/maths/moodle-qbehaviour_dfexplicitvaildate.git question/behaviour/dfexplicitvaildate
-# git clone git://github.com/maths/moodle-qbehaviour_dfcbmexplicitvaildate.git question/behaviour/dfcbmexplicitvaildate
-# git clone git://github.com/maths/moodle-qbehaviour_adaptivemultipart.git question/behaviour/adaptivemultipart
-# echo "Log into Moodle as admin and click on notifications"
-# cd /var/www/html/moodle
-# git clone git://github.com/maths/moodle-qtype_stack.git question/type/stack
-# git clone git://github.com/maths/quiz_stack.git mod/quiz/report/stack
-# git clone git://github.com/maths/moodle-qformat_stack.git question/format/stack
-# echo Login to Moodle as admin and attend to notifications.
-# echo Then run the healthcheck from Plugins | Question types | STACK
-
-# Configure MathJax
-# cd /var/www/html/moodle/lib
-# git clone git://github.com/mathjax/MathJax.git MathJax
-# mv MathJax mathjax
-# echo Set the Additional HTML section in the Appearance on Moodle:
-# echo Within head
-# cat << EOF
-# <script type="text/x-mathjax-config"> MathJax.Hub.Config({
-# MMLorHTML: { prefer: "HTML" },
-# tex2jax: {
-# displayMath: [['\\[', '\\]']],
-# inlineMath: [['\\(', '\\)']],
-# processEscapes: true
-# },
-# TeX: { extensions: ['enclose.js'] }
-# });
-# </script>
-# <script type="text/javascript" src="/moodle/lib/mathjax/MathJax.js?config=TeX-AMS_HTML"></script>
-# EOF
-
-# Optimise maxima -- FIXME
-# apt-get install gcl
-# echo Start maxima and enter the following commands:
-# echo load("/var/moodledata/stack/maximalocal.mac");
-# echo :lisp (si::save-system "/tmp/maxima-optimised")
-# echo quit();
-# echo
-# echo mv /tmp/maxima-optimised /var/moodledata/stack/maxima-optimised
-# echo
-# echo Set the maxima command to:
-# echo /var/moodledata/stack/maxima-optimised -eval '(cl-user::run)'
-
-# Configure Firefox
-cat <<EOF >> /etc/firefox/syspref.js
-user_pref("browser.startup.homepage", "127.0.0.1/moodle|www.mathcentre.ac.uk);
-EOF
-#user_pref("browser.startup.homepage", "127.0.0.1/moodle|www.mathcentre.ac.uk|www.mathtutor.ac.uk|www.gcu.ac.uk");
-
-# Locale
-cat <<EOF > /etc/default/locale
-LANG="en_GB.UTF-8"
-LANGUAGE="en_GB:en"
-EOF
-
-cat <<EOF > /etc/default/keyboard
-XKBMODEL="pc105"
-XKBLAYOUT="gb"
-XKBVARIANT=""
-XKBOPTIONS=""
-EOF
-
-apt-get -y purge $tmp_additions 
 apt-get -y --purge autoremove
 apt-get clean
-for d in $(find / -type d -name .git); do rm -rf $d ; done
-rm -rf /tmp/* ~/.bash_history
-rm -f /var/lib/dbus/machine-id
-rm -f /etc/hosts
-rm -f /sbin/initctl
 
+rm -f /sbin/initctl
 dpkg-divert --rename --remove /sbin/initctl
 umount /proc || umount -lf /proc
 umount /sys

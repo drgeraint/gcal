@@ -1,9 +1,9 @@
-#! /bin/sh
+#! /bin/bash
 
 # Adapted from instructions at # 2014-08-18:
 # https://help.ubuntu.com/community/LiveCDCustomization 
 
-# Dependencies can be obtained with: apt-get install uck
+apt-get install -y genisoimage git
 
 SOURCE_ISO=~/iso/lubuntu-14.04.1-desktop-i386.iso
 OUTPUT_ISO=~/iso/lubuntu-14.04.1-desktop-i386-moodle.iso
@@ -13,18 +13,16 @@ TEMP_DIR=$(mktemp -d tmp-remaster-${DATE}.XXX)
 
 mkdir -p ${TEMP_DIR}/mnt
 mkdir -p ${TEMP_DIR}/extract-cd
-cd ${TEMP_DIR}
+pushd $TEMP_DIR
 
-mount -o loop ${SOURCE_ISO} mnt
+mount -o loop $SOURCE_ISO mnt
 
 rsync --exclude=/casper/filesystem.squashfs -a mnt/ extract-cd
 unsquashfs mnt/casper/filesystem.squashfs
 mv squashfs-root edit
 
-cat <<EOF > edit/etc/resolv.conf
-nameserver 8.8.8.8 # Google DNS
-nameserver 8.8.4.4 # Google DNS
-EOF
+mkdir -p /edit/etc/default
+mkdir -p /edit/etc/firefox
 
 cat <<EOF > edit/etc/hosts
 127.0.0.1	localhost
@@ -37,10 +35,151 @@ ff02::1 ip6-allnodes
 ff02::2 ip6-allrouters
 EOF
 
+cat <<EOF > edit/etc/resolv.conf
+nameserver 8.8.8.8 # Google DNS
+nameserver 8.8.4.4 # Google DNS
+EOF
+
+cat <<EOF > edit/etc/default/keyboard
+XKBMODEL="pc105"
+XKBLAYOUT="gb"
+XKBVARIANT=""
+XKBOPTIONS=""
+EOF
+
+cat <<EOF > edit/etc/default/locale
+LC_ALL=en_GB.utf8
+LANG=en_GB:utf8
+LANGUAGE=en_GB:en
+LC_CTYPE=en_GB.utf8
+LC_NUMERIC=en_GB.utf8
+LC_TIME=en_GB.utf8
+LC_COLLATE=en_GB.utf8
+LC_MONETARY=en_GB.utf8
+LC_MESSAGES=en_GB.utf8
+LC_PAPER=en_GB.utf8
+LC_NAME=en_GB.utf8
+LC_ADDRESS=en_GB.utf8
+LC_TELEPHONE=en_GB.utf8
+LC_MEASUREMENT=en_GB.utf8
+LC_IDENTIFICATION=en_GB.utf8
+EOF
+
+cat <<EOF > edit/etc/firefox/syspref.js
+// This file can be used to configure global preferences for Firefox
+user_pref("browser.startup.homepage", "localhost/moodle|www.mathcentre.ac.uk");
+EOF
+
 mount --bind /dev/ edit/dev
 
 cp /usr/local/bin/iso-remaster.sh /usr/local/bin/iso-remaster-chroot.sh edit/usr/local/bin/
 chroot edit /bin/sh -c /usr/local/bin/iso-remaster-chroot.sh
+
+# Apache
+echo "ServerName localhost" >> edit/etc/apache2/apache2.conf
+
+# Moodle
+mkdir -p edit/var/www/html
+pushd edit/var/www/html
+git clone git://git.moodle.org/moodle.git
+pushd moodle
+git branch -a
+git branch --track MOODLE_27_STABLE origin/MOODLE_27_STABLE
+git checkout MOODLE_27_STABLE
+popd
+popd
+cat <<EOF > edit/var/www/html/moodle/config.php
+<?php // Moodle configuration file
+
+unset(\$CFG);
+global \$CFG;
+\$CFG = new stdClass();
+
+\$CFG->dbtype	= 'mysqli';
+\$CFG->dblibrary	= 'native';
+\$CFG->dbhost	= 'localhost';
+\$CFG->dbname	= 'moodle';
+\$CFG->dbuser	= 'moodleuser';
+\$CFG->dbpass	= 'password';
+\$CFG->prefix	= 'mdl_';
+\$CFG->dboptions	= array (
+  'dbpersist' => 0,
+  'dbport' => '',
+  'dbsocket' => '',
+);
+
+\$CFG->wwwroot	= 'http://localhost/moodle';
+\$CFG->dataroot	= '/var/moodledata';
+\$CFG->admin	= 'admin';
+
+\$CFG->directorypermissions = 0777;
+
+require_once(dirname(__FILE__) . '/lib/setup.php');
+
+// There is no php closing tag in this file,
+// it is intentional because it prevents trailing whitespace problems!
+EOF
+
+mkdir edit/var/moodledata
+cat <<EOF > edit/var/moodledata/.htaccess
+order deny,allow
+deny from all
+EOF
+
+chown -R www-data.www-data edit/var/moodledata
+chown -R www-data.www-data edit/var/www/html/moodle
+chmod -R 0755              edit/var/www/html/moodle
+
+# Configure STACK
+# pushd edit/var/www/html/moodle/
+# git clone git://github.com/maths/moodle-qbehaviour_dfexplicitvaildate.git question/behaviour/dfexplicitvaildate
+# git clone git://github.com/maths/moodle-qbehaviour_dfcbmexplicitvaildate.git question/behaviour/dfcbmexplicitvaildate
+# git clone git://github.com/maths/moodle-qbehaviour_adaptivemultipart.git question/behaviour/adaptivemultipart
+# echo "Log into Moodle as admin and click on notifications"
+# git clone git://github.com/maths/moodle-qtype_stack.git question/type/stack
+# git clone git://github.com/maths/quiz_stack.git mod/quiz/report/stack
+# git clone git://github.com/maths/moodle-qformat_stack.git question/format/stack
+# echo Login to Moodle as admin and attend to notifications.
+# echo Then run the healthcheck from Plugins | Question types | STACK
+# popd
+
+# Configure MathJax
+# pushd edit/var/www/html/moodle/lib
+# git clone git://github.com/mathjax/MathJax.git MathJax
+# mv MathJax mathjax
+# echo Set the Additional HTML section in the Appearance on Moodle:
+# echo Within head
+# cat << EOF
+# <script type="text/x-mathjax-config"> MathJax.Hub.Config({
+# MMLorHTML: { prefer: "HTML" },
+# tex2jax: {
+# displayMath: [['\\[', '\\]']],
+# inlineMath: [['\\(', '\\)']],
+# processEscapes: true
+# },
+# TeX: { extensions: ['enclose.js'] }
+# });
+# </script>
+# <script type="text/javascript" src="/moodle/lib/mathjax/MathJax.js?config=TeX-AMS_HTML"></script>
+# EOF
+# popd $TEMP_DIR
+
+# Optimise maxima
+# apt-get install gcl
+# echo Start maxima and enter the following commands:
+# echo load("edit/var/moodledata/stack/maximalocal.mac");
+# echo :lisp (si::save-system "/tmp/maxima-optimised")
+# echo quit();
+# echo
+# echo mv /tmp/maxima-optimised edit/var/moodledata/stack/maxima-optimised
+# echo
+# echo Set the maxima command to:
+# echo edit/var/moodledata/stack/maxima-optimised -eval '(cl-user::run)'
+
+for d in $(find edit/ -type d -name .git); do rm -rf edit/$d ; done
+rm -rf edit/tmp/* edit~/root/bash_history
+rm -f edit/var/lib/dbus/machine-id
+rm -f edit/etc/hosts
 
 umount -l edit/dev
 
@@ -50,7 +189,13 @@ mksquashfs edit extract-cd/casper/filesystem.squashfs -comp xz -e edit/boot
 chmod +w extract-cd/README.diskdefines
 printf $(du -sx --block-size=1 edit | cut -f1) > extract-cd/README.diskdefines
 
-cd extract-cd
+pushd extract-cd
+cat <<EOF >> preseed/lubuntu.seed
+# Locale and keyboard settings
+d-i debian-installer/locale string en_GB.UTF-8
+d-i locale-chooser/supported-locales en_GB.UTF-8,en_US.UTF-8
+d-i keyboard-configuration/layout string gb
+EOF
 rm md5sum.txt
 find -type f -print0 | xargs -0 md5sum | grep -v isolinux/boot.cat | tee md5sum.txt
 mkisofs -D -r -V "${VOLUME_TAG}" -cache-inodes -J -l -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -o ${OUTPUT_ISO} .
