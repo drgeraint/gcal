@@ -3,10 +3,11 @@
 # Adapted from instructions at # 2014-08-18:
 # https://help.ubuntu.com/community/LiveCDCustomization 
 
-apt-get install -y genisoimage git
+apt-get install -y build-essential genisoimage git
 
 SOURCE_ISO=~/iso/lubuntu-14.04.1-desktop-i386.iso
 OUTPUT_ISO=~/iso/lubuntu-14.04.1-desktop-i386-moodle.iso
+MOODLE_DAT=~/gcal/image/remastering/iso-remaster-moodledata.tgz
 DATE=$(date --iso)
 VOLUME_TAG="14.04.1 Remastered ${DATE}"
 TEMP_DIR=$(mktemp -d tmp-remaster-${DATE}.XXX)
@@ -120,15 +121,21 @@ require_once(dirname(__FILE__) . '/lib/setup.php');
 // it is intentional because it prevents trailing whitespace problems!
 EOF
 
-mkdir edit/var/moodledata
-cat <<EOF > edit/var/moodledata/.htaccess
-order deny,allow
-deny from all
-EOF
+# For entirely fresh installation, uncomment:
+# mkdir edit/var/moodledata
+# cat <<EOF > edit/var/moodledata/.htaccess
+# order deny,allow
+# deny from all
+# EOF
+# chown -R www-data.www-data edit/var/moodledata
+# chown -R www-data.www-data edit/var/www/html/moodle
+# chmod -R 0755              edit/var/www/html/moodle
 
+# Install prepared /var/moodledata 
+pushd edit
+tar -xzf $MOODLE_DAT
+popd
 chown -R www-data.www-data edit/var/moodledata
-chown -R www-data.www-data edit/var/www/html/moodle
-chmod -R 0755              edit/var/www/html/moodle
 
 # Configure STACK
 # pushd edit/var/www/html/moodle/

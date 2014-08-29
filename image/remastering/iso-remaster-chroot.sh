@@ -42,6 +42,7 @@ for lang in de es fr ru ; do
     removes="$removes language-pack-gnome-${lang}-base"
     removes="$removes firefox-locale-${lang}"
 done
+removes="$removes libavcodec.*"
 
 apt-get -y purge ${removes}
 apt-get -y clean
