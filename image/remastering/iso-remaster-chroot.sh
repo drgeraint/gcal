@@ -64,6 +64,30 @@ CREATE USER 'moodleuser'@'localhost' IDENTIFIED BY 'password';
 GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,CREATE TEMPORARY TABLES,DROP,INDEX,ALTER ON moodle.* TO moodleuser@localhost IDENTIFIED BY 'password';
 EOF
 
+CLIDIR=/var/www/html/moodle/admin/cli
+chmod -R +x ${CLIDIR}
+php -f ${CLIDIR}/install.php -- \
+    --lang=en  \
+    --wwwroot='http://localhost/moodle' \
+    --dataroot='/var/moodledata' \
+    --dbtype='mysqli' \
+    --dbhost='localhost' \
+    --dbname='moodle' \
+    --dbuser='moodleuser' \
+    --dbpass='password' \
+    --dbport='' \
+    --dbsocket='' \
+    --prefix='mdl_' \
+    --fullname='GCU Computer Aided Learning (Mathematics for Engineers)' \
+    --shortname='gcal' \
+    --adminuser='admin' \
+    --adminpass='(s+A)*(s+B)=s^2+(A+B)*s+A*B' \
+    --non-interactive --agree-license 
+
+chown -R www-data.www-data /var/www
+chown -R www-data.www-data /var/moodledata
+
+
 apt-get -y --purge autoremove
 apt-get clean
 

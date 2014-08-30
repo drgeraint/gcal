@@ -7,7 +7,7 @@ apt-get install -y build-essential genisoimage git
 
 SOURCE_ISO=~/iso/lubuntu-14.04.1-desktop-i386.iso
 OUTPUT_ISO=~/iso/lubuntu-14.04.1-desktop-i386-moodle.iso
-MOODLE_DAT=~/gcal/image/remastering/iso-remaster-moodledata.tgz
+# MOODLE_DAT=~/gcal/image/remastering/iso-remaster-moodledata.tgz
 DATE=$(date --iso)
 VOLUME_TAG="14.04.1 Remastered ${DATE}"
 TEMP_DIR=$(mktemp -d tmp-remaster-${DATE}.XXX)
@@ -73,9 +73,6 @@ EOF
 
 mount --bind /dev/ edit/dev
 
-cp /usr/local/bin/iso-remaster.sh /usr/local/bin/iso-remaster-chroot.sh edit/usr/local/bin/
-chroot edit /bin/sh -c /usr/local/bin/iso-remaster-chroot.sh
-
 # Apache
 echo "ServerName localhost" >> edit/etc/apache2/apache2.conf
 
@@ -89,53 +86,23 @@ git branch --track MOODLE_27_STABLE origin/MOODLE_27_STABLE
 git checkout MOODLE_27_STABLE
 popd
 popd
-cat <<EOF > edit/var/www/html/moodle/config.php
-<?php // Moodle configuration file
 
-unset(\$CFG);
-global \$CFG;
-\$CFG = new stdClass();
-
-\$CFG->dbtype	= 'mysqli';
-\$CFG->dblibrary	= 'native';
-\$CFG->dbhost	= 'localhost';
-\$CFG->dbname	= 'moodle';
-\$CFG->dbuser	= 'moodleuser';
-\$CFG->dbpass	= 'password';
-\$CFG->prefix	= 'mdl_';
-\$CFG->dboptions	= array (
-  'dbpersist' => 0,
-  'dbport' => '',
-  'dbsocket' => '',
-);
-
-\$CFG->wwwroot	= 'http://localhost/moodle';
-\$CFG->dataroot	= '/var/moodledata';
-\$CFG->admin	= 'admin';
-
-\$CFG->directorypermissions = 0777;
-
-require_once(dirname(__FILE__) . '/lib/setup.php');
-
-// There is no php closing tag in this file,
-// it is intentional because it prevents trailing whitespace problems!
+For entirely fresh installation, uncomment:
+mkdir edit/var/moodledata
+cat <<EOF > edit/var/moodledata/.htaccess
+order deny,allow
+deny from all
 EOF
-
-# For entirely fresh installation, uncomment:
-# mkdir edit/var/moodledata
-# cat <<EOF > edit/var/moodledata/.htaccess
-# order deny,allow
-# deny from all
-# EOF
-# chown -R www-data.www-data edit/var/moodledata
-# chown -R www-data.www-data edit/var/www/html/moodle
-# chmod -R 0755              edit/var/www/html/moodle
-
-# Install prepared /var/moodledata 
-pushd edit
-tar -xzf $MOODLE_DAT
-popd
 chown -R www-data.www-data edit/var/moodledata
+
+cp /usr/local/bin/iso-remaster.sh /usr/local/bin/iso-remaster-chroot.sh edit/usr/local/bin/
+chroot edit /bin/sh -c /usr/local/bin/iso-remaster-chroot.sh
+
+# # Install prepared /var/moodledata 
+# pushd edit
+# tar -xzf $MOODLE_DAT
+# popd
+# chown -R www-data.www-data edit/var/moodledata
 
 # Configure STACK
 # pushd edit/var/www/html/moodle/
