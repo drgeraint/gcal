@@ -1,0 +1,1353 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assessmentItem xmlns="http://www.imsglobal.org/xsd/imsqti_v2p1"
+    
+    xmlns:m="http://www.w3.org/1998/Math/MathML"
+    xmlns:ma="http://mathassess.qtitools.org/xsd/mathassess"
+    xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" adaptive="true"
+    identifier="laplace-LRC-step001" timeDependent="false"
+    title="Laplace example in context: LRC step" toolName="Mathqurate" toolVersion="1.0"
+    xml:lang=""
+    xsi:schemaLocation="http://www.imsglobal.org/xsd/imsqti_v2p1 imsqti_v2p1.xsd http://mathassess.qtitools.org/xsd/mathassess schemas/mathassess.xsd">
+    <responseDeclaration cardinality="record" identifier="RESPONSE"/>
+    <responseDeclaration baseType="string" cardinality="single" identifier="printMath"/>
+    <responseDeclaration baseType="boolean" cardinality="single" identifier="HINTREQUEST"/>
+    <responseDeclaration baseType="boolean" cardinality="single" identifier="SOLREQUEST"/>
+    <outcomeDeclaration baseType="identifier" cardinality="multiple" identifier="FEEDBACK"/>
+    <outcomeDeclaration baseType="identifier" cardinality="single" identifier="EMPTY"/>
+    <outcomeDeclaration baseType="float" cardinality="single" identifier="SCORE" normalMaximum="2.0"
+        normalMinimum="0.0">
+        <defaultValue>
+            <value>0 </value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="seenSolution">
+        <defaultValue>
+            <value>false</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="seenHint">
+        <defaultValue>
+            <value>false</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="identifier" cardinality="single" identifier="ASKHINT">
+        <defaultValue>
+            <value>askhint</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration baseType="identifier" cardinality="single" identifier="ASKSOLUTION">
+        <defaultValue>
+            <value>asksolution</value>
+        </defaultValue>
+    </outcomeDeclaration>
+    <outcomeDeclaration cardinality="record" identifier="oInput"/>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="odummy"/>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="isEqual"/>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="isTrans"/>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="termsOK"/>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="t1OK"/>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="t2OK"/>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="t3OK"/>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="t1BadSign"/>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="t2BadSign"/>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="t3BadSign"/>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="t1Zero"/>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="t2Zero"/>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="t3Zero"/>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="t1One"/>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="t2One"/>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="t3One"/>
+    <outcomeDeclaration baseType="boolean" cardinality="single" identifier="t3Number"/>
+    <outcomeDeclaration baseType="integer" cardinality="single" identifier="nResp"/>
+    <outcomeDeclaration baseType="integer" cardinality="single" identifier="nAns"/>
+    <outcomeDeclaration cardinality="record" identifier="mRcoeff1"/>
+    <outcomeDeclaration cardinality="record" identifier="mRcoeff2"/>
+    <outcomeDeclaration cardinality="record" identifier="mRcoeff3"/>
+    <outcomeDeclaration cardinality="record" identifier="mRespNum"/>
+    <outcomeDeclaration cardinality="record" identifier="mAnsNum"/>
+    <outcomeDeclaration cardinality="record" identifier="mAnsDifference"/>
+    <outcomeDeclaration cardinality="record" identifier="mTransDifference"/>
+    <templateDeclaration baseType="boolean" cardinality="single" identifier="keepRandomSeed"
+        mathVariable="false" paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iRandomSeed"
+        mathVariable="false" paramVariable="false"/>
+    <templateDeclaration baseType="boolean" cardinality="single" identifier="dummy"
+        mathVariable="false" paramVariable="false"/>
+    <templateDeclaration baseType="identifier" cardinality="multiple" identifier="showSolParts"
+        mathVariable="false" paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iA" mathVariable="true"
+        paramVariable="false">
+        <defaultValue>
+            <value>2</value>
+        </defaultValue>
+    </templateDeclaration>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iB" mathVariable="true"
+        paramVariable="false">
+        <defaultValue>
+            <value>3</value>
+        </defaultValue>
+    </templateDeclaration>
+    <templateDeclaration baseType="integer" cardinality="multiple" identifier="iRoots"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iAB"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iApB"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iAmB"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iAbsA"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iAbsB"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iAbsAB"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iAbsAmB"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="float" cardinality="single" identifier="fC"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="float" cardinality="single" identifier="fL"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="float" cardinality="single" identifier="fR"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="float" cardinality="single" identifier="fLC"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="float" cardinality="single" identifier="fRC"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="single" identifier="iNumA"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="float" cardinality="single" identifier="fNumA"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="float" cardinality="single" identifier="fNumB"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="string" cardinality="single" identifier="sNumA"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="string" cardinality="single" identifier="sNumB"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="float" cardinality="single" identifier="fAbsNumA"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration baseType="float" cardinality="single" identifier="fAbsNumB"
+        mathVariable="true" paramVariable="false"/>
+    <templateDeclaration cardinality="record" identifier="mQues" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration cardinality="record" identifier="mAns" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration cardinality="record" identifier="mVs" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration cardinality="record" identifier="mNumA" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration cardinality="record" identifier="mNumB" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration cardinality="record" identifier="mFac1" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration cardinality="record" identifier="mFac2" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration cardinality="record" identifier="mAt" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration cardinality="record" identifier="mBt" mathVariable="true"
+        paramVariable="false"/>
+    <templateDeclaration baseType="integer" cardinality="ordered" identifier="iRandomState"
+        mathVariable="false" paramVariable="false"/>
+    <templateProcessing>
+        <!-- choose roots of denominator of G(s) -->
+        <setTemplateValue identifier="iRoots">
+            <multiple>
+                <baseValue baseType="integer">-1</baseValue>
+                <baseValue baseType="integer">-2</baseValue>
+                <baseValue baseType="integer">-4</baseValue>
+                <baseValue baseType="integer">-5</baseValue>
+                <baseValue baseType="integer">-10</baseValue>
+            </multiple>
+        </setTemplateValue>
+        <setTemplateValue identifier="iA">
+            <random>
+                <variable identifier="iRoots"/>
+            </random>
+        </setTemplateValue>
+        <setTemplateValue identifier="iRoots">
+            <delete>
+                <variable identifier="iA"/>
+                <variable identifier="iRoots"/>
+            </delete>
+        </setTemplateValue>
+        <setTemplateValue identifier="iB">
+            <random>
+                <variable identifier="iRoots"/>
+            </random>
+        </setTemplateValue>
+        <setTemplateValue identifier="iAbsA">
+            <round>
+                <mathOperator name="abs">
+                    <variable identifier="iA"/>
+                </mathOperator>
+            </round>
+        </setTemplateValue>
+        <setTemplateValue identifier="iAbsB">
+            <round>
+                <mathOperator name="abs">
+                    <variable identifier="iB"/>
+                </mathOperator>
+            </round>
+        </setTemplateValue>
+        <setTemplateValue identifier="iAB">
+            <product>
+                <variable identifier="iA"/>
+                <variable identifier="iB"/>
+            </product>
+        </setTemplateValue>
+        <setTemplateValue identifier="iAbsAB">
+            <round>
+                <mathOperator name="abs">
+                    <variable identifier="iAB"/>
+                </mathOperator>
+            </round>
+        </setTemplateValue>
+        <setTemplateValue identifier="iApB">
+            <subtract>
+                <baseValue baseType="integer">0</baseValue>
+                <sum>
+                    <variable identifier="iA"/>
+                    <variable identifier="iB"/>
+                </sum>
+            </subtract>
+        </setTemplateValue>
+        <setTemplateValue identifier="iAmB">
+            <subtract>
+                <variable identifier="iA"/>
+                <variable identifier="iB"/>
+            </subtract>
+        </setTemplateValue>
+        <setTemplateValue identifier="iAbsAmB">
+            <round>
+                <mathOperator name="abs">
+                    <variable identifier="iAmB"/>
+                </mathOperator>
+            </round>
+        </setTemplateValue>
+        <setTemplateValue identifier="fC">
+            <roundTo roundingMode="decimalPlaces" figures="2">
+                <random>
+                    <multiple>
+                        <baseValue baseType="float">0.05</baseValue>
+                        <baseValue baseType="float">0.1</baseValue>
+                        <baseValue baseType="float">0.2</baseValue>
+                        <baseValue baseType="float">0.25</baseValue>
+                        <baseValue baseType="float">0.4</baseValue>
+                    </multiple>
+                </random>
+            </roundTo>
+        </setTemplateValue>
+        <setTemplateValue identifier="fLC">
+            <divide>
+                <baseValue baseType="integer">1</baseValue>
+                <variable identifier="iAB"/>
+            </divide>
+        </setTemplateValue>
+        <setTemplateValue identifier="fRC">
+            <divide>
+                <variable identifier="iApB"/>
+                <variable identifier="iAB"/>
+            </divide>
+        </setTemplateValue>
+        <setTemplateValue identifier="fL">
+            <roundTo roundingMode="decimalPlaces" figures="2">
+                <divide>
+                    <variable identifier="fLC"/>
+                    <variable identifier="fC"/>
+                </divide>
+            </roundTo>
+        </setTemplateValue>
+        <setTemplateValue identifier="fR">
+            <roundTo roundingMode="decimalPlaces" figures="2">
+                <divide>
+                    <variable identifier="fRC"/>
+                    <variable identifier="fC"/>
+                </divide>
+            </roundTo>
+        </setTemplateValue>
+        <setTemplateValue identifier="iNumA">
+            <baseValue baseType="integer">1</baseValue>
+        </setTemplateValue>
+        <setTemplateValue identifier="fNumA">
+            <roundTo roundingMode="decimalPlaces" figures="2">
+                <divide>
+                    <variable identifier="iAB"/>
+                    <product>
+                        <variable identifier="iA"/>
+                        <subtract>
+                            <variable identifier="iA"/>
+                            <variable identifier="iB"/>
+                        </subtract>
+                    </product>
+                </divide>
+            </roundTo>
+        </setTemplateValue>
+        <setTemplateValue identifier="fNumB">
+            <roundTo roundingMode="decimalPlaces" figures="2">
+                <divide>
+                    <variable identifier="iAB"/>
+                    <product>
+                        <variable identifier="iB"/>
+                        <subtract>
+                            <variable identifier="iB"/>
+                            <variable identifier="iA"/>
+                        </subtract>
+                    </product>
+                </divide>
+            </roundTo>
+        </setTemplateValue>
+        <setTemplateValue identifier="fAbsNumA">
+            <mathOperator name="abs">
+                <variable identifier="fNumA"/>
+            </mathOperator>
+        </setTemplateValue>
+        <setTemplateValue identifier="fAbsNumB">
+            <mathOperator name="abs">
+                <variable identifier="fNumB"/>
+            </mathOperator>
+        </setTemplateValue>
+        <templateCondition>
+            <templateIf>
+                <lt>
+                    <variable identifier="fNumA"/>
+                    <baseValue baseType="integer">0</baseValue>
+                </lt>
+                <setTemplateValue identifier="sNumA">
+                    <baseValue baseType="string">-</baseValue>
+                </setTemplateValue>
+            </templateIf>
+            <templateElse>
+                <setTemplateValue identifier="sNumA">
+                    <baseValue baseType="string">+</baseValue>
+                </setTemplateValue>
+            </templateElse>
+        </templateCondition>
+        <templateCondition>
+            <templateIf>
+                <lt>
+                    <variable identifier="fNumB"/>
+                    <baseValue baseType="integer">0</baseValue>
+                </lt>
+                <setTemplateValue identifier="sNumB">
+                    <baseValue baseType="string">-</baseValue>
+                </setTemplateValue>
+            </templateIf>
+            <templateElse>
+                <setTemplateValue identifier="sNumB">
+                    <baseValue baseType="string">+</baseValue>
+                </setTemplateValue>
+            </templateElse>
+        </templateCondition>
+        
+        <!-- assemble the expressions -->
+        <setTemplateValue identifier="dummy">
+            <customOperator class="org.qtitools.mathassess.ScriptRule" ma:syntax="text/x-maxima">
+                <baseValue baseType="string"><![CDATA[
+
+			mFac1:ev(s-iA,simp);
+			mFac2:ev(s-iB,simp);
+			mAt:ev(iA*t,simp);
+			mBt:ev(iB*t,simp);
+			mQues:ev(expand(mFac1*mFac2),simp); 
+			mNumA:ev(iAB/(iA*(iA-iB)),simp);
+			mNumB:ev(iAB/(iB*(iB-iA)),simp);
+			mVs:ev(iNumA/s+mNumA/(s-iA)+mNumB/(s-iB),simp);
+			mAns:ev(1+mNumA*e^mAt+mNumB*e^mBt,simp);
+
+]]></baseValue>
+            </customOperator>
+        </setTemplateValue>
+    </templateProcessing>
+    <itemBody>
+        <rubricBlock view="tutor">
+            <p><printedVariable identifier="mAns"/></p>
+        </rubricBlock>
+        <p>An electrical LRC circuit is modelled by transfer function 
+            <math xmlns="http://www.w3.org/1998/Math/MathML">
+                <semantics>
+                    <mrow>
+                        <mi>G</mi>
+                        
+                        <mfenced close=")" open="(">
+                            <mi>s</mi>
+                        </mfenced>
+                        
+                    </mrow>
+                    <annotation encoding="SnuggleTeX">$G(s)$</annotation>
+                </semantics>
+            </math>:
+            <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+                <semantics>
+                    <mrow>
+                        <mi>G</mi>
+                        <mfenced close=")" open="(">
+                            <mi>s</mi>
+                        </mfenced>
+                        <mo>=</mo>
+                        <mfrac>
+                            <msub>
+                                <mi>V</mi>
+                                <mi>c</mi>
+                            </msub>
+                            <msub>
+                                <mi>V</mi>
+                                <mn>0</mn>
+                            </msub>
+                        </mfrac>
+                        <mfenced close=")" open="(">
+                            <mi>s</mi>
+                        </mfenced>
+                        <mo>=</mo>
+                        <mfrac>
+                            <mn>1</mn>
+                            <mrow>
+                                <mi>L</mi>
+                                <mi>C</mi>
+                                <msup>
+                                    <mi>s</mi>
+                                    <mn>2</mn>
+                                </msup>
+                                <mo>+</mo>
+                                <mi>R</mi>
+                                <mi>C</mi>
+                                <mi>s</mi>
+                                <mo>+</mo>
+                                <mn>1</mn>
+                            </mrow>
+                        </mfrac>
+                    </mrow>
+                    <annotation encoding="SnuggleTeX">\[                       G(s) = \frac{V_c}{V_{0}}(s) = \frac{1}{L C s^2 + R C s + 1}                       \]</annotation>
+                </semantics>
+            </math>
+            where <math xmlns="http://www.w3.org/1998/Math/MathML">
+                <semantics>
+                    <msub>
+                        
+                        <mi>V</mi>
+                        
+                        <mi>o</mi>
+                    </msub>
+                    <annotation encoding="SnuggleTeX">$V_o$</annotation>
+                </semantics>
+            </math> is the applied EMF (volts, V), <math xmlns="http://www.w3.org/1998/Math/MathML">
+                <semantics>
+                    <msub>
+                        
+                        <mi>V</mi>
+                        
+                        <mi>c</mi>
+                    </msub>
+                    <annotation encoding="SnuggleTeX">$V_c$</annotation>
+                </semantics>
+            </math> is the potential difference across the capacitor (volts, V),
+            <math xmlns="http://www.w3.org/1998/Math/MathML">
+                <semantics>
+                    
+                    <mi>L</mi>
+                    
+                    <annotation encoding="SnuggleTeX">$L$</annotation>
+                </semantics>
+            </math> is the inductance (henries, H), <math xmlns="http://www.w3.org/1998/Math/MathML">
+                <semantics>
+                    
+                    <mi>R</mi>
+                    
+                    <annotation encoding="SnuggleTeX">$R$</annotation>
+                </semantics>
+            </math> is the resistance (ohms, &#937;) and <math xmlns="http://www.w3.org/1998/Math/MathML">
+                <semantics>
+                    
+                    <mi>C</mi>
+                    
+                    <annotation encoding="SnuggleTeX">$C$</annotation>
+                </semantics>
+            </math> is the capacitance (farads, F).
+            
+            If <math xmlns="http://www.w3.org/1998/Math/MathML">
+                <semantics>
+                    <mi>L</mi>
+                    <annotation encoding="SnuggleTeX">$L$</annotation>
+                </semantics>
+            </math> = <printedVariable identifier="fL" format="%9.2f"/>H, <math xmlns="http://www.w3.org/1998/Math/MathML">
+                <semantics>
+                    <mi>R</mi>
+                    <annotation encoding="SnuggleTeX">$R$</annotation>
+                </semantics>
+            </math> = <printedVariable identifier="fR" format="%9.2f"/>&#937; and <math xmlns="http://www.w3.org/1998/Math/MathML">
+                <semantics>
+                    <mi>C</mi>
+                    <annotation encoding="SnuggleTeX">$C$</annotation>
+                </semantics>
+            </math> = <printedVariable identifier="fC" format="%9.2f"/>F, determine the potential difference across the capacitor <math xmlns="http://www.w3.org/1998/Math/MathML">
+                <semantics>
+                    <mrow>
+                        <msub>
+                            <mi>V</mi>
+                            <mi>c</mi>
+                        </msub>
+                        
+                        <mfenced close=")" open="(">
+                            <mi>t</mi>
+                        </mfenced>
+                        
+                    </mrow>
+                    <annotation encoding="SnuggleTeX">$V_c(t)$</annotation>
+                </semantics>
+            </math> as a function of time in response to a unit step input <math xmlns="http://www.w3.org/1998/Math/MathML">
+                <semantics>
+                    <mrow>
+                        <msub>
+                            <mi>V</mi>
+                            <mi>o</mi>
+                        </msub>
+                        
+                        <mfenced close=")" open="(">
+                            <mi>t</mi>
+                        </mfenced>
+                        
+                    </mrow>
+                    <annotation encoding="SnuggleTeX">$V_o(t)$</annotation>
+                </semantics>
+            </math>.
+            <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+                <semantics>
+                    <mtable>
+                        <mtr>
+                            <mtd columnalign="right">
+                                <msub>
+                                    <mi>V</mi>
+                                    <mi>o</mi>
+                                </msub>
+                                <mfenced close=")" open="(">
+                                    <mi>t</mi>
+                                </mfenced>
+                            </mtd>
+                            <mtd columnalign="center">
+                                <mo>=</mo>
+                                <mfenced close="" open="{">
+                                    <mtable>
+                                        <mtr>
+                                            <mtd>
+                                                <mn>0</mn>
+                                            </mtd>
+                                            <mtd>
+                                                <mrow>
+                                                    <mtext>if</mtext>
+                                                    <mspace width="1ex"/>
+                                                </mrow>
+                                                <mi>t</mi>
+                                                <mo>&#8804;</mo>
+                                                <mn>0</mn>
+                                            </mtd>
+                                        </mtr>
+                                        <mtr>
+                                            <mtd>
+                                                <mn>1</mn>
+                                            </mtd>
+                                            <mtd>
+                                                <mrow>
+                                                    <mtext>if</mtext>
+                                                    <mspace width="1ex"/>
+                                                </mrow>
+                                                <mi>t</mi>
+                                                <mo>&#62;</mo>
+                                                <mn>0</mn>
+                                            </mtd>
+                                        </mtr>
+                                    </mtable>
+                                </mfenced>
+                            </mtd>
+                        </mtr>
+                    </mtable>
+                    <annotation encoding="SnuggleTeX">\begin{eqnarray*}                       V_o(t) &amp;= \begin{cases} 0 &amp; \mbox{if } t \leq 0 \\ 1 &amp; \mbox{if } t &gt; 0 \end{cases} \\                       \end{eqnarray*}</annotation>
+                </semantics>
+            </math>
+            <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+                <semantics>
+                    <mtable>
+                        <mtr>
+                            <mtd columnalign="right">
+                                <msub>
+                                    <mi>V</mi>
+                                    <mi>o</mi>
+                                </msub>
+                                <mfenced close=")" open="(">
+                                    <mi>s</mi>
+                                </mfenced>
+                            </mtd>
+                            <mtd columnalign="center">
+                                <mo>=</mo>
+                                <mfrac>
+                                    <mn>1</mn>
+                                    <mi>s</mi>
+                                </mfrac>
+                            </mtd>
+                        </mtr>
+                    </mtable>
+                    <annotation encoding="SnuggleTeX">\begin{eqnarray*}                       V_o(s) &amp;= \frac{1}{s}                       \end{eqnarray*}</annotation>
+                </semantics>
+            </math>
+            
+            
+        </p>
+        <div>
+            <customInteraction class="org.qtitools.mathassess.MathEntryInteraction"
+                ma:expectedLength="30" ma:printIdentifier="printMath" ma:syntax="text/x-maxima"
+                responseIdentifier="RESPONSE"/>
+        </div>
+        <infoControl title="Table of Laplace transforms"><a href="http://integral-table.com/downloads/LaplaceTable.pdf">Click here to see the table of Laplace transforms</a> - then use your browser's Back button to return to the question</infoControl>
+        <div>
+            <feedbackInline identifier="CORRECT" outcomeIdentifier="FEEDBACK" showHide="show">
+                Correct </feedbackInline>
+            <feedbackInline identifier="CORRECT2" outcomeIdentifier="FEEDBACK" showHide="show"> Your
+                answer is correct </feedbackInline>
+            <feedbackInline identifier="CORRECT3" outcomeIdentifier="FEEDBACK" showHide="show"> OK </feedbackInline>
+            <feedbackInline identifier="TRANS-EXPR" outcomeIdentifier="FEEDBACK" showHide="show">
+                Your need to take the inverse transform of this expression! </feedbackInline>
+            <feedbackInline identifier="ORIG-VAR" outcomeIdentifier="FEEDBACK" showHide="show">
+                Your input should be a function of &#160;
+                <m:math>
+                    <m:mi>t</m:mi>
+                </m:math>
+            </feedbackInline>
+            <feedbackInline identifier="T1OK" outcomeIdentifier="FEEDBACK" showHide="show"> The term in&#160;
+                <m:math>
+                    <m:msup>
+                        <m:mi>e</m:mi>
+                        <m:mi>mAt</m:mi>
+                    </m:msup>
+                </m:math>
+                &#160;is correct. 
+            </feedbackInline>
+            <feedbackInline identifier="T2OK" outcomeIdentifier="FEEDBACK" showHide="show"> The term in&#160;
+                <m:math>
+                    <m:msup>
+                        <m:mi>e</m:mi>
+                        <m:mi>mBt</m:mi>
+                    </m:msup>
+                </m:math>
+                &#160;is correct. 
+            </feedbackInline>
+            <feedbackInline identifier="T3OK" outcomeIdentifier="FEEDBACK" showHide="show"> The constant term is correct. 
+            </feedbackInline>
+            <feedbackInline identifier="T1SIGN" outcomeIdentifier="FEEDBACK" showHide="show"> The term in&#160;
+                <m:math>
+                    <m:msup>
+                        <m:mi>e</m:mi>
+                        <m:mi>mAt</m:mi>
+                    </m:msup>
+                </m:math>
+                &#160;has the wrong sign. 
+            </feedbackInline>
+            <feedbackInline identifier="T2SIGN" outcomeIdentifier="FEEDBACK" showHide="show"> The term in&#160;
+                <m:math>
+                    <m:msup>
+                        <m:mi>e</m:mi>
+                        <m:mi>mBt</m:mi>
+                    </m:msup>
+                </m:math>
+                &#160;has the wrong sign. 
+            </feedbackInline>
+            <feedbackInline identifier="T3SIGN" outcomeIdentifier="FEEDBACK" showHide="show"> The constant term has the wrong sign. 
+            </feedbackInline>
+            <feedbackInline identifier="T1BAD" outcomeIdentifier="FEEDBACK" showHide="show"> The term in&#160;
+                <m:math>
+                    <m:msup>
+                        <m:mi>e</m:mi>
+                        <m:mi>mAt</m:mi>
+                    </m:msup>
+                </m:math>
+                &#160;is incorrect. 
+            </feedbackInline>
+            <feedbackInline identifier="T2BAD" outcomeIdentifier="FEEDBACK" showHide="show"> The term in&#160;
+                <m:math>
+                    <m:msup>
+                        <m:mi>e</m:mi>
+                        <m:mi>mBt</m:mi>
+                    </m:msup>
+                </m:math>
+                &#160;is incorrect. 
+            </feedbackInline>
+            <feedbackInline identifier="T3BAD" outcomeIdentifier="FEEDBACK" showHide="show"> The constant term is incorrect. 
+            </feedbackInline>
+            <feedbackInline identifier="T1ZERO" outcomeIdentifier="FEEDBACK" showHide="show"> A term in&#160;
+                <m:math>
+                    <m:msup>
+                        <m:mi>e</m:mi>
+                        <m:mi>mAt</m:mi>
+                    </m:msup>
+                </m:math>
+                &#160;is expected. 
+            </feedbackInline>
+            <feedbackInline identifier="T2ZERO" outcomeIdentifier="FEEDBACK" showHide="show"> A term in&#160;
+                <m:math>
+                    <m:msup>
+                        <m:mi>e</m:mi>
+                        <m:mi>mBt</m:mi>
+                    </m:msup>
+                </m:math>
+                &#160;is expected. 
+            </feedbackInline>
+            <feedbackInline identifier="T3ZERO" outcomeIdentifier="FEEDBACK" showHide="show"> A constant term is expected. 
+            </feedbackInline>
+            <feedbackInline identifier="T3NotNumber" outcomeIdentifier="FEEDBACK" showHide="show"> There is unexpected content in your expression. 
+            </feedbackInline>
+            <feedbackInline identifier="INCORRECT" outcomeIdentifier="FEEDBACK" showHide="show"> You
+                should ask for tutor help on this question. </feedbackInline>
+        </div>
+        <feedbackBlock id="feedbackBlock4" identifier="THREETRIES"
+            outcomeIdentifier="FEEDBACK" showHide="show">
+            <p> You have had three attempts at answering this question, so here is the
+                solution: </p>
+        </feedbackBlock>
+        <feedbackBlock identifier="SOLUTION" outcomeIdentifier="FEEDBACK" showHide="show">
+            <div>
+                <p>This solution assumes that you have used a table of Laplace transforms, such as <a href="http://integral-table.com/downloads/LaplaceTable.pdf">this one</a>.</p>
+                <p>
+                    <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+                        <semantics>
+                            <mrow>
+                                <msub>
+                                    <mi>V</mi>
+                                    <mi>c</mi>
+                                </msub>
+                                <mfenced close=")" open="(">
+                                    <mi>s</mi>
+                                </mfenced>
+                                <mo>=</mo>
+                                <mi>G</mi>
+                                <mfenced close=")" open="(">
+                                    <mi>s</mi>
+                                </mfenced>
+                                <mo>&#xd7;</mo>
+                                <msub>
+                                    <mi>V</mi>
+                                    <mi>o</mi>
+                                </msub>
+                                <mfenced close=")" open="(">
+                                    <mi>s</mi>
+                                </mfenced>
+                                <mo>=</mo>
+                                <mfrac>
+                                    <mn>1</mn>
+                                    
+                                    <mrow>
+                                        <mi>fLC</mi>
+                                        <msup>
+                                            <mi>s</mi>
+                                            <mn>2</mn>
+                                        </msup>
+                                        <mo>+</mo>
+                                        <mi>fRC</mi>
+                                        <mi>s</mi>
+                                        <mo>+</mo>
+                                        <mn>1</mn>
+                                    </mrow>
+                                    
+                                </mfrac>
+                                <mo>&#xd7;</mo>
+                                <mfrac>
+                                    <mn>1</mn>
+                                    <mi>s</mi>
+                                </mfrac>
+                                <mo>=</mo>
+                                <mfrac>
+                                    <mi>iAB</mi>
+                                    <mi>mQues</mi>
+                                </mfrac>
+                                <mo>&#xd7;</mo>
+                                <mfrac>
+                                    <mn>1</mn>
+                                    <mi>s</mi>
+                                </mfrac>
+                            </mrow>
+                            <annotation encoding="SnuggleTeX">\[                       V_c(s) = G(s) \times V_o(s)                       = \frac{1}{0.05 s^2 + 0.6 s + 1} \times \frac{1}{s}                       = \frac{20}{s^2 + 12 s + 20} \times \frac{1}{s}                       \]</annotation>
+                        </semantics>
+                    </math>
+                </p>
+                <p>
+                    Factorise the denominator of <math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mi>G</mi>
+                                
+                                <mfenced close=")" open="(">
+                                    <mi>s</mi>
+                                </mfenced>
+                                
+                            </mrow>
+                            <annotation encoding="SnuggleTeX">$G(s)$</annotation>
+                        </semantics>
+                    </math>, using <math xmlns="http://www.w3.org/1998/Math/MathML">
+                        <semantics>
+                            <mrow>
+                                <mi>s</mi>
+                                <mo>=</mo>
+                                <mfrac>
+                                    <mrow>
+                                        <mo>-</mo>
+                                        <mi>b</mi>
+                                        <mo>&#xb1;</mo>
+                                        
+                                        <msqrt>
+                                            <mrow>
+                                                <msup>
+                                                    <mi>b</mi>
+                                                    <mn>2</mn>
+                                                </msup>
+                                                <mo>-</mo>
+                                                <mn>4</mn>
+                                                <mi>a</mi>
+                                                <mi>c</mi>
+                                            </mrow>
+                                        </msqrt>
+                                        
+                                    </mrow>
+                                    <mrow>
+                                        <mn>2</mn>
+                                        <mi>a</mi>
+                                    </mrow>
+                                </mfrac>
+                            </mrow>
+                            <annotation encoding="SnuggleTeX">$s = \frac{-b\pm\sqrt{b^2-4ac}}{2a}$</annotation>
+                        </semantics>
+                    </math> if necessary, to find the denominators.
+                    <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+                        <semantics>
+                            <mtable>
+                                <mtr>
+                                    <mtd columnalign="right">
+                                        <mi>s</mi>
+                                    </mtd>
+                                    <mtd columnalign="center">
+                                        <mo>=</mo>
+                                    </mtd>
+                                    <mtd columnalign="left">
+                                        <mfrac>
+                                            <mrow>
+                                                <mo>-</mo>
+                                                <mi>iApB</mi>
+                                                <mo>&#xb1;</mo>
+                                                <msqrt>
+                                                    <mrow>
+                                                        <msup>
+                                                            <mi>iApB</mi>
+                                                            <mn>2</mn>
+                                                        </msup>
+                                                        <mo>-</mo>
+                                                        <mn>4</mn>
+                                                        <mo>&#xd7;</mo>
+                                                        <mi>iAB</mi>
+                                                    </mrow>
+                                                </msqrt>
+                                            </mrow>
+                                            <mrow>
+                                                <mn>2</mn>
+                                                <mo>&#xd7;</mo>
+                                                <mn>1</mn>
+                                            </mrow>
+                                        </mfrac>
+                                    </mtd>
+                                </mtr>
+                                <mtr>
+                                    <mtd columnalign="right">
+                                        <mi>s</mi>
+                                    </mtd>
+                                    <mtd columnalign="center">
+                                        <mo>=</mo>
+                                    </mtd>
+                                    <mtd columnalign="left">
+                                        <mi>iA</mi>
+                                        <mrow>
+                                            <mspace width="1ex"/>
+                                            <mtext>or</mtext>
+                                            <mspace width="1ex"/>
+                                        </mrow>
+                                        
+                                        <mi>s</mi>
+                                        
+                                        <mo>=</mo>
+                                        <mi>iB</mi>
+                                    </mtd>
+                                </mtr>
+                            </mtable>
+                            <annotation encoding="SnuggleTeX">\begin{eqnarray*}                       s &amp;= \frac{-0.6\pm\sqrt{0.6^2-4\times 0.05}}{2\times 0.05} \\ s &amp;=-2 \mbox{ or }s=-10                       \end{eqnarray*}</annotation>
+                        </semantics>
+                    </math>
+                    Hence
+                    <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+                        <semantics>
+                            <mtable>
+                                <mtr>
+                                    <mtd columnalign="right">
+                                        <msub>
+                                            <mi>V</mi>
+                                            <mi>c</mi>
+                                        </msub>
+                                        <mfenced close=")" open="(">
+                                            <mi>s</mi>
+                                        </mfenced>
+                                    </mtd>
+                                    <mtd columnalign="center">
+                                        <mo>=</mo>
+                                    </mtd>
+                                    <mtd columnalign="left">
+                                        <mfrac>
+                                            <mi>iAB</mi>
+                                            <mrow>
+                                                <mfenced close=")" open="(">
+                                                    <mrow>
+                                                        <mi>mFac1</mi>
+                                                    </mrow>
+                                                </mfenced>
+                                                <mfenced close=")" open="(">
+                                                    <mrow>
+                                                        <mi>mFac2</mi>
+                                                    </mrow>
+                                                </mfenced>
+                                                <mi>s</mi>
+                                            </mrow>
+                                        </mfrac>
+                                        <mo>=</mo>
+                                        <mfrac>
+                                            <mi>A</mi>
+                                            <mi>mFac1</mi>
+                                        </mfrac>
+                                        
+                                        <mo>+</mo>
+                                        <mfrac>
+                                            <mi>B</mi>
+                                            <mi>mFac2</mi>
+                                        </mfrac>
+                                        <mo>+</mo>
+                                        <mfrac>
+                                            <mi>C</mi>
+                                            <mi>s</mi>
+                                        </mfrac>
+                                        
+                                    </mtd>
+                                </mtr>
+                            </mtable>
+                            <annotation encoding="SnuggleTeX">\begin{eqnarray*}V_c(s) = \frac{\qv{iAB}}{s(s+\qv{iA})(s+\qv{iB})} = \frac{A}{s} + \frac{B}{s+\qv{iA}} + \frac{C}{s+\qv{iB}}\end{eqnarray*}</annotation>
+                        </semantics>
+                    </math>
+                </p>
+                <p>Using Heaviside's Quick Cover-Up method
+                    <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+                        <semantics>
+                            <mrow>
+                                <mi>A</mi>
+                                <mo>=</mo>
+                                <mi>mNumA</mi>
+                                <mrow>
+                                    <mtext>,</mtext>
+                                    <mspace width="1ex"/>
+                                </mrow>
+                                <mi>B</mi>
+                                <mo>=</mo>
+                                <mi>mNumB</mi>
+                                <mrow>
+                                    <mtext>,</mtext>
+                                    <mspace width="1ex"/>
+                                </mrow>
+                                <mi>C</mi>
+                                <mo>=</mo>
+                                <mi>iNumA</mi>
+                            </mrow>
+                            <annotation encoding="SnuggleTeX">\[                       A = 1\mbox{,  }B = -\frac{5}{4} = -1.25\mbox{,  }C = \frac{1}{4} = 0.25                       \]</annotation>
+                        </semantics>
+                    </math>
+                    <math xmlns="http://www.w3.org/1998/Math/MathML" display="block">
+                        <semantics>
+                            <mtable>
+                                <mtr>
+                                    <mtd columnalign="right">
+                                        <msub>
+                                            <mi>V</mi>
+                                            <mi>c</mi>
+                                        </msub>
+                                        <mfenced close=")" open="(">
+                                            <mi>s</mi>
+                                        </mfenced>
+                                        <mo>=</mo>
+                                        <mi>mVs</mi>
+                                    </mtd>
+                                    <mtd columnalign="center">
+                                        <mo>&#8658;</mo>
+                                    </mtd>
+                                    <mtd columnalign="left">
+                                        <msub>
+                                            <mi>V</mi>
+                                            <mi>c</mi>
+                                        </msub>
+                                        <mfenced close=")" open="(">
+                                            <mi>t</mi>
+                                        </mfenced>
+                                        <mo>=</mo>
+                                        <mi>mAns</mi>
+                                    </mtd>
+                                </mtr>
+                            </mtable>
+                            <annotation encoding="SnuggleTeX">\begin{eqnarray*}V_c(s) = \frac{1}{s} - \frac{1.25}{s+2} + \frac{0.25}{s+10} &amp;#8658; V_c(t) = 1 - 1.25 e^{-2t} + 0.25 e^{-10t}\end{eqnarray*}</annotation>
+                        </semantics>
+                    </math>
+
+                </p>
+            </div>
+        </feedbackBlock>
+        <feedbackBlock identifier="HINT" outcomeIdentifier="FEEDBACK" showHide="show">
+            <p>Use a table of Laplace transforms such as <a href="http://integral-table.com/downloads/LaplaceTable.pdf">this one</a></p>
+        </feedbackBlock>
+        <feedbackBlock identifier="SEEN-SOLUTION" outcomeIdentifier="FEEDBACK" showHide="show">
+            <p>Since you have viewed the solution, your score for this question will be 0.</p>
+        </feedbackBlock>
+        <feedbackBlock identifier="SEEN-HINT" outcomeIdentifier="FEEDBACK" showHide="show">
+            <p>Since you have viewed the hint, your score for this question will be halved.</p>
+        </feedbackBlock>
+        <feedbackBlock id="feedbackBlock7" identifier="askhint" outcomeIdentifier="ASKHINT"
+            showHide="show">
+            <p>
+                <endAttemptInteraction id="endAttemptInteraction1" responseIdentifier="HINTREQUEST"
+                    title="Show Hint"/>
+            </p>
+        </feedbackBlock>
+        <feedbackBlock id="feedbackBlock8" identifier="asksolution" outcomeIdentifier="ASKSOLUTION"
+            showHide="show">
+            <p>
+                <endAttemptInteraction id="endAttemptInteraction2" responseIdentifier="SOLREQUEST"
+                    title="Show Solution"/>
+            </p>
+        </feedbackBlock>
+    </itemBody>
+    <responseProcessing>
+        <setOutcomeValue identifier="FEEDBACK">
+            <multiple>
+                <variable identifier="EMPTY"/>
+            </multiple>
+        </setOutcomeValue>
+        <responseCondition>
+            <responseIf>
+                <variable identifier="HINTREQUEST"/>
+                <setOutcomeValue identifier="FEEDBACK">
+                    <multiple>
+                        <baseValue baseType="identifier">HINT</baseValue>
+                    </multiple>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="seenHint">
+                    <baseValue baseType="boolean">true</baseValue>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="ASKHINT">
+                    <baseValue baseType="identifier">null</baseValue>
+                </setOutcomeValue>
+            </responseIf>
+            <responseElseIf>
+                <variable identifier="SOLREQUEST"/>
+                <setOutcomeValue identifier="FEEDBACK">
+                    <multiple>
+                        <baseValue baseType="identifier">SOLUTION</baseValue>
+                    </multiple>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="seenSolution">
+                    <baseValue baseType="boolean">true</baseValue>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="ASKHINT">
+                    <baseValue baseType="identifier">null</baseValue>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="ASKSOLUTION">
+                    <baseValue baseType="identifier">null</baseValue>
+                </setOutcomeValue>
+                <setOutcomeValue identifier="completionStatus">
+                    <baseValue baseType="identifier">completed</baseValue>
+                </setOutcomeValue>
+            </responseElseIf>
+            <responseElse>
+                <responseCondition>
+                    <responseIf>
+                        <isNull>
+                            <variable identifier="RESPONSE"/>
+                        </isNull>
+                        <setOutcomeValue identifier="SCORE">
+                            <baseValue baseType="float">0</baseValue>
+                        </setOutcomeValue>
+                    </responseIf>
+                    <responseElse>
+                        <setOutcomeValue identifier="odummy">
+                            <customOperator class="org.qtitools.mathassess.ScriptRule"
+                                ma:simplify="false" ma:syntax="text/x-maxima">
+                                <baseValue baseType="string"><![CDATA[
+
+ 
+ nResp:nterms(RESPONSE);
+ nAns:nterms(mAns);
+ termsOK:is(is(nResp=nAns)=true);
+ mAnsDifference:ev(ev(RESPONSE,simp)-ev(mAns,simp),simp);
+ isEqual:is(is(mAnsDifference=0)=true);
+ mTransDifference:ev(ev(RESPONSE,simp)-ev(mVs,simp),simp);
+ isTrans:is(is(mTransDifference=0)=true);
+
+ mRcoeff1:ev(coeff(RESPONSE,e^(iA*t)),simp);
+ mRcoeff2:ev(coeff(RESPONSE,e^(iB*t)),simp);
+ mRcoeff3:ev(ev(RESPONSE-mRcoeff1*e^(iA*t)-mRcoeff2*e^(iB*t),simp),simp);
+ t3Number:numberp(mRcoeff3);
+ 
+ t1OK:is(is(ev(mRcoeff1-mNumA,simp)=0)=true);
+ t2OK:is(is(ev(mRcoeff2-mNumB,simp)=0)=true);
+ t3OK:is(is(ev(mRcoeff3-iNumA,simp)=0)=true);
+ 
+ t1BadSign:is(is(ev(mRcoeff1+mNumA,simp)=0)=true);
+ t2BadSign:is(is(ev(mRcoeff2+mNumB,simp)=0)=true);
+ t3BadSign:is(is(ev(mRcoeff3+iNumA,simp)=0)=true);
+ 
+ t1Zero:is(is(mRcoeff1=0)=true);
+ t2Zero:is(is(mRcoeff2=0)=true);
+ t3Zero:is(is(mRcoeff3=0)=true);
+
+ oInput:RESPONSE;
+
+ 
+
+]]></baseValue>
+                            </customOperator>
+                        </setOutcomeValue>
+                        <responseCondition>
+                            <responseIf>
+                                <variable identifier="isEqual"/>
+                                <setOutcomeValue identifier="SCORE">
+                                    <baseValue baseType="float">2</baseValue>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <baseValue baseType="identifier">CORRECT2</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                            </responseIf>
+                            <responseElseIf>
+                                <variable identifier="isTrans"/>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <baseValue baseType="identifier">TRANS-EXPR</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="SCORE">
+                                    <baseValue baseType="float">0</baseValue>
+                                </setOutcomeValue>
+                            </responseElseIf>
+                            <responseElseIf>
+                                <substring caseSensitive="false">
+                                    <baseValue baseType="string">&#62;s&#60;</baseValue>
+                                    <variable identifier="printMath"/>
+                                </substring>
+                                <setOutcomeValue identifier="FEEDBACK">
+                                    <multiple>
+                                        <baseValue baseType="identifier">ORIG-VAR</baseValue>
+                                    </multiple>
+                                </setOutcomeValue>
+                                <setOutcomeValue identifier="SCORE">
+                                    <baseValue baseType="float">0</baseValue>
+                                </setOutcomeValue>
+                            </responseElseIf>
+                            <responseElse>
+                                <setOutcomeValue identifier="SCORE">
+                                    <baseValue baseType="float">0</baseValue>
+                                </setOutcomeValue>
+                                <responseCondition>
+                                    <responseIf>
+                                        <variable identifier="t1OK"/>
+                                        <setOutcomeValue identifier="FEEDBACK">
+                                            <multiple>
+                                                <variable identifier="FEEDBACK"/>
+                                                <baseValue baseType="identifier">T1OK</baseValue>
+                                            </multiple>
+                                        </setOutcomeValue>
+                                        <setOutcomeValue identifier="SCORE">
+                                            <sum>
+                                                <variable identifier="SCORE"/>
+                                                <baseValue baseType="float">0.5</baseValue>
+                                            </sum>
+                                        </setOutcomeValue>
+                                    </responseIf>
+                                    <responseElseIf>
+                                        <variable identifier="t1Zero"/>
+                                        <setOutcomeValue identifier="FEEDBACK">
+                                            <multiple>
+                                                <variable identifier="FEEDBACK"/>
+                                                <baseValue baseType="identifier">T1ZERO</baseValue>
+                                            </multiple>
+                                        </setOutcomeValue>
+                                    </responseElseIf>
+                                    <responseElseIf>
+                                        <variable identifier="t1BadSign"/>
+                                        <setOutcomeValue identifier="FEEDBACK">
+                                            <multiple>
+                                                <variable identifier="FEEDBACK"/>
+                                                <baseValue baseType="identifier">T1SIGN</baseValue>
+                                            </multiple>
+                                        </setOutcomeValue>
+                                    </responseElseIf>
+                                    <responseElse>
+                                        <setOutcomeValue identifier="FEEDBACK">
+                                            <multiple>
+                                                <variable identifier="FEEDBACK"/>
+                                                <baseValue baseType="identifier"
+                                                    >T1BAD</baseValue>
+                                            </multiple>
+                                        </setOutcomeValue>
+                                    </responseElse>
+                                </responseCondition>
+                                <responseCondition>
+                                    <responseIf>
+                                        <variable identifier="t2OK"/>
+                                        <setOutcomeValue identifier="FEEDBACK">
+                                            <multiple>
+                                                <variable identifier="FEEDBACK"/>
+                                                <baseValue baseType="identifier">T2OK</baseValue>
+                                            </multiple>
+                                        </setOutcomeValue>
+                                        <setOutcomeValue identifier="SCORE">
+                                            <sum>
+                                                <variable identifier="SCORE"/>
+                                                <baseValue baseType="float">0.5</baseValue>
+                                            </sum>
+                                        </setOutcomeValue>
+                                    </responseIf>
+                                    <responseElseIf>
+                                        <variable identifier="t2Zero"/>
+                                        <setOutcomeValue identifier="FEEDBACK">
+                                            <multiple>
+                                                <variable identifier="FEEDBACK"/>
+                                                <baseValue baseType="identifier">T2ZERO</baseValue>
+                                            </multiple>
+                                        </setOutcomeValue>
+                                    </responseElseIf>
+                                    <responseElseIf>
+                                        <variable identifier="t2BadSign"/>
+                                        <setOutcomeValue identifier="FEEDBACK">
+                                            <multiple>
+                                                <variable identifier="FEEDBACK"/>
+                                                <baseValue baseType="identifier">T2SIGN</baseValue>
+                                            </multiple>
+                                        </setOutcomeValue>
+                                    </responseElseIf>
+                                    <responseElse>
+                                        <setOutcomeValue identifier="FEEDBACK">
+                                            <multiple>
+                                                <variable identifier="FEEDBACK"/>
+                                                <baseValue baseType="identifier">T2BAD</baseValue>
+                                            </multiple>
+                                        </setOutcomeValue>
+                                    </responseElse>
+                                </responseCondition>
+                                <responseCondition>
+                                    <responseIf>
+                                        <variable identifier="t3OK"/>
+                                        <setOutcomeValue identifier="FEEDBACK">
+                                            <multiple>
+                                                <variable identifier="FEEDBACK"/>
+                                                <baseValue baseType="identifier">T3OK</baseValue>
+                                            </multiple>
+                                        </setOutcomeValue>
+                                        <setOutcomeValue identifier="SCORE">
+                                            <sum>
+                                                <variable identifier="SCORE"/>
+                                                <baseValue baseType="float">0.5</baseValue>
+                                            </sum>
+                                        </setOutcomeValue>
+                                    </responseIf>
+                                    <responseElseIf>
+                                        <not>
+                                            <variable identifier="t3Number"/>
+                                        </not>
+                                        <setOutcomeValue identifier="FEEDBACK">
+                                            <multiple>
+                                                <variable identifier="FEEDBACK"/>
+                                                <baseValue baseType="identifier">T3NotNumber</baseValue>
+                                            </multiple>
+                                        </setOutcomeValue>
+                                    </responseElseIf>
+                                    <responseElseIf>
+                                        <variable identifier="t3Zero"/>
+                                        <setOutcomeValue identifier="FEEDBACK">
+                                            <multiple>
+                                                <variable identifier="FEEDBACK"/>
+                                                <baseValue baseType="identifier">T3ZERO</baseValue>
+                                            </multiple>
+                                        </setOutcomeValue>
+                                    </responseElseIf>
+                                    <responseElseIf>
+                                        <variable identifier="t3BadSign"/>
+                                        <setOutcomeValue identifier="FEEDBACK">
+                                            <multiple>
+                                                <variable identifier="FEEDBACK"/>
+                                                <baseValue baseType="identifier">T3SIGN</baseValue>
+                                            </multiple>
+                                        </setOutcomeValue>
+                                    </responseElseIf>
+                                    <responseElse>
+                                        <setOutcomeValue identifier="FEEDBACK">
+                                            <multiple>
+                                                <variable identifier="FEEDBACK"/>
+                                                <baseValue baseType="identifier">T3BAD</baseValue>
+                                            </multiple>
+                                        </setOutcomeValue>
+                                    </responseElse>
+                                </responseCondition>
+                            </responseElse>
+                        </responseCondition>
+                    </responseElse>
+                </responseCondition>
+                <responseCondition>
+                    <responseIf>
+                        <variable identifier="seenSolution"/>
+                        <setOutcomeValue identifier="FEEDBACK">
+                            <multiple>
+                                <variable identifier="FEEDBACK"/>
+                                <baseValue baseType="identifier">SEEN-SOLUTION</baseValue>
+                            </multiple>
+                        </setOutcomeValue>
+                        <setOutcomeValue identifier="SCORE">
+                            <baseValue baseType="float">0.0</baseValue>
+                        </setOutcomeValue>
+                    </responseIf>
+                    <responseElseIf>
+                        <variable identifier="seenHint"/>
+                        <setOutcomeValue identifier="FEEDBACK">
+                            <multiple>
+                                <variable identifier="FEEDBACK"/>
+                                <baseValue baseType="identifier">SEEN-HINT</baseValue>
+                            </multiple>
+                        </setOutcomeValue>
+                        <setOutcomeValue identifier="SCORE">
+                            <divide>
+                                <variable identifier="SCORE"/>
+                                <baseValue baseType="float">2.0</baseValue>
+                            </divide>
+                        </setOutcomeValue>
+                    </responseElseIf>
+                </responseCondition>
+                <responseCondition>
+                    <responseIf>
+                        <gt>
+                            <variable identifier="numAttempts"/>
+                            <baseValue baseType="integer">3</baseValue>
+                        </gt>
+                        <setOutcomeValue identifier="FEEDBACK">
+                            <multiple>
+                                <baseValue baseType="identifier">THREETRIES</baseValue>
+                                <baseValue baseType="identifier">SOLUTION</baseValue>
+                            </multiple>
+                        </setOutcomeValue>
+                        <setOutcomeValue identifier="completionStatus">
+                            <baseValue baseType="identifier">completed</baseValue>
+                        </setOutcomeValue>
+                        <setOutcomeValue identifier="ASKHINT">
+                            <baseValue baseType="identifier">null</baseValue>
+                        </setOutcomeValue>
+                        <setOutcomeValue identifier="ASKSOLUTION">
+                            <baseValue baseType="identifier">null</baseValue>
+                        </setOutcomeValue>
+                    </responseIf>
+                </responseCondition>
+            </responseElse>
+        </responseCondition>
+    </responseProcessing>
+</assessmentItem>
