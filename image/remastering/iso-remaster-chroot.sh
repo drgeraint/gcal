@@ -6,32 +6,23 @@ mount -t proc none /proc
 mount -t sysfs none /sys
 mount -t devpts none /dev/pts
 
-export HOME=/root
-export LC_ALL=en_GB.utf8
-export LANG=en_GB:utf8
-export LANGUAGE=en_GB:en
-export LC_CTYPE=en_GB.utf8
-export LC_NUMERIC=en_GB.utf8
-export LC_TIME=en_GB.utf8
-export LC_COLLATE=en_GB.utf8
-export LC_MONETARY=en_GB.utf8
-export LC_MESSAGES=en_GB.utf8
-export LC_PAPER=en_GB.utf8
-export LC_NAME=en_GB.utf8
-export LC_ADDRESS=en_GB.utf8
-export LC_TELEPHONE=en_GB.utf8
-export LC_MEASUREMENT=en_GB.utf8
-export LC_IDENTIFICATION=en_GB.utf8
-
 dbus-uuidgen > /var/lib/dbus/machine-id
 dpkg-divert --local --rename --add /sbin/initctl
 ln -s /bin/true /sbin/initctl
+
+ibus engine xkb:gb:extd:eng
+echo "Europe/London" > /etc/timezone
+dpkg-reconfigure --frontend noninteractive tzdata
+localectl set-locale LANG=en_GB.utf8 LANGUAGE=en_GB:en LC_ALL=en_GB.utf8
+localectl set-keymap gb
+localectl set-x11-keymap gb
+update-locale 
 
 # alias packages='dpkg-query -W --showformat="\${Installed-Size}\t\${Package}\n" | sort -nr'
 
 doc_removes=$(dpkg-query -W --showformat="\${Package}\n" | grep doc$)
 removes="$doc_removes"
-for f in abiword gnumeric goffice guvcview leafpad mtpaint pidgin sylpheed transmission xpad; do
+for f in abiword firefox gnumeric goffice guvcview leafpad mtpaint pidgin sylpheed transmission xfburn xpad; do
     r=$(dpkg-query -W --showformat="\${Package}\n" | grep $f);
     removes="$removes $r";
 done
@@ -43,18 +34,22 @@ for lang in de es fr ru ; do
     removes="$removes firefox-locale-${lang}"
 done
 removes="$removes libavcodec.*"
-
-apt-get -y purge ${removes}
-apt-get -y clean
-
-additions="apache2 mysql-server mysql-client"
-additions="$additions libapache2-mod-php5 php5-common php5-mysql php5-curl php5-gd php5-xmlrpc php5-intl"
-# apache2-utils ssl-cert
-# STACK
-# additions="$additions gnuplot maxima libjs-mathjax"
+buildtools="default-jdk maven"
+additions="apache2 mysql-server mysql-client midori libapache2-mod-php5 php5-common php5-mysql php5-curl php5-gd php5-xmlrpc php5-intl maxima tomcat7 apache2-utils ssl-cert"
+# additions="$additions gnuplot maxima libjs-mathjax" # for Stack 
 
 echo 'mysql-server mysql-server/root_password password password' | debconf-set-selections
 echo 'mysql-server mysql-server/root_password_again password password' | debconf-set-selections
+
+# https://bugs.launchpad.net/ubuntu/+source/systemd/+bug/1325142
+echo "libpam-systemd hold"|dpkg --set-selections
+
+apt-get update 
+apt-get -y purge ${removes}
+apt-get -y clean
+apt-get -y dist-upgrade
+#apt-get -y autoremove
+apt-get -y install $buildtools
 apt-get -y install $additions
 
 # Configure MySQL
@@ -87,7 +82,13 @@ php -f ${CLIDIR}/install.php -- \
 chown -R www-data.www-data /var/www
 chown -R www-data.www-data /var/moodledata
 
+# Install QTIWorks
+cd /usr/local/src/qtiworks
+mvn install
+# cd ..
+# rm -rf /usr/local/src/qtiworks
 
+# apt-get -y --purge $buildtools
 apt-get -y --purge autoremove
 apt-get clean
 

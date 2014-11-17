@@ -3,6 +3,7 @@
 # Adapted from instructions at # 2014-08-18:
 # https://help.ubuntu.com/community/LiveCDCustomization 
 
+date
 apt-get install -y build-essential genisoimage git
 
 SOURCE_ISO=~/iso/lubuntu-14.04.1-desktop-i386.iso
@@ -41,6 +42,8 @@ nameserver 8.8.8.8 # Google DNS
 nameserver 8.8.4.4 # Google DNS
 EOF
 
+perl -pi -e "s/'us'/'gb'/" edit/usr/lib/ubiquity/ubiquity/misc.py
+
 cat <<EOF > edit/etc/default/keyboard
 XKBMODEL="pc105"
 XKBLAYOUT="gb"
@@ -52,29 +55,13 @@ cat <<EOF > edit/etc/default/locale
 LC_ALL=en_GB.utf8
 LANG=en_GB:utf8
 LANGUAGE=en_GB:en
-LC_CTYPE=en_GB.utf8
-LC_NUMERIC=en_GB.utf8
-LC_TIME=en_GB.utf8
-LC_COLLATE=en_GB.utf8
-LC_MONETARY=en_GB.utf8
-LC_MESSAGES=en_GB.utf8
-LC_PAPER=en_GB.utf8
-LC_NAME=en_GB.utf8
-LC_ADDRESS=en_GB.utf8
-LC_TELEPHONE=en_GB.utf8
-LC_MEASUREMENT=en_GB.utf8
-LC_IDENTIFICATION=en_GB.utf8
 EOF
 
-cat <<EOF > edit/etc/firefox/syspref.js
-// This file can be used to configure global preferences for Firefox
-user_pref("browser.startup.homepage", "localhost/moodle|www.mathcentre.ac.uk");
-EOF
-
-mount --bind /dev/ edit/dev
-
-# Apache
-echo "ServerName localhost" >> edit/etc/apache2/apache2.conf
+# QTIWorks
+pushd edit/usr/local/src
+git clone https://github.com/davemckain/qtiworks.git
+git checkout production
+popd
 
 # Moodle
 mkdir -p edit/var/www/html
@@ -87,7 +74,6 @@ git checkout MOODLE_27_STABLE
 popd
 popd
 
-For entirely fresh installation, uncomment:
 mkdir edit/var/moodledata
 cat <<EOF > edit/var/moodledata/.htaccess
 order deny,allow
@@ -96,7 +82,32 @@ EOF
 chown -R www-data.www-data edit/var/moodledata
 
 cp /usr/local/bin/iso-remaster.sh /usr/local/bin/iso-remaster-chroot.sh edit/usr/local/bin/
+
+mount --bind /dev/ edit/dev
+mount --bind /var/run/dbus edit/var/run/dbus
+
 chroot edit /bin/sh -c /usr/local/bin/iso-remaster-chroot.sh
+
+rm -f edit/var/lib/dbus/machine-id
+umount -l edit/var/run/dbus
+umount -l edit/dev
+
+for d in $(find edit/ -type d -name .git); do rm -rf edit/$d ; done
+rm -rf edit/tmp/* edit~/root/bash_history
+rm -f edit/etc/hosts
+
+# Apache
+echo "ServerName localhost" >> edit/etc/apache2/apache2.conf
+
+# Firefox homepage
+cat <<EOF > edit/etc/firefox/syspref.js
+// This file can be used to configure global preferences for Firefox
+user_pref("browser.startup.homepage", "localhost/moodle|www.mathcentre.ac.uk");
+EOF
+
+# Midori homepage
+sed -e "sXfile:///usr/share/ubuntu-artwork/home/index.htmlXhttp://localhost/moodleX" edit/etc/xdg/midori/config > edit/etc/xdg/midori/config.ed
+mv edit/etc/xdg/midori/config.ed edit/etc/xdg/midori/config 
 
 # # Install prepared /var/moodledata 
 # pushd edit
@@ -150,13 +161,6 @@ chroot edit /bin/sh -c /usr/local/bin/iso-remaster-chroot.sh
 # echo Set the maxima command to:
 # echo edit/var/moodledata/stack/maxima-optimised -eval '(cl-user::run)'
 
-for d in $(find edit/ -type d -name .git); do rm -rf edit/$d ; done
-rm -rf edit/tmp/* edit~/root/bash_history
-rm -f edit/var/lib/dbus/machine-id
-rm -f edit/etc/hosts
-
-umount -l edit/dev
-
 chmod +x extract-cd/casper/filesystem.manifest
 chroot edit dpkg-query -W --showformat='${Package} ${Version}\n' > extract-cd/casper/filesystem.manifest
 mksquashfs edit extract-cd/casper/filesystem.squashfs -comp xz -e edit/boot
@@ -164,13 +168,25 @@ chmod +w extract-cd/README.diskdefines
 printf $(du -sx --block-size=1 edit | cut -f1) > extract-cd/README.diskdefines
 
 pushd extract-cd
+chmod u+w isolinux
+chmod u+w isolinux/txt.cfg
+cat isolinux/txt.cfg | \
+sed 's#\(append.*--\)#\1 locale=en_GB.utf8 console-setup/layoutcode=uk#' > isolinux/txt.cfg.ed
+cp isolinux/txt.cfg.ed isolinux/txt.cfg
+
 cat <<EOF >> preseed/lubuntu.seed
 # Locale and keyboard settings
-d-i debian-installer/locale string en_GB.UTF-8
-d-i locale-chooser/supported-locales en_GB.UTF-8,en_US.UTF-8
+d-i debian-installer/locale string en_GB.utf8
+d-i localechooser/supported-locales en_GB.utf8, en_US.utf8
 d-i keyboard-configuration/layout string gb
+d-i keyboard-configuration/layoutcode string gb
+d-i keyboard-configuration/modelcode string pc105
+keyboard-configuration keyboard-configuration/layout string gb
+keyboard-configuration keyboard-configuration/layoutcode string gb
+keyboard-configuration keyboard-configuration/modelcode string pc105
 EOF
 rm md5sum.txt
-find -type f -print0 | xargs -0 md5sum | grep -v isolinux/boot.cat | tee md5sum.txt
+find -type f -print0 | xargs -0 md5sum | grep -v isolinux/boot.cat > md5sum.txt
 mkisofs -D -r -V "${VOLUME_TAG}" -cache-inodes -J -l -b isolinux/isolinux.bin -c isolinux/boot.cat -no-emul-boot -boot-load-size 4 -boot-info-table -o ${OUTPUT_ISO} .
 umount ${SOURCE_ISO}
+
